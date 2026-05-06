@@ -3,94 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Luxury Wigs | The Lace Wigs</title>
-    <!-- Linking your existing Noir CSS -->
+    <title>The Lace Wigs | Shop Professional HD Lace</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Job-Ready Enhancement: Sticky Filter Bar */
+        .filter-bar {
+            background: #0a0a0a;
+            padding: 20px;
+            position: sticky;
+            top: 70px;
+            z-index: 900;
+            border-bottom: 1px solid #111;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .filter-bar input, .filter-bar select {
+            background: #111;
+            border: 1px solid #222;
+            color: white;
+            padding: 12px;
+            min-width: 200px;
+        }
+        .empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 50px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Shared Navigation -->
     <nav>
         <div class="logo">THE LACE WIGS</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html" class="active" style="color: var(--gold);">Shop</a></li>
+            <li><a href="shop.html" style="color: var(--gold);">Shop</a></li>
             <li><a href="about.html">Our Story</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="#" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</a></li>
+            <li><a href="#" onclick="toggleCart()">Bag (<span id="cart-count">0</span>)</a></li>
         </ul>
     </nav>
 
-    <header style="text-align: center; padding: 40px 20px;">
-        <h1 style="color: var(--gold); letter-spacing: 3px;">COLLECTION</h1>
-        <p style="color: #888;">Professional Grade HD Lace & Virgin Human Hair</p>
-    </header>
+    <!-- Professional Feature: Multi-Filter and Sorting Controls -->
+    <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="Search by name or texture..." oninput="handleFilterChange()">
+        
+        <select id="categoryFilter" onchange="handleFilterChange()">
+            <option value="all">All Textures</option>
+            <option value="Straight">Straight</option>
+            <option value="Body Wave">Body Wave</option>
+            <option value="Curly">Curly</option>
+        </select>
+
+        <select id="sortOrder" onchange="handleFilterChange()">
+            <option value="default">Sort By: Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+        </select>
+    </div>
 
     <div class="container">
-        <!-- The Product Grid -->
-        <div class="grid" id="wig-list">
-            <!-- JavaScript will inject wigs here -->
+        <div class="grid" id="product-grid">
+            <!-- Products injected by JS -->
         </div>
     </div>
 
-    <!-- Same Cart UI from before -->
+    <!-- UI Overlay and Cart Modal -->
     <div class="overlay" id="overlay" onclick="closeAll()"></div>
     <div id="cart-modal">
         <h2>Your Bag</h2>
         <div id="cart-items"></div>
         <hr style="border-color: #222;">
         <p><strong>Subtotal: $<span id="cart-total">0.00</span></strong></p>
-        <button class="btn btn-primary" onclick="alert('Redirecting to Stripe...')">Checkout Now</button>
-        <button class="btn" style="background:#111; color:white; margin-top:10px" onclick="toggleCart()">Close</button>
+        <button class="btn btn-primary" onclick="alert('Checkout integration ready.')">Checkout</button>
     </div>
 
     <script>
-        // Specific data for a Wig Store
-        const wigs = [
-            { id: 1, name: "HD Lace Frontal - Body Wave", price: 350.00, rating: "★★★★★", review: "Lace melts like butter!" },
-            { id: 2, name: "Full Lace - Straight Silky", price: 420.00, rating: "★★★★★", review: "True to length and density." },
-            { id: 3, name: "Glueless Wear & Go - Curly", price: 280.00, rating: "★★★★☆", review: "Perfect for beginners." },
-            { id: 4, name: "Bob Cut - 13x4 Lace", price: 195.00, rating: "★★★★★", review: "Cut is very professional." }
+        // Feature: Centralized Data (Easily movable to an API/Database)
+        const products = [
+            { id: 1, name: "HD Frontal - Body Wave", price: 350, type: "Body Wave", rating: "★★★★★" },
+            { id: 2, name: "Full Lace - Straight Silky", price: 420, type: "Straight", rating: "★★★★★" },
+            { id: 3, name: "Glueless - Curly", price: 280, type: "Curly", rating: "★★★★☆" },
+            { id: 4, name: "HD Frontal - Deep Wave", price: 375, type: "Curly", rating: "★★★★★" }
         ];
 
         let cart = [];
 
-        function renderWigs() {
-            const list = document.getElementById('wig-list');
-            list.innerHTML = wigs.map(w => `
+        // Logic: Unified Filtering and Sorting
+        function handleFilterChange() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const sort = document.getElementById('sortOrder').value;
+
+            let filtered = products.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(search);
+                const matchesCategory = category === 'all' || p.type.includes(category);
+                return matchesSearch && matchesCategory;
+            });
+
+            // Logic: Dynamic Array Sorting
+            if (sort === "low") filtered.sort((a, b) => a.price - b.price);
+            if (sort === "high") filtered.sort((a, b) => b.price - a.price);
+
+            renderUI(filtered);
+        }
+
+        function renderUI(data) {
+            const grid = document.getElementById('product-grid');
+            if (data.length === 0) {
+                grid.innerHTML = `<div class="empty-state">No wigs found matching those criteria.</div>`;
+                return;
+            }
+
+            grid.innerHTML = data.map(p => `
                 <div class="product-card">
-                    <div class="img-container">
-                        <div class="product-img">WIG IMAGE</div>
-                    </div>
+                    <div class="img-container"><div class="product-img">HD LACE</div></div>
                     <div class="product-info">
-                        <div class="rating">${w.rating}</div>
-                        <h3>${w.name}</h3>
-                        <p class="price">$${w.price.toFixed(2)}</p>
-                        <div class="reviews">"${w.review}"</div>
-                        <button class="btn btn-primary" onclick="addToCart(${w.id})">Add to Bag</button>
+                        <div class="rating">${p.rating}</div>
+                        <h3>${p.name}</h3>
+                        <p class="price">$${p.price.toFixed(2)}</p>
+                        <button class="btn btn-primary" onclick="addToCart(${p.id})">Add to Bag</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Standard Cart Functions
         function addToCart(id) {
-            const item = wigs.find(w => w.id === id);
-            cart.push(item);
-            updateCartUI();
+            const p = products.find(i => i.id === id);
+            cart.push(p);
+            updateCart();
             toggleCart(true);
         }
 
-        function updateCartUI() {
+        function updateCart() {
             document.getElementById('cart-count').innerText = cart.length;
-            const cartItems = document.getElementById('cart-items');
-            cartItems.innerHTML = cart.map(item => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:15px">
-                    <span>${item.name}</span>
-                    <span>$${item.price.toFixed(2)}</span>
+            document.getElementById('cart-items').innerHTML = cart.map(item => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px">
+                    <span>${item.name}</span><span>$${item.price}</span>
                 </div>
             `).join('');
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const total = cart.reduce((s, i) => s + i.price, 0);
             document.getElementById('cart-total').innerText = total.toFixed(2);
         }
 
@@ -106,7 +160,7 @@
             document.getElementById('overlay').style.display = 'none';
         }
 
-        renderWigs();
+        renderUI(products);
     </script>
 </body>
 </html>
