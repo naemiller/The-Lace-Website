@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | The Lace Wigs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-section {
+            max-width: 800px;
+            margin: 60px auto;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+        .about-header {
+            text-align: center;
+            padding: 100px 20px;
+            background: #050505;
+            border-bottom: 1px solid #111;
+        }
+        .gold-text { color: var(--gold); }
+        .vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        @media (max-width: 768px) {
+            .vision-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared Navigation -->
+    <nav>
+        <div class="logo">THE LACE WIGS</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html" style="color: var(--gold);">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="about-header">
+        <h1 style="letter-spacing: 5px; text-transform: uppercase;">The Art of the <span class="gold-text">Melt</span></h1>
+        <p style="color: #888;">Redefining luxury hair for the modern woman.</p>
+    </header>
+
+    <div class="about-section">
+        <h2 class="gold-text">Our Standard</h2>
+        <p>Founded on the belief that a hairline should be a secret, <strong>The Lace Wigs</strong> specializes in professional-grade HD lace and ethically sourced virgin human hair. We don't just sell wigs; we provide the confidence of an undetectable install.</p>
+        
+        <div class="vision-grid">
+            <div>
+                <h3 class="gold-text">Premium Quality</h3>
+                <p>Every strand is inspected for cuticle health, ensuring longevity and a natural shine that lasts for years, not weeks.</p>
+            </div>
+            <div>
+                <h3 class="gold-text">HD Innovation</h3>
+                <p>Our ultra-thin "Real Definition" lace disappears against any skin tone, requiring less makeup and providing a seamless finish.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px; text-align: center; border-top: 1px solid #111; padding-top: 40px;">
+            <h2 class="gold-text">Join the Noir Collection</h2>
+            <p>Experience the highest density and softest textures in the industry.</p>
+            <br>
+            <a href="shop.html" class="btn btn-primary" style="display: inline-block; width: auto; padding: 15px 40px;">Explore the Shop</a>
+        </div>
+    </div>
+
+    <footer style="padding: 50px; text-align: center; border-top: 1px solid #111; color: #444;">
+        <p>&copy; 2024 THE LACE WIGS. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
