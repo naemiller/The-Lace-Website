@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | The Lace Wigs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 0 20px;
+        }
+        .contact-info h2 { color: var(--gold); letter-spacing: 2px; }
+        .contact-info p { color: #888; margin-bottom: 30px; }
+        
+        /* Form Styling */
+        .contact-form { background: #0a0a0a; padding: 40px; border: 1px solid #111; }
+        .contact-form label { display: block; margin-bottom: 8px; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; }
+        textarea { 
+            width: 100%; padding: 12px; background: #111; border: 1px solid #222; 
+            color: white; margin-bottom: 20px; font-family: inherit; resize: vertical;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared Navigation -->
+    <nav>
+        <div class="logo">THE LACE WIGS</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html" style="color: var(--gold);">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="contact-container">
+        <!-- Contact Details -->
+        <div class="contact-info">
+            <h2>GET IN TOUCH</h2>
+            <p>Have a question about lace density or custom coloring? Our wig specialists are here to help you achieve the perfect install.</p>
+            
+            <div style="margin-bottom: 20px;">
+                <h4 class="gold-text" style="margin: 0; color: var(--gold);">EMAIL</h4>
+                <span>support@thelacewigs.com</span>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h4 class="gold-text" style="margin: 0; color: var(--gold);">HOURS</h4>
+                <span>Mon - Fri: 9am - 6pm EST</span>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h4 class="gold-text" style="margin: 0; color: var(--gold);">FAQ</h4>
+                <p>Check our <a href="#" style="color: white;">Shipping & Returns</a> policy for quick answers.</p>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <form action="#" method="POST">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+
+                <label>Subject</label>
+                <select style="width: 100%; padding: 12px; background: #111; border: 1px solid #222; color: white; margin-bottom: 20px;">
+                    <option>Custom Wig Inquiry</option>
+                    <option>Order Status</option>
+                    <option>Wholesale/B2B</option>
+                    <option>Other</option>
+                </select>
+
+                <label>Message</label>
+                <textarea rows="5" placeholder="How can we help?"></textarea>
+
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer style="padding: 50px; text-align: center; border-top: 1px solid #111; color: #444;">
+        <p>&copy; 2024 THE LACE WIGS. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
