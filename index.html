@@ -93,19 +93,19 @@
         let cart = [];
 
         function renderProducts() {
-            const list = document.getElementById('product-list');
-            list.innerHTML = products.map(p => `
-                <div class="product-card">
-                    <div class="product-img">BEAUTY ITEM</div>
-                    <div class="product-info">
-                        <div class="rating">${p.rating}</div>
-                        <h3>${p.name}</h3>
-                        <p style="font-weight:bold; color:var(--gold)">$${p.price.toFixed(2)}</p>
-                        <div class="reviews">"${p.review}"</div>
-                        <button class="btn btn-primary" style="margin-top:15px" onclick="addToCart(${p.id})">Add to Bag</button>
-                    </div>
-                </div>
-            `).join('');
+    const list = document.getElementById('product-list');
+    list.innerHTML = products.map(p => `
+        <div class="product-card">
+            <div class="product-img">IMAGE PLACEHOLDER</div>
+            <div class="product-info">
+                <div class="rating">${p.rating}</div>
+                <h3>${p.name}</h3>
+                <p class="price">$${p.price.toFixed(2)}</p>
+                <div class="reviews">"${p.review}"</div>
+                <button class="btn btn-primary" onclick="addToCart(${p.id})">Add to Bag</button>
+            </div>
+        </div>
+    `).join('');
         }
 
         function addToCart(id) {
