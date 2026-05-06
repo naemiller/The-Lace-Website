@@ -3,120 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glow Beauty Supply | Noir Edition</title>
+    <title>The Lace Wigs | Luxury HD Lace & Virgin Hair</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific Styles for Homepage Hero */
+        .hero {
+            height: 80vh;
+            background: #050505; /* Replace with a high-res wig photo later */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid #111;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 30px;
+        }
+        .cta-btn {
+            padding: 15px 40px;
+            background: var(--gold);
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .cta-btn:hover {
+            background: white;
+        }
+        .featured-categories {
+            padding: 80px 5%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Shared Navigation -->
     <nav>
-        <div class="logo">GLOW BEAUTY</div>
-        <div class="nav-links">
-            <a href="#" onclick="showPage('shop')">Shop</a>
-            <a href="#" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</a>
-        </div>
+        <div class="logo">THE LACE WIGS</div>
+        <ul class="nav-links">
+            <li><a href="index.html" style="color: var(--gold);">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
-    <div class="container" id="shop-view">
-        <div class="grid" id="product-list"></div>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <p>PREMIUM VIRGIN HUMAN HAIR</p>
+        <h1>UNMATCHED LACE</h1>
+        <p>The secret to a flawless, undetectable hairline.</p>
+        <a href="shop.html" class="cta-btn">SHOP THE COLLECTION</a>
+    </section>
 
-    <div class="overlay" id="overlay" onclick="closeAll()"></div>
-
-    <div id="cart-modal">
-        <h2>Your Bag</h2>
-        <div id="cart-items"></div>
-        <hr style="border-color: #222;">
-        <p><strong>Subtotal: $<span id="cart-total">0.00</span></strong></p>
-        <button class="btn btn-primary" onclick="showPage('checkout')">Proceed to Checkout</button>
-        <button class="btn" style="background:#111; color:white; margin-top:10px" onclick="toggleCart()">Close</button>
-    </div>
-
-    <div id="checkout-view">
-        <h2>Checkout</h2>
-        <form onsubmit="processOrder(event)">
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <input type="text" placeholder="Shipping Address" required>
-            <button type="submit" class="btn btn-primary">Complete Order</button>
-        </form>
-    </div>
-
-    <script>
-        const products = [
-            { id: 1, name: "Hydrating Serum", price: 34.00, rating: "★★★★★", review: "Luxury in a bottle." },
-            { id: 2, name: "Matte Lipstick", price: 18.00, rating: "★★★★☆", review: "Stays on all night." },
-            { id: 3, name: "Eye Palette", price: 52.00, rating: "★★★★★", review: "High pigment." },
-            { id: 4, name: "Argan Oil", price: 25.00, rating: "★★★★☆", review: "Perfect shine." }
-        ];
-
-        let cart = [];
-
-        function renderProducts() {
-            const list = document.getElementById('product-list');
-            list.innerHTML = products.map(p => `
-                <div class="product-card">
-                    <div class="img-container">
-                        <div class="product-img">IMAGE HERE</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="rating">${p.rating}</div>
-                        <h3>${p.name}</h3>
-                        <p class="price">$${p.price.toFixed(2)}</p>
-                        <div class="reviews">"${p.review}"</div>
-                        <button class="btn btn-primary" onclick="addToCart(${p.id})">Add to Bag</button>
+    <!-- Featured Section -->
+    <div class="container">
+        <section class="featured-categories">
+            <h2 style="color: var(--gold); letter-spacing: 3px; margin-bottom: 40px;">SHOP BY LACE TYPE</h2>
+            <div class="grid">
+                <!-- Category 1 -->
+                <div class="product-card" style="height: 300px;">
+                    <div class="product-img">HD LACE FRONTAL</div>
+                    <div class="product-info" style="opacity: 1; transform: none; background: rgba(0,0,0,0.6);">
+                        <h3>HD Frontals</h3>
+                        <a href="shop.html" style="color: var(--gold); text-decoration: none; font-size: 0.8rem;">VIEW ALL</a>
                     </div>
                 </div>
-            `).join('');
-        }
-
-        function addToCart(id) {
-            const item = products.find(p => p.id === id);
-            cart.push(item);
-            updateCartUI();
-            toggleCart(true);
-        }
-
-        function updateCartUI() {
-            document.getElementById('cart-count').innerText = cart.length;
-            const cartItems = document.getElementById('cart-items');
-            cartItems.innerHTML = cart.map(item => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:15px">
-                    <span>${item.name}</span>
-                    <span>$${item.price.toFixed(2)}</span>
+                <!-- Category 2 -->
+                <div class="product-card" style="height: 300px;">
+                    <div class="product-img">FULL LACE WIGS</div>
+                    <div class="product-info" style="opacity: 1; transform: none; background: rgba(0,0,0,0.6);">
+                        <h3>Full Lace</h3>
+                        <a href="shop.html" style="color: var(--gold); text-decoration: none; font-size: 0.8rem;">VIEW ALL</a>
+                    </div>
                 </div>
-            `).join('');
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('cart-total').innerText = total.toFixed(2);
-        }
+                <!-- Category 3 -->
+                <div class="product-card" style="height: 300px;">
+                    <div class="product-img">GLUELESS WIGS</div>
+                    <div class="product-info" style="opacity: 1; transform: none; background: rgba(0,0,0,0.6);">
+                        <h3>Wear & Go</h3>
+                        <a href="shop.html" style="color: var(--gold); text-decoration: none; font-size: 0.8rem;">VIEW ALL</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-        function toggleCart(forceOpen = false) {
-            const modal = document.getElementById('cart-modal');
-            const overlay = document.getElementById('overlay');
-            modal.style.display = forceOpen ? 'block' : (modal.style.display === 'block' ? 'none' : 'block');
-            overlay.style.display = modal.style.display;
-        }
+    <footer style="padding: 50px; text-align: center; border-top: 1px solid #111; color: #444;">
+        <p>&copy; 2024 THE LACE WIGS. ALL RIGHTS RESERVED.</p>
+    </footer>
 
-        function showPage(page) {
-            closeAll();
-            if(page === 'checkout') {
-                document.getElementById('checkout-view').style.display = 'block';
-                document.getElementById('overlay').style.display = 'block';
-            }
-        }
-
-        function closeAll() {
-            document.getElementById('cart-modal').style.display = 'none';
-            document.getElementById('checkout-view').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-
-        function processOrder(e) {
-            e.preventDefault();
-            alert("Success! Your beauty haul is on its way.");
-            cart = []; updateCartUI(); closeAll();
-        }
-
-        renderProducts();
-    </script>
 </body>
 </html>
