@@ -1,0 +1,27 @@
+/* Hide info by default */
+.product-info {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease-in-out;
+    background: rgba(17, 17, 17, 0.9); /* Dark overlay effect */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Reveal on hover */
+.product-card:hover .product-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ensure the card can contain the absolute info box */
+.product-card {
+    position: relative;
+    height: 400px; /* Adjust based on your image height */
+}
+
+.product-img {
+    height: 100%; /* Image takes up full card until hover */
+}
