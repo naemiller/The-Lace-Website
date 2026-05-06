@@ -1,0 +1,165 @@
+/* --- CSS VARIABLES: Industry Standard for Easy Updates --- */
+:root {
+    --gold: #D4AF37;        /* Standard Luxury Gold */
+    --gold-hover: #F1D279;
+    --dark-bg: #000000;    /* Pure Noir Background */
+    --card-bg: #0A0A0A;    /* Slightly lighter for depth */
+    --text-main: #FFFFFF;
+    --text-muted: #888888;
+    --border: #222222;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* --- BASE STYLES --- */
+* { box-sizing: border-box; }
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-main);
+    font-family: 'Inter', 'Segoe UI', sans-serif; /* Professional sans-serif choice */
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(5, 5, 5, 0.95);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: var(--gold);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.nav-links { display: flex; list-style: none; padding: 0; }
+.nav-links li { margin-left: 25px; }
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* --- PRODUCT GRID --- */
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px;
+}
+
+/* --- PRODUCT CARDS & HOVER EFFECTS --- */
+.product-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    height: 450px;
+}
+
+.img-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    background: #111; /* Background color before images load */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s ease; /* Professional slow zoom */
+}
+
+/* Hover Zoom Logic */
+.product-card:hover .product-img {
+    transform: scale(1.1);
+}
+
+/* Slide-up Info Reveal */
+.product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 25px;
+    transform: translateY(101%); /* Hidden by default */
+    transition: transform 0.4s ease-out;
+    text-align: center;
+}
+
+.product-card:hover .product-info {
+    transform: translateY(0);
+}
+
+/* --- TYPOGRAPHY & BUTTONS --- */
+h3 { margin: 0 0 10px; font-size: 1.1rem; letter-spacing: 1px; }
+.price { color: var(--gold); font-weight: 700; font-size: 1.2rem; }
+.rating { color: var(--gold); margin-bottom: 5px; }
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary { background: var(--gold); color: black; }
+.btn-primary:hover { background: white; border-color: white; color: black; }
+
+/* --- FILTER & SEARCH BAR --- */
+.filter-bar {
+    display: flex;
+    gap: 15px;
+    padding: 20px 5%;
+    background: #050505;
+    border-bottom: 1px solid var(--border);
+    justify-content: center;
+}
+
+input, select {
+    background: #111;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 12px;
+    outline: none;
+}
+
+input:focus, select:focus { border-color: var(--gold); }
+
+/* --- MODALS (CART/CHECKOUT) --- */
+#cart-modal {
+    background: var(--dark-bg);
+    border-left: 1px solid var(--border);
+    color: white;
+    padding: 30px;
+}
+
+.overlay { background: rgba(0, 0, 0, 0.8); }
