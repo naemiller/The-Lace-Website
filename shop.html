@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Luxury Wigs | The Lace Wigs</title>
+    <!-- Linking your existing Noir CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Shared Navigation -->
+    <nav>
+        <div class="logo">THE LACE WIGS</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html" class="active" style="color: var(--gold);">Shop</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+
+    <header style="text-align: center; padding: 40px 20px;">
+        <h1 style="color: var(--gold); letter-spacing: 3px;">COLLECTION</h1>
+        <p style="color: #888;">Professional Grade HD Lace & Virgin Human Hair</p>
+    </header>
+
+    <div class="container">
+        <!-- The Product Grid -->
+        <div class="grid" id="wig-list">
+            <!-- JavaScript will inject wigs here -->
+        </div>
+    </div>
+
+    <!-- Same Cart UI from before -->
+    <div class="overlay" id="overlay" onclick="closeAll()"></div>
+    <div id="cart-modal">
+        <h2>Your Bag</h2>
+        <div id="cart-items"></div>
+        <hr style="border-color: #222;">
+        <p><strong>Subtotal: $<span id="cart-total">0.00</span></strong></p>
+        <button class="btn btn-primary" onclick="alert('Redirecting to Stripe...')">Checkout Now</button>
+        <button class="btn" style="background:#111; color:white; margin-top:10px" onclick="toggleCart()">Close</button>
+    </div>
+
+    <script>
+        // Specific data for a Wig Store
+        const wigs = [
+            { id: 1, name: "HD Lace Frontal - Body Wave", price: 350.00, rating: "★★★★★", review: "Lace melts like butter!" },
+            { id: 2, name: "Full Lace - Straight Silky", price: 420.00, rating: "★★★★★", review: "True to length and density." },
+            { id: 3, name: "Glueless Wear & Go - Curly", price: 280.00, rating: "★★★★☆", review: "Perfect for beginners." },
+            { id: 4, name: "Bob Cut - 13x4 Lace", price: 195.00, rating: "★★★★★", review: "Cut is very professional." }
+        ];
+
+        let cart = [];
+
+        function renderWigs() {
+            const list = document.getElementById('wig-list');
+            list.innerHTML = wigs.map(w => `
+                <div class="product-card">
+                    <div class="img-container">
+                        <div class="product-img">WIG IMAGE</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="rating">${w.rating}</div>
+                        <h3>${w.name}</h3>
+                        <p class="price">$${w.price.toFixed(2)}</p>
+                        <div class="reviews">"${w.review}"</div>
+                        <button class="btn btn-primary" onclick="addToCart(${w.id})">Add to Bag</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Standard Cart Functions
+        function addToCart(id) {
+            const item = wigs.find(w => w.id === id);
+            cart.push(item);
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = cart.map(item => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:15px">
+                    <span>${item.name}</span>
+                    <span>$${item.price.toFixed(2)}</span>
+                </div>
+            `).join('');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cart-total').innerText = total.toFixed(2);
+        }
+
+        function toggleCart(open = false) {
+            const m = document.getElementById('cart-modal');
+            const o = document.getElementById('overlay');
+            m.style.display = open ? 'block' : (m.style.display === 'block' ? 'none' : 'block');
+            o.style.display = m.style.display;
+        }
+
+        function closeAll() {
+            document.getElementById('cart-modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        renderWigs();
+    </script>
+</body>
+</html>
