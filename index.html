@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Lace Wigs | Premium HD Lace Shop</title>
-    <!-- Font Awesome for luxury design icons -->
+    <!-- Font Awesome for premium luxury icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
+        /* Luxury Global Application Variables */
         :root {
-            --primary: #111111;
-            --accent: #ab8e64; /* Luxury gold tone */
-            --shipping-green: #15803d; /* Professional deep trust green */
+            --primary-color: #111111;
+            --accent-color: #ab8e64; /* Luxurious bronze gold tone */
             --light-bg: #f9f9f9;
-            --border: #e5e5e5;
+            --border-color: #e5e5e5;
+            --shipping-green: #15803d; /* Trustworthy shipping green */
         }
 
         * {
@@ -21,11 +22,23 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
         }
 
-        body { background-color: #ffffff; color: var(--primary); }
+        body { background-color: #ffffff; color: var(--primary-color); }
+
+        /* Custom premium transitions scrollbars */ 
+        ::-webkit-scrollbar { 
+            width: 6px; 
+        } 
+        ::-webkit-scrollbar-track { 
+            background: #f1f1f1; 
+        } 
+        ::-webkit-scrollbar-thumb { 
+            background: var(--accent-color); 
+            border-radius: 3px; 
+        }
 
         /* Fast Shipping Top Announcement Bar */
         .shipping-banner {
-            background-color: var(--primary);
+            background-color: var(--primary-color);
             color: #ffffff;
             text-align: center;
             padding: 10px;
@@ -41,32 +54,32 @@
         }
         
         .shipping-banner i {
-            color: var(--accent);
+            color: var(--accent-color);
             font-size: 13px;
         }
 
         /* Premium Navigation Bar */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; border-bottom: 1px solid var(--border);
+            padding: 20px 5%; border-bottom: 1px solid var(--border-color);
             position: sticky; top: 0; background: #fff; z-index: 100;
         }
 
         .logo { font-size: 22px; font-weight: 900; letter-spacing: 3px; }
         
         .nav-links a {
-            text-decoration: none; color: var(--primary); margin: 0 20px;
+            text-decoration: none; color: var(--primary-color); margin: 0 20px;
             font-weight: 700; text-transform: uppercase; font-size: 13px;
         }
-        .nav-links a.active { color: var(--accent); }
+        .nav-links a.active { color: var(--accent-color); }
 
         .cart-btn { background: none; border: none; font-size: 20px; cursor: pointer; position: relative; }
         .cart-count {
-            position: absolute; top: -8px; right: -10px; background: var(--primary);
+            position: absolute; top: -8px; right: -10px; background: var(--primary-color);
             color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; font-weight: bold;
         }
 
-        /* Responsive Grid Structure */
+        /* Responsive Layout Grid Structure Layouts */
         .shop-layout {
             display: grid; grid-template-columns: 260px 1fr;
             gap: 40px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
@@ -74,12 +87,12 @@
 
         .sidebar-widget {
             background: var(--light-bg); padding: 20px;
-            border-radius: 6px; border: 1px solid var(--border); margin-bottom: 25px;
+            border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 25px;
         }
 
         .sidebar-widget h3 {
             font-size: 14px; text-transform: uppercase; margin-bottom: 15px;
-            border-bottom: 1px solid var(--border); padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-color); padding-bottom: 5px;
         }
 
         .filter-btn {
@@ -88,15 +101,15 @@
             transition: all 0.2s;
         }
 
-        .filter-btn.active, .filter-btn:hover { color: var(--accent); font-weight: 700; }
+        .filter-btn.active, .filter-btn:hover { color: var(--accent-color); font-weight: 700; }
 
-        /* Storefront grid */
+        /* Storefront grid catalog UI layout */
         .products-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px;
         }
 
         .product-card {
-            border: 1px solid var(--border); border-radius: 6px;
+            border: 1px solid var(--border-color); border-radius: 6px;
             overflow: hidden; background: #fff; transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -110,7 +123,7 @@
         
         .product-details { padding: 20px; }
         .product-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
-        .product-price { color: var(--accent); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+        .product-price { color: var(--accent-color); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
         
         /* Shipping Tag Highlight Badge */
         .shipping-tag {
@@ -124,15 +137,15 @@
         }
 
         .buy-btn {
-            width: 100%; background: var(--primary); color: #fff; border: none;
+            width: 100%; background: var(--primary-color); color: #fff; border: none;
             padding: 12px; text-transform: uppercase; font-weight: bold;
             font-size: 13px; cursor: pointer; border-radius: 4px; transition: background 0.2s;
             letter-spacing: 0.5px;
         }
 
-        .buy-btn:hover { background: var(--accent); }
+        .buy-btn:hover { background: var(--accent-color); }
 
-        /* Shopping Bag Slide-out */
+        /* Shopping Bag Slide-out Drawer Panel */
         .cart-drawer {
             position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
             background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 200;
@@ -141,7 +154,7 @@
 
         .cart-drawer.open { right: 0; }
         .cart-header {
-            padding: 20px; border-bottom: 1px solid var(--border);
+            padding: 20px; border-bottom: 1px solid var(--border-color);
             display: flex; justify-content: space-between; align-items: center;
         }
 
@@ -150,7 +163,7 @@
 
         .cart-row {
             display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px;
-            border-bottom: 1px solid var(--border); align-items: center;
+            border-bottom: 1px solid var(--border-color); align-items: center;
         }
 
         .cart-row img { width: 60px; height: 75px; object-fit: cover; border-radius: 4px; }
@@ -160,7 +173,7 @@
             cursor: pointer; margin-top: 4px; font-weight: bold;
         }
 
-        .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: var(--light-bg); }
+        .cart-footer { padding: 20px; border-top: 1px solid var(--border-color); background: var(--light-bg); }
         .subtotal-display { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; font-size: 16px; }
 
         .checkout-action-btn {
@@ -178,7 +191,7 @@
 
         .cart-overlay.active { display: block; }
 
-        @media (max-width: 850px) {
+        @media (max-width: 850px) { 
             .shop-layout { grid-template-columns: 1fr; }
             .cart-drawer { width: 100%; right: -100%; }
         }
@@ -222,12 +235,11 @@
 
         <main>
             <div class="products-grid" id="main-products-view-grid">
-                <!-- JavaScript renders items safely into this container -->
+                <!-- JavaScript safely populates catalog listings directly here -->
             </div>
         </main>
     </div>
 
-    <!-- Sliding Cart Panel -->
     <div class="cart-drawer" id="cart-drawer-panel">
         <div class="cart-header">
             <h2>Your Bag</h2>
@@ -239,12 +251,3 @@
                 <span>Subtotal:</span>
                 <span id="subtotal-price-target">$0.00</span>
             </div>
-            <button class="checkout-action-btn" id="checkout-button">Buy Now via Stripe</button>
-        </div>
-    </div>
-    <div class="cart-overlay" id="cart-background-overlay"></div>
-
-    <script>
-        // High-resolution photography links to display beautiful product visual styles immediately
-        const realStraightImage = "https://unsplash.com";
-        const realBodywaveImage = "https://unsplash.com";
