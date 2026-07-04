@@ -3,14 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lace Wigs | Professional HD Lace Shop</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for premium icons -->
+    <title>The Lace Wigs | Real Static Storefront</title>
+    <!-- Font Awesome for sleek icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        :root {
+            --primary: #111111;
+            --accent: #ab8e64; /* Luxury gold tone */
+            --light-bg: #f9f9f9;
+            --border: #e5e5e5;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body { background-color: #ffffff; color: var(--primary); }
+
+        /* Navigation */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: #fff; z-index: 100;
+        }
+
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: 3px; }
+        .nav-links a {
+            text-decoration: none; color: var(--primary); margin: 0 20px;
+            font-weight: 700; text-transform: uppercase; font-size: 13px;
+        }
+        .nav-links a.active { color: var(--accent); }
+
+        .cart-btn { background: none; border: none; font-size: 20px; cursor: pointer; position: relative; }
+        .cart-count {
+            position: absolute; top: -8px; right: -10px; background: var(--primary);
+            color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; font-weight: bold;
+        }
+
+        /* Responsive Layout Structure */
+        .shop-layout {
+            display: grid; grid-template-columns: 260px 1fr;
+            gap: 40px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
+        }
+
+        .sidebar-widget {
+            background: var(--light-bg); padding: 20px;
+            border-radius: 6px; border: 1px solid var(--border); margin-bottom: 25px;
+        }
+
+        .sidebar-widget h3 {
+            font-size: 14px; text-transform: uppercase; margin-bottom: 15px;
+            border-bottom: 1px solid var(--border); padding-bottom: 5px;
+        }
+
+        .filter-btn {
+            background: none; border: none; padding: 8px 0; display: block;
+            width: 100%; text-align: left; font-size: 14px; color: #555; cursor: pointer;
+        }
+
+        .filter-btn.active, .filter-btn:hover { color: var(--accent); font-weight: 700; }
+
+        /* Storefront grid */
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px;
+        }
+
+        .product-card {
+            border: 1px solid var(--border); border-radius: 6px;
+            overflow: hidden; background: #fff; transition: transform 0.3s;
+        }
+
+        .product-card:hover { transform: translateY(-4px); }
+        .img-container { height: 320px; background: var(--light-bg); }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .product-details { padding: 15px; }
+        .product-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .product-price { color: var(--accent); font-weight: 700; font-size: 16px; margin-bottom: 12px; }
+
+        .buy-btn {
+            width: 100%; background: var(--primary); color: #fff; border: none;
+            padding: 12px; text-transform: uppercase; font-weight: bold;
+            font-size: 12px; cursor: pointer; border-radius: 4px;
+        }
+
+        .buy-btn:hover { background: var(--accent); }
+
+        /* Shopping Bag Slide-out */
+        .cart-drawer {
+            position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
+            background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 200;
+            display: flex; flex-direction: column; transition: right 0.4s ease;
+        }
+
+        .cart-drawer.open { right: 0; }
+        .cart-header {
+            padding: 20px; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .close-drawer-btn { background: none; border: none; font-size: 24px; cursor: pointer; }
+        .cart-items-list { flex: 1; padding: 20px; overflow-y: auto; }
+
+        .cart-row {
+            display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px;
+            border-bottom: 1px solid var(--border); align-items: center;
+        }
+
+        .cart-row img { width: 60px; height: 75px; object-fit: cover; border-radius: 4px; }
+        .cart-row-info { flex: 1; }
+        .remove-item-btn {
+            background: none; border: none; color: #b32d2d; font-size: 11px;
+            cursor: pointer; margin-top: 4px; font-weight: bold;
+        }
+
+        .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: var(--light-bg); }
+        .subtotal-display { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; }
+
+        .checkout-action-btn {
+            width: 100%; background: #22c55e; color: #fff; border: none;
+            padding: 14px; text-transform: uppercase; font-weight: bold;
+            cursor: pointer; border-radius: 4px; text-align: center; text-decoration: none; display: block;
+        }
+
+        .checkout-action-btn:hover { background: #16a34a; }
+
+        .cart-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); z-index: 150; display: none;
+        }
+
+        .cart-overlay.active { display: block; }
+
+        @media (max-width: 850px) {
+            .shop-layout { grid-template-columns: 1fr; }
+            .cart-drawer { width: 100%; right: -100%; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Premium Navigation Bar -->
     <header class="navbar">
         <div class="logo">THE LACE WIGS</div>
         <nav class="nav-links">
@@ -18,109 +151,95 @@
             <a href="shop.html" class="active">Shop</a>
             <a href="story.html">Our Story</a>
         </nav>
-        <div class="nav-icons">
-            <button id="cart-toggle-btn" class="cart-btn">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-count">0</span>
-            </button>
-        </div>
+        <button class="cart-btn" id="open-cart-trigger">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-count" id="global-count-badge">0</span>
+        </button>
     </header>
 
-    <!-- Luxury Featured Carousel Section -->
-    <section class="carousel-container">
-        <h2 class="section-title">Trending Styles</h2>
-        <div class="carousel-wrapper">
-            <button class="carousel-nav prev-btn" id="carousel-prev">&lt;</button>
-            <div class="carousel-track-container">
-                <div class="carousel-track" id="carousel-track">
-                    <!-- Carousel items are dynamically loaded via JavaScript -->
-                </div>
-            </div>
-            <button class="carousel-nav next-btn" id="carousel-next">&gt;</button>
-        </div>
-        <div class="carousel-dots" id="carousel-dots"></div>
-    </section>
-
-    <!-- Main E-Commerce Content Area -->
-    <main class="shop-container">
-        
-        <!-- Filter, Sorting & Admin Product Form Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-block">
+    <div class="shop-layout">
+        <aside>
+            <div class="sidebar-widget">
                 <h3>Filter Textures</h3>
-                <ul class="filter-list">
-                    <li><button class="filter-btn active" data-category="all">All Textures</button></li>
-                    <li><button class="filter-btn" data-category="straight">Straight</button></li>
-                    <li><button class="filter-btn" data-category="bodywave">Body Wave</button></li>
-                    <li><button class="filter-btn" data-category="curly">Curly</button></li>
-                </ul>
+                <button class="filter-btn active" data-cat="all">All Textures</button>
+                <button class="filter-btn" data-cat="straight">Straight</button>
+                <button class="filter-btn" data-cat="bodywave">Body Wave</button>
+                <button class="filter-btn" data-cat="curly">Curly</button>
             </div>
-
-            <div class="sidebar-block">
-                <h3>Sort By</h3>
-                <select id="sort-select" class="sort-dropdown">
-                    <option value="featured">Featured</option>
-                    <option value="low-high">Price: Low to High</option>
-                    <option value="high-low">Price: High to Low</option>
-                </select>
-            </div>
-
-            <!-- Admin Panel: Add Products For Sale -->
-            <div class="sidebar-block admin-panel">
-                <h3><i class="fa-solid fa-plus-minus"></i> Add New Product</h3>
-                <form id="add-product-form">
-                    <div class="form-group">
-                        <label for="new-title">Product Title</label>
-                        <input type="text" id="new-title" placeholder="e.g., Brazilian Water Wave" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-price">Price ($)</label>
-                        <input type="number" id="new-price" step="0.01" placeholder="350.00" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-texture">Texture Look</label>
-                        <select id="new-texture" required>
-                            <option value="straight">Straight</option>
-                            <option value="bodywave">Body Wave</option>
-                            <option value="curly">Curly</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="new-image">Image URL Link</label>
-                        <input type="url" id="new-image" placeholder="https://example.com">
-                        <small>Leave blank for automatic fallback display</small>
-                    </div>
-                    <button type="submit" class="submit-product-btn">Publish to Shop</button>
-                </form>
+            
+            <div class="sidebar-widget" style="font-size: 13px; color: #666; line-height: 1.5;">
+                <p><i class="fa-solid fa-lock"></i> Secured by Stripe checkout links.</p>
             </div>
         </aside>
 
-        <!-- Dynamic Product Catalog Grid -->
-        <section class="products-grid-section">
-            <h2 class="section-title">All Collections</h2>
-            <div class="products-grid" id="products-container"></div>
+        <section>
+            <div class="products-grid" id="main-products-view-grid">
+                <!-- Programmatically populated grid elements -->
+            </div>
         </section>
-    </main>
+    </div>
 
-    <!-- Slide-Out Shopping Bag Drawer -->
-    <div class="cart-drawer" id="cart-drawer">
+    <!-- Sliding Cart Panel -->
+    <div class="cart-drawer" id="cart-drawer-panel">
         <div class="cart-header">
             <h2>Your Bag</h2>
-            <button id="cart-close-btn" class="close-btn">&times;</button>
+            <button class="close-drawer-btn" id="close-cart-trigger">&times;</button>
         </div>
-        <div class="cart-items" id="cart-items-container">
-            <p class="empty-message">Your bag is currently empty.</p>
-        </div>
+        <div class="cart-items-list" id="cart-items-injection-target"></div>
         <div class="cart-footer">
-            <div class="subtotal-row">
+            <div class="subtotal-display">
                 <span>Subtotal:</span>
-                <span id="cart-subtotal">$0.00</span>
+                <span id="subtotal-price-target">$0.00</span>
             </div>
-            <button class="checkout-btn">Proceed to Checkout</button>
+            <button class="checkout-action-btn" id="checkout-button">Buy Now via Stripe</button>
         </div>
     </div>
-    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-overlay" id="cart-background-overlay"></div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <script>
+        /* 
+          ADMIN NOTICE: To add/change your wigs, edit this array right here!
+          Replace the 'stripeUrl' properties below with your real Stripe Checkout Links.
+        */
+        let inventory = [
+            { 
+                id: 1, 
+                title: "Ultra HD Raw Straight Lace Wig", 
+                price: 350.00, 
+                texture: "straight", 
+                img: "https://unsplash.com",
+                stripeUrl: "https://stripe.com" 
+            },
+            { 
+                id: 2, 
+                title: "Luxury Body Wave HD Swiss Lace", 
+                price: 380.00, 
+                texture: "bodywave", 
+                img: "https://unsplash.com",
+                stripeUrl: "https://stripe.com"
+            },
+            { 
+                id: 3, 
+                title: "Exotic Deep Curly HD Frontal Wig", 
+                price: 410.00, 
+                texture: "curly", 
+                img: "https://unsplash.com",
+                stripeUrl: "https://stripe.com"
+            }
+        ];
+
+        let shoppingBag = [];
+        let activeCategoryFilter = "all";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderStoreGridCatalog();
+            registerSystemEventHandlers();
+        });
+
+        function registerSystemEventHandlers() {
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                    e.target.classList.add("active");
+                    activeCategoryFilter = e.target.getAttribute("data-cat");
+                    renderStoreGridCatalog();
