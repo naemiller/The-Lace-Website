@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lace Wigs | Real Static Storefront</title>
-    <!-- Font Awesome for sleek icons -->
+    <title>The Lace Wigs | Premium HD Lace Shop</title>
+    <!-- Font Awesome for luxury design icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
         :root {
             --primary: #111111;
             --accent: #ab8e64; /* Luxury gold tone */
+            --shipping-green: #15803d; /* Professional deep trust green */
             --light-bg: #f9f9f9;
             --border: #e5e5e5;
         }
@@ -22,7 +23,29 @@
 
         body { background-color: #ffffff; color: var(--primary); }
 
-        /* Navigation */
+        /* Fast Shipping Top Announcement Bar */
+        .shipping-banner {
+            background-color: var(--primary);
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .shipping-banner i {
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        /* Premium Navigation Bar */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 5%; border-bottom: 1px solid var(--border);
@@ -30,6 +53,7 @@
         }
 
         .logo { font-size: 22px; font-weight: 900; letter-spacing: 3px; }
+        
         .nav-links a {
             text-decoration: none; color: var(--primary); margin: 0 20px;
             font-weight: 700; text-transform: uppercase; font-size: 13px;
@@ -42,7 +66,7 @@
             color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; font-weight: bold;
         }
 
-        /* Responsive Layout Structure */
+        /* Responsive Grid Structure */
         .shop-layout {
             display: grid; grid-template-columns: 260px 1fr;
             gap: 40px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
@@ -59,33 +83,51 @@
         }
 
         .filter-btn {
-            background: none; border: none; padding: 8px 0; display: block;
+            background: none; border: none; padding: 10px 0; display: block;
             width: 100%; text-align: left; font-size: 14px; color: #555; cursor: pointer;
+            transition: all 0.2s;
         }
 
         .filter-btn.active, .filter-btn:hover { color: var(--accent); font-weight: 700; }
 
         /* Storefront grid */
         .products-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px;
         }
 
         .product-card {
             border: 1px solid var(--border); border-radius: 6px;
-            overflow: hidden; background: #fff; transition: transform 0.3s;
+            overflow: hidden; background: #fff; transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .product-card:hover { transform: translateY(-4px); }
-        .img-container { height: 320px; background: var(--light-bg); }
+        .product-card:hover { 
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .img-container { height: 360px; background: #f3f4f6; position: relative; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; }
-        .product-details { padding: 15px; }
-        .product-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-        .product-price { color: var(--accent); font-weight: 700; font-size: 16px; margin-bottom: 12px; }
+        
+        .product-details { padding: 20px; }
+        .product-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+        .product-price { color: var(--accent); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+        
+        /* Shipping Tag Highlight Badge */
+        .shipping-tag {
+            color: var(--shipping-green);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
         .buy-btn {
             width: 100%; background: var(--primary); color: #fff; border: none;
             padding: 12px; text-transform: uppercase; font-weight: bold;
-            font-size: 12px; cursor: pointer; border-radius: 4px;
+            font-size: 13px; cursor: pointer; border-radius: 4px; transition: background 0.2s;
+            letter-spacing: 0.5px;
         }
 
         .buy-btn:hover { background: var(--accent); }
@@ -94,7 +136,7 @@
         .cart-drawer {
             position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
             background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 200;
-            display: flex; flex-direction: column; transition: right 0.4s ease;
+            display: flex; flex-direction: column; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .cart-drawer.open { right: 0; }
@@ -119,7 +161,7 @@
         }
 
         .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: var(--light-bg); }
-        .subtotal-display { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; }
+        .subtotal-display { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; font-size: 16px; }
 
         .checkout-action-btn {
             width: 100%; background: #22c55e; color: #fff; border: none;
@@ -144,11 +186,16 @@
 </head>
 <body>
 
+    <!-- Fast Shipping Top Announcement Bar -->
+    <div class="shipping-banner">
+        <i class="fa-solid fa-truck-fast"></i> Fast Shipping: US Delivery in 3-5 Business Days
+    </div>
+
     <header class="navbar">
         <div class="logo">THE LACE WIGS</div>
         <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html" class="active">Shop</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="shop.html">Shop</a>
             <a href="story.html">Our Story</a>
         </nav>
         <button class="cart-btn" id="open-cart-trigger">
@@ -168,15 +215,16 @@
             </div>
             
             <div class="sidebar-widget" style="font-size: 13px; color: #666; line-height: 1.5;">
+                <p style="margin-bottom: 8px;"><i class="fa-solid fa-truck" style="color: var(--shipping-green)"></i> Ships from US warehouses.</p>
                 <p><i class="fa-solid fa-lock"></i> Secured by Stripe checkout links.</p>
             </div>
         </aside>
 
-        <section>
+        <main>
             <div class="products-grid" id="main-products-view-grid">
-                <!-- Programmatically populated grid elements -->
+                <!-- JavaScript renders items safely into this container -->
             </div>
-        </section>
+        </main>
     </div>
 
     <!-- Sliding Cart Panel -->
@@ -197,49 +245,6 @@
     <div class="cart-overlay" id="cart-background-overlay"></div>
 
     <script>
-        /* 
-          ADMIN NOTICE: To add/change your wigs, edit this array right here!
-          Replace the 'stripeUrl' properties below with your real Stripe Checkout Links.
-        */
-        let inventory = [
-            { 
-                id: 1, 
-                title: "Ultra HD Raw Straight Lace Wig", 
-                price: 350.00, 
-                texture: "straight", 
-                img: "https://unsplash.com",
-                stripeUrl: "https://stripe.com" 
-            },
-            { 
-                id: 2, 
-                title: "Luxury Body Wave HD Swiss Lace", 
-                price: 380.00, 
-                texture: "bodywave", 
-                img: "https://unsplash.com",
-                stripeUrl: "https://stripe.com"
-            },
-            { 
-                id: 3, 
-                title: "Exotic Deep Curly HD Frontal Wig", 
-                price: 410.00, 
-                texture: "curly", 
-                img: "https://unsplash.com",
-                stripeUrl: "https://stripe.com"
-            }
-        ];
-
-        let shoppingBag = [];
-        let activeCategoryFilter = "all";
-
-        document.addEventListener("DOMContentLoaded", () => {
-            renderStoreGridCatalog();
-            registerSystemEventHandlers();
-        });
-
-        function registerSystemEventHandlers() {
-            document.querySelectorAll(".filter-btn").forEach(btn => {
-                btn.addEventListener("click", (e) => {
-                    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-                    e.target.classList.add("active");
-                    activeCategoryFilter = e.target.getAttribute("data-cat");
-                    renderStoreGridCatalog();
+        // High-fidelity graphic fallbacks to guarantee catalog renders perfectly
+        const fallbackStraight = "https://placeholder.com";
+        const fallbackBodywave = "https://placeholder.com";
