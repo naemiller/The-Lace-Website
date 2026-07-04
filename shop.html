@@ -3,164 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lace Wigs | Shop Professional HD Lace</title>
-    <link rel="stylesheet" href="style.css">
+    <title>The Lace Wigs | Real Static Storefront</title>
+    <!-- Font Awesome for sleek icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
     <style>
-        /* Job-Ready Enhancement: Sticky Filter Bar */
-        .filter-bar {
-            background: #0a0a0a;
-            padding: 20px;
-            position: sticky;
-            top: 70px;
-            z-index: 900;
-            border-bottom: 1px solid #111;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
+        :root {
+            --primary: #111111;
+            --accent: #ab8e64; /* Luxury gold tone */
+            --shipping-green: #15803d; /* Professional deep trust green */
+            --light-bg: #f9f9f9;
+            --border: #e5e5e5;
         }
-        .filter-bar input, .filter-bar select {
-            background: #111;
-            border: 1px solid #222;
-            color: white;
-            padding: 12px;
-            min-width: 200px;
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
         }
-        .empty-state {
-            grid-column: 1/-1;
+
+        body { background-color: #ffffff; color: var(--primary); }
+
+        /* Fast Shipping Top Announcement Bar */
+        .shipping-banner {
+            background-color: var(--primary);
+            color: #ffffff;
             text-align: center;
-            padding: 50px;
-            color: #555;
+            padding: 8px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .shipping-banner i {
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: #fff; z-index: 100;
+        }
+
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: 3px; }
+        .nav-links a {
+            text-decoration: none; color: var(--primary); margin: 0 20px;
+            font-weight: 700; text-transform: uppercase; font-size: 13px;
+        }
+        .nav-links a.active { color: var(--accent); }
+
+        .cart-btn { background: none; border: none; font-size: 20px; cursor: pointer; position: relative; }
+        .cart-count {
+            position: absolute; top: -8px; right: -10px; background: var(--primary);
+            color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; font-weight: bold;
+        }
+
+        /* Responsive Layout Structure */
+        .shop-layout {
+            display: grid; grid-template-columns: 260px 1fr;
+            gap: 40px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
+        }
+
+        .sidebar-widget {
+            background: var(--light-bg); padding: 20px;
+            border-radius: 6px; border: 1px solid var(--border); margin-bottom: 25px;
+        }
+
+        .sidebar-widget h3 {
+            font-size: 14px; text-transform: uppercase; margin-bottom: 15px;
+            border-bottom: 1px solid var(--border); padding-bottom: 5px;
+        }
+
+        .filter-btn {
+            background: none; border: none; padding: 8px 0; display: block;
+            width: 100%; text-align: left; font-size: 14px; color: #555; cursor: pointer;
+        }
+
+        .filter-btn.active, .filter-btn:hover { color: var(--accent); font-weight: 700; }
+
+        /* Storefront grid */
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px;
+        }
+
+        .product-card {
+            border: 1px solid var(--border); border-radius: 6px;
+            overflow: hidden; background: #fff; transition: transform 0.3s;
+        }
+
+        .product-card:hover { transform: translateY(-4px); }
+        .img-container { height: 320px; background: var(--light-bg); }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .product-details { padding: 15px; }
+        .product-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .product-price { color: var(--accent); font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+        
+        /* Shipping Tag Highlight Badge */
+        .shipping-tag {
+            color: var(--shipping-green);
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .buy-btn {
+            width: 100%; background: var(--primary); color: #fff; border: none;
+            padding: 12px; text-transform: uppercase; font-weight: bold;
+            font-size: 12px; cursor: pointer; border-radius: 4px;
+        }
+
+        .buy-btn:hover { background: var(--accent); }
+
+        /* Shopping Bag Slide-out */
+        .cart-drawer {
+            position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
+            background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 200;
+            display: flex; flex-direction: column; transition: right 0.4s ease;
+        }
+
+        .cart-drawer.open { right: 0; }
+        .cart-header {
+            padding: 20px; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .close-drawer-btn { background: none; border: none; font-size: 24px; cursor: pointer; }
+        .cart-items-list { flex: 1; padding: 20px; overflow-y: auto; }
+
+        .cart-row {
+            display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px;
+            border-bottom: 1px solid var(--border); align-items: center;
+        }
+
+        .cart-row img { width: 60px; height: 75px; object-fit: cover; border-radius: 4px; }
+        .cart-row-info { flex: 1; }
+        .remove-item-btn {
+            background: none; border: none; color: #b32d2d; font-size: 11px;
+            cursor: pointer; margin-top: 4px; font-weight: bold;
+        }
+
+        .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: var(--light-bg); }
+        .subtotal-display { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; }
+
+        .checkout-action-btn {
+            width: 100%; background: #22c55e; color: #fff; border: none;
+            padding: 14px; text-transform: uppercase; font-weight: bold;
+            cursor: pointer; border-radius: 4px; text-align: center; text-decoration: none; display: block;
+        }
+
+        .checkout-action-btn:hover { background: #16a34a; }
+
+        .cart-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); z-index: 150; display: none;
+        }
+
+        .cart-overlay.active { display: block; }
+
+        @media (max-width: 850px) {
+            .shop-layout { grid-template-columns: 1fr; }
+            .cart-drawer { width: 100%; right: -100%; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">THE LACE WIGS</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html" style="color: var(--gold);">Shop</a></li>
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="#" onclick="toggleCart()">Bag (<span id="cart-count">0</span>)</a></li>
-        </ul>
-    </nav>
-
-    <!-- Professional Feature: Multi-Filter and Sorting Controls -->
-    <div class="filter-bar">
-        <input type="text" id="searchInput" placeholder="Search by name or texture..." oninput="handleFilterChange()">
-        
-        <select id="categoryFilter" onchange="handleFilterChange()">
-            <option value="all">All Textures</option>
-            <option value="Straight">Straight</option>
-            <option value="Body Wave">Body Wave</option>
-            <option value="Curly">Curly</option>
-        </select>
-
-        <select id="sortOrder" onchange="handleFilterChange()">
-            <option value="default">Sort By: Featured</option>
-            <option value="low">Price: Low to High</option>
-            <option value="high">Price: High to Low</option>
-        </select>
+    <!-- Fast Shipping Top Announcement Bar Module -->
+    <div class="shipping-banner">
+        <i class="fa-solid fa-truck-fast"></i> Fast Shipping: US Delivery in 3-5 Business Days
     </div>
 
-    <div class="container">
-        <div class="grid" id="product-grid">
-            <!-- Products injected by JS -->
+    <header class="navbar">
+        <div class="logo">THE LACE WIGS</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="story.html">Our Story</a>
+        </nav>
+        <button class="cart-btn" id="open-cart-trigger">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-count" id="global-count-badge">0</span>
+        </button>
+    </header>
+
+    <div class="shop-layout">
+        <aside>
+            <div class="sidebar-widget">
+                <h3>Filter Textures</h3>
+                <button class="filter-btn active" data-cat="all">All Textures</button>
+                <button class="filter-btn" data-cat="straight">Straight</button>
+                <button class="filter-btn" data-cat="bodywave">Body Wave</button>
+                <button class="filter-btn" data-cat="curly">Curly</button>
+            </div>
+            
+            <div class="sidebar-widget" style="font-size: 13px; color: #666; line-height: 1.5;">
+                <p style="margin-bottom: 8px;"><i class="fa-solid fa-truck" style="color: var(--shipping-green)"></i> Ships from US warehouses.</p>
+                <p><i class="fa-solid fa-lock"></i> Secured by Stripe checkout links.</p>
+            </div>
+        </aside>
+
+        <main>
+            <div class="products-grid" id="main-products-view-grid">
+                <!-- Programmatically populated grid elements -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Sliding Cart Panel -->
+    <div class="cart-drawer" id="cart-drawer-panel">
+        <div class="cart-header">
+            <h2>Your Bag</h2>
+            <button class="close-drawer-btn" id="close-cart-trigger">&times;</button>
+        </div>
+        <div class="cart-items-list" id="cart-items-injection-target"></div>
+        <div class="cart-footer">
+            <div class="subtotal-display">
+                <span>Subtotal:</span>
+                <span id="subtotal-price-target">$0.00</span>
+            </div>
+            <button class="checkout-action-btn" id="checkout-button">Buy Now via Stripe</button>
         </div>
     </div>
-
-    <!-- UI Overlay and Cart Modal -->
-    <div class="overlay" id="overlay" onclick="closeAll()"></div>
-    <div id="cart-modal">
-        <h2>Your Bag</h2>
-        <div id="cart-items"></div>
-        <hr style="border-color: #222;">
-        <p><strong>Subtotal: $<span id="cart-total">0.00</span></strong></p>
-        <button class="btn btn-primary" onclick="alert('Checkout integration ready.')">Checkout</button>
-    </div>
+    <div class="cart-overlay" id="cart-background-overlay"></div>
 
     <script>
-        // Feature: Centralized Data (Easily movable to an API/Database)
-        const products = [
-            { id: 1, name: "HD Frontal - Body Wave", price: 350, type: "Body Wave", rating: "★★★★★" },
-            { id: 2, name: "Full Lace - Straight Silky", price: 420, type: "Straight", rating: "★★★★★" },
-            { id: 3, name: "Glueless - Curly", price: 280, type: "Curly", rating: "★★★★☆" },
-            { id: 4, name: "HD Frontal - Deep Wave", price: 375, type: "Curly", rating: "★★★★★" }
-        ];
-
-        let cart = [];
-
-        // Logic: Unified Filtering and Sorting
-        function handleFilterChange() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            const category = document.getElementById('categoryFilter').value;
-            const sort = document.getElementById('sortOrder').value;
-
-            let filtered = products.filter(p => {
-                const matchesSearch = p.name.toLowerCase().includes(search);
-                const matchesCategory = category === 'all' || p.type.includes(category);
-                return matchesSearch && matchesCategory;
-            });
-
-            // Logic: Dynamic Array Sorting
-            if (sort === "low") filtered.sort((a, b) => a.price - b.price);
-            if (sort === "high") filtered.sort((a, b) => b.price - a.price);
-
-            renderUI(filtered);
-        }
-
-        function renderUI(data) {
-            const grid = document.getElementById('product-grid');
-            if (data.length === 0) {
-                grid.innerHTML = `<div class="empty-state">No wigs found matching those criteria.</div>`;
-                return;
-            }
-
-            grid.innerHTML = data.map(p => `
-                <div class="product-card">
-                    <div class="img-container"><div class="product-img">HD LACE</div></div>
-                    <div class="product-info">
-                        <div class="rating">${p.rating}</div>
-                        <h3>${p.name}</h3>
-                        <p class="price">$${p.price.toFixed(2)}</p>
-                        <button class="btn btn-primary" onclick="addToCart(${p.id})">Add to Bag</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function addToCart(id) {
-            const p = products.find(i => i.id === id);
-            cart.push(p);
-            updateCart();
-            toggleCart(true);
-        }
-
-        function updateCart() {
-            document.getElementById('cart-count').innerText = cart.length;
-            document.getElementById('cart-items').innerHTML = cart.map(item => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:10px">
-                    <span>${item.name}</span><span>$${item.price}</span>
-                </div>
-            `).join('');
-            const total = cart.reduce((s, i) => s + i.price, 0);
-            document.getElementById('cart-total').innerText = total.toFixed(2);
-        }
-
-        function toggleCart(open = false) {
-            const m = document.getElementById('cart-modal');
-            const o = document.getElementById('overlay');
-            m.style.display = open ? 'block' : (m.style.display === 'block' ? 'none' : 'block');
-            o.style.display = m.style.display;
-        }
-
-        function closeAll() {
-            document.getElementById('cart-modal').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-
-        renderUI(products);
-    </script>
-</body>
-</html>
+        let inventory = [
+            { 
+                id: 1, 
+                title: "Ultra HD Raw Straight Lace Wig", 
+                price: 350.00, 
+                texture: "straight", 
+                img: "https://unsplash.com",
+                stripeUrl: "https://stripe.com" 
+            },
+            { 
+                id: 2, 
+                title: "Luxury Body Wave HD Swiss Lace", 
+                price: 380.00, 
+                texture: "bodywave", 
