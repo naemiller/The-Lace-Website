@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | The Lace Wigs</title>
+    <!-- Font Awesome for premium luxury icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        :root {
+            --primary: #111111;
+            --accent: #ab8e64; /* Luxurious bronze gold tone */
+            --light-bg: #f9f9f9;
+            --border: #e5e5e5;
+            --shipping-green: #15803d;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body { 
+            background-color: #ffffff; 
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Fast Shipping Top Announcement Bar */
+        .shipping-banner {
+            background-color: var(--primary);
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .shipping-banner i {
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        /* Premium Brand Navigation Bar */
+        .navbar {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 20px 5%; 
+            border-bottom: 1px solid var(--border);
+            position: sticky; 
+            top: 0; 
+            background: #fff; 
+            z-index: 100;
+        }
+
+        .logo { 
+            font-size: 22px; 
+            font-weight: 900; 
+            letter-spacing: 3px; 
+        }
+        
+        .nav-links a {
+            text-decoration: none; 
+            color: var(--primary); 
+            margin: 0 20px;
+            font-weight: 700; 
+            text-transform: uppercase; 
+            font-size: 13px;
+        }
+        
+        .nav-links a.active { 
+            color: var(--accent); 
+        }
+
+        /* Story Page Editorial Layout */
+        .story-hero {
+            background-color: var(--light-bg);
+            padding: 80px 5%;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .story-hero h1 {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .story-hero p {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 5%;
+        }
+
+        .editorial-section {
+            margin-bottom: 50px;
+        }
+
+        .editorial-section h2 {
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .editorial-section p {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Bold Quote Callout Block */
+        .mission-quote {
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--accent);
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .mission-quote blockquote {
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .mission-quote cite {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+
+        /* Core Values Features Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 6px;
+            text-align: center;
+            background: #ffffff;
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .value-card i {
+            font-size: 28px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .value-card h4 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .value-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Persistent Brand Footer */
+        .story-footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 5%;
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            background-color: var(--light-bg);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 600px) {
+            .story-hero h1 { font-size: 32px; }
+            .mission-quote { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fast Shipping Top Announcement Bar -->
+    <div class="shipping-banner">
+        <i class="fa-solid fa-truck-fast"></i> Fast Shipping: US Delivery in 3-5 Business Days
+    </div>
+
+    <!-- Application Brand Navbar Layer -->
+    <header class="navbar">
+        <div class="logo">THE LACE WIGS</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="story.html" class="active">Our Story</a>
+        </nav>
+        <div style="width: 28px;"></div> <!-- Maintained alignment balancing spacing -->
+    </header>
+
+    <!-- Top Editorial Header Hero -->
+    <section class="story-hero">
+        <h1>Defining Luxury</h1>
+        <p>Crafting Professional Grade HD Lace Wigs Since Day One</p>
+    </section>
+
+    <!-- Main Narrative Section Content -->
+    <main class="story-content">
+        
+        <article class="editorial-section">
+            <h2>Our Origin</h2>
+            <p>
+                Welcome to <strong>THE LACE WIGS</strong>. Founded with a vision to redefine beauty standards, we specialize in delivering premium, professional-grade HD Lace wigs designed to blend seamlessly with any skin tone. Our journey began with a simple mission: to eliminate unblended lace lines and deliver salon-quality hair directly to your doorstep.
+            </p>
+            <p>
+                Every strand of hair used in our collections undergoes rigorous quality control checks. From sourcing raw materials to constructing premium cap structures, we focus on every detail to ensure longevity, natural movement, and a realistic hairline finish.
+            </p>
+        </article>
+
+        <!-- Brand Mission Statement Quote Box -->
+        <section class="mission-quote">
+            <blockquote>
+                "True confidence begins with premium quality. We don't just sell lace wigs—we construct flawless installations that look completely natural."
+            </blockquote>
+            <cite>— The Lace Wigs Executive Team</cite>
+        </section>
+
+        <article class="editorial-section">
+            <h2>Why Choose Us?</h2>
+            <p>
+                We recognize that wait times can delay scheduled salon installations. To serve our community better, we moved our entire operations infrastructure to domestic logistics networks. This allows us to guarantee reliable 3-5 day shipping on all US orders.
+            </p>
+
+            <!-- Brand Core Quality Value Cards -->
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fa-solid fa-gem"></i>
+                    <h4>Premium Raw Hair</h4>
+                    <p>Constructed entirely from premium raw human hair that stands up to heat styling and color adjustments.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h4>Melted HD Lace</h4>
+                    <p>Ultra-thin Swiss HD lace configurations designed to lay completely flat for a realistic finish.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                    <h4>US Shipping</h4>
+                    <p>Dispatched from domestic storage nodes to guarantee delivery within 3-5 business days.</p>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Consistent Application Footer Layer -->
+    <footer class="story-footer">
+        <p>&copy; 2026 THE LACE WIGS. All Rights Reserved. Secured globally by Stripe billing gateways.</p>
+    </footer>
+
+</body>
+</html>
