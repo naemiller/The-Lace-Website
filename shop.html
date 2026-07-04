@@ -3,69 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lace Wigs | Real Static Storefront</title>
-    <!-- Font Awesome for sleek icons -->
+    <title>Shop Collections | THE LACE WIGS</title>
+    <meta name="description" content="Browse premium HD lace frontals, straight closures, body waves, and deep exotic curly virgin hair wigs. Fast 3-5 day shipping.">
+    <!-- Font Awesome for premium luxury icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
         :root {
-            --primary: #111111;
-            --accent: #ab8e64; /* Luxury gold tone */
-            --shipping-green: #15803d; /* Professional deep trust green */
+            --primary-color: #111111;
+            --accent-color: #ab8e64; /* Luxurious bronze gold tone */
             --light-bg: #f9f9f9;
-            --border: #e5e5e5;
+            --border-color: #e5e5e5;
+            --shipping-green: #15803d; /* Trustworthy shipping green */
+            --star-color: #facc15; /* Golden Yellow for active review stars */
         }
 
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #ffffff; color: var(--primary-color); }
 
-        body { background-color: #ffffff; color: var(--primary); }
+        /* Custom premium transitions scrollbars */ 
+        ::-webkit-scrollbar { width: 6px; } 
+        ::-webkit-scrollbar-track { background: #f1f1f1; } 
+        ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }
 
         /* Fast Shipping Top Announcement Bar */
         .shipping-banner {
-            background-color: var(--primary);
-            color: #ffffff;
-            text-align: center;
-            padding: 8px 10px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background-color: var(--primary-color); color: #ffffff; text-align: center;
+            padding: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        
-        .shipping-banner i {
-            color: var(--accent);
-            font-size: 13px;
-        }
+        .shipping-banner i { color: var(--accent-color); font-size: 13px; }
 
-        /* Navigation */
+        /* Premium Navigation Bar */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; border-bottom: 1px solid var(--border);
+            padding: 20px 5%; border-bottom: 1px solid var(--border-color);
             position: sticky; top: 0; background: #fff; z-index: 100;
         }
-
-        .logo { font-size: 22px; font-weight: 900; letter-spacing: 3px; }
-        .nav-links a {
-            text-decoration: none; color: var(--primary); margin: 0 20px;
-            font-weight: 700; text-transform: uppercase; font-size: 13px;
-        }
-        .nav-links a.active { color: var(--accent); }
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: 3px; cursor: pointer; }
+        .nav-links a { text-decoration: none; color: var(--primary-color); margin: 0 20px; font-weight: 700; text-transform: uppercase; font-size: 13px; transition: color 0.2s; }
+        .nav-links a.active, .nav-links a:hover { color: var(--accent-color); }
 
         .cart-btn { background: none; border: none; font-size: 20px; cursor: pointer; position: relative; }
         .cart-count {
-            position: absolute; top: -8px; right: -10px; background: var(--primary);
+            position: absolute; top: -8px; right: -10px; background: var(--primary-color);
             color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; font-weight: bold;
         }
 
-        /* Responsive Layout Structure */
+        /* Responsive Layout Grid Structure Layouts */
         .shop-layout {
             display: grid; grid-template-columns: 260px 1fr;
             gap: 40px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
@@ -73,119 +58,86 @@
 
         .sidebar-widget {
             background: var(--light-bg); padding: 20px;
-            border-radius: 6px; border: 1px solid var(--border); margin-bottom: 25px;
+            border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 25px;
         }
-
         .sidebar-widget h3 {
             font-size: 14px; text-transform: uppercase; margin-bottom: 15px;
-            border-bottom: 1px solid var(--border); padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-color); padding-bottom: 5px;
         }
 
         .filter-btn {
-            background: none; border: none; padding: 8px 0; display: block;
+            background: none; border: none; padding: 10px 0; display: block;
             width: 100%; text-align: left; font-size: 14px; color: #555; cursor: pointer;
+            transition: all 0.2s;
         }
+        .filter-btn.active, .filter-btn:hover { color: var(--accent-color); font-weight: 700; }
 
-        .filter-btn.active, .filter-btn:hover { color: var(--accent); font-weight: 700; }
-
-        /* Storefront grid */
-        .products-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px;
-        }
-
-        .product-card {
-            border: 1px solid var(--border); border-radius: 6px;
-            overflow: hidden; background: #fff; transition: transform 0.3s;
-        }
-
-        .product-card:hover { transform: translateY(-4px); }
-        .img-container { height: 320px; background: var(--light-bg); }
+        /* Storefront grid catalog UI layout */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; }
+        .product-card { border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: #fff; transition: transform 0.3s, box-shadow 0.3s; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        
+        .img-container { height: 360px; background: #f3f4f6; position: relative; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; }
         
-        .product-details { padding: 15px; }
-        .product-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-        .product-price { color: var(--accent); font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+        .product-details { padding: 20px; }
+        .product-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
         
-        /* Shipping Tag Highlight Badge */
-        .shipping-tag {
-            color: var(--shipping-green);
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+        /* Star Rating Layout Section */
+        .rating-stars { color: var(--star-color); font-size: 12px; margin-bottom: 8px; display: flex; gap: 2px; align-items: center; }
+        .rating-count { color: #777; font-size: 11px; font-weight: normal; margin-left: 4px; }
+        
+        .product-price { color: var(--accent-color); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+        .shipping-tag { color: var(--shipping-green); font-size: 13px; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 6px; }
 
         .buy-btn {
-            width: 100%; background: var(--primary); color: #fff; border: none;
+            width: 100%; background: var(--primary-color); color: #fff; border: none;
             padding: 12px; text-transform: uppercase; font-weight: bold;
-            font-size: 12px; cursor: pointer; border-radius: 4px;
+            font-size: 13px; cursor: pointer; border-radius: 4px; transition: background 0.2s;
         }
+        .buy-btn:hover { background: var(--accent-color); }
 
-        .buy-btn:hover { background: var(--accent); }
+        /* High-Converting FAQ Accordion Section */
+        .faq-section { max-width: 900px; margin: 60px auto 40px auto; padding: 0 5%; }
+        .faq-title { font-size: 20px; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 30px; font-weight: 900; }
+        .faq-item { border-bottom: 1px solid var(--border-color); padding: 18px 0; }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 15px; font-weight: 700; user-select: none; }
+        .faq-question i { font-size: 12px; transition: transform 0.3s; color: var(--accent-color); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); color: #555; font-size: 14px; line-height: 1.6; }
+        .faq-item.active .faq-answer { max-height: 1000px; transition: max-height 0.3s cubic-bezier(1, 0, 1, 0); padding-top: 12px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
 
-        /* Shopping Bag Slide-out */
-        .cart-drawer {
-            position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
-            background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 200;
-            display: flex; flex-direction: column; transition: right 0.4s ease;
-        }
-
+        /* Shopping Bag Slide-out Drawer Panel */
+        .cart-drawer { position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 200; display: flex; flex-direction: column; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .cart-drawer.open { right: 0; }
-        .cart-header {
-            padding: 20px; border-bottom: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
+        .cart-header { padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
         .close-drawer-btn { background: none; border: none; font-size: 24px; cursor: pointer; }
         .cart-items-list { flex: 1; padding: 20px; overflow-y: auto; }
-
-        .cart-row {
-            display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px;
-            border-bottom: 1px solid var(--border); align-items: center;
-        }
-
+        .cart-row { display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); align-items: center; }
         .cart-row img { width: 60px; height: 75px; object-fit: cover; border-radius: 4px; }
         .cart-row-info { flex: 1; }
-        .remove-item-btn {
-            background: none; border: none; color: #b32d2d; font-size: 11px;
-            cursor: pointer; margin-top: 4px; font-weight: bold;
-        }
-
-        .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: var(--light-bg); }
-        .subtotal-display { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; }
-
-        .checkout-action-btn {
-            width: 100%; background: #22c55e; color: #fff; border: none;
-            padding: 14px; text-transform: uppercase; font-weight: bold;
-            cursor: pointer; border-radius: 4px; text-align: center; text-decoration: none; display: block;
-        }
-
+        .remove-item-btn { background: none; border: none; color: #b32d2d; font-size: 11px; cursor: pointer; margin-top: 4px; font-weight: bold; }
+        .cart-footer { padding: 20px; border-top: 1px solid var(--border-color); background: var(--light-bg); }
+        .subtotal-display { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; font-size: 16px; }
+        .checkout-action-btn { width: 100%; background: #22c55e; color: #fff; border: none; padding: 14px; text-transform: uppercase; font-weight: bold; cursor: pointer; border-radius: 4px; text-align: center; text-decoration: none; display: block; }
         .checkout-action-btn:hover { background: #16a34a; }
 
-        .cart-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4); z-index: 150; display: none;
-        }
-
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 150; display: none; }
         .cart-overlay.active { display: block; }
 
-        @media (max-width: 850px) {
-            .shop-layout { grid-template-columns: 1fr; }
-            .cart-drawer { width: 100%; right: -100%; }
-        }
+        footer { border-top: 1px solid var(--border-color); padding: 40px 5%; text-align: center; font-size: 13px; color: #888; background-color: var(--light-bg); margin-top: 40px; }
+
+        @media (max-width: 850px) { .shop-layout { grid-template-columns: 1fr; } .cart-drawer { width: 100%; right: -100%; } }
     </style>
 </head>
 <body>
 
-    <!-- Fast Shipping Top Announcement Bar Module -->
     <div class="shipping-banner">
         <i class="fa-solid fa-truck-fast"></i> Fast Shipping: US Delivery in 3-5 Business Days
     </div>
 
     <header class="navbar">
-        <div class="logo">THE LACE WIGS</div>
+        <div class="logo" onclick="window.location.href='index.html'">THE LACE WIGS</div>
         <nav class="nav-links">
             <a href="index.html">Home</a>
             <a href="shop.html" class="active">Shop</a>
@@ -209,46 +161,3 @@
             
             <div class="sidebar-widget" style="font-size: 13px; color: #666; line-height: 1.5;">
                 <p style="margin-bottom: 8px;"><i class="fa-solid fa-truck" style="color: var(--shipping-green)"></i> Ships from US warehouses.</p>
-                <p><i class="fa-solid fa-lock"></i> Secured by Stripe checkout links.</p>
-            </div>
-        </aside>
-
-        <main>
-            <div class="products-grid" id="main-products-view-grid">
-                <!-- Programmatically populated grid elements -->
-            </div>
-        </main>
-    </div>
-
-    <!-- Sliding Cart Panel -->
-    <div class="cart-drawer" id="cart-drawer-panel">
-        <div class="cart-header">
-            <h2>Your Bag</h2>
-            <button class="close-drawer-btn" id="close-cart-trigger">&times;</button>
-        </div>
-        <div class="cart-items-list" id="cart-items-injection-target"></div>
-        <div class="cart-footer">
-            <div class="subtotal-display">
-                <span>Subtotal:</span>
-                <span id="subtotal-price-target">$0.00</span>
-            </div>
-            <button class="checkout-action-btn" id="checkout-button">Buy Now via Stripe</button>
-        </div>
-    </div>
-    <div class="cart-overlay" id="cart-background-overlay"></div>
-
-    <script>
-        let inventory = [
-            { 
-                id: 1, 
-                title: "Ultra HD Raw Straight Lace Wig", 
-                price: 350.00, 
-                texture: "straight", 
-                img: "https://unsplash.com",
-                stripeUrl: "https://stripe.com" 
-            },
-            { 
-                id: 2, 
-                title: "Luxury Body Wave HD Swiss Lace", 
-                price: 380.00, 
-                texture: "bodywave", 
