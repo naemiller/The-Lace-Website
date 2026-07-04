@@ -1,5 +1,22 @@
 /* Section Titles styling layout */
 .section-title {
+
+    @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom premium transitions scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ab8e64;
+  border-radius: 3px;
+}
+
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
