@@ -1,163 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Collections | THE LACE WIGS</title>
-    <meta name="description" content="Browse premium HD lace frontals, straight closures, body waves, and deep exotic curly virgin hair wigs. Fast 3-5 day shipping.">
-    <!-- Font Awesome for premium luxury icons -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+<!-- SEO Semantic main tag -->
+<main id="main-content">
     
-    <style>
-        :root {
-            --primary-color: #111111;
-            --accent-color: #ab8e64; /* Luxurious bronze gold tone */
-            --light-bg: #f9f9f9;
-            --border-color: #e5e5e5;
-            --shipping-green: #15803d; /* Trustworthy shipping green */
-            --star-color: #facc15; /* Golden Yellow for active review stars */
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
-        body { background-color: #ffffff; color: var(--primary-color); }
-
-        /* Custom premium transitions scrollbars */ 
-        ::-webkit-scrollbar { width: 6px; } 
-        ::-webkit-scrollbar-track { background: #f1f1f1; } 
-        ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }
-
-        /* Fast Shipping Top Announcement Bar */
-        .shipping-banner {
-            background-color: var(--primary-color); color: #ffffff; text-align: center;
-            padding: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .shipping-banner i { color: var(--accent-color); font-size: 13px; }
-
-        /* Premium Navigation Bar */
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; border-bottom: 1px solid var(--border-color);
-            position: sticky; top: 0; background: #fff; z-index: 100;
-        }
-        .logo { font-size: 22px; font-weight: 900; letter-spacing: 3px; cursor: pointer; }
-        .nav-links a { text-decoration: none; color: var(--primary-color); margin: 0 20px; font-weight: 700; text-transform: uppercase; font-size: 13px; transition: color 0.2s; }
-        .nav-links a.active, .nav-links a:hover { color: var(--accent-color); }
-
-        .cart-btn { background: none; border: none; font-size: 20px; cursor: pointer; position: relative; }
-        .cart-count {
-            position: absolute; top: -8px; right: -10px; background: var(--primary-color);
-            color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; font-weight: bold;
-        }
-
-        /* Responsive Layout Grid Structure Layouts */
-        .shop-layout {
-            display: grid; grid-template-columns: 260px 1fr;
-            gap: 40px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
-        }
-
-        .sidebar-widget {
-            background: var(--light-bg); padding: 20px;
-            border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 25px;
-        }
-        .sidebar-widget h3 {
-            font-size: 14px; text-transform: uppercase; margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-color); padding-bottom: 5px;
-        }
-
-        .filter-btn {
-            background: none; border: none; padding: 10px 0; display: block;
-            width: 100%; text-align: left; font-size: 14px; color: #555; cursor: pointer;
-            transition: all 0.2s;
-        }
-        .filter-btn.active, .filter-btn:hover { color: var(--accent-color); font-weight: 700; }
-
-        /* Storefront grid catalog UI layout */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; }
-        .product-card { border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: #fff; transition: transform 0.3s, box-shadow 0.3s; }
-        .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        
-        .img-container { height: 360px; background: #f3f4f6; position: relative; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .product-details { padding: 20px; }
-        .product-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
-        
-        /* Star Rating Layout Section */
-        .rating-stars { color: var(--star-color); font-size: 12px; margin-bottom: 8px; display: flex; gap: 2px; align-items: center; }
-        .rating-count { color: #777; font-size: 11px; font-weight: normal; margin-left: 4px; }
-        
-        .product-price { color: var(--accent-color); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
-        .shipping-tag { color: var(--shipping-green); font-size: 13px; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 6px; }
-
-        .buy-btn {
-            width: 100%; background: var(--primary-color); color: #fff; border: none;
-            padding: 12px; text-transform: uppercase; font-weight: bold;
-            font-size: 13px; cursor: pointer; border-radius: 4px; transition: background 0.2s;
-        }
-        .buy-btn:hover { background: var(--accent-color); }
-
-        /* High-Converting FAQ Accordion Section */
-        .faq-section { max-width: 900px; margin: 60px auto 40px auto; padding: 0 5%; }
-        .faq-title { font-size: 20px; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 30px; font-weight: 900; }
-        .faq-item { border-bottom: 1px solid var(--border-color); padding: 18px 0; }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 15px; font-weight: 700; user-select: none; }
-        .faq-question i { font-size: 12px; transition: transform 0.3s; color: var(--accent-color); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); color: #555; font-size: 14px; line-height: 1.6; }
-        .faq-item.active .faq-answer { max-height: 1000px; transition: max-height 0.3s cubic-bezier(1, 0, 1, 0); padding-top: 12px; }
-        .faq-item.active .faq-question i { transform: rotate(180deg); }
-
-        /* Shopping Bag Slide-out Drawer Panel */
-        .cart-drawer { position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 200; display: flex; flex-direction: column; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .cart-drawer.open { right: 0; }
-        .cart-header { padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
-        .close-drawer-btn { background: none; border: none; font-size: 24px; cursor: pointer; }
-        .cart-items-list { flex: 1; padding: 20px; overflow-y: auto; }
-        .cart-row { display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); align-items: center; }
-        .cart-row img { width: 60px; height: 75px; object-fit: cover; border-radius: 4px; }
-        .cart-row-info { flex: 1; }
-        .remove-item-btn { background: none; border: none; color: #b32d2d; font-size: 11px; cursor: pointer; margin-top: 4px; font-weight: bold; }
-        .cart-footer { padding: 20px; border-top: 1px solid var(--border-color); background: var(--light-bg); }
-        .subtotal-display { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; font-size: 16px; }
-        .checkout-action-btn { width: 100%; background: #22c55e; color: #fff; border: none; padding: 14px; text-transform: uppercase; font-weight: bold; cursor: pointer; border-radius: 4px; text-align: center; text-decoration: none; display: block; }
-        .checkout-action-btn:hover { background: #16a34a; }
-
-        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 150; display: none; }
-        .cart-overlay.active { display: block; }
-
-        footer { border-top: 1px solid var(--border-color); padding: 40px 5%; text-align: center; font-size: 13px; color: #888; background-color: var(--light-bg); margin-top: 40px; }
-
-        @media (max-width: 850px) { .shop-layout { grid-template-columns: 1fr; } .cart-drawer { width: 100%; right: -100%; } }
-    </style>
-</head>
-<body>
-
-    <div class="shipping-banner">
-        <i class="fa-solid fa-truck-fast"></i> Fast Shipping: US Delivery in 3-5 Business Days
-    </div>
-
-    <header class="navbar">
-        <div class="logo" onclick="window.location.href='index.html'">THE LACE WIGS</div>
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html" class="active">Shop</a>
-            <a href="story.html">Our Story</a>
-        </nav>
-        <button class="cart-btn" id="open-cart-trigger">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span class="cart-count" id="global-count-badge">0</span>
-        </button>
+    <!-- Hero Banner with SEO Target Keywords -->
+    <header class="shop-hero">
+        <h1>Premium HD Lace Wigs & Virgin Hair Collections</h1>
+        <p>Experience seamless blends and raw virgin quality. Fast 3-5 day shipping across the US.</p>
     </header>
 
-    <div class="shop-layout">
-        <aside>
-            <div class="sidebar-widget">
-                <h3>Filter Textures</h3>
-                <button class="filter-btn active" data-cat="all">All Textures</button>
-                <button class="filter-btn" data-cat="straight">Straight</button>
-                <button class="filter-btn" data-cat="bodywave">Body Wave</button>
-                <button class="filter-btn" data-cat="curly">Curly</button>
-            </div>
+    <!-- Main Storefront Section -->
+    <section class="shop-container" aria-label="Product Catalog">
+        <h2 class="visually-hidden">Our Current Collections</h2>
+        
+        <div class="product-grid">
             
-            <div class="sidebar-widget" style="font-size: 13px; color: #666; line-height: 1.5;">
-                <p style="margin-bottom: 8px;"><i class="fa-solid fa-truck" style="color: var(--shipping-green)"></i> Ships from US warehouses.</p>
+            <!-- Product Card 1: HD Lace Bob Wig -->
+            <article class="product-card" itemscope itemtype="https://schema.org">
+                <div class="image-wrapper">
+                    <!-- Placeholder link: change to 'images/bob-wig.jpg' after uploading -->
+                    <img src="https://unsplash.com" alt="HD Lace Frontal Bob Wig - Straight Texture 100% Virgin Hair" class="product-img" itemprop="image" loading="lazy">
+                    <span class="badge sale-badge">Best Seller</span>
+                    <span class="stock-alert">Only 3 Left!</span> <!-- Conversion Scarcity Trigger -->
+                </div>
+                <div class="product-info">
+                    <h3 itemprop="name">HD Lace Frontal Bob - Straight</h3>
+                    
+                    <!-- Trust Signals (Reviews) -->
+                    <div class="rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org">
+                        <meta itemprop="ratingValue" content="5.0">
+                        <meta itemprop="reviewCount" content="48">
+                        <div class="stars">
+                            <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <span class="review-count">48 Verified Reviews</span>
+                    </div>
+
+                    <!-- SEO-Ready Pricing Engine -->
+                    <div class="price-box" itemprop="offers" itemscope itemtype="https://schema.org">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <meta itemprop="price" content="199.00">
+                        <link itemprop="availability" href="https://schema.org">
+                        <p class="price">$199.00 <span class="old-price">$250.00</span></p>
+                    </div>
+
+                    <!-- Direct Conversion Checkout CTA -->
+                    <a href="YOUR_STRIPE_OR_PAYPAL_LINK_HERE" target="_blank" class="buy-btn" role="button">
+                        <span>Buy Now — Secure Checkout</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Product Card 2: Luxury Body Wave -->
+            <article class="product-card" itemscope itemtype="https://schema.org">
+                <div class="image-wrapper">
+                    <!-- Placeholder link: change to 'images/body-wave.jpg' after uploading -->
+                    <img src="https://unsplash.com" alt="Exotic Body Wave Virgin Hair Wig - High Density HD Lace" class="product-img" itemprop="image" loading="lazy">
+                    <span class="badge shipping-badge">Free Shipping</span>
+                </div>
+                <div class="product-info">
+                    <h3 itemprop="name">Exotic Body Wave Virgin Hair</h3>
+                    
+                    <div class="rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org">
+                        <meta itemprop="ratingValue" content="4.8">
+                        <meta itemprop="reviewCount" content="32">
+                        <div class="stars">
+                            <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                        </div>
+                        <span class="review-count">32 Verified Reviews</span>
+                    </div>
+
+                    <div class="price-box" itemprop="offers" itemscope itemtype="https://schema.org">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <meta itemprop="price" content="320.00">
+                        <link itemprop="availability" href="https://schema.org">
+                        <p class="price">$320.00</p>
+                    </div>
+
+                    <a href="YOUR_STRIPE_OR_PAYPAL_LINK_HERE" target="_blank" class="buy-btn" role="button">
+                        <span>Buy Now — Secure Checkout</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Product Card 3: Deep Exotic Curly -->
+            <article class="product-card" itemscope itemtype="https://schema.org">
+                <div class="image-wrapper">
+                    <img src="https://unsplash.com" alt="Deep Exotic Curly Virgin Hair Bundle and Closure Deal" class="product-img" itemprop="image" loading="lazy">
+                    <span class="badge new-badge">New Arrival</span>
+                </div>
+                <div class="product-info">
+                    <h3 itemprop="name">Deep Exotic Curly Virgin Hair</h3>
+                    
+                    <div class="rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org">
+                        <meta itemprop="ratingValue" content="4.9">
+                        <meta itemprop="reviewCount" content="19">
+                        <div class="stars">
+                            <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <span class="review-count">19 Verified Reviews</span>
+                    </div>
+
+                    <div class="price-box" itemprop="offers" itemscope itemtype="https://schema.org">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <meta itemprop="price" content="345.00">
+                        <link itemprop="availability" href="https://schema.org">
+                        <p class="price">$345.00</p>
+                    </div>
+
+                    <a href="YOUR_STRIPE_OR_PAYPAL_LINK_HERE" target="_blank" class="buy-btn" role="button">
+                        <span>Buy Now — Secure Checkout</span>
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+</main>
