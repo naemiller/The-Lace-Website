@@ -1,9 +1,4 @@
-/* Section Titles styling layout */
-.section-title {
 
-    @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* Custom premium transitions scrollbars */
 ::-webkit-scrollbar {
