@@ -3,32 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Optimized SEO Meta Tags for Google Search Visibility -->
     <title>Shop Luxury HD Lace Wigs & Raw Virgin Hair | THE LACE WIGS</title>
     <meta name="description" content="Browse premium HD lace frontals, straight bobs, body waves, and deep exotic curly virgin hair wigs. Secure checkout with fast 3-5 day shipping.">
     
-    <!-- Font Awesome for premium luxury icons -->
+    <!-- Font Awesome Link for Luxury Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
         :root {
             --primary-color: #111111;
-            --accent-color: #ab8e64; /* Luxurious bronze gold tone */
+            --accent-color: #ab8e64; 
             --light-bg: #f9f9f9;
             --border-color: #e5e5e5;
-            --shipping-green: #15803d; /* Trustworthy shipping green */
-            --star-color: #facc15; /* Golden Yellow for active review stars */
+            --shipping-green: #15803d; 
+            --star-color: #facc15; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
         body { background-color: #ffffff; color: var(--primary-color); }
 
-        /* Custom premium transitions scrollbars */ 
         ::-webkit-scrollbar { width: 6px; } 
         ::-webkit-scrollbar-track { background: #f1f1f1; } 
         ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }
 
-        /* Fast Shipping Top Announcement Bar */
+        /* Announcement Banner */
         .shipping-banner {
             background-color: var(--primary-color); color: #ffffff; text-align: center;
             padding: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase;
@@ -36,7 +34,7 @@
         }
         .shipping-banner i { color: var(--accent-color); font-size: 13px; }
 
-        /* Premium Navigation Bar */
+        /* Navigation Menu Layout */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 5%; border-bottom: 1px solid var(--border-color);
@@ -63,58 +61,51 @@
         .nav-icons i { font-size: 18px; cursor: pointer; color: var(--primary-color); transition: color 0.3s ease; }
         .nav-icons i:hover { color: var(--accent-color); }
 
-        /* SEO Shop Header styling */
+        /* SEO Collection Header */
         .shop-hero { text-align: center; padding: 50px 5%; background: var(--light-bg); border-bottom: 1px solid var(--border-color); }
         .shop-hero h1 { font-size: 28px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; font-weight: 700; }
         .shop-hero p { font-size: 14px; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
-        /* Structural Three-Column Grid Architecture */
+        /* Store Elements Grid */
         .shop-container { padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         
-        /* High Conversion Cards: Shadow animations make cards clickable */
         .product-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; justify-content: space-between; }
         .product-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--accent-color); }
 
-        /* Images and badges */
         .image-wrapper { position: relative; width: 100%; height: 380px; background: #fdfdfd; overflow: hidden; }
         .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .product-card:hover .product-img { transform: scale(1.04); } /* Zoom micro-interaction */
+        .product-card:hover .product-img { transform: scale(1.04); } 
         
         .badge { position: absolute; top: 15px; left: 15px; color: #ffffff; font-size: 10px; text-transform: uppercase; padding: 5px 12px; font-weight: 700; letter-spacing: 1px; border-radius: 2px; }
         .sale-badge { background: #b41c1c; }
         .shipping-badge { background: var(--shipping-green); }
         .new-badge { background: var(--primary-color); }
         
-        /* Conversion Scarcity Trigger */
         .stock-alert { position: absolute; bottom: 15px; right: 15px; background: rgba(255, 255, 255, 0.95); color: #b41c1c; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 2px; border: 1px solid #b41c1c; }
 
-        /* Content Text Formatting */
         .product-info { padding: 25px 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .product-info h3 { font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary-color); margin-bottom: 8px; }
         
-        /* Star Reviews UI */
         .rating { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 12px; }
         .stars { color: var(--star-color); font-size: 11px; }
         .review-count { font-size: 12px; color: #666; font-weight: 500; }
 
-        /* Price Formatting */
         .price-box { margin-bottom: 20px; }
         .price { font-size: 20px; font-weight: 700; color: var(--primary-color); }
         .old-price { font-size: 14px; font-weight: 400; color: #999; text-decoration: line-through; margin-left: 6px; }
 
-        /* Click-Optimized Call to Action Button */
         .buy-btn { display: block; width: 100%; padding: 15px 0; background: var(--primary-color); color: #ffffff; text-decoration: none; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 3px; transition: background 0.2s ease; border: none; cursor: pointer; }
         .buy-btn:hover { background: var(--accent-color); }
         
-        /* Screen Accessibility Hider */
         .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-        /* Mobile Optimization Media Queries */
+        /* Tablet Responsive Optimization */
         @media (max-width: 992px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .image-wrapper { height: 320px; }
         }
+        /* Mobile Phone Optimization */
         @media (max-width: 640px) {
             .product-grid { grid-template-columns: 1fr; gap: 25px; }
             .shop-hero h1 { font-size: 22px; }
@@ -124,12 +115,12 @@
 </head>
 <body>
 
-    <!-- Fast Shipping Top Announcement Bar -->
+    <!-- Fast Shipping Announcement Banner -->
     <div class="shipping-banner">
         <i class="fa-solid fa-truck-fast"></i> Free Fast 3-5 Day Shipping On Orders Over $150
     </div>
 
-    <!-- Premium Navigation Bar -->
+    <!-- Navigation Header Bar -->
     <nav class="navbar">
         <a href="index.html" class="logo">THE LACE <span>WIGS</span></a>
         <ul class="nav-links">
@@ -145,25 +136,22 @@
         </div>
     </nav>
 
-    <!-- SEO Semantic Main Workspace -->
+    <!-- Main Workspace Section -->
     <main id="main-content">
         
-        <!-- Hero Banner with SEO Target Keywords -->
         <header class="shop-hero">
             <h1>Premium HD Lace Wigs & Virgin Hair Collections</h1>
             <p>Experience seamless blends, ultra-thin lace, and 100% premium virgin remy quality hair.</p>
         </header>
 
-        <!-- Main Storefront Section -->
         <section class="shop-container" aria-label="Product Catalog">
             <h2 class="visually-hidden">Our Current Collections</h2>
             
             <div class="product-grid">
                 
-                <!-- Product Card 1: HD Lace Bob Wig -->
+                <!-- Product Card 1: Straight Bob -->
                 <article class="product-card" itemscope itemtype="https://schema.org">
                     <div class="image-wrapper">
-                        <!-- Points to your uploaded bob-wig.jpg file -->
                         <img src="images/bob-wig.jpg" alt="HD Lace Frontal Bob Wig - Straight Texture 100% Virgin Hair" class="product-img" itemprop="image" loading="lazy">
                         <span class="badge sale-badge">Best Seller</span>
                         <span class="stock-alert">Only 3 Left!</span>
@@ -175,3 +163,13 @@
                             <meta itemprop="ratingValue" content="5.0">
                             <meta itemprop="reviewCount" content="48">
                             <div class="stars">
+                                <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                            </div>
+                            <span class="review-count">48 Verified Reviews</span>
+                        </div>
+
+                        <div class="price-box" itemprop="offers" itemscope itemtype="https://schema.org">
+                            <meta itemprop="priceCurrency" content="USD">
+                            <meta itemprop="price" content="199.00">
+                            <link itemprop="availability" href="https://schema.org">
+                            <p class="price">$199.00 <span class="old-price">$250.00</span></p>
