@@ -1,329 +1,333 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>Shop | The Lace Website</title> 
-  <style> 
-    /* Premium Luxury Styling Variables */ 
-    :root { 
-      --primary-color: #000000; 
-      --accent-color: #ab8e64; 
-      --light-bg: #faf7f2; 
-      --border-color: #e5dec9; 
-      --text-muted: #666666;
-    } 
-
-    body { 
-      font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      background-color: #ffffff; 
-      color: #111111; 
-      -webkit-font-smoothing: antialiased; 
-    } 
-
-    /* Premium Custom Scrollbars */ 
-    ::-webkit-scrollbar { width: 6px; } 
-    ::-webkit-scrollbar-track { background: #f1f1f1; } 
-    ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; } 
-
-    /* Header & Navigation Layout */ 
-    header { 
-      background: #ffffff; 
-      padding: 30px 5% 15px 5%; 
-      text-align: center; 
-    } 
-
-    header h1 { 
-      font-size: 38px; 
-      font-weight: 400; 
-      letter-spacing: 3px; 
-      margin: 0 0 20px 0; 
-      text-transform: uppercase; 
-    } 
-
-    nav { 
-      border-top: 1px solid var(--border-color); 
-      border-bottom: 1px solid var(--border-color); 
-      padding: 12px 0; 
-      position: relative;
-    } 
-
-    nav a { 
-      color: var(--primary-color); 
-      text-decoration: none; 
-      margin: 0 18px; 
-      text-transform: uppercase; 
-      font-size: 13px; 
-      letter-spacing: 1.5px; 
-      transition: color 0.3s; 
-    } 
-
-    nav a.active { 
-      color: var(--accent-color); 
-      font-weight: bold; 
-    } 
-
-    /* Bag Toggle Button Styling */
-    .cart-toggle-nav {
-      position: absolute;
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .cart-count {
-      background: var(--accent-color);
-      color: white;
-      border-radius: 50%;
-      padding: 2px 7px;
-      font-size: 11px;
-      margin-left: 4px;
-    }
-
-    .section-title { 
-      font-size: 20px; 
-      text-transform: uppercase; 
-      letter-spacing: 2px; 
-      margin-bottom: 25px; 
-      text-align: center; 
-      font-weight: 400; 
-    } 
-
-    /* Featured Slider Setup */ 
-    .carousel-container { padding: 40px 5% 20px 5%; max-width: 1400px; margin: 0 auto; } 
-    .carousel-wrapper { position: relative; display: flex; align-items: center; } 
-    .carousel-track-container { overflow: hidden; width: 100%; } 
-    .carousel-track { display: flex; gap: 20px; transition: transform 0.5s ease-in-out; } 
-    
-    .carousel-item { 
-      min-width: calc(33.333% - 14px); 
-      background: #ffffff; 
-      border: 1px solid var(--border-color); 
-      border-radius: 4px; 
-      padding: 20px; 
-      text-align: center; 
-      box-sizing: border-box; 
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02); 
-    } 
-
-    .carousel-item img { width: 100%; height: 260px; object-fit: cover; margin-bottom: 15px; border-radius: 4px; } 
-    .carousel-item h4 { font-size: 15px; margin: 10px 0 6px 0; font-weight: 600; text-transform: uppercase; } 
-    .carousel-item p { color: var(--accent-color); font-weight: 700; font-size: 16px; margin: 0; } 
-    
-    .carousel-nav { 
-      background: var(--primary-color); 
-      color: #fff; 
-      border: none; 
-      width: 42px; 
-      height: 42px; 
-      border-radius: 50%; 
-      cursor: pointer; 
-      position: absolute; 
-      z-index: 10; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-size: 14px; 
-    } 
-
-    .prev-btn { left: -20px; } 
-    .next-btn { right: -20px; } 
-    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; } 
-    .dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; cursor: pointer; } 
-    .dot.active { background: var(--accent-color); } 
-
-    /* Workspace Lower Grid System Split */ 
-    .main-layout { 
-      display: grid; 
-      grid-template-columns: 300px 1fr; 
-      gap: 40px; 
-      max-width: 1400px; 
-      margin: 0 auto; 
-      padding: 30px 5% 60px 5%; 
-    } 
-
-    .column-heading { 
-      font-size: 18px; 
-      text-transform: uppercase; 
-      letter-spacing: 1px; 
-      margin-bottom: 20px; 
-      font-weight: 600; 
-      text-align: center; 
-    } 
-
-    /* Filter Controls Structure */
-    .filter-wrapper {
-      margin-bottom: 30px;
-      background: var(--light-bg);
-      padding: 25px 20px;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-    }
-
-    .filter-group-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: bold;
-      margin-bottom: 15px;
-      letter-spacing: 0.5px;
-    }
-
-    .filter-btn {
-      display: block;
-      width: 100%;
-      background: none;
-      border: none;
-      text-align: left;
-      padding: 12px 5px;
-      font-size: 14px;
-      cursor: pointer;
-      text-transform: capitalize;
-      transition: color 0.2s;
-    }
-
-    .filter-btn:hover { color: var(--accent-color); }
-    .filter-btn.active { color: var(--accent-color); font-weight: bold; }
-
-    .sort-select-dropdown {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--border-color);
-      background: white;
-      font-size: 13px;
-      outline: none;
-    }
-
-    /* Catalog Storefront Product Grid Elements */ 
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; } 
-    
-    .product-card { 
-      background: #ffffff; 
-      border: 1px solid var(--border-color); 
-      border-radius: 4px; 
-      padding: 15px; 
-      text-align: center; 
-      box-sizing: border-box; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: space-between; 
-      transition: box-shadow 0.3s;
-    } 
-
-    .product-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-    .product-img-wrapper img { width: 100%; height: 240px; object-fit: cover; margin-bottom: 12px; border-radius: 2px; } 
-    .product-title { font-size: 13px; margin: 8px 0; color: var(--primary-color); text-transform: uppercase; font-weight: 600; line-height: 1.4; } 
-    .product-price { color: var(--accent-color); font-weight: 700; margin-bottom: 12px; font-size: 14px; } 
-    
-    .add-to-cart-btn { 
-      width: 100%; 
-      background: var(--primary-color); 
-      color: white; 
-      border: none; 
-      padding: 11px 0; 
-      text-transform: uppercase; 
-      font-size: 11px; 
-      letter-spacing: 1px; 
-      cursor: pointer; 
-      font-weight: 600; 
-      transition: background 0.3s; 
-    } 
-    .add-to-cart-btn:hover { background: var(--accent-color); } 
-
-    /* Interactive Cart Sliding Drawer UI */
-    .cart-drawer-container {
-      position: fixed;
-      top: 0;
-      right: -360px;
-      width: 350px;
-      height: 100%;
-      background: #ffffff;
-      box-shadow: -5px 0 25px rgba(0,0,0,0.1);
-      z-index: 2000;
-      transition: right 0.4s ease;
-      display: flex;
-      flex-direction: column;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | The Lace Website</title>
+  
+  <style>
+    /* Reset & Base Typography Styles */
+    * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
     }
 
-    .cart-drawer-container.open { right: 0; }
+    body {
+      background-color: #fafafa;
+      color: #111111;
+    }
 
-    .cart-header-wrapper {
-      padding: 20px;
-      border-bottom: 1px solid var(--border-color);
+    /* Navigation Bar Design */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .cart-header-wrapper h3 { margin: 0; text-transform: uppercase; font-size: 16px; letter-spacing: 1px; }
-    .close-drawer-btn { background: none; border: none; font-size: 20px; cursor: pointer; }
-    .cart-items-feed { flex: 1; overflow-y: auto; padding: 20px; }
-
-    .cart-item {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #f5f5f5;
-      padding-bottom: 15px;
-    }
-
-    .cart-item-img { width: 70px; height: 80px; object-fit: cover; }
-    .cart-item-details { flex: 1; }
-    .cart-item-remove { background: none; border: none; color: red; cursor: pointer; font-size: 12px; padding: 5px 0 0 0; }
-    .cart-footer-summary { padding: 20px; border-top: 1px solid var(--border-color); background: var(--light-bg); }
-    .subtotal-row { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; }
-
-    .cart-overlay-backdrop {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
+      z-index: 1000;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #555555;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #000000;
+    }
+
+    #bag-count {
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* Layout Content Header */
+    .shop-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .shop-container h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* The Strict 4-Column Responsive Grid Layout */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    /* Individual Product Card Box Styling */
+    .product-card {
+      background-color: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .product-image-wrapper {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .product-card img {
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 1500;
-      display: none;
+      object-fit: cover;
     }
 
-    .cart-overlay-backdrop.open { display: block; }
-    .empty-message { text-align: center; color: var(--text-muted); margin-top: 40px; font-style: italic; }
+    .product-card h4 {
+      font-size: 0.95rem;
+      color: #222222;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      font-weight: 500;
+    }
 
-    /* Responsive Viewport Rules */ 
-    @media (max-width: 950px) { .main-layout { grid-template-columns: 1fr; } .carousel-item { min-width: calc(50% - 10px); } } 
-    @media (max-width: 600px) { .carousel-item { min-width: 100%; } } 
-  </style> 
-</head> 
-<body> 
+    .product-card .price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 15px;
+    }
 
-  <!-- Navigation Header Block --> 
-  <header> 
-    <h1>The Lace Website</h1> 
-    <nav> 
-      <a href="index.html">Home</a> 
-      <a href="shop.html" class="active">Shop</a> 
-      <a href="#">About</a> 
-      <a href="#">Contact</a> 
-      <button class="cart-toggle-nav" id="cart-toggle-btn">Bag <span class="cart-count">0</span></button>
-    </nav> 
-  </header> 
+    .product-card .add-to-bag {
+      background-color: #000000;
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease;
+    }
 
-  <!-- Featured Slider Module --> 
-  <section class="carousel-container"> 
-    <h2 class="section-title">Featured Luxury Wigs</h2> 
-    <div class="carousel-wrapper"> 
-      <button class="carousel-nav prev-btn" id="carousel-prev">❮</button> 
-      <div class="carousel-track-container"> 
-        <div class="carousel-track" id="carousel-track"> 
-          <div class="carousel-item">
-            <img src="https://unsplash.com" alt="Silky Straight Wig">
-            <h4>HD Lace Frontal Unit - Silky Straight</h4>
-            <p>£580</p>
-          </div>
+    .product-card .add-to-bag:hover {
+      background-color: #333333;
+    }
+
+    /* Interactive Pagination Controls Element Styling */
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 50px auto 20px;
+    }
+
+    .page-btn, .page-number {
+      background-color: #ffffff;
+      color: #000000;
+      border: 1px solid #dcdcdc;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .page-btn:disabled {
+      border-color: #e5e5e5;
+      color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .page-number.active {
+      background-color: #000000;
+      border-color: #000000;
+      color: #ffffff;
+    }
+
+    .page-btn:hover:not(:disabled), .page-number:hover:not(.active) {
+      background-color: #f5f5f5;
+      border-color: #adadad;
+    }
+
+    /* Screen Breakpoints for Responsive Mobile Execution */
+    @media (max-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Nav Header -->
+  <header>
+    <div class="logo">
+      <h1>The Lace Wigs</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Product Catalog Frame Area -->
+  <main class="shop-container">
+    <h2>Luxury Wigs Collection</h2>
+    
+    <div id="shopGrid" class="product-grid">
+      
+      <!-- ROW 1 (Page 1) -->
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig1.jpg" alt="Silky Straight"></div>
+        <h4>HD Lace Frontal Unit - Silky Straight</h4>
+        <p class="price">$580</p>
+        <button class="add-to-bag" data-id="1" data-name="HD Lace Frontal Unit - Silky Straight" data-price="580">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig2.jpg" alt="Body Wave"></div>
+        <h4>HD Lace Frontal Unit - Body Wave</h4>
+        <p class="price">$600</p>
+        <button class="add-to-bag" data-id="2" data-name="HD Lace Frontal Unit - Body Wave" data-price="600">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig3.jpg" alt="Deep Curly"></div>
+        <h4>HD Lace Frontal Unit - Deep Curly</h4>
+        <p class="price">$590</p>
+        <button class="add-to-bag" data-id="3" data-name="HD Lace Frontal Unit - Deep Curly" data-price="590">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig4.jpg" alt="Water Wave"></div>
+        <h4>HD Lace Closure Unit - Water Wave</h4>
+        <p class="price">$550</p>
+        <button class="add-to-bag" data-id="4" data-name="HD Lace Closure Unit - Water Wave" data-price="550">Add to Bag</button>
+      </div>
+
+      <!-- ROW 2 (Page 1) -->
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig5.jpg" alt="Kinky Straight"></div>
+        <h4>HD Lace Frontal Unit - Kinky Straight</h4>
+        <p class="price">$620</p>
+        <button class="add-to-bag" data-id="5" data-name="HD Lace Frontal Unit - Kinky Straight" data-price="620">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig6.jpg" alt="Loose Wave"></div>
+        <h4>HD Lace Frontal Unit - Loose Wave</h4>
+        <p class="price">$600</p>
+        <button class="add-to-bag" data-id="6" data-name="HD Lace Frontal Unit - Loose Wave" data-price="600">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig7.jpg" alt="Bob Wig"></div>
+        <h4>HD Lace Frontal Bob - Straight</h4>
+        <p class="price">$450</p>
+        <button class="add-to-bag" data-id="7" data-name="HD Lace Frontal Bob - Straight" data-price="450">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig8.jpg" alt="Pixie Cut"></div>
+        <h4>Full Lace Unit - Pixie Cut</h4>
+        <p class="price">$420</p>
+        <button class="add-to-bag" data-id="8" data-name="Full Lace Unit - Pixie Cut" data-price="420">Add to Bag</button>
+      </div>
+
+      <!-- ROW 3 (Page 1) -->
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig9.jpg" alt="Blonde Wig"></div>
+        <h4>613 Blonde Frontal Unit - Straight</h4>
+        <p class="price">$680</p>
+        <button class="add-to-bag" data-id="9" data-name="613 Blonde Frontal Unit - Straight" data-price="680">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig10.jpg" alt="Ombre Wig"></div>
+        <h4>HD Lace Frontal - Custom Ombre</h4>
+        <p class="price">$700</p>
+        <button class="add-to-bag" data-id="10" data-name="HD Lace Frontal - Custom Ombre" data-price="700">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig11.jpg" alt="Highlight Wig"></div>
+        <h4>Piano Highlights Frontal Unit</h4>
+        <p class="price">$670</p>
+        <button class="add-to-bag" data-id="11" data-name="Piano Highlights Frontal Unit" data-price="670">Add to Bag</button>
+      </div>
+
+      <div class="product-card" data-page="1">
+        <div class="product-image-wrapper"><img src="images/wig12.jpg" alt="Deep Wave"></div>
+        <h4>HD Lace Closure Unit - Deep Wave</h4>
+        <p class="price">$560</p>
+        <button class="add-to-bag" data-id="12" data-name="HD Lace Closure Unit - Deep Wave" data-price="560">Add to Bag</button>
+      </div>
+
+      <!-- PAGE 2 SAMPLES (Row 1 of Next Page) -->
+      <div class="product-card" data-page="2">
