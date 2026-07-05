@@ -1,185 +1,296 @@
+/* ==========================================================================
+   THE LACE WEBSITE - CENTRAL BOUTIQUE STYLESHEET
+   ========================================================================== */
 
-
-/* Custom premium transitions scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background: #ab8e64;
-  border-radius: 3px;
+:root {
+  --primary-color: #000000;
+  --accent-color: #ab8e64;
+  --light-bg: #faf7f2;
+  --border-color: #e5dec9;
 }
 
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 8px;
-    display: inline-block;
+body {
+  font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #111111;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Luxury Interactive Carousel Workspace Setup */
-.carousel-container {
-    padding: 40px 5% 20px 5%;
-    max-width: 1400px;
-    margin: 0 auto;
+::-webkit-scrollbar { 
+  width: 6px; 
+} 
+::-webkit-scrollbar-track { 
+  background: #f1f1f1; 
+} 
+::-webkit-scrollbar-thumb { 
+  background: var(--accent-color); 
+  border-radius: 3px; 
 }
 
-.carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+header {
+  background: #ffffff;
+  padding: 30px 5% 15px 5%;
+  text-align: center;
 }
 
-.carousel-track-container {
-    overflow: hidden;
-    width: 100%;
+header h1 {
+  font-size: 38px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
 }
 
-.carousel-track {
-    display: flex;
-    gap: 20px;
-    transition: transform 0.5s ease-in-out;
+nav {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 0;
 }
 
-.carousel-item {
-    min-width: calc(33.333% - 14px); /* Show exactly 3 beautiful wig items at a time */
-    background: var(--light-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 15px;
-    text-align: center;
-    box-sizing: border-box;
+nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin: 0 18px;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  transition: color 0.3s;
 }
 
-.carousel-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    margin-bottom: 12px;
-    border-radius: 2px;
+nav a.active {
+  color: var(--accent-color);
+  font-weight: bold;
 }
 
-.carousel-item h4 {
-    font-size: 15px;
-    margin-bottom: 6px;
+.section-title {
+  font-size: 20px; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
+  margin-bottom: 25px; 
+  text-align: center;
+  font-weight: 400;
 }
 
-.carousel-item p {
-    color: var(--accent-color);
-    font-weight: 700;
+.carousel-container { 
+  padding: 40px 5% 20px 5%; 
+  max-width: 1400px; 
+  margin: 0 auto; 
+} 
+
+.carousel-wrapper { 
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+} 
+
+.carousel-track-container { 
+  overflow: hidden; 
+  width: 100%; 
+} 
+
+.carousel-track { 
+  display: flex; 
+  gap: 20px; 
+  transition: transform 0.5s ease-in-out; 
+} 
+
+.carousel-item { 
+  min-width: calc(33.333% - 14px); 
+  background: #ffffff; 
+  border: 1px solid var(--border-color); 
+  border-radius: 4px; 
+  padding: 20px; 
+  text-align: center; 
+  box-sizing: border-box; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+} 
+
+.carousel-item img { 
+  width: 100%; 
+  height: 260px; 
+  object-fit: cover; 
+  margin-bottom: 15px; 
+  border-radius: 4px;
+} 
+
+.carousel-item h4 { 
+  font-size: 15px; 
+  margin: 10px 0 6px 0; 
+  font-weight: 600;
+  text-transform: uppercase;
+} 
+
+.carousel-item p { 
+  color: var(--accent-color); 
+  font-weight: 700; 
+  font-size: 16px;
+  margin: 0;
+} 
+
+.carousel-nav { 
+  background: var(--primary-color); 
+  color: #fff; 
+  border: none; 
+  width: 42px; 
+  height: 42px; 
+  border-radius: 50%; 
+  cursor: pointer; 
+  position: absolute; 
+  z-index: 10; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+} 
+
+.prev-btn { left: -20px; } 
+.next-btn { right: -20px; } 
+
+.carousel-dots { 
+  display: flex; 
+  justify-content: center; 
+  gap: 8px; 
+  margin-top: 20px; 
+} 
+.dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; cursor: pointer; } 
+.dot.active { background: var(--accent-color); } 
+
+.main-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 5% 60px 5%;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
 }
 
-.carousel-nav {
-    background: var(--primary-color);
-    color: #fff;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    position: absolute;
-    z-index: 10;
-    font-weight: bold;
+.column-heading {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
 }
 
-.prev-btn { left: -20px; }
-.next-btn { right: -20px; }
+.admin-panel { 
+  background: #ffffff; 
+  padding: 25px 20px; 
+  border: 1px dashed var(--accent-color); 
+  border-radius: 6px; 
+} 
 
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 15px;
+.admin-panel h3 { 
+  color: var(--primary-color); 
+  font-size: 16px; 
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1px;
+} 
+
+.form-group { margin-bottom: 16px; } 
+.form-group label { 
+  display: block; 
+  font-size: 11px; 
+  text-transform: uppercase; 
+  font-weight: bold; 
+  margin-bottom: 6px; 
+  letter-spacing: 0.5px;
+} 
+
+.form-group input { 
+  width: 100%; 
+  padding: 10px; 
+  border: 1px solid var(--border-color); 
+  border-radius: 4px; 
+  background: #fff; 
+  font-size: 13px; 
+  box-sizing: border-box;
+} 
+
+.submit-product-btn { 
+  width: 100%; 
+  background: #c3ab87; 
+  color: white; 
+  border: none; 
+  padding: 12px; 
+  font-weight: bold; 
+  text-transform: uppercase; 
+  cursor: pointer; 
+  border-radius: 4px; 
+  letter-spacing: 1px;
+  font-size: 13px;
+  transition: background 0.3s; 
+} 
+.submit-product-btn:hover { background: var(--accent-color); } 
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
 }
 
-.dot {
-    width: 8px;
-    height: 8px;
-    background: #ccc;
-    border-radius: 50%;
-    cursor: pointer;
+.product-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 15px;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.dot.active {
-    background: var(--accent-color);
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border-radius: 2px;
 }
 
-/* Sidebar Organization Blocks */
-.sidebar-block {
-    margin-bottom: 40px;
+.product-card h3 {
+  font-size: 13px;
+  margin: 8px 0;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
-/* Dynamic Interactive Form Styling Layout */
-.admin-panel {
-    background: var(--light-bg);
-    padding: 20px;
-    border: 1px dashed var(--accent-color);
-    border-radius: 6px;
+.product-card .price {
+  color: var(--accent-color);
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 14px;
 }
 
-.admin-panel h3 {
-    color: var(--primary-color);
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.add-to-cart-btn {
+  width: 100%;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
 }
+.add-to-cart-btn:hover { background: var(--accent-color); } 
 
-.form-group {
-    margin-bottom: 14px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.form-group input, .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    background: #fff;
-    font-size: 14px;
-}
-
-.form-group small {
-    display: block;
-    color: #888;
-    font-size: 11px;
-    margin-top: 2px;
-}
-
-.submit-product-btn {
-    width: 100%;
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background 0.3s;
-}
-
-.submit-product-btn:hover {
-    background: var(--primary-color);
-}
-
-/* Carousel Adjustment for Responsive Views */
-@media (max-width: 900px) {
-    .carousel-item { min-width: calc(50% - 10px); } /* Show 2 items */
-}
-@media (max-width: 600px) {
-    .carousel-item { min-width: 100%; } /* Show 1 item */
-    .prev-btn { left: 5px; }
-    .next-btn { right: 5px; }
+@media (max-width: 950px) {
+  .main-layout { grid-template-columns: 1fr; }
+  .carousel-item { min-width: calc(50% - 10px); }
+} 
+@media (max-width: 600px) { 
+  .carousel-item { min-width: 100%; } 
+  .prev-btn { left: 5px; } 
+  .next-btn { right: 5px; } 
 }
