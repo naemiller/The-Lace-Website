@@ -47,6 +47,17 @@
     nav ul li a { text-decoration: none; color: #555555; font-size: 0.95rem; font-weight: 500; }
     nav ul li a:hover, nav ul li a.active { color: #000000; }
 
+    #bag-count {
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
     .auth-container {
       background: white;
       border: 1px solid var(--border);
@@ -82,7 +93,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Shop</a></li>
         <li><a href="login.html" class="active">Account</a></li>
-        <li><a href="bag.html">Bag</a></li>
+        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
       </ul>
     </nav>
   </header>
@@ -119,7 +130,7 @@
   <script>
     const firebaseConfig = { 
       apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI", 
-      authDomain: "://firebaseapp.com", 
+      authDomain: "thelacewigs-f46a5.firebaseapp.com", 
       projectId: "thelacewigs-f46a5", 
       storageBucket: "thelacewigs-f46a5.firebasestorage.app", 
       messagingSenderId: "1004049108512", 
@@ -188,6 +199,7 @@
 
     function loadCustomerOrders(uid) {
       const ordersTarget = document.getElementById('orders-history-target');
+      ordersTarget.innerHTML = "Loading history logs...";
       
       db.collection('orders')
         .where('userId', '==', uid)
@@ -223,8 +235,3 @@
             ordersTarget.appendChild(card);
           });
         })
-        .catch(err => { ordersTarget.innerHTML = "<p style='color:red;'>Error fetching past purchases.</p>"; });
-    }
-  </script>
-</body>
-</html>
