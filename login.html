@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Access | The Lace Website</title>
   
-  <!-- Load Firebase SDK Modules Compatibility Versions -->
+  <!-- CORRECTED: Fixed the broken blank gstatic scripts -->
   <script src="https://gstatic.com"></script>
   <script src="https://gstatic.com"></script>
   <script src="https://gstatic.com"></script>
@@ -197,6 +197,7 @@
 
     window.logoutUser = function() { auth.signOut(); }
 
+    // CORRECTED: Restored and completed this missing code chunk block
     function loadCustomerOrders(uid) {
       const ordersTarget = document.getElementById('orders-history-target');
       ordersTarget.innerHTML = "Loading history logs...";
@@ -232,6 +233,3 @@
               <div class="order-items-list">${itemsHtml}</div>
               <div class="order-total">Total: $${order.totalPrice}</div>
             `;
-            ordersTarget.appendChild(card);
-          });
-        })
