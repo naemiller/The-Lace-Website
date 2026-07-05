@@ -279,7 +279,6 @@
           let data = doc.data();
           data.id = doc.id;
           
-          // Fallback checker ensures loose casing properties won't crash the script loop
           const nameVal = data.name || data.Name || "Luxury Hair Unit";
           const priceVal = data.price !== undefined ? data.price : (data.Price !== undefined ? data.Price : "0");
           const imgVal = data.imageUrl || data.ImageUrl || "placeholder.jpg";
@@ -349,3 +348,7 @@
 
         document.querySelectorAll(".page-number").forEach(btn => {
           if (parseInt(btn.getAttribute("data-target")) === page) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
