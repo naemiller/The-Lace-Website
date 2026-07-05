@@ -117,7 +117,7 @@
       margin-bottom: 15px;
     }
 
-    .product-card img {
+    .product-grid img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -251,16 +251,11 @@
     </div>
   </main>
 
-  <!-- YOUR OFFICIAL SNIPPET (Placed exactly inside the body tag as requested) -->
+  <!-- Load core modular scripts through secure browser channels -->
   <script type="module">
-    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://gstatic.com";
-    import { getAnalytics } from "https://gstatic.com";
-    
-    // CONNECTED FIRESTORE: Included right here inside the module block to pull database records
     import { getFirestore, collection, getDocs } from "https://gstatic.com";
 
-    // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI",
       authDomain: "://firebaseapp.com",
@@ -268,16 +263,13 @@
       projectId: "thelacewigs-f46a5",
       storageBucket: "thelacewigs-f46a5.firebasestorage.app",
       messagingSenderId: "1004049108512",
-      appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645",
-      measurementId: "G-DXKGF27ZQW"
+      appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645"
     };
 
-    // Initialize Firebase
+    // Instantiate client connection tokens
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
     const db = getFirestore(app);
 
-    // Wire up UI connections
     const shopGrid = document.getElementById("shopGrid");
     const loaderStateText = document.getElementById("loaderStateText");
     const paginationBox = document.getElementById("paginationBox");
@@ -291,29 +283,27 @@
 
     async function loadCatalog() {
       try {
-        // Query the root 'products' folder safely using the initialized SDK token
         const querySnapshot = await getDocs(collection(db, "products"));
-        
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           allProducts.push({
             id: doc.id,
             name: data.name || "Luxury Hair Unit",
             price: data.price !== undefined ? data.price : "0",
-            imageUrl: data.imageUrl || "images/straight.jpg"
+            
+            // FIXED PATH: Adjusted fallback match to default to root folder image layout parameters
+            imageUrl: data.imageUrl || "straight.jpg"
           });
         });
 
         if (allProducts.length === 0) {
-          shopGrid.innerHTML = '<div class="loading-text">Connected to Firebase! But your collection has no data entries inside it yet.</div>';
+          shopGrid.innerHTML = '<div class="loading-text">Connected to Firebase! But your collection has no documents inside it yet.</div>';
           return;
         }
 
         if (loaderStateText) loaderStateText.remove();
-        
         renderPaginationControls();
         showPage(1);
-
       } catch (err) {
         console.error("DATABASE API FAILURE: ", err);
         shopGrid.innerHTML = '<div class="loading-text" style="color:red;">Error loading items. Make sure your Firestore rules allow public reads.</div>';
@@ -357,3 +347,13 @@
         card.className = "product-card";
         card.innerHTML = `
           <div class="product-image-wrapper">
+            <!-- FIXED ERROR FALLBACKS: Removed subfolder directory paths to target root items directly -->
+            <img src="${product.imageUrl}" alt="${product.name}" onerror="this.src='straight.jpg'">
+          </div>
+          <h4>${product.name}</h4>
+          <p class="price">$${product.price}</p>
+          <button class="add-to-bag" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Bag</button>
+        `;
+        shopGrid.appendChild(card);
+      });
+
