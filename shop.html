@@ -251,58 +251,53 @@
     </div>
   </main>
 
-  <!-- Interactive Modular ESM Setup Wrapper -->
-  <script type="module">
-    // Import your exact CDN dependencies along with native Firestore modules
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
-    import { getFirestore, collection, getDocs } from "https://gstatic.com";
+  <!-- Direct Native Script Engine Logic (Completely free of gstatic.com module imports) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const shopGrid = document.getElementById("shopGrid");
+      const loaderStateText = document.getElementById("loaderStateText");
+      const paginationBox = document.getElementById("paginationBox");
+      const pageNumbersSpan = document.getElementById("pageNumbers");
+      const prevBtn = document.getElementById("prevPage");
+      const nextBtn = document.getElementById("nextPage");
 
-    // Your exact validated app credentials layout
-    const firebaseConfig = {
-      apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI",
-      authDomain: "thelacewigs-f46a5.firebaseapp.com",
-      databaseURL: "https://thelacewigs-f46a5-default-rtdb.firebaseio.com",
-      projectId: "thelacewigs-f46a5",
-      storageBucket: "thelacewigs-f46a5.firebasestorage.app",
-      messagingSenderId: "1004049108512",
-      appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645",
-      measurementId: "G-DXKGF27ZQW"
-    };
+      let allProducts = [];
+      let currentPage = 1;
+      const itemsPerPage = 12;
 
-    // Initialize systems natively via the SDK
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
+      // CLEAN DIRECT CONNECT: Uses your project ID: thelacewigs-f46a5 over the official public REST endpoint gateway
+      const restUrl = "https://googleapis.com";
 
-    const shopGrid = document.getElementById("shopGrid");
-    const loaderStateText = document.getElementById("loaderStateText");
-    const paginationBox = document.getElementById("paginationBox");
-    const pageNumbersSpan = document.getElementById("pageNumbers");
-    const prevBtn = document.getElementById("prevPage");
-    const nextBtn = document.getElementById("nextPage");
-
-    let allProducts = [];
-    let currentPage = 1;
-    const itemsPerPage = 12;
-
-    async function loadCatalog() {
       try {
-        // Query the root 'products' collection safely via Firestore hooks
-        const querySnapshot = await getDocs(collection(db, "products"));
-        
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          allProducts.push({
-            id: doc.id,
-            name: data.name || "Luxury Hair Unit",
-            price: data.price !== undefined ? data.price : "0",
-            imageUrl: data.imageUrl || "images/straight.jpg"
+        const res = await fetch(restUrl);
+        if (!res.ok) {
+          throw new Error(`Database error response status: ${res.status}`);
+        }
+        const dataPayload = await res.json();
+
+        // Safely decode Firestore's structured JSON data payload mapping architecture
+        if (dataPayload.documents && dataPayload.documents.length > 0) {
+          allProducts = dataPayload.documents.map(doc => {
+            const urlParts = doc.name.split('/');
+            const docId = urlParts[urlParts.length - 1];
+            const fields = doc.fields || {};
+
+            // Fallback match layers to grab document variables accurately
+            const nameVal = fields.name ? fields.name.stringValue : "Luxury Hair Unit";
+            
+            let priceVal = "0";
+            if (fields.price) {
+              priceVal = fields.price.integerValue || fields.price.doubleValue || fields.price.stringValue || "0";
+            }
+
+            const imgVal = fields.imageUrl ? fields.imageUrl.stringValue : "images/straight.jpg";
+
+            return { id: docId, name: nameVal, price: priceVal, imageUrl: imgVal };
           });
-        });
+        }
 
         if (allProducts.length === 0) {
-          shopGrid.innerHTML = '<div class="loading-text">Connected to Firebase! But your "products" collection has no data entries inside it yet.</div>';
+          shopGrid.innerHTML = '<div class="loading-text">Connected to Firebase! But your "products" folder contains no documents yet.</div>';
           return;
         }
 
@@ -313,48 +308,47 @@
 
       } catch (err) {
         console.error("DATABASE API FAILURE: ", err);
-        shopGrid.innerHTML = '<div class="loading-text" style="color:red;">Error loading items. Make sure your Firestore rules match your dashboard setup.</div>';
-      }
-    }
-
-    function renderPaginationControls() {
-      const totalPages = Math.ceil(allProducts.length / itemsPerPage);
-      pageNumbersSpan.innerHTML = "";
-
-      if (totalPages <= 1) {
-        paginationBox.style.display = "none";
-        return;
+        shopGrid.innerHTML = '<div class="loading-text" style="color:red;">Error loading items. Make sure your Firestore rules are set to public reads.</div>';
       }
 
-      paginationBox.style.display = "flex";
+      function renderPaginationControls() {
+        const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+        pageNumbersSpan.innerHTML = "";
 
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.className = `page-number ${i === 1 ? 'active' : ''}`;
-        btn.textContent = i;
-        btn.setAttribute("data-target", i);
-        btn.addEventListener("click", () => showPage(i));
-        pageNumbersSpan.appendChild(btn);
+        if (totalPages <= 1) {
+          paginationBox.style.display = "none";
+          return;
+        }
+
+        paginationBox.style.display = "flex";
+
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("button");
+          btn.className = `page-number ${i === 1 ? 'active' : ''}`;
+          btn.textContent = i;
+          btn.setAttribute("data-target", i);
+          btn.addEventListener("click", () => showPage(i));
+          pageNumbersSpan.appendChild(btn);
+        }
+
+        prevBtn.onclick = () => { if (currentPage > 1) showPage(currentPage - 1); };
+        nextBtn.onclick = () => { if (currentPage < totalPages) showPage(currentPage + 1); };
       }
 
-      prevBtn.onclick = () => { if (currentPage > 1) showPage(currentPage - 1); };
-      nextBtn.onclick = () => { if (currentPage < totalPages) showPage(currentPage + 1); };
-    }
+      function showPage(page) {
+        currentPage = page;
+        shopGrid.innerHTML = "";
 
-    function showPage(page) {
-      currentPage = page;
-      shopGrid.innerHTML = "";
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const pageItems = allProducts.slice(startIndex, endIndex);
 
-      const startIndex = (page - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const pageItems = allProducts.slice(startIndex, endIndex);
-
-      pageItems.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-          <div class="product-image-wrapper">
-            <img src="${product.imageUrl}" alt="${product.name}" onerror="this.src='images/straight.jpg'">
-          </div>
-          <h4>${product.name}</h4>
-          <p class="price">$${product.price}</p>
+        pageItems.forEach(product => {
+          const card = document.createElement("div");
+          card.className = "product-card";
+          card.innerHTML = `
+            <div class="product-image-wrapper">
+              <img src="${product.imageUrl}" alt="${product.name}" onerror="this.src='images/straight.jpg'">
+            </div>
+            <h4>${product.name}</h4>
+            <p class="price">$${product.price}</p>
