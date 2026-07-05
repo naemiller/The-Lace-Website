@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard | The Lace Website</title>
+  
+  <!-- Load Firebase SDK Modules Compatibility Versions -->
+  <script src="https://gstatic.com"></script>
+  <script src="https://gstatic.com"></script>
+  <script src="https://gstatic.com"></script>
+
   <style>
     :root {
       --primary: #000000;
@@ -15,11 +21,13 @@
       font-family: 'Playfair Display', Arial, sans-serif;
       background: var(--bg);
       margin: 0;
-      padding: 0;
+      padding: 40px 20px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
     .panel-box {
       background: white;
@@ -27,30 +35,132 @@
       border-radius: 6px;
       padding: 30px;
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+      margin-bottom: 30px;
+    }
+    h2, h3 {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .btn {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: var(--accent);
+    }
+    .hidden {
+      display: none !important;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    /* Inventory Table List Styling */
+    .inventory-box {
+      width: 100%;
+      max-width: 800px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 30px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       box-sizing: border-box;
     }
-    h2, h3 { text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-top: 0; }
-    .form-group { margin-bottom: 16px; }
-    label { display: block; font-size: 11px; text-transform: uppercase; font-weight: bold; margin-bottom: 6px; }
-    input, select { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; }
-    .btn { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 4px; margin-top: 10px; }
-    .btn:hover { background: var(--accent); }
-    .hidden { display: none !important; }
-    .back-link { display: block; text-align: center; margin-top: 15px; color: var(--accent); text-decoration: none; font-size: 13px; }
+    .inventory-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f2edd8;
+    }
+    .inventory-item:last-child {
+      border-bottom: none;
+    }
+    .item-info strong {
+      display: block;
+      font-size: 1rem;
+    }
+    .item-info span {
+      font-size: 0.8rem;
+      color: #777;
+      text-transform: uppercase;
+    }
+    .edit-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .edit-actions input {
+      width: 80px;
+      padding: 6px;
+      text-align: center;
+    }
+    .action-btn {
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: white;
+    }
+    .save-btn { background: #27ae60; }
+    .save-btn:hover { background: #2ecc71; }
+    .delete-btn { background: #c0392b; }
+    .delete-btn:hover { background: #e74c3c; }
   </style>
 </head>
 <body>
 
-  <!-- Gateway Login Window Box -->
+  <!-- Gateway Secure Login Window Box -->
   <div class="panel-box" id="login-gate">
     <h2>Admin Gateway</h2>
     <div class="form-group">
-      <label for="admin-pass">Security Access Key</label>
+      <label for="admin-email">Admin Email Address</label>
+      <input type="email" id="admin-email" placeholder="you@domain.com">
+    </div>
+    <div class="form-group">
+      <label for="admin-pass">Secret Password</label>
       <input type="password" id="admin-pass" placeholder="••••••••">
     </div>
-    <button class="btn" onclick="verifyGatePass()">Unlock Inventory</button>
+    <button class="btn" id="loginBtn">Unlock Inventory</button>
     <a href="shop.html" class="back-link">← Return to Public Store</a>
   </div>
 
@@ -63,7 +173,7 @@
         <input type="text" id="new-title" placeholder="e.g., 13x4 Lace Frontal Wig" required>
       </div>
       <div class="form-group">
-        <label for="new-price">Product Price (£)</label>
+        <label for="new-price">Product Price ($ USD)</label>
         <input type="number" id="new-price" placeholder="580" required>
       </div>
       <div class="form-group">
@@ -75,34 +185,76 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="new-image">Product Image URL</label>
-        <input type="text" id="new-image" placeholder="Paste direct image .jpg link" required>
+        <label for="new-image">Product Image URL / File Path</label>
+        <input type="text" id="new-image" placeholder="e.g., images/wig1.jpg" required>
       </div>
       <button type="submit" class="btn" style="background: var(--accent);">Deploy Unit To Storefront</button>
     </form>
-    <button class="btn" style="background:#888;" onclick="lockDashboard()">Lock Panel</button>
+    <button class="btn" style="background:#888;" id="logoutBtn">Lock Panel & Logout</button>
+  </div>
+
+  <!-- Realtime Database Status Monitor Panel -->
+  <div class="inventory-box hidden" id="inventory-list-box">
+    <h3>Live Stock Inventory Monitor</h3>
+    <div id="live-inventory-target">Loading records...</div>
   </div>
 
   <script>
-    // System Access Validation Check Route
-    function verifyGatePass() {
-      const entry = document.getElementById('admin-pass').value;
-      // You can change 'LaceAdmin2026' to any password key value you prefer
-      if (entry === 'LaceAdmin2026') {
+    // 1. INITIALIZE GLOBAL FIREBASE REPOSITORY DATA FEEDS
+    const firebaseConfig = { 
+      apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI", 
+      authDomain: "://firebaseapp.com", 
+      projectId: "thelacewigs-f46a5", 
+      storageBucket: "thelacewigs-f46a5.firebasestorage.app", 
+      messagingSenderId: "1004049108512", 
+      appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645", 
+      measurementId: "G-DXKGF27ZQW" 
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    // 2. MONITOR AUTHENTICATION STATES
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // Safe UI State: Logged In successfully
         document.getElementById('login-gate').classList.add('hidden');
         document.getElementById('dashboard-controls').classList.remove('hidden');
+        document.getElementById('inventory-list-box').classList.remove('hidden');
+        loadLiveInventory();
       } else {
-        alert('Invalid Security Credentials Access Key.');
+        // Safe UI State: Logged Out or not authorized
+        document.getElementById('dashboard-controls').classList.add('hidden');
+        document.getElementById('inventory-list-box').classList.add('hidden');
+        document.getElementById('login-gate').classList.remove('hidden');
       }
-    }
+    });
 
-    function lockDashboard() {
-      document.getElementById('admin-pass').value = '';
-      document.getElementById('dashboard-controls').classList.add('hidden');
-      document.getElementById('login-gate').classList.remove('hidden');
-    }
+    // 3. SECURE AUTH LOGIN/LOGOUT ACTIONS
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const email = document.getElementById('admin-email').value.trim();
+      const pass = document.getElementById('admin-pass').value;
 
-    // Capture input properties and synchronize deployment data feeds
+      if (!email || !pass) {
+        alert("Please complete all profile credentials fields.");
+        return;
+      }
+
+      auth.signInWithEmailAndPassword(email, pass)
+        .catch((error) => {
+          alert("Secure Gateway Authentication Failed: " + error.message);
+        });
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      auth.signOut().then(() => {
+        document.getElementById('admin-email').value = '';
+        document.getElementById('admin-pass').value = '';
+      });
+    });
+
+    // 4. CAPTURE INPUT VALUES AND INITIALIZE FIRESTORE TRANSACTIONS
     document.getElementById('add-product-form').addEventListener('submit', (e) => {
       e.preventDefault();
       
@@ -111,18 +263,46 @@
       const texture = document.getElementById('new-texture').value;
       const img = document.getElementById('new-image').value.trim();
 
-      const newUnitObject = { id: Date.now(), title, price, texture, img };
-
-      // Pull existing operational warehouse datasets from browser workspace storage caches
-      let activeInventory = JSON.parse(localStorage.getItem('luxury_wigs_inventory')) || [];
-      activeInventory.unshift(newUnitObject);
-      
-      // Store globally updated arrays inside browser ecosystem states
-      localStorage.setItem('luxury_wigs_inventory', JSON.stringify(activeInventory));
-
-      alert(`Successfully deployed "${title}" straight onto the shop floor floor!`);
-      document.getElementById('add-product-form').reset();
+      db.collection("products").add({
+        name: title,
+        price: price,
+        texture: texture,
+        imageUrl: img
+      })
+      .then(() => {
+        alert(`Successfully deployed "${title}" straight onto the cloud database store!`);
+        document.getElementById('add-product-form').reset();
+        loadLiveInventory();
+      })
+      .catch((error) => {
+        alert("Authorization Denied: " + error.message);
+      });
     });
-  </script>
-</body>
-</html>
+
+    // 5. RETRIEVE LIVE COLLECTION AND BUILD INTERACTIVE ADJUSTMENT CARDS
+    function loadLiveInventory() {
+      const targetDiv = document.getElementById("live-inventory-target");
+      targetDiv.innerHTML = "Syncing with live servers...";
+      
+      db.collection("products").orderBy("name").get().then((querySnapshot) => {
+        targetDiv.innerHTML = "";
+        
+        if (querySnapshot.empty) {
+          targetDiv.innerHTML = "<p style='text-align:center; color:#777;'>No products in store database.</p>";
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const product = doc.data();
+          const id = doc.id;
+
+          const itemRow = document.createElement("div");
+          itemRow.className = "inventory-item";
+          itemRow.innerHTML = `
+            <div class="item-info">
+              <strong>${product.name}</strong>
+              <span>Texture: ${product.texture || 'Generic'}</span>
+            </div>
+            <div class="edit-actions">
+              <label style='display:inline; margin:0;'>$</label>
+              <input type="number" value="${product.price}" id="live-price-${id}">
