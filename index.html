@@ -1,173 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- ================= TRAFFIC & SEO OPTIMIZATION ================= -->
-    <title>THE LACE WIGS | Premium HD Swiss Lace & Virgin Human Hair Wigs</title>
-    <meta name="description" content="Shop premium HD Swiss lace frontal wigs and raw virgin human hair texturized wigs. Free fast 3-5 day shipping across the US. Melted natural hair lines.">
-    <meta name="keywords" content="lace wigs, HD lace frontals, human hair wigs, raw virgin hair, swiss lace melt, buy wigs online, fast shipping wigs">
-    <link rel="canonical" href="https://github.io">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | The Lace Wigs</title>
+  
+  <style>
+    /* Reset & Base Typography Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
 
-    <!-- Social Media Traffic Previews (Open Graph) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="THE LACE WIGS | Flawless HD Lace Collections">
-    <meta property="og:description" content="Get premium salon-grade HD lace frontals delivered securely to your door. Real US 3-5 day fast shipping.">
-    <meta property="og:image" content="https://unsplash.com">
-    <meta property="og:url" content="https://github.io">
+    body {
+      background-color: #fafafa;
+      color: #111111;
+    }
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    
-    <style>
-        :root {
-            --primary-color: #111111;
-            --accent-color: #ab8e64; /* Luxury gold tone */
-            --light-bg: #f9f9f9;
-            --border-color: #e5e5e5;
-            --shipping-green: #15803d;
-        }
+    /* Navigation Bar Design */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
-        body { background-color: #ffffff; color: var(--primary-color); line-height: 1.6; }
+    .logo h1 {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
-        /* Fast Shipping Top Announcement Bar */
-        .shipping-banner {
-            background-color: var(--primary-color); color: #ffffff; text-align: center;
-            padding: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .shipping-banner i { color: var(--accent-color); font-size: 13px; }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
 
-        /* Premium Navigation Bar */
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; border-bottom: 1px solid var(--border-color);
-            position: sticky; top: 0; background: #fff; z-index: 100;
-        }
-        .logo { font-size: 22px; font-weight: 900; letter-spacing: 3px; cursor: pointer; }
-        .nav-links a { text-decoration: none; color: var(--primary-color); margin: 0 20px; font-weight: 700; text-transform: uppercase; font-size: 13px; transition: color 0.2s; }
-        .nav-links a.active, .nav-links a:hover { color: var(--accent-color); }
+    nav ul li a {
+      text-decoration: none;
+      color: #555555;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
 
-        /* Hero Banner Section */
-        .hero-section {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://unsplash.com') center/cover no-repeat;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; color: #ffffff; padding: 0 20px;
-        }
-        .hero-section h1 { font-size: 48px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; }
-        .hero-section p { font-size: 18px; font-weight: 500; letter-spacing: 1px; margin-bottom: 30px; color: #eee; }
-        .cta-btn {
-            background-color: #ffffff; color: var(--primary-color); padding: 15px 40px;
-            text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 14px;
-            letter-spacing: 2px; border-radius: 4px; transition: all 0.3s ease;
-        }
-        .cta-btn:hover { background-color: var(--accent-color); color: #ffffff; transform: translateY(-2px); }
+    nav ul li a:hover, nav ul li a.active {
+      color: #000000;
+    }
 
-        /* Core Brand Values / Trust Badges */
-        .trust-section { padding: 60px 5%; max-width: 1400px; margin: 0 auto; }
-        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; text-align: center; }
-        .trust-card i { font-size: 32px; color: var(--accent-color); margin-bottom: 15px; }
-        .trust-card h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 800; }
-        .trust-card p { font-size: 14px; color: #666; }
+    /* Shopping Bag Badge */
+    #bag-count {
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-        /* Highlight Collections Grid */
-        .featured-section { padding: 60px 5%; background-color: var(--light-bg); border-top: 1px solid var(--border-color); }
-        .section-title { font-size: 22px; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 40px; font-weight: 900; }
-        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
-        .category-card { position: relative; height: 450px; overflow: hidden; border-radius: 6px; cursor: pointer; }
-        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .category-card:hover img { transform: scale(1.05); }
-        .category-overlay {
-            position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: white;
-        }
-        .category-overlay h2 { font-size: 24px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 5px; }
-        .category-overlay span { font-size: 13px; color: var(--accent-color); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+    /* Hero Section Styling */
+    .hero {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
 
-        /* Footer */
-        footer { border-top: 1px solid var(--border-color); padding: 40px 5%; text-align: center; font-size: 13px; color: #888; background-color: #ffffff; }
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
 
-        @media (max-width: 768px) {
-            .hero-section h1 { font-size: 32px; }
-            .hero-section p { font-size: 15px; }
-        }
-    </style>
+    .hero p {
+      font-size: 1.2rem;
+      color: #666666;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: #000000;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 15px 40px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      transition: background-color 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: #ab8e64; /* Accent color matching your admin screen */
+    }
+
+    /* Screen Breakpoints for Responsive Mobile Execution */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="shipping-banner">
-        <i class="fa-solid fa-truck-fast"></i> Fast Shipping: US Delivery in 3-5 Business Days
+  <!-- Site Nav Header Area -->
+  <header>
+    <div class="logo">
+      <h1>The Lace Wigs</h1>
     </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="login.html">Account</a></li>
+        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <header class="navbar">
-        <div class="logo" onclick="window.location.href='index.html'">THE LACE WIGS</div>
-        <nav class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="story.html">Our Story</a>
-        </nav>
-        <div style="width: 28px;"></div> <!-- Layout Balance Spacing -->
-    </header>
+  <!-- Welcome / Brand Landing Space -->
+  <main class="hero">
+    <h2>Premium Quality HD Lace Units</h2>
+    <p>Experience the ultimate luxury hair solution. Our meticulously crafted units feature completely undetectable melted hairlines paired with 100% premium virgin hair density.</p>
+    <a href="shop.html" class="cta-btn">Explore The Collection</a>
+  </main>
 
-    <section class="hero-section">
-        <h1>Flawless HD Lace Wigs</h1>
-        <p>100% Premium Raw Virgin Human Hair. Pre-Plucked & Salon Ready.</p>
-        <a href="shop.html" class="cta-btn">Explore Collection</a>
-    </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Keep track of total items currently sitting inside local cart storage
+      function updateHeaderBadge() {
+        const cart = JSON.parse(localStorage.getItem("lace_wigs_cart")) || [];
+        const badge = document.getElementById("bag-count");
+        if (badge) {
+          const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+          badge.textContent = totalItems;
+        }
+      }
 
-    <section class="trust-section">
-        <div class="trust-grid">
-            <div class="trust-card">
-                <i class="fa-solid fa-bolt"></i>
-                <h3>Fast US Shipping</h3>
-                <p>Dispatched directly from domestic hubs to your door within 3-5 business days.</p>
-            </div>
-            <div class="trust-card">
-                <i class="fa-solid fa-gem"></i>
-                <h3>Melted HD Swiss Lace</h3>
-                <p>Ultra-thin transparent lace grid formats designed to lay completely invisible against any skin tone.</p>
-            </div>
-            <div class="trust-card">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h3>Secured Checkouts</h3>
-                <p>Every transaction processed safely and securely via our encrypted Stripe payment gateways.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="featured-section">
-        <h2 class="section-title">Shop By Texture</h2>
-        <div class="categories-grid">
-            <div class="category-card" onclick="window.location.href='shop.html'">
-                <img src=glueless.jpg alt="Straight Wigs">
-                <div class="category-overlay">
-                    <h2>Ultra HD Straight</h2>
-                    <span>Shop Collection &rarr;</span>
-                </div>
-            </div>
-            <div class="category-card" onclick="window.location.href='shop.html'">
-                <img src=bodywave.jpg alt="Body Wave Wigs">
-                <div class="category-overlay">
-                    <h2>Luxury Body Wave</h2>
-                    <span>Shop Collection &rarr;</span>
-                </div>
-            </div>
-            <div class="category-card" onclick="window.location.href='shop.html'">
-                <img src=deepwave.jpg alt="Curly Wigs">
-                <div class="category-overlay">
-                    <h2>Exotic Deep Curly</h2>
-                    <span>Shop Collection &rarr;</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 THE LACE WIGS. All Rights Reserved. Secured globally by Stripe billing gateways.</p>
-    </footer>
+      // Execute badge count load on startup
+      updateHeaderBadge();
+    });
+  </script>
 
 </body>
 </html>
