@@ -195,7 +195,7 @@
       padding: 40px;
     }
 
-    /* FIXED SCREEN BREAKPOINTS: Removed scrambled script text and restored styles neatly */
+    /* Screen Breakpoints for Responsive Mobile Execution */
     @media (max-width: 1024px) {
       .product-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -251,53 +251,61 @@
     </div>
   </main>
 
-  <!-- Direct Native Script Engine Logic (Completely free of gstatic.com module imports) -->
-  <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const shopGrid = document.getElementById("shopGrid");
-      const loaderStateText = document.getElementById("loaderStateText");
-      const paginationBox = document.getElementById("paginationBox");
-      const pageNumbersSpan = document.getElementById("pageNumbers");
-      const prevBtn = document.getElementById("prevPage");
-      const nextBtn = document.getElementById("nextPage");
+  <!-- YOUR OFFICIAL SNIPPET (Placed exactly inside the body tag as requested) -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://gstatic.com";
+    import { getAnalytics } from "https://gstatic.com";
+    
+    // CONNECTED FIRESTORE: Included right here inside the module block to pull database records
+    import { getFirestore, collection, getDocs } from "https://gstatic.com";
 
-      let allProducts = [];
-      let currentPage = 1;
-      const itemsPerPage = 12;
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI",
+      authDomain: "://firebaseapp.com",
+      databaseURL: "https://firebaseio.com",
+      projectId: "thelacewigs-f46a5",
+      storageBucket: "thelacewigs-f46a5.firebasestorage.app",
+      messagingSenderId: "1004049108512",
+      appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645",
+      measurementId: "G-DXKGF27ZQW"
+    };
 
-      // FIXED LINK: Configured with your Project ID thelacewigs-f46a5 over the official public REST api architecture
-      const restUrl = "https://googleapis.com";
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
 
+    // Wire up UI connections
+    const shopGrid = document.getElementById("shopGrid");
+    const loaderStateText = document.getElementById("loaderStateText");
+    const paginationBox = document.getElementById("paginationBox");
+    const pageNumbersSpan = document.getElementById("pageNumbers");
+    const prevBtn = document.getElementById("prevPage");
+    const nextBtn = document.getElementById("nextPage");
+
+    let allProducts = [];
+    let currentPage = 1;
+    const itemsPerPage = 12;
+
+    async function loadCatalog() {
       try {
-        const res = await fetch(restUrl);
-        if (!res.ok) {
-          throw new Error(`Database error response status: ${res.status}`);
-        }
-        const dataPayload = await res.json();
-
-        // Safely decode Firestore's structured JSON data payload mapping architecture
-        if (dataPayload.documents && dataPayload.documents.length > 0) {
-          allProducts = dataPayload.documents.map(doc => {
-            const urlParts = doc.name.split('/');
-            const docId = urlParts[urlParts.length - 1];
-            const fields = doc.fields || {};
-
-            // Fallback match layers to grab document variables accurately
-            const nameVal = fields.name ? fields.name.stringValue : "Luxury Hair Unit";
-            
-            let priceVal = "0";
-            if (fields.price) {
-              priceVal = fields.price.integerValue || fields.price.doubleValue || fields.price.stringValue || "0";
-            }
-
-            const imgVal = fields.imageUrl ? fields.imageUrl.stringValue : "images/straight.jpg";
-
-            return { id: docId, name: nameVal, price: priceVal, imageUrl: imgVal };
+        // Query the root 'products' folder safely using the initialized SDK token
+        const querySnapshot = await getDocs(collection(db, "products"));
+        
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          allProducts.push({
+            id: doc.id,
+            name: data.name || "Luxury Hair Unit",
+            price: data.price !== undefined ? data.price : "0",
+            imageUrl: data.imageUrl || "images/straight.jpg"
           });
-        }
+        });
 
         if (allProducts.length === 0) {
-          shopGrid.innerHTML = '<div class="loading-text">Connected to Firebase! But your "products" folder contains no documents yet.</div>';
+          shopGrid.innerHTML = '<div class="loading-text">Connected to Firebase! But your collection has no data entries inside it yet.</div>';
           return;
         }
 
@@ -308,47 +316,44 @@
 
       } catch (err) {
         console.error("DATABASE API FAILURE: ", err);
-        shopGrid.innerHTML = '<div class="loading-text" style="color:red;">Error loading items. Make sure your Firestore rules are set to public reads.</div>';
+        shopGrid.innerHTML = '<div class="loading-text" style="color:red;">Error loading items. Make sure your Firestore rules allow public reads.</div>';
+      }
+    }
+
+    function renderPaginationControls() {
+      const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+      pageNumbersSpan.innerHTML = "";
+
+      if (totalPages <= 1) {
+        paginationBox.style.display = "none";
+        return;
       }
 
-      function renderPaginationControls() {
-        const totalPages = Math.ceil(allProducts.length / itemsPerPage);
-        pageNumbersSpan.innerHTML = "";
+      paginationBox.style.display = "flex";
 
-        if (totalPages <= 1) {
-          paginationBox.style.display = "none";
-          return;
-        }
-
-        paginationBox.style.display = "flex";
-
-        for (let i = 1; i <= totalPages; i++) {
-          const btn = document.createElement("button");
-          btn.className = `page-number ${i === 1 ? 'active' : ''}`;
-          btn.textContent = i;
-          btn.setAttribute("data-target", i);
-          btn.addEventListener("click", () => showPage(i));
-          pageNumbersSpan.appendChild(btn);
-        }
-
-        prevBtn.onclick = () => { if (currentPage > 1) showPage(currentPage - 1); };
-        nextBtn.onclick = () => { if (currentPage < totalPages) showPage(currentPage + 1); };
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.className = `page-number ${i === 1 ? 'active' : ''}`;
+        btn.textContent = i;
+        btn.setAttribute("data-target", i);
+        btn.addEventListener("click", () => showPage(i));
+        pageNumbersSpan.appendChild(btn);
       }
 
-      function showPage(page) {
-        currentPage = page;
-        shopGrid.innerHTML = "";
+      prevBtn.onclick = () => { if (currentPage > 1) showPage(currentPage - 1); };
+      nextBtn.onclick = () => { if (currentPage < totalPages) showPage(currentPage + 1); };
+    }
 
-        const startIndex = (page - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const pageItems = allProducts.slice(startIndex, endIndex);
+    function showPage(page) {
+      currentPage = page;
+      shopGrid.innerHTML = "";
 
-        pageItems.forEach(product => {
-          const card = document.createElement("div");
-          card.className = "product-card";
-          card.innerHTML = `
-            <div class="product-image-wrapper">
-              <img src="${product.imageUrl}" alt="${product.name}" onerror="this.src='images/straight.jpg'">
-            </div>
-            <h4>${product.name}</h4>
-            <p class="price">$${product.price}</p>
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const pageItems = allProducts.slice(startIndex, endIndex);
+
+      pageItems.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="product-image-wrapper">
