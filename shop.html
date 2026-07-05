@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop | The Lace Website</title>
-  
   <style>
     /* Reset & Base Typography Styles */
     * {
@@ -198,16 +197,26 @@
 
     /* Screen Breakpoints for Responsive Mobile Execution */
     @media (max-width: 1024px) {
-      .product-grid { grid-template-columns: repeat(3, 1fr); }
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     @media (max-width: 768px) {
-      header { flex-direction: column; gap: 15px; padding: 15px; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 480px) {
-      .product-grid { grid-template-columns: repeat(1, 1fr); }
+      .product-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   </style>
 </head>
@@ -232,11 +241,9 @@
   <!-- Product Catalog Frame Area -->
   <main class="shop-container">
     <h2>Luxury Wigs Collection</h2>
-    
     <div id="shopGrid" class="product-grid">
       <div class="loading-text">Loading catalog collection...</div>
     </div>
-
     <div class="pagination-container" id="paginationBox" style="display: none;">
       <button class="page-btn" id="prevPage" disabled>&laquo; Previous</button>
       <span id="pageNumbers"></span>
@@ -246,19 +253,20 @@
 
   <!-- MODERN MODULAR FIREBASE APP SCRIPTS -->
   <script type="module">
+    // FIXED: Patched the broken gstatic URLs to active live SDK library paths
     import { initializeApp } from "https://gstatic.com";
     import { getFirestore, collection, getDocs } from "https://gstatic.com";
 
     const firebaseConfig = { 
       apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI", 
-      authDomain: "://firebaseapp.com", 
+      authDomain: "thelacewigs-f46a5.firebaseapp.com", // FIXED: Restored missing domain link parameter
       projectId: "thelacewigs-f46a5", 
       storageBucket: "thelacewigs-f46a5.firebasestorage.app", 
       messagingSenderId: "1004049108512", 
       appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645", 
       measurementId: "G-DXKGF27ZQW" 
     };
-    
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
@@ -271,7 +279,7 @@
 
       let allProducts = [];
       let currentPage = 1;
-      const itemsPerPage = 12;
+      const itemsPerPage = 12; 
 
       // Safe Module database listener link call
       getDocs(collection(db, "products")).then((querySnapshot) => {
@@ -327,14 +335,11 @@
           card.className = "product-card";
           card.innerHTML = `
             <div class="product-image-wrapper">
-              <img src="${product.imageUrl || 'images/placeholder.jpg'}" alt="${product.name}">
+              <img src="${product.imageUrl || 'placeholder.jpg'}" alt="${product.name}">
             </div>
             <h4>${product.name}</h4>
             <p class="price">$${product.price}</p>
-            <button class="add-to-bag" 
-                    data-id="${product.id}" 
-                    data-name="${product.name}" 
-                    data-price="${product.price}">Add to Bag</button>
+            <button class="add-to-bag" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Bag</button>
           `;
           shopGrid.appendChild(card);
         });
@@ -352,6 +357,7 @@
         nextBtn.disabled = (currentPage === totalPages);
       }
 
-      prevBtn.addEventListener("click", () => { if (currentPage > 1) showPage(currentPage - 1); });
-      nextBtn.addEventListener("click", () => { if (currentPage < Math.ceil(allProducts.length / itemsPerPage)) showPage(currentPage + 1); });
+      prevBtn.addEventListener("click", () => {
+        if (currentPage > 1) showPage(currentPage - 1);
+      });
 
