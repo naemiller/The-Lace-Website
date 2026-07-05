@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | The Lace Website</title>
+  <style>
+    :root {
+      --primary: #000000;
+      --accent: #ab8e64;
+      --bg: #faf7f2;
+      --border: #e5dec9;
+    }
+    body {
+      font-family: 'Playfair Display', Arial, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .panel-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+    }
+    h2, h3 { text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-top: 0; }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-size: 11px; text-transform: uppercase; font-weight: bold; margin-bottom: 6px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; }
+    .btn { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 4px; margin-top: 10px; }
+    .btn:hover { background: var(--accent); }
+    .hidden { display: none !important; }
+    .back-link { display: block; text-align: center; margin-top: 15px; color: var(--accent); text-decoration: none; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <!-- Gateway Login Window Box -->
+  <div class="panel-box" id="login-gate">
+    <h2>Admin Gateway</h2>
+    <div class="form-group">
+      <label for="admin-pass">Security Access Key</label>
+      <input type="password" id="admin-pass" placeholder="••••••••">
+    </div>
+    <button class="btn" onclick="verifyGatePass()">Unlock Inventory</button>
+    <a href="shop.html" class="back-link">← Return to Public Store</a>
+  </div>
+
+  <!-- Operational Inventory Dashboard Manager -->
+  <div class="panel-box hidden" id="dashboard-controls">
+    <h3>Inventory Control Dashboard</h3>
+    <form id="add-product-form">
+      <div class="form-group">
+        <label for="new-title">Product Name</label>
+        <input type="text" id="new-title" placeholder="e.g., 13x4 Lace Frontal Wig" required>
+      </div>
+      <div class="form-group">
+        <label for="new-price">Product Price (£)</label>
+        <input type="number" id="new-price" placeholder="580" required>
+      </div>
+      <div class="form-group">
+        <label for="new-texture">Wig Texture Type</label>
+        <select id="new-texture">
+          <option value="straight">Straight</option>
+          <option value="bodywave">Body Wave</option>
+          <option value="curly">Curly</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="new-image">Product Image URL</label>
+        <input type="text" id="new-image" placeholder="Paste direct image .jpg link" required>
+      </div>
+      <button type="submit" class="btn" style="background: var(--accent);">Deploy Unit To Storefront</button>
+    </form>
+    <button class="btn" style="background:#888;" onclick="lockDashboard()">Lock Panel</button>
+  </div>
+
+  <script>
+    // System Access Validation Check Route
+    function verifyGatePass() {
+      const entry = document.getElementById('admin-pass').value;
+      // You can change 'LaceAdmin2026' to any password key value you prefer
+      if (entry === 'LaceAdmin2026') {
+        document.getElementById('login-gate').classList.add('hidden');
+        document.getElementById('dashboard-controls').classList.remove('hidden');
+      } else {
+        alert('Invalid Security Credentials Access Key.');
+      }
+    }
+
+    function lockDashboard() {
+      document.getElementById('admin-pass').value = '';
+      document.getElementById('dashboard-controls').classList.add('hidden');
+      document.getElementById('login-gate').classList.remove('hidden');
+    }
+
+    // Capture input properties and synchronize deployment data feeds
+    document.getElementById('add-product-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const title = document.getElementById('new-title').value;
+      const price = parseFloat(document.getElementById('new-price').value);
+      const texture = document.getElementById('new-texture').value;
+      const img = document.getElementById('new-image').value.trim();
+
+      const newUnitObject = { id: Date.now(), title, price, texture, img };
+
+      // Pull existing operational warehouse datasets from browser workspace storage caches
+      let activeInventory = JSON.parse(localStorage.getItem('luxury_wigs_inventory')) || [];
+      activeInventory.unshift(newUnitObject);
+      
+      // Store globally updated arrays inside browser ecosystem states
+      localStorage.setItem('luxury_wigs_inventory', JSON.stringify(activeInventory));
+
+      alert(`Successfully deployed "${title}" straight onto the shop floor floor!`);
+      document.getElementById('add-product-form').reset();
+    });
+  </script>
+</body>
+</html>
