@@ -241,11 +241,9 @@
   <!-- Product Catalog Frame Area -->
   <main class="shop-container">
     <h2>Luxury Wigs Collection</h2>
-    
     <div id="shopGrid" class="product-grid">
       <div class="loading-text" id="loaderStateText">Loading catalog collection...</div>
     </div>
-
     <div class="pagination-container" id="paginationBox" style="display: none;">
       <button class="page-btn" id="prevPage" disabled>&laquo; Previous</button>
       <span id="pageNumbers"></span>
@@ -266,9 +264,8 @@
       let currentPage = 1;
       const itemsPerPage = 12;
 
-      // Note: Replace with your actual project URL: 
-      // "https://thelacewigs.com"
-      const restUrl = "thelacewigs.com";
+      // FIXED: Set target location directly into structural Google API Endpoint
+      const restUrl = "https://googleapis.com";
 
       try {
         const res = await fetch(restUrl);
