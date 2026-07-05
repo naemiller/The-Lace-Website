@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop | The Lace Website</title>
+  
+  <!-- LOAD CORE FIREBASE CORE ENGINE WEB LIBRARIES WITH FILE EXTENSIONS -->
+  <script src="https://gstatic.com"></script>
+  <script src="https://gstatic.com"></script>
+
   <style>
     /* Reset & Base Typography Styles */
     * {
@@ -197,26 +202,16 @@
 
     /* Screen Breakpoints for Responsive Mobile Execution */
     @media (max-width: 1024px) {
-      .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-      }
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      header { flex-direction: column; gap: 15px; padding: 15px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 480px) {
-      .product-grid {
-        grid-template-columns: repeat(1, 1fr);
-      }
+      .product-grid { grid-template-columns: repeat(1, 1fr); }
     }
   </style>
 </head>
@@ -242,7 +237,7 @@
   <main class="shop-container">
     <h2>Luxury Wigs Collection</h2>
     <div id="shopGrid" class="product-grid">
-      <div class="loading-text">Loading catalog collection...</div>
+      <div class="loading-text" id="loaderStateText">Loading catalog collection...</div>
     </div>
     <div class="pagination-container" id="paginationBox" style="display: none;">
       <button class="page-btn" id="prevPage" disabled>&laquo; Previous</button>
@@ -251,15 +246,10 @@
     </div>
   </main>
 
-  <!-- MODERN MODULAR FIREBASE APP SCRIPTS -->
-  <script type="module">
-    // FIXED: Patched the broken gstatic URLs to active live SDK library paths
-    import { initializeApp } from "https://gstatic.com";
-    import { getFirestore, collection, getDocs } from "https://gstatic.com";
-
+  <script>
     const firebaseConfig = { 
       apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI", 
-      authDomain: "thelacewigs-f46a5.firebaseapp.com", // FIXED: Restored missing domain link parameter
+      authDomain: "://firebaseapp.com",
       projectId: "thelacewigs-f46a5", 
       storageBucket: "thelacewigs-f46a5.firebasestorage.app", 
       messagingSenderId: "1004049108512", 
@@ -267,11 +257,12 @@
       measurementId: "G-DXKGF27ZQW" 
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
     document.addEventListener("DOMContentLoaded", () => {
       const shopGrid = document.getElementById("shopGrid");
+      const loaderStateText = document.getElementById("loaderStateText");
       const paginationBox = document.getElementById("paginationBox");
       const pageNumbersSpan = document.getElementById("pageNumbers");
       const prevBtn = document.getElementById("prevPage");
@@ -281,20 +272,32 @@
       let currentPage = 1;
       const itemsPerPage = 12; 
 
-      // Safe Module database listener link call
-      getDocs(collection(db, "products")).then((querySnapshot) => {
+      // Connect to lowercase products folder
+      db.collection("products").get().then((querySnapshot) => {
         allProducts = [];
         querySnapshot.forEach((doc) => {
           let data = doc.data();
           data.id = doc.id;
-          allProducts.push(data);
+          
+          // Fallback checker ensures loose casing properties won't crash the script loop
+          const nameVal = data.name || data.Name || "Luxury Hair Unit";
+          const priceVal = data.price !== undefined ? data.price : (data.Price !== undefined ? data.Price : "0");
+          const imgVal = data.imageUrl || data.ImageUrl || "placeholder.jpg";
+
+          allProducts.push({
+            id: data.id,
+            name: nameVal,
+            price: priceVal,
+            imageUrl: imgVal
+          });
         });
 
         if (allProducts.length === 0) {
-          shopGrid.innerHTML = '<div class="loading-text">No products found in the database. Add items inside your Firebase collection named "products".</div>';
+          shopGrid.innerHTML = '<div class="loading-text">No products found. Add items into your Firebase collection named "products".</div>';
           return;
         }
 
+        if (loaderStateText) loaderStateText.remove();
         renderPaginationControls();
         showPage(1);
       }).catch(error => {
@@ -335,7 +338,7 @@
           card.className = "product-card";
           card.innerHTML = `
             <div class="product-image-wrapper">
-              <img src="${product.imageUrl || 'placeholder.jpg'}" alt="${product.name}">
+              <img src="${product.imageUrl}" alt="${product.name}" onerror="this.src='placeholder.jpg'">
             </div>
             <h4>${product.name}</h4>
             <p class="price">$${product.price}</p>
@@ -346,18 +349,3 @@
 
         document.querySelectorAll(".page-number").forEach(btn => {
           if (parseInt(btn.getAttribute("data-target")) === page) {
-            btn.classList.add("active");
-          } else {
-            btn.classList.remove("active");
-          }
-        });
-
-        const totalPages = Math.ceil(allProducts.length / itemsPerPage);
-        prevBtn.disabled = (currentPage === 1);
-        nextBtn.disabled = (currentPage === totalPages);
-      }
-
-      prevBtn.addEventListener("click", () => {
-        if (currentPage > 1) showPage(currentPage - 1);
-      });
-
