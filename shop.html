@@ -1,172 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Premium SEO Meta Configurations -->
-    <title>Shop Luxury HD Lace Wigs & Raw Virgin Hair | THE LACE WIGS</title>
-    <meta name="description" content="Shop premium 13x4 HD lace frontals, straight bobs, body waves, and deep exotic curly virgin hair wigs. Secure checkout with fast shipping.">
-    
-    <!-- Font Awesome Icon Integration -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    
-    <style>
-        :root {
-            --primary-color: #111111;
-            --accent-color: #ab8e64; /* Luxury Bronze Gold */
-            --light-bg: #f9f9f9;
-            --border-color: #e5e5e5;
-            --shipping-green: #15803d; 
-            --star-color: #facc15; 
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | The Lace Website</title>
+  <style>
+    /* Premium Luxury Styling Variables */
+    :root {
+      --primary-color: #000000;
+      --accent-color: #ab8e64;
+      --light-bg: #faf7f2;
+      --border-color: #e5dec9;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
-        body { background-color: #ffffff; color: var(--primary-color); }
+    body {
+      font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #111111;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        /* Custom Premium Scrollbar */
-        ::-webkit-scrollbar { width: 6px; } 
-        ::-webkit-scrollbar-track { background: #f1f1f1; } 
-        ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }
+    /* Premium Custom Scrollbars */
+    ::-webkit-scrollbar { 
+      width: 6px; 
+    } 
+    ::-webkit-scrollbar-track { 
+      background: #f1f1f1; 
+    } 
+    ::-webkit-scrollbar-thumb { 
+      background: var(--accent-color); 
+      border-radius: 3px; 
+    }
 
-        /* Conversion Announcement Banner */
-        .shipping-banner {
-            background-color: var(--primary-color); color: #ffffff; text-align: center;
-            padding: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .shipping-banner i { color: var(--accent-color); font-size: 13px; }
+    /* Header & Navigation Layout */
+    header {
+      background: #ffffff;
+      padding: 30px 5% 15px 5%;
+      text-align: center;
+    }
 
-        /* Sticky Navigation Architecture */
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; border-bottom: 1px solid var(--border-color);
-            position: sticky; top: 0; background: #fff; z-index: 100;
-        }
-        .logo { font-size: 22px; font-weight: 700; letter-spacing: 2px; color: var(--primary-color); text-decoration: none; }
-        .logo span { color: var(--accent-color); }
+    header h1 {
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      margin: 0 0 20px 0;
+      text-transform: uppercase;
+    }
 
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a {
-            text-decoration: none; color: var(--primary-color); font-size: 13px;
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-            position: relative; padding-bottom: 5px; transition: color 0.3s ease;
-        }
-        .nav-links a:hover { color: var(--accent-color); }
+    nav {
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 0;
+    }
 
-        .nav-icons { display: flex; gap: 20px; align-items: center; }
-        .nav-icons i { font-size: 18px; cursor: pointer; color: var(--primary-color); }
+    nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      margin: 0 18px;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      transition: color 0.3s;
+    }
 
-        /* Catalog Layout Header */
-        .shop-hero { text-align: center; padding: 50px 5%; background: var(--light-bg); border-bottom: 1px solid var(--border-color); }
-        .shop-hero h1 { font-size: 28px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; font-weight: 700; }
-        .shop-hero p { font-size: 14px; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+    nav a.active {
+      color: var(--accent-color);
+      font-weight: bold;
+    }
 
-        /* Store Elements Responsive Grid Layout */
-        .shop-container { padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
-        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        
-        /* Card Structure Layout */
-        .product-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--accent-color); }
+    .section-title {
+      font-size: 20px; 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      margin-bottom: 25px; 
+      text-align: center;
+      font-weight: 400;
+    }
 
-        /* Image Containers & Core Sizing Matrix */
-        .image-wrapper { position: relative; width: 100%; height: 380px; background: #fdfdfd; overflow: hidden; }
-        .product-img { width: 100%; height: 100%; object-fit: cover; }
-        
-        /* High-Conversion Image Flip Interactivity Engine */
-        .multi-img-wrapper { position: relative; }
-        .multi-img-wrapper .product-img { position: absolute; top: 0; left: 0; transition: opacity 0.4s ease, transform 0.5s ease; }
-        .primary-img { opacity: 1; z-index: 1; }
-        .hover-img { opacity: 0; z-index: 0; }
-        .product-card:hover .primary-img { opacity: 0; transform: scale(1.03); }
-        .product-card:hover .hover-img { opacity: 1; z-index: 1; transform: scale(1.03); }
+    /* Featured Slider Setup */
+    .carousel-container { 
+      padding: 40px 5% 20px 5%; 
+      max-width: 1400px; 
+      margin: 0 auto; 
+    } 
 
-        /* Card Elements Hover Scales (Single Images) */
-        .product-card:not(:has(.multi-img-wrapper)):hover .product-img { transform: scale(1.04); transition: transform 0.5s ease; }
-        
-        /* UI Badges */
-        .badge { position: absolute; top: 15px; left: 15px; color: #ffffff; font-size: 10px; text-transform: uppercase; padding: 5px 12px; font-weight: 700; letter-spacing: 1px; border-radius: 2px; z-index: 2; }
-        .sale-badge { background: #b41c1c; }
-        .shipping-badge { background: var(--shipping-green); }
-        .new-badge { background: var(--primary-color); }
-        .stock-alert { position: absolute; bottom: 15px; right: 15px; background: rgba(255, 255, 255, 0.95); color: #b41c1c; font-size: 11px; font-weight: 700; padding: 4px 8px; border: 1px solid #b41c1c; z-index: 2; }
+    .carousel-wrapper { 
+      position: relative; 
+      display: flex; 
+      align-items: center; 
+    } 
 
-        /* Card Text and Variation Formatting Modules */
-        .product-info { padding: 25px 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-info h3 { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary-color); margin-bottom: 6px; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-        .product-specs { font-size: 12px; color: #777; margin-bottom: 12px; line-height: 1.4; }
-        
-        /* Dropdowns Layout */
-        .variant-selectors { display: flex; gap: 10px; margin: 5px 0 15px 0; }
-        .variant-select { flex: 1; padding: 10px; font-size: 12px; font-weight: 600; border: 1px solid var(--border-color); border-radius: 3px; background: #ffffff; color: var(--primary-color); cursor: pointer; outline: none; }
-        .variant-select:focus { border-color: var(--accent-color); }
+    .carousel-track-container { 
+      overflow: hidden; 
+      width: 100%; 
+    } 
 
-        /* Social Proof Stars */
-        .rating { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 12px; }
-        .stars { color: var(--star-color); font-size: 11px; }
-        .review-count { font-size: 12px; color: #666; font-weight: 500; }
+    .carousel-track { 
+      display: flex; 
+      gap: 20px; 
+      transition: transform 0.5s ease-in-out; 
+    } 
 
-        /* Pricing Format Containers */
-        .price-box { margin-bottom: 20px; }
-        .price { font-size: 20px; font-weight: 700; color: var(--primary-color); }
-        .old-price { font-size: 14px; font-weight: 400; color: #999; text-decoration: line-through; margin-left: 6px; }
+    .carousel-item { 
+      min-width: calc(33.333% - 14px); 
+      background: #ffffff; 
+      border: 1px solid var(--border-color); 
+      border-radius: 4px; 
+      padding: 20px; 
+      text-align: center; 
+      box-sizing: border-box; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    } 
 
-        /* Transaction CTA Button */
-        .buy-btn { display: block; width: 100%; padding: 15px 0; background: var(--primary-color); color: #ffffff; text-decoration: none; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 3px; transition: background 0.2s ease; border: none; cursor: pointer; }
-        .buy-btn:hover { background: var(--accent-color); }
-        
-        .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .carousel-item img { 
+      width: 100%; 
+      height: 260px; 
+      object-fit: cover; 
+      margin-bottom: 15px; 
+      border-radius: 4px;
+    } 
 
-        /* Trust Badges Container */
-        .trust-badges-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 40px 5%; max-width: 1200px; margin: 40px auto 0 auto; background: var(--light-bg); border-radius: 4px; text-align: center; }
-        .badge-card i { font-size: 24px; color: var(--accent-color); margin-bottom: 12px; }
-        .badge-card h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-        .badge-card p { font-size: 12px; color: #666; line-height: 1.5; }
+    .carousel-item h4 { 
+      font-size: 15px; 
+      margin: 10px 0 6px 0; 
+      font-weight: 600;
+      text-transform: uppercase;
+    } 
 
-        /* Responsive Configuration Breakpoints */
-        @media (max-width: 992px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .trust-badges-container { grid-template-columns: repeat(2, 1fr); }
-            .image-wrapper { height: 320px; }
-        }
-        @media (max-width: 640px) {
-            .product-grid { grid-template-columns: 1fr; gap: 25px; }
-            .trust-badges-container { grid-template-columns: 1fr; gap: 30px; }
-            .shop-hero h1 { font-size: 22px; }
-            .image-wrapper { height: 360px; }
-        }
-    </style>
+    .carousel-item p { 
+      color: var(--accent-color); 
+      font-weight: 700; 
+      font-size: 16px;
+      margin: 0;
+    } 
+
+    .carousel-nav { 
+      background: var(--primary-color); 
+      color: #fff; 
+      border: none; 
+      width: 42px; 
+      height: 42px; 
+      border-radius: 50%; 
+      cursor: pointer; 
+      position: absolute; 
+      z-index: 10; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    } 
+
+    .prev-btn { left: -20px; } 
+    .next-btn { right: -20px; } 
+
+    .carousel-dots { 
+      display: flex; 
+      justify-content: center; 
+      gap: 8px; 
+      margin-top: 20px; 
+    } 
+    .dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; cursor: pointer; } 
+    .dot.active { background: var(--accent-color); } 
+
+    /* Workspace Lower Grid System Split */
+    .main-layout {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px 5% 60px 5%;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 40px;
+    }
+
+    .column-heading {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Admin Panel Interface Form Box */
+    .admin-panel { 
+      background: #ffffff; 
+      padding: 25px 20px; 
+      border: 1px dashed var(--accent-color); 
+      border-radius: 6px; 
+    } 
+
+    .admin-panel h3 { 
+      color: var(--primary-color); 
+      font-size: 16px; 
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 1px;
+    } 
+
+    .form-group { margin-bottom: 16px; } 
+    .form-group label { 
+      display: block; 
+      font-size: 11px; 
+      text-transform: uppercase; 
+      font-weight: bold; 
+      margin-bottom: 6px; 
+      letter-spacing: 0.5px;
+    } 
+
+    .form-group input { 
+      width: 100%; 
+      padding: 10px; 
+      border: 1px solid var(--border-color); 
+      border-radius: 4px; 
+      background: #fff; 
+      font-size: 13px; 
+      box-sizing: border-box;
+    } 
+
+    .submit-product-btn { 
+      width: 100%; 
+      background: #c3ab87; 
+      color: white; 
+      border: none; 
+      padding: 12px; 
+      font-weight: bold; 
+      text-transform: uppercase; 
+      cursor: pointer; 
+      border-radius: 4px; 
+      letter-spacing: 1px;
+      font-size: 13px;
+      transition: background 0.3s; 
+    } 
+    .submit-product-btn:hover { background: var(--accent-color); } 
+
+    /* Catalog Storefront Product Grid Elements */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 15px;
+      text-align: center;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    .product-card h3 {
+      font-size: 13px;
+      margin: 8px 0;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .product-card .price {
+      color: var(--accent-color);
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 0;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .add-to-cart-btn:hover { background: var(--accent-color); } 
+
+    /* Responsive Viewport Rules */
+    @media (max-width: 950px) {
+      .main-layout { grid-template-columns: 1fr; }
+      .carousel-item { min-width: calc(50% - 10px); }
+    } 
+    @media (max-width: 600px) { 
+      .carousel-item { min-width: 100%; } 
+      .prev-btn { left: 5px; } 
+      .next-btn { right: 5px; } 
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Promotion Ribbon Banner -->
-    <div class="shipping-banner">
-        <i class="fa-solid fa-truck-fast"></i> Free Priority Shipping &amp; Live Tracking On All Orders Over $100
-    </div>
-
-    <!-- Navigation Header -->
-    <nav class="navbar">
-        <a href="index.html" class="logo">THE LACE <span>WIGS</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html" style="color: var(--accent-color);">Shop</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="nav-icons">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-solid fa-user"></i>
-            <i class="fa-solid fa-bag-shopping"></i>
-        </div>
+  <!-- Navigation Header Block -->
+  <header>
+    <h1>The Lace Website</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </nav>
+  </header>
 
-    <!-- SEO Content Wrapper -->
-    <main id="main-content">
+  <!-- Featured Slider Module -->
+  <section class="carousel-container">
+    <h2 class="section-title">Featured Luxury Wigs</h2>
+    <div class="carousel-wrapper">
+      <button class="carousel-nav prev-btn" id="prevBtn">&#10094;</button>
+      <div class="carousel-track-container">
+        <div class="carousel-track" id="carouselTrack">
+          
+          <div class="carousel-item">
+            <img src="https://unsplash.com" alt="Silky Straight Wig">
+            <h4>HD Lace Frontal Unit - Silky Straight</h4>
+            <p>£580</p>
+          </div>
+          <div class="carousel-item">
+            <img src="https://unsplash.com" alt="Body Wave Wig">
+            <h4>Transparent Closure Wig - Body Wave</h4>
+            <p>£490</p>
+          </div>
+          <div class="carousel-item">
+            <img src="https://unsplash.com" alt="Deep Wave Wig">
+            <h4>5x5 Closure Wig - Deep Wave</h4>
+            <p>£520</p>
+          </div>
+
+        </div>
+      </div>
+      <button class="carousel-nav next-btn" id="nextBtn">&#10095;</button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </section>
+
+  <!-- Lower Split Dashboard Layout -->
+  <main class="main-layout">
+    
+    <!-- Left Admin Bar -->
+    <aside>
+      <div class="column-heading">Inventory Controls</div>
+      <div class="admin-panel">
+        <h3>Admin Panel</h3>
+        <form id="productForm">
+          <div class="form-group">
+            <label for="pName">Product Name</label>
+            <input type="text" id="pName" value="13x4 Lace Frontal Wig" required>
+          </div>
+          <div class="form-group">
+            <label for="pPrice">Product Price</label>
+            <input type="text" id="pPrice" value="£650" required>
+          </div>
+          <div class="form-group">
+            <label for="pImg">Product Image URL</label>
+            <input type="text" id="pImg" value="url_of_the_wig_image.jpg" required>
+          </div>
+          <button type="submit" class="submit-product-btn">Deploy Product</button>
+        </form>
+      </div>
+    </aside>
+
+    <!-- Right Live Shop Grid Workspace -->
+    <section>
+      <div class="column-heading">All Master Collections</div>
+      <div class="products-grid" id="productsGrid">
         
-        <header class="shop-hero">
-            <h1>Premium HD Lace Wigs &amp; Virgin Hair Collections</h1>
-            <p>100% Pure Virgin Human Hair. Thin transparent Swiss lace profiles designed to melt seamlessly.</p>
-        </header>
-
-        <section class="shop-container" aria-label="Product Catalog">
-            <h2 class="visually-hidden">Our Current Collections</h2>
+        <div class="product-card">
+          <img src="https://unsplash.com" alt="Wig Unit">
+          <h3>HD Lace Frontal Unit - Silky Straight</h3>
