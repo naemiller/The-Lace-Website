@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Bag | The Lace Website</title>
+  
+  <!-- Load Firebase SDK Modules Compatibility Versions -->
+  <script src="https://gstatic.com"></script>
+  <script src="https://gstatic.com"></script>
+  <script src="https://gstatic.com"></script>
+
+  <style>
+    /* Reset & Base Typography Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fafafa;
+      color: #111111;
+    }
+
+    /* Navigation Bar Design */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #555555;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #000000;
+    }
+
+    #bag-count {
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* Shopping Bag Layout Container */
+    .cart-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 40px;
+    }
+
+    .cart-items-section {
+      flex: 2;
+    }
+
+    .cart-summary-section {
+      flex: 1;
+      background-color: #ffffff;
+      border: 1px solid #eeeeee;
+      border-radius: 6px;
+      padding: 25px;
+      height: fit-content;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Individual Cart Item Row Layout */
+    .cart-item {
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      border: 1px solid #eeeeee;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+      gap: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+    }
+
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .cart-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-details h4 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .cart-item-details .item-price {
+      font-weight: bold;
+      color: #333333;
+    }
+
+    /* Quantity Toggle Element Adjustments */
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+      padding: 4px 8px;
+    }
+
+    .qty-btn {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #111111;
+      padding: 0 5px;
+    }
+
+    .qty-number {
+      font-size: 0.95rem;
+      font-weight: 500;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #c0392b;
+      cursor: pointer;
+      font-size: 0.85rem;
+      text-decoration: underline;
+      margin-top: 5px;
+      display: block;
+    }
+
+    /* Summary Pane Data Design */
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    .summary-total {
+      border-top: 1px solid #eeeeee;
+      padding-top: 15px;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .checkout-btn {
+      background-color: #000000;
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 15px;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s ease;
+    }
+
+    .checkout-btn:hover {
+      background-color: #333333;
+    }
+
+    .checkout-btn:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .empty-msg {
+      text-align: center;
+      padding: 40px;
+      font-size: 1.1rem;
+      color: #666666;
+    }
+
+    .auth-warning {
+      background-color: #fff9e6;
+      border: 1px solid #ffe0b2;
+      color: #b78103;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .auth-warning a {
+      color: #b78103;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    /* Mobile Breakpoints */
+    @media (max-width: 768px) {
+      .cart-container {
+        flex-direction: column;
+      }
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Nav Header -->
+  <header>
+    <div class="logo">
+      <h1>The Lace Wigs</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="login.html">Account</a></li>
+        <li><a href="bag.html" class="active">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Workspace Execution Screen Layout -->
+  <main class="cart-container">
+    
+    <!-- Item Ledger Block -->
+    <div class="cart-items-section">
+      <h2>Your Shopping Bag</h2>
+      <div id="cartItemsList">
+        <!-- Built Dynamically with script actions below -->
+      </div>
+    </div>
+
+    <!-- Right Summary Total Box Sidebar -->
+    <div class="cart-summary-section">
+      <h3>Order Summary</h3>
+      <div style="margin-top: 25px;">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotalCost">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Estimated Shipping</span>
+          <span>FREE</span>
+        </div>
+        <div class="summary-row summary-total">
+          <span>Total (USD)</span>
+          <span id="totalCost">$0.00</span>
+        </div>
+        
+        <button id="placeOrderBtn" class="checkout-btn" disabled>Place Order & Secure</button>
+        <div id="authWarningBox" class="auth-warning hidden">
+          Please <a href="login.html">Login or Create an Account</a> to checkout your selection.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // 1. INITIALIZE INSTANT REPOSITORY CONNECTION HOOKS
+    const firebaseConfig = { 
+      apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI", 
+      authDomain: "://firebaseapp.com", 
+      projectId: "thelacewigs-f46a5", 
+      storageBucket: "thelacewigs-f46a5.firebasestorage.app", 
+      messagingSenderId: "1004049108512", 
+      appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645", 
+      measurementId: "G-DXKGF27ZQW" 
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    let cart = JSON.parse(localStorage.getItem("lace_wigs_cart")) || [];
+    let currentUser = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const itemsContainer = document.getElementById("cartItemsList");
+      const subtotalTarget = document.getElementById("subtotalCost");
+      const totalTarget = document.getElementById("totalCost");
+      const orderBtn = document.getElementById("placeOrderBtn");
+      const authWarning = document.getElementById("authWarningBox");
+
+      // 2. RUN VALIDATION PROFILE AUTH CHECKS
+      auth.onAuthStateChanged((user) => {
+        currentUser = user;
+        updateOrderButtonState();
+      });
+
+      function updateOrderButtonState() {
+        if (cart.length === 0) {
+          orderBtn.disabled = true;
+          authWarning.classList.add("hidden");
+        } else if (!currentUser) {
+          orderBtn.disabled = true;
+          authWarning.classList.remove("hidden");
+        } else {
+          orderBtn.disabled = false;
+          authWarning.classList.add("hidden");
+        }
+      }
+
+      // 3. RENDER RECURSIVE DOM ROWS
+      function renderCart() {
+        itemsContainer.innerHTML = "";
+        
+        if (cart.length === 0) {
+          itemsContainer.innerHTML = "<div class='empty-msg'>Your bag is currently empty.</div>";
+          subtotalTarget.textContent = "$0.00";
+          totalTarget.textContent = "$0.00";
+          updateOrderButtonState();
+          updateHeaderBadge();
+          return;
+        }
+
+        let runningSubtotal = 0;
+
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          runningSubtotal += itemTotal;
+
+          const row = document.createElement("div");
+          row.className = "cart-item";
+          row.innerHTML = `
+            <div class="cart-item-image">
+              <img src="${item.imageUrl || 'images/placeholder.jpg'}" alt="${item.name}">
+            </div>
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <p class="item-price">$${item.price.toFixed(2)}</p>
+              <button class="remove-btn" onclick="modifyQty('${item.id}', 0)">Remove</button>
+            </div>
+            <div class="quantity-controls">
+              <button class="qty-btn" onclick="modifyQty('${item.id}', -1)">-</button>
+              <span class="qty-number">${item.quantity}</span>
