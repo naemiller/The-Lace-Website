@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop | The Lace Website</title>
   <style>
-    <link rel="stylesheet" href="style.css">
     /* Premium Luxury Styling Variables */
     :root {
       --primary-color: #000000;
@@ -24,16 +23,9 @@
     }
 
     /* Premium Custom Scrollbars */
-    ::-webkit-scrollbar { 
-      width: 6px; 
-    } 
-    ::-webkit-scrollbar-track { 
-      background: #f1f1f1; 
-    } 
-    ::-webkit-scrollbar-thumb { 
-      background: var(--accent-color); 
-      border-radius: 3px; 
-    }
+    ::-webkit-scrollbar { width: 6px; } 
+    ::-webkit-scrollbar-track { background: #f1f1f1; } 
+    ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }
 
     /* Header & Navigation Layout */
     header {
@@ -371,7 +363,7 @@
           </div>
           <div class="form-group">
             <label for="pImg">Product Image URL</label>
-            <input type="text" id="pImg" value="url_of_the_wig_image.jpg" required>
+            <input type="text" id="pImg" value="https://unsplash.com" required>
           </div>
           <button type="submit" class="submit-product-btn">Deploy Product</button>
         </form>
