@@ -70,7 +70,7 @@
       vertical-align: middle;
     }
 
-    /* Original Visual Hero Landing Banner Block Section Panel */
+    /* Hero Banner Configuration */
     .hero-banner {
       width: 100%;
       height: 70vh;
@@ -146,6 +146,7 @@
       height: 450px;
       overflow: hidden;
       border-radius: 4px;
+      background-color: #f5f5f5;
     }
 
     .category-card img {
@@ -302,27 +303,27 @@
       <h3>Explore By Texture</h3>
       <div class="categories-grid">
         
-        <!-- Box Card Category 1 -->
+        <!-- Category 1: Straight -->
         <div class="category-card">
-          <img src="straight.jpg" alt="Silky Straight Collection">
+          <img src="images/straight.jpg" alt="Silky Straight Collection">
           <div class="category-label-overlay">
             <h4>Silky Straight</h4>
             <a href="shop.html">View Units &rarr;</a>
           </div>
         </div>
 
-        <!-- Box Card Category 2 -->
+        <!-- Category 2: Body Wave -->
         <div class="category-card">
-          <img src="bodywave.jpg" alt="Body Wave Collection">
+          <img src="images/bodywave.jpg" alt="Body Wave Collection">
           <div class="category-label-overlay">
             <h4>Body Wave</h4>
             <a href="shop.html">View Units &rarr;</a>
           </div>
         </div>
 
-        <!-- Box Card Category 3 -->
+        <!-- Category 3: Deep Wave -->
         <div class="category-card">
-          <img src="deepwave.jpg" alt="Deep Curly Collection">
+          <img src="images/deepwave.jpg" alt="Deep Curly Collection">
           <div class="category-label-overlay">
             <h4>Deep Curly</h4>
             <a href="shop.html">View Units &rarr;</a>
@@ -333,7 +334,7 @@
     </section>
   </main>
 
-  <!-- Complete Footnote Footer Property Section Block Content Layout Elements -->
+  <!-- Footnote Footer Property Section -->
   <footer>
     <div class="footer-content">
       <div class="footer-brand">
@@ -345,7 +346,7 @@
         <h5>Customer Care</h5>
         <ul>
           <li><a href="shop.html">Browse Catalog</a></li>
-          <li><a href="contact.html">Track Order Status</a></li>
+          <li><a href="login.html">Track Order Status</a></li>
           <li><a href="contact.html">Shipping & Returns Policy</a></li>
         </ul>
       </div>
@@ -367,7 +368,6 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Pull and summarize existing local data sets onto navigation layout badges
       function updateHeaderBadge() {
         const cart = JSON.parse(localStorage.getItem("lace_wigs_cart")) || [];
         const badge = document.getElementById("bag-count");
