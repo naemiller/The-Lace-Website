@@ -1,276 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Access | The Lace Website</title>
-    
-    <!-- Core production scripts for Firebase v8 Architecture -->
-    <script src="https://gstatic.com"></script>
-    <script src="https://gstatic.com"></script>
-    <script src="https://gstatic.com"></script>
-    
-    <style>
-        :root {
-            --primary: #000000;
-            --accent: #ab8e64;
-            --bg: #faf7f2;
-            --border: #e5dec9;
-        }
-        body {
-            font-family: 'Playfair Display', Arial, sans-serif;
-            background: var(--bg);
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-        header {
-            background-color: #ffffff;
-            border-bottom: 1px solid #eeeeee;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 40px;
-            box-sizing: border-box;
-            z-index: 1000;
-        }
-        .logo h1 {
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin: 0;
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            margin: 0;
-            padding: 0;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #555555;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-        nav ul li a:hover, nav ul li a.active {
-            color: #000000;
-        }
-        #bag-count {
-            background-color: #000000;
-            color: #ffffff;
-            font-size: 0.75rem;
-            padding: 2px 7px;
-            border-radius: 50%;
-            margin-left: 4px;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .auth-container {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 40px 30px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            box-sizing: border-box;
-        }
-        h2, h3 {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 25px;
-        }
-        .form-group {
-            margin-bottom: 18px;
-        }
-        label {
-            display: block;
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 6px;
-        }
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .btn {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-        .btn:hover {
-            background: var(--accent);
-        }
-        .toggle-text {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #555;
-        }
-        .toggle-text span {
-            color: var(--accent);
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .dashboard-container {
-            width: 100%;
-            max-width: 800px;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            box-sizing: border-box;
-        }
-        .order-card {
-            border: 1px solid #f2edd8;
-            background: #faf8f5;
-            border-radius: 4px;
-            padding: 20px;
-            margin-top: 15px;
-        }
-        .order-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed var(--border);
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        .order-total {
-            text-align: right;
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order | The Lace Wigs</title>
+  <style>
+    /* ==========================================================================
+       1. CORE DESIGN SYSTEM & LOGIC VARS
+       ========================================================================== */
+    :root {
+      --primary: #111111;
+      --secondary: #666666;
+      --accent: #d4af37; /* Luxury Gold */
+      --light-bg: #fafafa;
+      --border: #e6e6e6;
+      --white: #ffffff;
+      --success: #27ae60;
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       2. MINIMALIST STICKY HEADER
+       ========================================================================== */
+    header {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo h1 {
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--primary);
+    }
+
+    #bag-count {
+      background-color: var(--primary);
+      color: var(--white);
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+    }
+
+    /* ==========================================================================
+       3. SPLIT-SCREEN SPLIT INTERFACE ENGINE
+       ========================================================================== */
+    .portal-wrapper {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      min-height: 100vh;
+      padding-top: 75px; 
+    }
+
+    /* Left Side Showcase */
+    .brand-showcase {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.65)), url('hero-bg.jpg') center/cover no-repeat;
+      background-color: #1a1513; 
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: var(--white);
+      position: relative;
+    }
+
+    .showcase-content {
+      max-width: 500px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .showcase-content h2 {
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .review-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .star-rating {
+      color: var(--accent);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .review-metrics {
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+
+    /* Right Side Interface Form Panel */
+    .form-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 40px;
+      background-color: var(--light-bg);
+    }
+
+    .form-container-box {
+      width: 100%;
+      max-width: 420px;
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: 4px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.02);
+    }
+
+    .form-container-box h3 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* Form Design Parameters */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background-color: var(--light-bg);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: var(--white);
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 16px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--accent);
+    }
+
+    /* ==========================================================================
+       4. DYNAMIC TRACKING RESULT TIMELINE
+       ========================================================================== */
+    .tracking-results {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+    }
+
+    .status-banner {
+      background-color: #eafaf1;
+      color: var(--success);
+      padding: 12px;
+      border-radius: 2px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .timeline {
+      list-style: none;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      bottom: 5px;
+      width: 2px;
+      background-color: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--border);
+    }
+
+    .timeline-item.current::before {
+      background-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+    }
+
+    .timeline-item h5 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .timeline-item p {
+      font-size: 0.8rem;
+      color: var(--secondary);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Animations & Media Rules */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 960px) {
+      .portal-wrapper { grid-template-columns: 1fr; }
+      .brand-showcase { display: none; }
+      .form-panel { min-height: calc(100vh - 75px); padding: 40px 20px; }
+    }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 15px; padding: 15px; position: absolute; }
+      .portal-wrapper { padding-top: 130px; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo"><h1>The Lace Wigs</h1></div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="calculator.html">Size Guide</a></li>
-                <li><a href="login.html" class="active">Account</a></li>
-                <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="auth-container" id="auth-gate-box">
-        <h2 id="auth-title">Customer Login</h2>
-        <form id="auth-form">
-            <div class="form-group hidden" id="name-group">
-                <label for="user-name">Full Name</label>
-                <input type="text" id="user-name" placeholder="Jane Doe">
-            </div>
-            <div class="form-group">
-                <label for="user-email">Email Address</label>
-                <input type="email" id="user-email" placeholder="customer@domain.com" required>
-            </div>
-            <div class="form-group">
-                <label for="user-pass">Password</label>
-                <input type="password" id="user-pass" placeholder="••••••••" required>
-            </div>
-            <button type="submit" class="btn" id="submitAuthBtn">Sign In</button>
-        </form>
-        <p class="toggle-text" id="toggle-auth-msg">Don't have an account? <span onclick="switchMode(true)">Create Account</span></p>
+  <!-- Site Nav Header Wrapper Frame -->
+  <header>
+    <div class="logo">
+      <h1 onclick="window.location.href='index.html'">The Lace Wigs</h1>
     </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="login.html" class="active">Track Order</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="dashboard-container hidden" id="customer-dashboard">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-            <h3>Your Purchase History</h3>
-            <button class="btn" style="width:auto; padding:8px 16px; margin:0;" onclick="logoutUser()">Logout</button>
+  <!-- Interactive Grid Split Screen Window -->
+  <div class="portal-wrapper">
+    
+    <!-- Left Showcase Frame Section -->
+    <div class="brand-showcase">
+      <div class="showcase-content">
+        <h2>Premium Luxury Customer Care</h2>
+        <div class="review-container">
+          <div class="star-rating">★★★★★</div>
+          <span class="review-metrics">Fast Insured Delivery Verification</span>
         </div>
-        <div id="welcome-msg" style="font-weight:bold; margin-bottom:25px;">Welcome back!</div>
-        <div id="orders-history-target">Checking order logs...</div>
+      </div>
     </div>
 
-    <!-- Your exact credentials script engine block -->
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI",
-            authDomain: "thelacewigs-f46a5.firebaseapp.com",
-            databaseURL: "https://thelacewigs-f46a5-default-rtdb.firebaseio.com",
-            projectId: "thelacewigs-f46a5",
-            storageBucket: "thelacewigs-f46a5.firebasestorage.app",
-            messagingSenderId: "1004049108512",
-            appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645",
-            measurementId: "G-DXKGF27ZQW"
-        };
+    <!-- Right Form Tracking Input Module -->
+    <div class="form-panel">
+      <div class="form-container-box">
         
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const ADMIN_EMAIL = 'info@thelacewigs.com';
-        let isSignUpMode = false;
+        <h3>Track Order Status</h3>
 
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                if (user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
-                    window.location.href = "admin.html";
-                    return;
-                }
-                document.getElementById('auth-gate-box').classList.add('hidden');
-                document.getElementById('customer-dashboard').classList.remove('hidden');
-                document.getElementById('welcome-msg').textContent = `Account: ${user.email}`;
-                loadCustomerOrders(user.uid);
-            } else {
-                document.getElementById('customer-dashboard').classList.add('hidden');
-                document.getElementById('auth-gate-box').classList.remove('hidden');
-            }
-        });
+        <form id="tracking-form">
+          <div class="form-group">
+            <label for="track-email">Email Address</label>
+            <input type="email" id="track-email" required placeholder="customer@domain.com">
+          </div>
+          <div class="form-group">
+            <label for="track-number">Tracking Number / Order ID</label>
+            <input type="text" id="track-number" required placeholder="e.g., LW-982405">
+          </div>
+          <button type="submit" class="submit-btn">Fetch Live Status</button>
+        </form>
 
-        window.switchMode = function(signUp) {
-            isSignUpMode = signUp;
-            document.getElementById('auth-form').reset();
-            if (signUp) {
-                document.getElementById('auth-title').textContent = "Create Customer Account";
-                document.getElementById('name-group').classList.remove('hidden');
-                document.getElementById('submitAuthBtn').textContent = "Register Account";
-                document.getElementById('toggle-auth-msg').innerHTML = `Already have an account? <span onclick="switchMode(false)">Sign In Here</span>`;
-            } else {
-                document.getElementById('auth-title').textContent = "Customer Login";
-                document.getElementById('name-group').classList.add('hidden');
-                document.getElementById('submitAuthBtn').textContent = "Sign In";
-                document.getElementById('toggle-auth-msg').innerHTML = `Don't have an account? <span onclick="switchMode(true)">Create Account</span>`;
-            }
-        }
-
-        document.getElementById('auth-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('user-email').value.trim();
+        <!-- Dynamic Tracking Timeline Display Layer -->
+        <div id="tracking-output" class="tracking-results hidden">
+          <div class="status-banner">Package in Transit</div>
+          <ul class="timeline">
+            <li class="timeline-item current">
+              <h5>Out for Delivery</h5>
+              <p>In transit to sorting hub — July 6, 2026</p>
+            </li>
+            <li class="timeline-item">
+              <h5>Customs Clearance Completed</h5>
+              <p>Processed at regional port — July 4, 2026</p>
+            </li>
+            <li class="timeline-item">
+              <h5>Dispatched From Supplier Warehouse</h5>
