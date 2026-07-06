@@ -1,1 +1,122 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Account Access | The Lace Website</title> <!-- FIXED: Added valid, functioning Firebase v8 source files instead of generic blank paths --> <script src="https://gstatic.com"></script> <script src="https://gstatic.com"></script> <script src="https://gstatic.com"></script> <style> :root { --primary: #000000; --accent: #ab8e64; --bg: #faf7f2; --border: #e5dec9; } body { font-family: 'Playfair Display', Arial, sans-serif; background: var(--bg); margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; box-sizing: border-box; } header { background-color: #ffffff; border-bottom: 1px solid #eeeeee; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; width: 100%; max-width: 1200px; margin-bottom: 40px; box-sizing: border-box; z-index: 1000; } .logo h1 { font-size: 1.5rem; letter-spacing: 1px; text-transform: uppercase; margin: 0; } nav ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; } nav ul li a { text-decoration: none; color: #555555; font-size: 0.95rem; font-weight: 500; } nav ul li a:hover, nav ul li a.active { color: #000000; } #bag-count { background-color: #000000; color: #ffffff; font-size: 0.75rem; padding: 2px 7px; border-radius: 50%; margin-left: 4px; display: inline-block; vertical-align: middle; } .auth-container { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 40px 30px; width: 100%; max-width: 450px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); box-sizing: border-box; } h2, h3 { text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-top: 0; margin-bottom: 25px; } .form-group { margin-bottom: 18px; } label { display: block; font-size: 11px; text-transform: uppercase; font-weight: bold; margin-bottom: 6px; } input { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; } .btn { width: 100%; background: var(--primary); color: white; border: none; padding: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 4px; margin-top: 10px; font-size: 0.9rem; letter-spacing: 0.5px; } .btn:hover { background: var(--accent); } .toggle-text { text-align: center; margin-top: 20px; font-size: 14px; color: #555; } .toggle-text span { color: var(--accent); cursor: pointer; font-weight: bold; text-decoration: underline; } .hidden { display: none !important; } .dashboard-container { width: 100%; max-width: 800px; background: white; border: 1px solid var(--border); border-radius: 6px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); box-sizing: border-box; } .order-card { border: 1px solid #f2edd8; background: #faf8f5; border-radius: 4px; padding: 20px; margin-top: 15px; } .order-header { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border); padding-bottom: 10px; margin-bottom: 10px; font-size: 0.9rem; color: #666; } .order-total { text-align: right; font-weight: bold; font-size: 1.1rem; color: var(--primary); margin-top: 10px; } </style> </head> <body> <header> <div class="logo"><h1>The Lace Wigs</h1></div> <nav> <ul> <li><a href="index.html">Home</a></li> <li><a href="shop.html">Shop</a></li> <li><a href="login.html" class="active">Account</a></li> <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li> </ul> </nav> </header> <div class="auth-container" id="auth-gate-box"> <h2 id="auth-title">Customer Login</h2> <form id="auth-form"> <div class="form-group hidden" id="name-group"> <label for="user-name">Full Name</label> <input type="text" id="user-name" placeholder="Jane Doe"> </div> <div class="form-group"> <label for="user-email">Email Address</label> <input type="email" id="user-email" placeholder="customer@domain.com" required> </div> <div class="form-group"> <label for="user-pass">Password</label> <input type="password" id="user-pass" placeholder="••••••••" required> </div> <button type="submit" class="btn" id="submitAuthBtn">Sign In</button> </form> <p class="toggle-text" id="toggle-auth-msg">Don't have an account? <span onclick="switchMode(true)">Create Account</span></p> </div> <div class="dashboard-container hidden" id="customer-dashboard"> <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;"> <h3>Your Purchase History</h3> <button class="btn" style="width:auto; padding:8px 16px; margin:0;" onclick="logoutUser()">Logout</button> </div> <div id="welcome-msg" style="font-weight:bold; margin-bottom:25px;">Welcome back!</div> <div id="orders-history-target">Checking order logs...</div> </div> <script> const firebaseConfig = { apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI", authDomain: "thelacewigs-f46a5.firebaseapp.com", projectId: "thelacewigs-f46a5", storageBucket: "thelacewigs-f46a5.firebasestorage.app", messagingSenderId: "1004049108512", appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645", measurementId: "G-DXKGF27ZQW" }; firebase.initializeApp(firebaseConfig); const auth = firebase.auth(); const db = firebase.firestore(); const ADMIN_EMAIL = 'info@thelacewigs.com'; let isSignUpMode = false; auth.onAuthStateChanged((user) => { if (user) { if (user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) { window.location.href = "admin.html"; return; } document.getElementById('auth-gate-box').classList.add('hidden'); document.getElementById('customer-dashboard').classList.remove('hidden'); document.getElementById('welcome-msg').textContent = `Account: ${user.email}`; loadCustomerOrders(user.uid); } else { document.getElementById('customer-dashboard').classList.add('hidden'); document.getElementById('auth-gate-box').classList.remove('hidden'); } }); window.switchMode = function(signUp) { isSignUpMode = signUp; document.getElementById('auth-form').reset(); if (signUp) { document.getElementById('auth-title').textContent = "Create Customer Account"; document.getElementById('name-group').classList.remove('hidden'); document.getElementById('submitAuthBtn').textContent = "Register Account"; document.getElementById('toggle-auth-msg').innerHTML = `Already have an account? <span onclick="switchMode(false)">Sign In Here</span>`; } else { document.getElementById('auth-title').textContent = "Customer Login"; document.getElementById('name-group').classList.add('hidden'); document.getElementById('submitAuthBtn').textContent = "Sign In"; document.getElementById('toggle-auth-msg').innerHTML = `Don't have an account? <span onclick="switchMode(true)">Create Account</span>`; } } document.getElementById('auth-form').addEventListener('submit', (e) => { e.preventDefault(); const email = document.getElementById('user-email').value.trim(); const pass = document.getElementById('user-pass').value; if (isSignUpMode) { auth.createUserWithEmailAndPassword(email, pass) .then((cred) => { const fullName = document.getElementById('user-name').value; return db.collection('users').doc(cred.user.uid).set({ name: fullName, email: email, joined: Date.now() }); }) .catch(err => alert("Registration Failed: " + err.message)); } else { auth.signInWithEmailAndPassword(email, pass) .catch(err => alert("Access Verification Failed: " + err.message)); } }); window.logoutUser = function() { auth.signOut(); } // FIXED: Completed the broken function execution logic parameters function loadCustomerOrders(uid) { const ordersTarget = document.getElementById('orders-history-target'); ordersTarget.innerHTML = "Loading history logs..."; db.collection('orders') .where('userId', '==', uid) .get() .then((querySnapshot) => { ordersTarget.innerHTML = ""; if (querySnapshot.empty) { ordersTarget.innerHTML = "<p style='color:#777; text-align:center; padding:20px;'>You haven't placed any orders yet.</p>"; return; } querySnapshot.forEach((doc) => { const order = doc.data(); const dateStr = new Date(order.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); const card = document.createElement('div'); card.className = "order-card"; let itemsHtml = ""; if (order.items && Array.isArray(order.items)) { order.items.forEach(item => { itemsHtml += `<div>• ${item.name} (x${item.quantity}) - $${item.price}</div>`; }); } card.innerHTML = ` <div class="order-header"> <span><strong>Order ID:</strong> ${doc.id}</span> <span>${dateStr}</span> </div> <div class="order-items-list">${itemsHtml}</div> <div class="order-total">Total: $${order.totalPrice || 0}</div> `; ordersTarget.appendChild(card); }); }) .catch(err => { console.error("Order history trace broke:", err); ordersTarget.innerHTML = "<p style='color:red;'>Failed to load purchase history logs.</p>"; }); } </script> </body> </html>
+<script>
+    // UPDATED CONFIG: Mapped with complete, authorized Firebase domain links
+    const firebaseConfig = {
+        apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI",
+        authDomain: "thelacewigs-f46a5.firebaseapp.com",
+        databaseURL: "https://thelacewigs-f46a5-default-rtdb.firebaseio.com",
+        projectId: "thelacewigs-f46a5",
+        storageBucket: "thelacewigs-f46a5.firebasestorage.app",
+        messagingSenderId: "1004049108512",
+        appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645",
+        measurementId: "G-DXKGF27ZQW"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const ADMIN_EMAIL = 'info@thelacewigs.com';
+    let isSignUpMode = false;
+
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            if (user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+                window.location.href = "admin.html";
+                return;
+            }
+            document.getElementById('auth-gate-box').classList.add('hidden');
+            document.getElementById('customer-dashboard').classList.remove('hidden');
+            document.getElementById('welcome-msg').textContent = `Account: ${user.email}`;
+            loadCustomerOrders(user.uid);
+        } else {
+            document.getElementById('customer-dashboard').classList.add('hidden');
+            document.getElementById('auth-gate-box').classList.remove('hidden');
+        }
+    });
+
+    window.switchMode = function(signUp) {
+        isSignUpMode = signUp;
+        document.getElementById('auth-form').reset();
+        if (signUp) {
+            document.getElementById('auth-title').textContent = "Create Customer Account";
+            document.getElementById('name-group').classList.remove('hidden');
+            document.getElementById('submitAuthBtn').textContent = "Register Account";
+            document.getElementById('toggle-auth-msg').innerHTML = `Already have an account? <span onclick="switchMode(false)">Sign In Here</span>`;
+        } else {
+            document.getElementById('auth-title').textContent = "Customer Login";
+            document.getElementById('name-group').classList.add('hidden');
+            document.getElementById('submitAuthBtn').textContent = "Sign In";
+            document.getElementById('toggle-auth-msg').innerHTML = `Don't have an account? <span onclick="switchMode(true)">Create Account</span>`;
+        }
+    }
+
+    document.getElementById('auth-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('user-email').value.trim();
+        const pass = document.getElementById('user-pass').value;
+
+        if (isSignUpMode) {
+            auth.createUserWithEmailAndPassword(email, pass)
+                .then((cred) => {
+                    const fullName = document.getElementById('user-name').value;
+                    return db.collection('users').doc(cred.user.uid).set({
+                        name: fullName,
+                        email: email,
+                        joined: Date.now()
+                    });
+                })
+                .catch(err => alert("Registration Failed: " + err.message));
+        } else {
+            auth.signInWithEmailAndPassword(email, pass)
+                .catch(err => alert("Access Verification Failed: " + err.message));
+        }
+    });
+
+    window.logoutUser = function() {
+        auth.signOut();
+    }
+
+    function loadCustomerOrders(uid) {
+        const ordersTarget = document.getElementById('orders-history-target');
+        ordersTarget.innerHTML = "Loading history logs...";
+
+        db.collection('orders')
+            .where('userId', '==', uid)
+            .get()
+            .then((querySnapshot) => {
+                ordersTarget.innerHTML = "";
+                if (querySnapshot.empty) {
+                    ordersTarget.innerHTML = "<p style='color:#777; text-align:center; padding:20px;'>You haven't placed any orders yet.</p>";
+                    return;
+                }
+                querySnapshot.forEach((doc) => {
+                    const order = doc.data();
+                    const dateStr = new Date(order.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    const card = document.createElement('div');
+                    card.className = "order-card";
+                    
+                    let itemsHtml = "";
+                    if (order.items && Array.isArray(order.items)) {
+                        order.items.forEach(item => {
+                            itemsHtml += `<div>• ${item.name} (x${item.quantity}) - $${item.price}</div>`;
+                        });
+                    }
+                    
+                    card.innerHTML = `
+                        <div class="order-header">
+                            <span><strong>Order ID:</strong> ${doc.id}</span>
+                            <span>${dateStr}</span>
+                        </div>
+                        <div class="order-items-list">${itemsHtml}</div>
+                        <div class="order-total">Total: $${order.totalPrice || 0}</div>
+                    `;
+                    ordersTarget.appendChild(card);
+                });
+            })
+            .catch(err => {
+                console.error("Order load error trace broke:", err);
+                ordersTarget.innerHTML = "<p style='color:red;'>Failed to load purchase history logs.</p>";
+            });
+    }
+</script>
+</body>
+</html>
