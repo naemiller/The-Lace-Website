@@ -136,41 +136,6 @@
         .product-card .add-to-bag:hover {
             background-color: #333333;
         }
-        /* Interactive Pagination Controls Element Styling */
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            margin: 50px auto 20px;
-        }
-        .page-btn, .page-number {
-            background-color: #ffffff;
-            color: #000000;
-            border: 1px solid #dcdcdc;
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .page-btn:disabled {
-            border-color: #e5e5e5;
-            color: #cccccc;
-            cursor: not-allowed;
-        }
-        .page-number.active {
-            background-color: #000000;
-            border-color: #000000;
-            color: #ffffff;
-        }
-        .loading-text {
-            text-align: center;
-            grid-column: span 4;
-            font-size: 1.2rem;
-            color: #666;
-            padding: 40px;
-        }
         /* Screen Breakpoints for Responsive Mobile Execution */
         @media (max-width: 1024px) {
             .product-grid { grid-template-columns: repeat(3, 1fr); }
@@ -205,92 +170,92 @@
     <!-- Product Catalog Frame Area -->
     <main class="shop-container">
         <h2>Luxury Wigs Collection</h2>
+        
+        <!-- RESTORED: Stationary, hardcoded product blocks -->
         <div id="shopGrid" class="product-grid">
-            <!-- Products get injected here automatically -->
-        </div>
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="straight.jpg" alt="Straight Luxury Unit" onerror="this.src='straight.jpg'">
+                </div>
+                <h4>Straight Luxury Unit</h4>
+                <p class="price">$250</p>
+                <button class="add-to-bag" data-id="w1" data-name="Straight Luxury Unit" data-price="250">Add to Bag</button>
+            </div>
 
-        <div class="pagination-container" id="paginationBox">
-            <button class="page-btn" id="prevPage" disabled>&laquo; Previous</button>
-            <span id="pageNumbers"></span>
-            <button class="page-btn" id="nextPage">Next &raquo;</button>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="straight.jpg" alt="Body Wave HD Lace Wig" onerror="this.src='straight.jpg'">
+                </div>
+                <h4>Body Wave HD Lace Wig</h4>
+                <p class="price">$280</p>
+                <button class="add-to-bag" data-id="w2" data-name="Body Wave HD Lace Wig" data-price="280">Add to Bag</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="straight.jpg" alt="Deep Wave Lace Front" onerror="this.src='straight.jpg'">
+                </div>
+                <h4>Deep Wave Lace Front</h4>
+                <p class="price">$295</p>
+                <button class="add-to-bag" data-id="w3" data-name="Deep Wave Lace Front" data-price="295">Add to Bag</button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="straight.jpg" alt="Water Wave Transparent Wig" onerror="this.src='straight.jpg'">
+                </div>
+                <h4>Water Wave Transparent Wig</h4>
+                <p class="price">$270</p>
+                <button class="add-to-bag" data-id="w4" data-name="Water Wave Transparent Wig" data-price="270">Add to Bag</button>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="straight.jpg" alt="613 Blonde Straight Unit" onerror="this.src='straight.jpg'">
+                </div>
+                <h4>613 Blonde Straight Unit</h4>
+                <p class="price">$320</p>
+                <button class="add-to-bag" data-id="w5" data-name="613 Blonde Straight Unit" data-price="320">Add to Bag</button>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="straight.jpg" alt="Loose Deep Luxury Lace" onerror="this.src='straight.jpg'">
+                </div>
+                <h4>Loose Deep Luxury Lace</h4>
+                <p class="price">$285</p>
+                <button class="add-to-bag" data-id="w6" data-name="Loose Deep Luxury Lace" data-price="285">Add to Bag</button>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="straight.jpg" alt="Kinky Curly Glueless Wig" onerror="this.src='straight.jpg'">
+                </div>
+                <h4>Kinky Curly Glueless Wig</h4>
+                <p class="price">$290</p>
+                <button class="add-to-bag" data-id="w7" data-name="Kinky Curly Glueless Wig" data-price="290">Add to Bag</button>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="straight.jpg" alt="Bob Cut Closure Wig" onerror="this.src='straight.jpg'">
+                </div>
+                <h4>Bob Cut Closure Wig</h4>
+                <p class="price">$190</p>
+                <button class="add-to-bag" data-id="w8" data-name="Bob Cut Closure Wig" data-price="190">Add to Bag</button>
+            </div>
+
         </div>
     </main>
 
-    <!-- Standard Client Side Local Script Block -->
-    <script>
-        // ORIGINAL STATIC INVENTORY: Hardcoded product data array
-        const allProducts = [
-            { id: "w1", name: "Straight Luxury Unit", price: "250", imageUrl: "straight.jpg" },
-            { id: "w2", name: "Body Wave HD Lace Wig", price: "280", imageUrl: "straight.jpg" },
-            { id: "w3", name: "Deep Wave Lace Front", price: "295", imageUrl: "straight.jpg" },
-            { id: "w4", name: "Water Wave Transparent Wig", price: "270", imageUrl: "straight.jpg" },
-            { id: "w5", name: "613 Blonde Straight Unit", price: "320", imageUrl: "straight.jpg" },
-            { id: "w6", name: "Loose Deep Luxury Lace", price: "285", imageUrl: "straight.jpg" },
-            { id: "w7", name: "Kinky Curly Glueless Wig", price: "290", imageUrl: "straight.jpg" },
-            { id: "w8", name: "Bob Cut Closure Wig", price: "190", imageUrl: "straight.jpg" }
-        ];
-
-        const shopGrid = document.getElementById("shopGrid");
-        const paginationBox = document.getElementById("paginationBox");
-        const pageNumbersSpan = document.getElementById("pageNumbers");
-        const prevBtn = document.getElementById("prevPage");
-        const nextBtn = document.getElementById("nextPage");
-
-        let currentPage = 1;
-        const itemsPerPage = 12;
-
-        function initCatalog() {
-            renderPaginationControls();
-            showPage(1);
-        }
-
-        function renderPaginationControls() {
-            const totalPages = Math.ceil(allProducts.length / itemsPerPage);
-            pageNumbersSpan.innerHTML = "";
-
-            if (totalPages <= 1) {
-                paginationBox.style.display = "none";
-                return;
-            }
-
-            paginationBox.style.display = "flex";
-
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement("button");
-                btn.className = `page-number ${i === 1 ? 'active' : ''}`;
-                btn.textContent = i;
-                btn.setAttribute("data-target", i);
-                btn.addEventListener("click", () => showPage(i));
-                pageNumbersSpan.appendChild(btn);
-            }
-
-            prevBtn.onclick = () => {
-                if (currentPage > 1) showPage(currentPage - 1);
-            };
-            nextBtn.onclick = () => {
-                if (currentPage < totalPages) showPage(currentPage + 1);
-            };
-        }
-
-        function showPage(page) {
-            currentPage = page;
-            shopGrid.innerHTML = "";
-
-            // Highlight active page number button
-            document.querySelectorAll('.page-number').forEach(btn => {
-                if (parseInt(btn.getAttribute('data-target')) === page) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            const totalPages = Math.ceil(allProducts.length / itemsPerPage);
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages;
-
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const pageItems = allProducts.slice(startIndex, endIndex);
-
-            pageItems.forEach(product => {
+</body>
+</html>
