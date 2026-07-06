@@ -4,43 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Lace Wigs | Premium Luxury Hair Units</title>
-  
-  <style>
-    /* ==========================================================================
-       1. CORE RESET & VARIABLES
-       ========================================================================== */
-    :root {
-      --primary-color: #111111;
-      --secondary-color: #555555;
-      --light-gray: #f9f9f9;
-      --border-color: #eeeeee;
-      --accent-color: #000000;
-      --white: #ffffff;
-      --font-stack: 'Helvetica Neue', Arial, sans-serif;
-      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
 
+  <style>
+    /* Reset & Base Brand Styles */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: var(--font-stack);
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
     }
 
     body {
-      background-color: var(--white);
-      color: var(--primary-color);
-      overflow-x: hidden;
-      line-height: 1.6;
+      background-color: #ffffff;
+      color: #111111;
     }
 
-    /* ==========================================================================
-       2. NAVIGATION HEADER BAR
-       ========================================================================== */
+    /* Navigation Bar Elements Design Layout Grid */
     header {
-      background-color: var(--white);
-      border-bottom: 1px solid var(--border-color);
+      background-color: #ffffff;
+      border-bottom: 1px solid #eeeeee;
       padding: 25px 40px;
       display: flex;
       justify-content: space-between;
@@ -55,358 +37,351 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       font-weight: bold;
-      cursor: pointer;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
     }
 
     nav ul {
       display: flex;
       list-style: none;
       gap: 35px;
-      align-items: center;
     }
 
     nav ul li a {
       text-decoration: none;
-      color: var(--secondary-color);
+      color: #555555;
       font-size: 0.95rem;
       font-weight: 500;
       letter-spacing: 0.5px;
-      transition: var(--transition);
-      position: relative;
-      padding: 5px 0;
+      transition: color 0.2s ease;
     }
 
-    nav ul li a:hover, 
-    nav ul li a.active {
-      color: var(--primary-color);
-    }
-
-    nav ul li a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background-color: var(--primary-color);
-      transition: var(--transition);
-    }
-
-    nav ul li a:hover::after,
-    nav ul li a.active::after {
-      width: 100%;
+    nav ul li a:hover, nav ul li a.active {
+      color: #000000;
     }
 
     /* Shopping Bag Notification Total Badge Tracking Node Bubble */
     #bag-count {
-      background-color: var(--accent-color);
-      color: var(--white);
+      background-color: #000000;
+      color: #ffffff;
       font-size: 0.75rem;
       padding: 2px 7px;
       border-radius: 50%;
       margin-left: 4px;
       display: inline-block;
       vertical-align: middle;
-      font-weight: bold;
     }
 
-    /* ==========================================================================
-       3. HERO BANNER CONFIGURATION
-       ========================================================================== */
+    /* Hero Banner Configuration */
+    /* FIXED: If hero-bg.jpg is also in your main repository, we removed 'images/' from here too */
     .hero-banner {
       width: 100%;
-      height: 75vh;
-      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('hero-bg.jpg') center/cover no-repeat;
+      height: 70vh;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('hero-bg.jpg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: var(--white);
+      color: #ffffff;
       text-align: center;
       padding: 0 20px;
     }
 
-    .hero-content {
-      max-width: 800px;
-      animation: fadeIn 1s ease-out;
-    }
-
     .hero-banner h2 {
       font-size: 3.5rem;
-      font-weight: 300;
-      letter-spacing: 4px;
       text-transform: uppercase;
+      letter-spacing: 2px;
       margin-bottom: 20px;
-      line-height: 1.2;
+      font-weight: 600;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
     .hero-banner p {
-      font-size: 1.15rem;
-      letter-spacing: 1px;
+      font-size: 1.25rem;
       margin-bottom: 35px;
-      font-weight: 300;
+      max-width: 650px;
+      line-height: 1.6;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
-    .cta-button {
+    .shop-now-btn {
       display: inline-block;
-      background-color: var(--white);
-      color: var(--accent-color);
+      background-color: #ffffff;
+      color: #000000;
       text-decoration: none;
       padding: 16px 45px;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size: 0.95rem;
       font-weight: bold;
-      transition: var(--transition);
-      border: 1px solid var(--white);
-      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 2px;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    .cta-button:hover {
-      background-color: transparent;
-      color: var(--white);
+    .shop-now-btn:hover {
+      background-color: #000000;
+      color: #ffffff;
     }
 
-    /* ==========================================================================
-       4. EXPLORE BY TEXTURE GRID SHOWROOM
-       ========================================================================== */
-    .texture-section {
-      padding: 100px 40px;
-      max-width: 1400px;
-      margin: 0 auto;
+    /* Highlighted Categories Image Grid Block Sections Layout Array */
+    .categories-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
     }
 
-    .section-title {
-      text-align: center;
+    .categories-section h3 {
       font-size: 1.8rem;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 60px;
-      font-weight: 600;
-      position: relative;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 50px;
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background-color: var(--primary-color);
-      margin: 15px auto 0;
-    }
-
-    .texture-grid {
+    .categories-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
     }
 
-    .texture-card {
+    .category-card {
       position: relative;
-      height: 500px;
+      height: 450px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
-      text-decoration: none;
-      color: var(--white);
+      border-radius: 4px;
+      background-color: #f5f5f5;
     }
 
-    .texture-card-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .category-card img {
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      z-index: 1;
+      object-fit: cover;
+      transition: transform 0.4s ease;
     }
 
-    .texture-card:hover .texture-card-bg {
-      transform: scale(1.06);
+    .category-card:hover img {
+      transform: scale(1.05);
     }
 
-    .texture-card::before {
-      content: '';
+    .category-label-overlay {
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%);
-      z-index: 2;
-      transition: opacity 0.3s ease;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 30px 20px;
+      color: #ffffff;
     }
 
-    .texture-card h4 {
-      font-size: 1.6rem;
-      font-weight: 400;
+    .category-label-overlay h4 {
+      font-size: 1.3rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 3;
+      margin-bottom: 8px;
     }
 
-    .texture-card .view-action {
+    .category-label-overlay a {
+      color: #ffffff;
       font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      position: relative;
-      z-index: 3;
-      opacity: 0.85;
-      transition: var(--transition);
+      text-decoration: underline;
+      font-weight: 500;
     }
 
-    .texture-card:hover .view-action {
-      opacity: 1;
-      transform: translateX(5px);
+    /* Core Footnote Text Base Information Blocks Row Frame Container */
+    footer {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 60px 40px;
+      margin-top: 100px;
     }
 
-    /* ==========================================================================
-       5. BRAND VALUE PERKS TEMPLATE BANNER
-       ========================================================================== */
-    .perks-section {
-      background-color: var(--light-gray);
-      border-top: 1px solid var(--border-color);
-      border-bottom: 1px solid var(--border-color);
-      padding: 80px 40px;
-    }
-
-    .perks-grid {
-      max-width: 1300px;
+    .footer-content {
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 2fr repeat(2, 1fr);
       gap: 50px;
     }
 
-    .perk-item {
-      text-align: center;
-      padding: 10px;
-    }
-
-    .perk-item h4 {
-      font-size: 1.1rem;
+    .footer-brand h4 {
+      font-size: 1.3rem;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
       margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-weight: 600;
-    }
-
-    .perk-item p {
-      font-size: 0.95rem;
-      color: var(--secondary-color);
-      max-width: 320px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* ==========================================================================
-       6. INTERACTIVE INTERFACE MODALS (SIZE GUIDE)
-       ========================================================================== */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      z-index: 2000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-wrapper {
-      background-color: var(--white);
-      padding: 40px;
-      max-width: 600px;
-      width: 90%;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .modal-wrapper {
-      transform: translateY(0);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-
-    .modal-wrapper h3 {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-      font-size: 1.4rem;
-    }
-
-    .size-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-
-    .size-table th, .size-table td {
-      border: 1px solid var(--border-color);
-      padding: 12px;
-      text-align: left;
-      font-size: 0.9rem;
-    }
-
-    .size-table th {
-      background-color: var(--light-gray);
-      text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    /* ==========================================================================
-       7. COMPREHENSIVE FOOTER DESIGN SYSTEM
-       ========================================================================== */
-    footer {
-      background-color: var(--white);
-      padding: 100px 40px 40px;
-      max-width: 1400px;
-      margin: 0 auto;
+    .footer-brand p {
+      color: #999999;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 400px;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr repeat(2, 1fr);
-      gap: 80px;
-      margin-bottom: 80px;
+    .footer-links h5 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      color: #ffffff;
     }
 
-    .footer-brand h3 {
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links ul li a {
+      color: #999999;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links ul li a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 30px;
+      border-top: 1px solid #222222;
+      text-align: center;
+      color: #666666;
+      font-size: 0.85rem;
+    }
+
+    /* Responsive Mobile Screen Configurations */
+    @media (max-width: 900px) {
+      .categories-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .hero-banner h2 {
+        font-size: 2.3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Nav Header Wrapper Frame -->
+  <header>
+    <div class="logo">
+      <h1>The Lace Wigs</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="login.html">Account</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="calculator.html">Wig Cap Size Calulator</a><li>
+        <li><a href="calculator.html">Size Guide</a><li>
+        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Welcome Visual Area Cover -->
+  <main>
+    <section class="hero-banner">
+      <h2>Luxury Melted Hairlines</h2>
+      <p>Discover our signature collection of 100% premium virgin lace frontal units, carefully curated to provide an undetectable, pre-plucked finish.</p>
+      <a href="shop.html" class="shop-now-btn">Shop The Collection</a>
+    </section>
+
+    <!-- Visual Categories Image Blocks Section Row Layout Grid -->
+    <section class="categories-section">
+      <h3>Explore By Texture</h3>
+      <div class="categories-grid">
+
+        <!-- FIXED: Removed 'images/' from all image source targets -->
+        <!-- Category 1: Straight -->
+        <div class="category-card">
+          <img src="straight.jpg" alt="Silky Straight Collection">
+          <div class="category-label-overlay">
+            <h4>Silky Straight</h4>
+            <a href="shop.html">View Units &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Category 2: Body Wave -->
+        <div class="category-card">
+          <img src="bodywave.jpg" alt="Body Wave Collection">
+          <div class="category-label-overlay">
+            <h4>Body Wave</h4>
+            <a href="shop.html">View Units &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Category 3: Deep Wave -->
+        <div class="category-card">
+          <img src="deepwave.jpg" alt="Deep Curly Collection">
+          <div class="category-label-overlay">
+            <h4>Deep Curly</h4>
+            <a href="shop.html">View Units &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footnote Footer Property Section -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>The Lace Wigs</h4>
+        <p>Providing custom, high-density HD lace frontal and closure units globally. Designed for luxury, durability, and a natural install finish.</p>
+      </div>
+
+      <div class="footer-links">
+        <h5>Customer Care</h5>
+        <ul>
+          <li><a href="shop.html">Browse Catalog</a></li>
+          <li><a href="login.html">Track Order Status</a></li>
+          <li><a href="contact.html">Shipping & Returns Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h5>Get In Touch</h5>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="mailto:info@thelacewigs.com">info@thelacewigs.com</a></li>
+          <li><a href="about.html">Our Story</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 THE LACE WIGS. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      function updateHeaderBadge() {
+        const cart = JSON.parse(localStorage.getItem("lace_wigs_cart")) || [];
+        const badge = document.getElementById("bag-count");
+        if (badge) {
+          badge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+      }
+      updateHeaderBadge();
+    });
+  </script>
+
+</body>
+</html>
