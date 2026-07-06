@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accurate Wig Size Calculator | The Lace Wigs</title>
+    <style>
+        /* Base Styling & Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        body {
+            background-color: #fafafa;
+            color: #111111;
+            padding: 20px;
+        }
+        
+        /* Header Navigation Consistency */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eeeeee;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto 30px auto;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #555555;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Calculator Container Layout */
+        .calculator-container {
+            max-width: 650px;
+            background: #ffffff;
+            margin: 0 auto 40px auto;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        /* Form Inputs */
+        .input-group {
+            margin-bottom: 22px;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: #222;
+        }
+        .helper-text {
+            font-size: 0.82rem;
+            color: #777;
+            margin-top: -4px;
+            margin-bottom: 6px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        input[type="number"]:focus {
+            border-color: #000000;
+        }
+
+        /* Action Buttons */
+        .calculate-btn {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+        .calculate-btn:hover {
+            background-color: #333333;
+        }
+
+        /* Dynamic Result Section */
+        .result-box {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #000000;
+            border-radius: 4px;
+            display: none;
+        }
+        .result-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .size-badge {
+            display: inline-block;
+            background: #000000;
+            color: #ffffff;
+            padding: 6px 14px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .shop-redirect-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: transparent;
+            color: #000000;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .shop-redirect-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* Share / Embed Box for Backlinks */
+        .embed-section {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #f1f1f1;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px dashed #cccccc;
+        }
+        .embed-section h4 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        textarea {
+            width: 100%;
+            height: 60px;
+            padding: 8px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Consistent Navigation Section -->
+    <header>
+        <div class="logo">
+            <h1>The Lace Wigs</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="calculator.html" style="color: #000; font-weight: 600;">Size Guide</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Calculator Widget Application Core -->
+    <main class="calculator-container">
+        <h2>Find Your Perfect Wig Size</h2>
+        <p class="subtitle">Enter your head measurements in inches to pinpoint your exact cap size match instantly.</p>
+        
+        <form id="wigForm" onsubmit="calculateWigSize(event)">
+            <!-- Metric Input 1 -->
+            <div class="input-group">
+                <label for="circumference">1. Head Circumference (Inches)</label>
+                <p class="helper-text">Pull a flexible tape measure from the front hairline, behind your ear, around the nape, and back up.</p>
+                <input type="number" id="circumference" step="0.1" min="18" max="26" placeholder="e.g. 21.5" required>
+            </div>
+
+            <!-- Metric Input 2 -->
+            <div class="input-group">
+                <label for="frontToNape">2. Front to Nape (Inches)</label>
+                <p class="helper-text">Measure from your front hairline straight back over the crown of your head down to the base of your neck.</p>
+                <input type="number" id="frontToNape" step="0.1" min="10" max="17" placeholder="e.g. 14.0" required>
+            </div>
+
+            <!-- Metric Input 3 -->
+            <div class="input-group">
+                <label for="earToEar">3. Ear-to-Ear Across Forehead (Inches)</label>
+                <p class="helper-text">Measure from the hairline directly above one ear, straight across your forehead hairline to the other ear.</p>
+                <input type="number" id="earToEar" step="0.1" min="10" max="15" placeholder="e.g. 11.5" required>
+            </div>
+
+            <button type="submit" class="calculate-btn">Calculate Cap Size</button>
+        </form>
+
+        <!-- Evaluation Results Presentation Interface -->
+        <div id="resultBox" class="result-box">
+            <p class="result-title">Your Recommended Wig Cap Size:</p>
+            <div id="sizeOutput" class="size-badge">Medium</div>
+            <p id="descriptionOutput">Your dimensions match standard industry averages perfectly.</p>
+            <div>
+                <a href="shop.html" class="shop-redirect-btn">Browse Wigs in My Size &rarr;</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Share Widget / Embed Logic Engine to Drive Dynamic Referral Backlinks -->
+    <section class="embed-section">
+        <h4>Love this tool? Share or embed it on your fashion blog:</h4>
+        <textarea id="embedCode" readonly><a href="https://thelacewigs.com">Wig Size Calculator by The Lace Wigs</a></textarea>
+    </section>
+
+    <!-- Calculation Engine Logic Script Section -->
+    <script>
+        function calculateWigSize(event) {
+            event.preventDefault();
+            
+            const circum = parseFloat(document.getElementById('circumference').value);
+            const frontNape = parseFloat(document.getElementById('frontToNape').value);
+            const earEar = parseFloat(document.getElementById('earToEar').value);
+            
+            const resultBox = document.getElementById('resultBox');
+            const sizeOutput = document.getElementById('sizeOutput');
+            const descOutput = document.getElementById('descriptionOutput');
+
+            let size = "Medium (Average)";
+            let explanation = "Your parameters fit the sweet-spot industry layout benchmark matching 90% of custom wig orders.";
+
+            // Standard Industry Wig Sizing Matrix Bounds Evaluation Logic
+            if (circum <= 20.5 || frontNape <= 12.5 || earEar <= 10.5) {
+                size = "Ultra Petite / Kids";
+                explanation = "Your head scale properties fall below normal adult ranges. Look specifically for specialized petite shell dimensions.";
+            } else if (circum > 20.5 && circum <= 21.5 && frontNape <= 13.5 && earEar <= 11.0) {
+                size = "Petite (Small)";
+                explanation = "Your tracking fields are delicate. A small 21-inch cap dimension configuration avoids gaps or loose sliding errors.";
+            } else if (circum > 21.5 && circum <= 22.5) {
+                size = "Average (Medium)";
+                explanation = "Standard off-the-rack layout models will fit your hair boundaries completely clean with standard security straps.";
+            } else if (circum > 22.5) {
