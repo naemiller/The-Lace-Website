@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>#613 Blonde Frontal Unit | Premium Luxury Hair Units</title>
+  <style>
+    /* ==========================================================================
+       1. CORE BRAND DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      --primary: #111111;
+      --secondary: #555555;
+      --accent: #d4af37; /* Luxury Gold */
+      --light-bg: #fdfdfd;
+      --border: #eeeeee;
+      --white: #ffffff;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       2. STICKY HEADER NAVIGATION
+       ========================================================================== */
+    header {
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo h1 {
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--primary);
+    }
+
+    #bag-count {
+      background-color: var(--primary);
+      color: var(--white);
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+      display: inline-block;
+      vertical-align: middle;
+      font-weight: bold;
+    }
+
+    /* ==========================================================================
+       3. PRODUCT SHOWCASE DETAIL GRID
+       ========================================================================== */
+    .product-container {
+      max-width: 1300px;
+      margin: 50px auto 100px;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+    }
+
+    /* Media Gallery System */
+    .gallery-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .main-display {
+      width: 100%;
+      height: 600px;
+      background-color: #f7f7f7;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .main-display img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .thumbnail-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .thumb-card {
+      height: 120px;
+      background-color: #f7f7f7;
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .thumb-card.active, .thumb-card:hover {
+      border-color: var(--primary);
+      opacity: 0.8;
+    }
+
+    .thumb-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Configuration Panel (Right Side) */
+    .details-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--secondary);
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .details-panel h2 {
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    /* Luxury Rating Block */
+    .review-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .star-rating {
+      color: var(--accent);
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .review-metrics {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    .price-tag {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+
+    /* Selection Fields Configuration */
+    .option-group {
+      margin-bottom: 25px;
+    }
+
+    .option-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .option-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .selector-label {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .selector-label input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .selector-box {
+      border: 1px solid var(--border);
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      background-color: var(--white);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .selector-label input:checked + .selector-box {
+      border-color: var(--primary);
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .selector-label:hover .selector-box {
+      border-color: var(--primary);
+    }
+
+    /* Add To Cart Button System */
+    .qty-and-action {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 15px;
+      margin-top: 35px;
+      margin-bottom: 40px;
+    }
+
+    .qty-input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      text-align: center;
+      font-weight: bold;
+      outline: none;
+    }
+
+    .bag-action-btn {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 18px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .bag-action-btn:hover {
+      background-color: var(--accent);
+    }
+
+    /* Description Blocks */
+    .description-block {
+      border-top: 1px solid var(--border);
+      padding-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .description-block p {
+      font-size: 0.95rem;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .spec-list {
+      list-style: none;
+    }
+
+    .spec-list li {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .spec-list li strong {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      width: 120px;
+      color: var(--primary);
+    }
+
+    /* ==========================================================================
+       4. SECURE CHECKOUT TRUST BADGES
+       ========================================================================== */
+    .trust-badge-panel {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .trust-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+    }
+
+    .badge-icon {
+      font-size: 1.5rem;
+    }
+
+    .badge-text {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: var(--secondary);
+    }
+
+    /* ==========================================================================
+       5. RESPONSIVE DESIGN STYLES
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .product-container { grid-template-columns: 1fr; gap: 40px; margin: 30px auto; }
+      .main-display { height: 500px; }
+    }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 15px; padding: 15px; }
+      .product-container { padding: 0 20px; }
+      .main-display { height: 400px; }
+      .thumb-card { height: 90px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Nav Header Wrapper Frame -->
+  <header>
+    <div class="logo">
+      <h1 onclick="window.location.href='index.html'">The Lace Wigs</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="calculator.html">Size Guide</a></li>
+        <li><a href="login.html">Account</a></li>
+        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="product-container">
+    
+    <!-- Left Layout: Media Gallery Stack -->
+    <div class="gallery-wrapper">
+      <div class="main-display">
+        <!-- Main Target Render Image -->
+        <img src="613-main.jpg" alt="#613 Blonde Frontal Unit" id="product-view">
+      </div>
+      <div class="thumbnail-row">
+        <!-- Thumbnail Toggles (Fallback to solid color blocks if images missing) -->
+        <div class="thumb-card active" onclick="swapView('613-main.jpg', this)">
+          <img src="613-main.jpg" alt="View 1" onerror="this.style.backgroundColor='#f4ecd8'">
+        </div>
