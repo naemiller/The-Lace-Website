@@ -85,26 +85,26 @@
         <div class="gallery-panel">
             <div class="gallery-main">
                 <!-- Main Featured Active Image Viewport -->
-                <img id="mainImageDisplay" src="straight.jpg" alt="613 Blonde Straight Wig Main View">
+                <img id="mainImageDisplay" src="613.jpg" alt="613 Blonde Straight Wig Main View">
             </div>
             
             <!-- Thumbnail Collection Grid Tracker -->
             <div class="carousel-thumbnails">
                 <!-- Thumbnail 1 (Main View) -->
-                <div class="thumb-box active-thumb" onclick="swapCarouselView(this, 'straight.jpg')">
-                    <img src="straight.jpg" alt="Front Profile Preview" onerror="this.src='straight.jpg'">
+                <div class="thumb-box active-thumb" onclick="swapCarouselView(this, '613.jpg')">
+                    <img src="613.jpg" alt="Front Profile Preview">
                 </div>
-                <!-- Thumbnail 2 (Replace '613-side.jpg' with your second Firebase or local path string) -->
+                <!-- Thumbnail 2 (Side View Asset Match) -->
                 <div class="thumb-box" onclick="swapCarouselView(this, '613-side.jpg')">
-                    <img src="613-side.jpg" alt="Side Profile Preview" onerror="this.src='straight.jpg'">
+                    <img src="613-side.jpg" alt="Side Profile Preview">
                 </div>
-                <!-- Thumbnail 3 (Replace '613-lace.jpg' with your third image target path) -->
+                <!-- Thumbnail 3 (Lace View Asset Match) -->
                 <div class="thumb-box" onclick="swapCarouselView(this, '613-lace.jpg')">
-                    <img src="613-lace.jpg" alt="Lace HD Grid Close Up" onerror="this.src='straight.jpg'">
+                    <img src="613-lace.jpg" alt="Lace HD Grid Close Up">
                 </div>
-                <!-- Thumbnail 4 (Replace '613-inside.jpg' with your cap interior preview asset) -->
+                <!-- Thumbnail 4 (Cap Interior View Asset Match) -->
                 <div class="thumb-box" onclick="swapCarouselView(this, '613-inside.jpg')">
-                    <img src="613-inside.jpg" alt="Cap Interior Construction View" onerror="this.src='straight.jpg'">
+                    <img src="613-inside.jpg" alt="Cap Interior Construction View">
                 </div>
             </div>
         </div>
@@ -163,3 +163,12 @@
                     <li><strong>Styling Versatility:</strong> Heat safe, customizable free-part layout boundaries</li>
                 </ul>
                 <p style="font-size: 0.9rem; color: #555; line-height: 1.5;">
+                    Achieve a striking look instantly with our processing-ready Platinum 613 Straight Frontal Unit. Hand-tied along a transparent hairline framework, this wig offers flawless blending and a highly natural finish across multiple partitioning paths.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // CAROUSEL VIEWPORTS IMAGE SWAPPING MECHANICS ENGINE
+        function swapCarouselView(clickedThumb, targetSrcPath) {
