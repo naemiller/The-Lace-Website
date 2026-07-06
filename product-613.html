@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StarHair 13"x4" HD Lace Straight 180% Frontal Wig #1B | The Lace Wigs</title>
+  <title>613 Blonde Straight 13x4 Lace Front Wig | The Lace Wigs</title>
   <style>
     /* ==========================================================================
        1. CORE BRAND DESIGN SYSTEM
@@ -11,8 +11,8 @@
     :root {
       --primary: #111111;
       --secondary: #555555;
-      --accent: #d4af37; /* Luxury Premium Gold */
-      --light-bg: #faf7f2;
+      --accent: #d4af37; /* Luxury Gold */
+      --light-bg: #fafafa;
       --border: #eeeeee;
       --white: #ffffff;
       --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -88,204 +88,191 @@
     }
 
     /* ==========================================================================
-       3. PRODUCT DETAILED ARCHITECTURE
+       3. PRODUCT CONTAINER WORKSPACE
        ========================================================================== */
-    .product-container {
-      max-width: 1300px;
+    .product-main-container {
+      max-width: 1200px;
       margin: 40px auto 100px;
-      padding: 0 40px;
+      padding: 0 20px;
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 60px;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 50px;
     }
 
-    /* Media Gallery Array Viewers */
-    .gallery-wrapper {
+    /* Image Gallery Components */
+    .gallery-stack {
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
 
-    .main-display {
+    .main-canvas {
       width: 100%;
-      height: 650px;
-      background-color: #fcfcfc;
+      height: 550px;
+      background-color: var(--light-bg);
       border-radius: 4px;
       overflow: hidden;
     }
 
-    .main-display img {
+    .main-canvas img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: var(--transition);
     }
 
-    .thumbnail-row {
+    .thumb-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
     }
 
-    .thumb-card {
-      height: 120px;
-      background-color: #f7f7f7;
+    .thumb-node {
+      height: 90px;
+      background-color: var(--light-bg);
+      border: 1px solid transparent;
       border-radius: 2px;
       overflow: hidden;
       cursor: pointer;
-      border: 1px solid transparent;
       transition: var(--transition);
     }
 
-    .thumb-card.active, .thumb-card:hover {
+    .thumb-node.active, .thumb-node:hover {
       border-color: var(--primary);
+      opacity: 0.8;
     }
 
-    .thumb-card img {
+    .thumb-node img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    /* Selection Control Panel (Right) */
-    .details-panel {
+    /* Configuration Panel (Right Side) */
+    .config-panel {
       display: flex;
       flex-direction: column;
     }
 
-    .product-vendor {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--secondary);
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .details-panel h2 {
-      font-size: 2rem;
+    .breadcrumb {
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 1px;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+
+    .config-panel h2 {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       line-height: 1.3;
       margin-bottom: 12px;
     }
 
-    /* Luxury Review Block */
-    .review-line {
+    .rating-row {
       display: flex;
       align-items: center;
       gap: 8px;
       margin-bottom: 20px;
     }
 
-    .star-rating {
+    .stars {
       color: var(--accent);
-      font-size: 1rem;
+      font-size: 0.95rem;
       letter-spacing: 1px;
     }
 
-    .review-metrics {
+    .metrics-text {
       font-size: 0.85rem;
       color: var(--secondary);
       font-weight: 500;
     }
 
-    .price-tag {
+    .master-price {
       font-size: 2rem;
       font-weight: bold;
-      margin-bottom: 25px;
       color: var(--primary);
-    }
-
-    /* Target Selector Grids */
-    .option-group {
       margin-bottom: 25px;
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
     }
 
-    .option-title {
+    /* Selection Label Controls */
+    .selector-block {
+      margin-bottom: 24px;
+    }
+
+    .selector-title {
       font-size: 0.75rem;
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      color: var(--primary);
     }
 
-    .option-grid {
+    .options-flex {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .selector-label {
+    .option-label {
       position: relative;
       cursor: pointer;
     }
 
-    .selector-label input {
+    .option-label input {
       position: absolute;
       opacity: 0;
       width: 0;
       height: 0;
     }
 
-    .selector-box {
-      border: 1px solid var(--border);
-      padding: 12px 20px;
+    .option-box {
+      border: 1px solid #dddddd;
+      padding: 10px 18px;
       font-size: 0.85rem;
       text-transform: uppercase;
-      font-weight: bold;
       letter-spacing: 0.5px;
       background-color: var(--white);
       transition: var(--transition);
       border-radius: 2px;
     }
 
-    .selector-label input:checked + .selector-box {
+    .option-label input:checked + .option-box {
       border-color: var(--primary);
       background-color: var(--primary);
       color: var(--white);
     }
 
-    .selector-label:hover .selector-box {
+    .option-label:hover .option-box {
       border-color: var(--primary);
     }
 
-    /* Stock Level Tracking Alert */
-    .stock-alert {
-      font-size: 0.85rem;
-      color: #c0392b;
-      font-weight: bold;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Add To Cart Layout Component */
-    .qty-and-action {
+    /* Add To Bag System Elements */
+    .purchase-row {
       display: grid;
       grid-template-columns: 80px 1fr;
       gap: 15px;
+      margin-top: 30px;
       margin-bottom: 35px;
     }
 
-    .qty-input {
+    .qty-box {
       width: 100%;
-      padding: 15px;
-      border: 1px solid var(--border);
+      padding: 14px;
+      border: 1px solid #dddddd;
       font-size: 1rem;
       text-align: center;
       font-weight: bold;
       outline: none;
     }
 
-    .bag-action-btn {
+    .add-to-bag-btn {
       background-color: var(--primary);
       color: var(--white);
       border: none;
-      padding: 18px;
+      padding: 16px;
       font-size: 0.95rem;
       text-transform: uppercase;
       font-weight: bold;
@@ -295,112 +282,119 @@
       border-radius: 2px;
     }
 
-    .bag-action-btn:hover {
+    .add-to-bag-btn:hover {
       background-color: var(--accent);
     }
 
-    /* Specification Info Accordions */
-    .description-block {
+    /* Informational Notes Layout */
+    .production-note {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      background-color: var(--light-bg);
+      padding: 15px;
+      border-left: 2px solid var(--accent);
+      margin-bottom: 35px;
+    }
+
+    .description-details {
       border-top: 1px solid var(--border);
       padding-top: 25px;
       margin-bottom: 30px;
     }
 
-    .description-block p {
-      font-size: 0.95rem;
-      color: var(--secondary);
-      margin-bottom: 20px;
-      line-height: 1.7;
-    }
-
-    .spec-list {
-      list-style: none;
-    }
-
-    .spec-list li {
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-      display: flex;
-      gap: 10px;
-      border-bottom: 1px solid #fdfdfd;
-      padding-bottom: 4px;
-    }
-
-    .spec-list li strong {
+    .description-details h3 {
+      font-size: 0.85rem;
       text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 0.5px;
-      width: 130px;
-      color: var(--primary);
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .bullet-spec-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .bullet-spec-list li {
+      font-size: 0.9srem;
+      color: var(--secondary);
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .bullet-spec-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .description-details p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      line-height: 1.6;
     }
 
     /* ==========================================================================
-       4. SECURE CHECKOUT TRUST BADGES
+       4. TRUST PROTCOLS BADGES PANEL
        ========================================================================== */
-    .trust-badge-panel {
-      background-color: #fafafa;
-      border: 1px solid var(--border);
-      padding: 25px;
-      border-radius: 4px;
+    .secure-trust-panel {
+      border-top: 1px solid var(--border);
+      padding-top: 30px;
       text-align: center;
-      margin-top: 10px;
     }
 
-    .trust-title {
+    .secure-title {
       font-size: 0.75rem;
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 1px;
-      margin-bottom: 15px;
       color: var(--secondary);
+      margin-bottom: 15px;
     }
 
-    .badge-row {
+    .trust-badges-grid {
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 30px;
+      align-items: center;
       flex-wrap: wrap;
     }
 
-    .badge-item {
+    .badge-node {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
-    .badge-icon {
-      font-size: 1.5rem;
+    .badge-icon-symbol {
+      font-size: 1.4rem;
     }
 
-    .badge-text {
-      font-size: 0.7rem;
+    .badge-label-string {
+      font-size: 0.65rem;
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 0.5px;
       color: var(--secondary);
     }
 
-    /* ==========================================================================
-       5. RESPONSIVE DESIGN STYLES
-       ========================================================================== */
-    @media (max-width: 992px) {
-      .product-container { grid-template-columns: 1fr; gap: 40px; margin: 20px auto; }
-      .main-display { height: 500px; }
+    /* Responsive Logic */
+    @media (max-width: 900px) {
+      .product-main-container { grid-template-columns: 1fr; gap: 40px; margin: 20px auto; }
+      .main-canvas { height: 450px; }
     }
-
     @media (max-width: 768px) {
       header { flex-direction: column; gap: 15px; padding: 15px; }
-      .product-container { padding: 0 20px; }
-      .main-display { height: 400px; }
-      .thumb-card { height: 90px; }
+      .product-main-container { padding: 0 15px; }
+      .thumb-node { height: 70px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Site Nav Header Wrapper Frame -->
+  <!-- Header Section Frame -->
   <header>
     <div class="logo">
       <h1 onclick="window.location.href='index.html'">The Lace Wigs</h1>
@@ -416,11 +410,16 @@
     </nav>
   </header>
 
-  <main class="product-container">
+  <!-- Main Showcase Dashboard Grid -->
+  <main class="product-main-container">
     
-    <!-- Left Column: Image Gallery Viewer Modules -->
-    <div class="gallery-wrapper">
-      <div class="main-display">
-        <!-- Default Live Render Product view -->
-        <img src="613-main.jpg" alt="StarHair #613 Blonde Frontal Wig" id="product-view">
+    <!-- Left Hand: Interactive Multi-Image Canvas Stack -->
+    <div class="gallery-stack">
+      <div class="main-canvas">
+        <img src="613-main.jpg" alt="613 Blonde Straight Wig Main View" id="master-view-node">
       </div>
+      <div class="thumb-grid">
+        <div class="thumb-node active" onclick="swapMasterDisplay('613-main.jpg', this)">
+          <img src="613-main.jpg" alt="Front Profile Preview">
+        </div>
+        <div class="thumb-node" onclick="swapMasterDisplay('613-alt1.jpg', this)">
