@@ -157,6 +157,26 @@ nav a.active {
 .dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; cursor: pointer; } 
 .dot.active { background: var(--accent-color); } 
 
+/* REFINED STAR & COUNT CONTAINER STYLES */
+.review-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+.star-rating {
+  color: #d4af37;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+.review-metrics {
+  font-size: 0.85rem;
+  color: #ffffff; /* Change this to #111111 if your shop background is white */
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+
 .main-layout {
   max-width: 1400px;
   margin: 0 auto;
