@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Silky Straight 13x4 Lace Front Wig | The Lace Wigs</title>
+  <title>Silky Straight 13x4 HD Lace Frontal Wig | The Lace Wigs</title>
+  
+  <!-- STRIPE FRONTEND CHECKOUT SDK MODULE HELPER LAYER -->
+  <script src="https://stripe.com"></script>
+
   <style>
     /* ==========================================================================
        1. CORE BRAND DESIGN SYSTEM
@@ -92,7 +96,7 @@
        ========================================================================== */
     .product-container {
       max-width: 1300px;
-      margin: 50px auto 100px;
+      margin: 50px auto 40px;
       padding: 0 40px;
       display: grid;
       grid-template-columns: 1.2fr 1fr;
@@ -124,12 +128,12 @@
 
     .thumbnail-row {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
     }
 
     .thumb-card {
-      height: 100px;
+      height: 120px;
       background-color: #f7f7f7;
       border-radius: 2px;
       overflow: hidden;
@@ -165,11 +169,11 @@
     }
 
     .details-panel h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      line-height: 1.3;
-      margin-bottom: 12px;
+      line-height: 1.2;
+      margin-bottom: 10px;
     }
 
     /* Luxury Rating Block */
@@ -193,7 +197,7 @@
     }
 
     .price-tag {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       font-weight: bold;
       margin-bottom: 30px;
       color: var(--primary);
@@ -212,21 +216,43 @@
       margin-bottom: 12px;
     }
 
-    .select-dropdown {
-      width: 100%;
-      padding: 14px;
-      font-size: 0.95rem;
-      border: 1px solid var(--border);
-      background-color: var(--white);
-      outline: none;
-      border-radius: 2px;
-      cursor: pointer;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      transition: var(--transition);
+    .option-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .select-dropdown:focus {
+    .selector-label {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .selector-label input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .selector-box {
+      border: 1px solid var(--border);
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      background-color: var(--white);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .selector-label input:checked + .selector-box {
+      border-color: var(--primary);
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .selector-label:hover .selector-box {
       border-color: var(--primary);
     }
 
@@ -274,35 +300,20 @@
       margin-bottom: 30px;
     }
 
-    .notice-banner {
-      font-size: 0.9rem;
-      color: var(--secondary);
-      margin-bottom: 25px;
-      line-height: 1.6;
-    }
-
-    .description-block h3 {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 15px;
-    }
-
     .description-block p {
       font-size: 0.95rem;
       color: var(--secondary);
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       line-height: 1.7;
     }
 
     .spec-list {
       list-style: none;
-      margin-bottom: 30px;
     }
 
     .spec-list li {
       font-size: 0.9rem;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: flex;
       gap: 10px;
     }
@@ -311,13 +322,11 @@
       text-transform: uppercase;
       font-size: 0.75rem;
       letter-spacing: 0.5px;
-      width: 150px;
+      width: 120px;
       color: var(--primary);
     }
 
-    /* ==========================================================================
-       4. SECURE CHECKOUT TRUST BADGES
-       ========================================================================== */
+    /* Secure Checkout Trust Badges */
     .trust-badge-panel {
       background-color: #fafafa;
       border: 1px solid var(--border);
@@ -364,50 +373,81 @@
     }
 
     /* ==========================================================================
-       5. RESPONSIVE DESIGN STYLES
+       4. INTEGRATED IMAGE ATTACHED REVIEWS DISPLAY STYLES
        ========================================================================== */
-    @media (max-width: 992px) {
-      .product-container { grid-template-columns: 1fr; gap: 40px; margin: 30px auto; }
-      .main-display { height: 500px; }
+    .reviews-display-section {
+      max-width: 1200px;
+      margin: 60px auto 100px;
+      padding: 0 40px;
+      border-top: 1px solid var(--border);
+      padding-top: 60px;
     }
 
-    @media (max-width: 768px) {
-      header { flex-direction: column; gap: 15px; padding: 15px; }
-      .product-container { padding: 0 20px; }
-      .main-display { height: 400px; }
-      .thumbnail-row { grid-template-columns: repeat(5, 1fr); }
-      .thumb-card { height: 80px; }
+    .reviews-header-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 45px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 25px;
     }
-  </style>
-</head>
-<body>
 
-  <!-- Site Nav Header Wrapper Frame -->
-  <header>
-    <div class="logo">
-      <h1 onclick="window.location.href='index.html'">The Lace Wigs</h1>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html" class="active">Shop</a></li>
-        <li><a href="calculator.html">Size Guide</a></li>
-        <li><a href="login.html">Account</a></li>
-        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
-      </ul>
-    </nav>
-  </header>
+    .reviews-header-block h3 {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
 
-  <main class="product-container">
-    
-    <!-- Left Layout: Media Gallery Stack -->
-    <div class="gallery-wrapper">
-      <div class="main-display">
-        <!-- Main Target Render Image -->
-        <img src="straight-main.jpg" alt="Silky Straight Wig Main View" id="product-view">
-      </div>
-      <div class="thumbnail-row">
-        <!-- Five Multi-Image Variants matching 613 structural layers -->
-        <div class="thumb-card active" onclick="swapView('straight-main.jpg', this)">
-          <img src="straight-main.jpg" alt="Silky Straight Wig Main View">
-        </div>
+    .master-score-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .score-number {
+      font-size: 2.2rem;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .luxury-stars {
+      color: var(--accent);
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .total-count-label {
+      font-size: 0.85rem;
+      color: var(--secondary);
+    }
+
+    .reviews-masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    .review-card-node {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .review-card-node:hover {
+      transform: translateY(-3px);
+    }
+
+    .card-reviewer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .reviewer-name-string {
+      font-weight: bold;
