@@ -171,7 +171,7 @@
     <main class="shop-container">
         <h2>Luxury Wigs Collection</h2>
         
-        <!-- RESTORED: Stationary, hardcoded product blocks -->
+        <!-- FIXED GRID: Embedded permanent product slots directly inside the structural layout -->
         <div id="shopGrid" class="product-grid">
             
             <!-- Product 1 -->
@@ -257,5 +257,18 @@
         </div>
     </main>
 
+    <!-- Minimal operational layout link connection script to wire button components safely -->
+    <script>
+        // Simple listener logic to count active items clicked
+        let count = 0;
+        const countBadge = document.getElementById("bag-count");
+        
+        document.querySelectorAll(".add-to-bag").forEach(button => {
+            button.addEventListener("click", () => {
+                count++;
+                if (countBadge) countBadge.textContent = count;
+            });
+        });
+    </script>
 </body>
 </html>
