@@ -3,30 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StarHair 13"x4" HD Lace Straight 180% Frontal Wig #1B | The Lace Wigs</title>
+  <title>Silky Straight 13x4 Lace Front Wig | The Lace Wigs</title>
   <style>
     /* ==========================================================================
-       1. CORE BRAND RESET & LOGIC VARIABLES
+       1. CORE BRAND DESIGN SYSTEM
        ========================================================================== */
     :root {
       --primary: #111111;
       --secondary: #555555;
-      --accent: #ab8e64;
-      --gold: #d4af37;
-      --light-bg: #f9f9f9;
+      --accent: #d4af37; /* Luxury Gold */
+      --light-bg: #fdfdfd;
       --border: #eeeeee;
-      --stock-red: #c0392b;
-      --font: 'Helvetica Neue', Arial, sans-serif;
+      --white: #ffffff;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font); }
-    body { background-color: #ffffff; color: var(--primary); line-height: 1.6; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--primary);
+      line-height: 1.6;
+    }
 
     /* ==========================================================================
-       2. NAVIGATION HEADER BAR
+       2. STICKY HEADER NAVIGATION
        ========================================================================== */
     header {
-      background-color: #ffffff;
+      background-color: var(--white);
       border-bottom: 1px solid var(--border);
       padding: 25px 40px;
       display: flex;
@@ -36,134 +46,368 @@
       top: 0;
       z-index: 1000;
     }
-    .logo h1 { font-size: 1.6rem; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-    nav ul { display: flex; list-style: none; gap: 35px; align-items: center; }
-    nav ul li a { text-decoration: none; color: var(--secondary); font-size: 0.95rem; font-weight: 500; }
-    nav ul li a:hover, nav ul li a.active { color: var(--primary); }
-    #bag-count { background-color: var(--primary); color: #ffffff; font-size: 0.75rem; padding: 2px 7px; border-radius: 50%; margin-left: 4px; }
+
+    .logo h1 {
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--primary);
+    }
+
+    #bag-count {
+      background-color: var(--primary);
+      color: var(--white);
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+      display: inline-block;
+      vertical-align: middle;
+      font-weight: bold;
+    }
 
     /* ==========================================================================
-       3. PRODUCT CONTAINER & GALLERY SYSTEM
+       3. PRODUCT SHOWCASE DETAIL GRID
        ========================================================================== */
-    .product-wrapper {
+    .product-container {
       max-width: 1300px;
-      margin: 40px auto;
+      margin: 50px auto 100px;
       padding: 0 40px;
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: 50px;
+      gap: 60px;
     }
-    .gallery-container { display: flex; flex-direction: column; gap: 15px; }
-    .main-image { width: 100%; height: 600px; background-color: var(--light-bg); object-fit: cover; border-radius: 4px; }
-    .thumbnail-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-    .thumb-img { width: 100%; height: 100px; object-fit: cover; cursor: pointer; border: 1px solid transparent; border-radius: 2px; opacity: 0.7; transition: all 0.2s; }
-    .thumb-img:hover, .thumb-img.active { border-color: var(--primary); opacity: 1; }
 
-    /* ==========================================================================
-       4. CONTEXT FIELDS & MULTI-OPTION SELECTION LOGIC
-       ========================================================================== */
-    .details-panel { display: flex; flex-direction: column; }
-    .vendor-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--secondary); margin-bottom: 5px; }
-    .product-title { font-size: 2rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; line-height: 1.3; margin-bottom: 10px; }
-    
-    .rating-block { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
-    .stars { color: var(--gold); letter-spacing: 1px; font-size: 0.95rem; }
-    .metrics { font-size: 0.85rem; color: var(--secondary); font-weight: 500; }
-
-    .price-display { font-size: 1.6rem; font-weight: bold; color: var(--primary); margin-bottom: 25px; }
-    
-    .option-group { margin-bottom: 20px; }
-    .option-label { display: block; font-size: 0.75rem; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 10px; }
-    .pill-box { display: flex; flex-wrap: wrap; gap: 10px; }
-    .pill { padding: 10px 20px; border: 1px solid var(--border); background: none; font-size: 0.9rem; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
-    .pill:hover { border-color: var(--primary); }
-    .pill.active { border-color: var(--primary); background-color: var(--primary); color: #ffffff; font-weight: bold; }
-
-    /* Inventory Status Notification */
-    .stock-counter { font-size: 0.9rem; color: var(--stock-red); font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
-
-    /* Quantity Box Setup */
-    .qty-selector { display: flex; align-items: center; border: 1px solid var(--border); width: 120px; justify-content: space-between; margin-bottom: 20px; }
-    .qty-btn { width: 35px; height: 40px; background: none; border: none; font-size: 1.2rem; cursor: pointer; }
-    .qty-input { width: 50px; text-align: center; border: none; font-size: 1rem; outline: none; }
-
-    /* Action Buttons Row */
-    .action-btn { width: 100%; padding: 16px; font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 2px; margin-bottom: 15px; transition: all 0.2s; }
-    .add-to-bag { background-color: var(--primary); color: #ffffff; border: 1px solid var(--primary); }
-    .add-to-bag:hover { background-color: #333333; }
-
-    /* Trust Seals Banner Layout */
-    .trust-seals-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 0; margin: 25px 0; gap: 10px; text-align: center; }
-    .seal-item h5 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .seal-item p { font-size: 0.8rem; color: var(--secondary); }
-
-    .bullet-specs { list-style-position: inside; font-size: 0.9rem; color: var(--secondary); gap: 8px; display: flex; flex-direction: column; margin-top: 10px; }
-
-    /* ==========================================================================
-       5. SUPPLIER HAIR GRADES COMPARISON TABLE GRID
-       ========================================================================== */
-    .comparison-section { max-width: 1300px; margin: 80px auto; padding: 0 40px; }
-    .comparison-section h3 { text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 40px; }
-    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-    .grade-card { border: 1px solid var(--border); border-radius: 4px; padding: 25px; display: flex; flex-direction: column; }
-    .grade-card.highlight { border-color: var(--accent); background-color: var(--light-bg); }
-    .grade-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-    .grade-subtitle { font-size: 0.8rem; color: var(--secondary); text-transform: uppercase; margin-bottom: 15px; }
-    .grade-price { font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; }
-    .spec-row { margin-bottom: 15px; font-size: 0.85rem; }
-    .spec-row strong { display: block; text-transform: uppercase; font-size: 0.7rem; color: var(--secondary); letter-spacing: 0.5px; margin-bottom: 2px; }
-
-    /* ==========================================================================
-       6. COMPREHENSIVE FOOTER DESIGN SYSTEM
-       ========================================================================== */
-    footer { background-color: var(--primary); color: #ffffff; padding: 60px 40px; margin-top: 100px; }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr repeat(2, 1fr); gap: 50px; }
-    .footer-brand h4 { font-size: 1.3rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
-    .footer-brand p { color: #999999; font-size: 0.95rem; line-height: 1.6; max-width: 400px; }
-    .footer-links h5 { font-size: 0.9rem; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 0.5px; }
-    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-links ul li a { color: #999999; text-decoration: none; font-size: 0.9rem; }
-    .footer-links ul li a:hover { color: #ffffff; }
-    .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 30px; border-top: 1px solid #222222; text-align: center; color: #666666; font-size: 0.85rem; }
-
-    /* ==========================================================================
-       7. RESPONSIVE LAYER
-       ========================================================================== */
-    @media (max-width: 991px) {
-      .product-wrapper { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
-      .main-image { height: 450px; }
-      .comparison-grid { grid-template-columns: 1fr; gap: 30px; }
+    /* Media Gallery System */
+    .gallery-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
+
+    .main-display {
+      width: 100%;
+      height: 600px;
+      background-color: #f7f7f7;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .main-display img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .thumbnail-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .thumb-card {
+      height: 100px;
+      background-color: #f7f7f7;
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .thumb-card.active, .thumb-card:hover {
+      border-color: var(--primary);
+      opacity: 0.8;
+    }
+
+    .thumb-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Configuration Panel (Right Side) */
+    .details-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--secondary);
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .details-panel h2 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    /* Luxury Rating Block */
+    .review-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .star-rating {
+      color: var(--accent);
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .review-metrics {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    .price-tag {
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+
+    /* Selection Fields Configuration */
+    .option-group {
+      margin-bottom: 25px;
+    }
+
+    .option-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .select-dropdown {
+      width: 100%;
+      padding: 14px;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      background-color: var(--white);
+      outline: none;
+      border-radius: 2px;
+      cursor: pointer;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+    }
+
+    .select-dropdown:focus {
+      border-color: var(--primary);
+    }
+
+    /* Add To Cart Button System */
+    .qty-and-action {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 15px;
+      margin-top: 35px;
+      margin-bottom: 40px;
+    }
+
+    .qty-input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      text-align: center;
+      font-weight: bold;
+      outline: none;
+    }
+
+    .bag-action-btn {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 18px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .bag-action-btn:hover {
+      background-color: var(--accent);
+    }
+
+    /* Description Blocks */
+    .description-block {
+      border-top: 1px solid var(--border);
+      padding-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .notice-banner {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .description-block h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .description-block p {
+      font-size: 0.95rem;
+      color: var(--secondary);
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .spec-list {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .spec-list li {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .spec-list li strong {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      width: 150px;
+      color: var(--primary);
+    }
+
+    /* ==========================================================================
+       4. SECURE CHECKOUT TRUST BADGES
+       ========================================================================== */
+    .trust-badge-panel {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .trust-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+    }
+
+    .badge-icon {
+      font-size: 1.5rem;
+    }
+
+    .badge-text {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: var(--secondary);
+    }
+
+    /* ==========================================================================
+       5. RESPONSIVE DESIGN STYLES
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .product-container { grid-template-columns: 1fr; gap: 40px; margin: 30px auto; }
+      .main-display { height: 500px; }
+    }
+
     @media (max-width: 768px) {
       header { flex-direction: column; gap: 15px; padding: 15px; }
-      .footer-content { grid-template-columns: 1fr; gap: 30px; }
+      .product-container { padding: 0 20px; }
+      .main-display { height: 400px; }
+      .thumbnail-row { grid-template-columns: repeat(5, 1fr); }
+      .thumb-card { height: 80px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Site Navigation Header -->
+  <!-- Site Nav Header Wrapper Frame -->
   <header>
-    <div class="logo"><h1>The Lace Wigs</h1></div>
+    <div class="logo">
+      <h1 onclick="window.location.href='index.html'">The Lace Wigs</h1>
+    </div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="calculator.html">Size Guide</a></li>
         <li><a href="login.html">Account</a></li>
-        <li><a href="contact.html">Contact</a></li>
         <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <!-- Product Profile Details Matrix Grid Section -->
-    <section class="product-wrapper">
-      
-      <!-- Left Side Presentation Gallery Components -->
-      <div class="gallery-container">
-        <img src="blkstraight.jpg" id="viewport-display" class="main-image" alt="13x4 HD Lace Frontal Wig Straight">
-        <div class="thumbnail-grid">
-          <img src="straight.jpg" class="thumb-img active" onclick="swapImage(this)" alt="View 1">
-          <img src="straight-2.jpg" class="thumb-img" onclick="swapImage(this)" alt="View 2">
-          <img src="straight-3.jpg" class="thumb-img" onclick="swapImage(this)" alt="View 3">
+  <main class="product-container">
+    
+    <!-- Left Layout: Media Gallery Stack -->
+    <div class="gallery-wrapper">
+      <div class="main-display">
+        <!-- Main Target Render Image -->
+        <img src="straight-main.jpg" alt="Silky Straight Wig Main View" id="product-view">
+      </div>
+      <div class="thumbnail-row">
+        <!-- Five Multi-Image Variants matching 613 structural layers -->
+        <div class="thumb-card active" onclick="swapView('straight-main.jpg', this)">
+          <img src="straight-main.jpg" alt="Silky Straight Wig Main View">
+        </div>
