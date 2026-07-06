@@ -150,7 +150,6 @@
     </style>
 </head>
 <body>
-
     <!-- Site Nav Header -->
     <header>
         <div class="logo">
@@ -170,7 +169,6 @@
     <!-- Product Catalog Frame Area -->
     <main class="shop-container">
         <h2>Luxury Wigs Collection</h2>
-        
         <div id="shopGrid" class="product-grid">
             
             <!-- Product 1 -->
@@ -213,41 +211,32 @@
                 <button class="add-to-bag" data-id="w4" data-name="Water Wave Transparent Wig" data-price="270">Add to Bag</button>
             </div>
 
-
-                <h4>Water Wave Transparent Wig</h4>
-                <p class="price">$340</p>
-                <button class="add-to-bag" data-id="w4" data-name="613 HD Lace Straight Unit" data-price="340">Add to Bag</button>
-            </div>
+            <!-- Product 5 (FIXED: Perfectly matches the stationary grid of cards 1-4) -->
+            <div class="product-card">
+                <a href="product-613.html" style="text-decoration: none; display: block;">
+                    <div class="product-image-wrapper">
+                        <img src="613.jpg" alt="613 Blonde Straight 13x4 Lace Front Wig" onerror="this.src='straight.jpg'">
+                    </div>
                 </a>
                 <h4>613 Blonde Straight 13x4 Lace Front 100% Human Hair Wig</h4>
-                
-                <!-- Custom Specifications Configuration Group -->
-                <div class="config-options-box" style="text-align: left; margin-bottom: 15px; font-size: 0.85rem;">
-                    
-                    <!-- Length Options -->
-                    <div style="margin-bottom: 8px;">
-                        <label style="font-weight: 500; display: block; margin-bottom: 3px;">Length:</label>
-                        <select class="widget-length-select" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; background: #fff;">
-                            <option value="14" data-addon="0">14" (Base Selection)</option>
-                            <option value="18" data-addon="40">18" (+$40)</option>
-                            <option value="22" data-addon="80">22" (+$80)</option>
-                            <option value="26" data-addon="120">26" (+$120)</option>
-                        </select>
-                    </div>
+                <p class="price">$340</p>
+                <button class="add-to-bag" data-id="w5" data-name="613 HD Lace Straight Unit" data-price="340">Add to Bag</button>
+            </div>
 
-                    <!-- Density Customizer Step -->
-                    <div style="margin-bottom: 8px;">
-                        <label style="font-weight: 500; display: block; margin-bottom: 3px;">Density:</label>
-                        <select class="widget-density-select" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; background: #fff;">
-                            <option value="130" data-addon="0">130% Density</option>
-                            <option value="150" data-addon="35">150% Density (+$35)</option>
-                            <option value="180" data-addon="70">180% Density (+$70)</option>
-                        </select>
-                    </div>
+        </div>
+    </main>
 
-                    <!-- Cap Size Property Match Selection -->
-                    <div>
-                        <label style="font-weight: 500; display: block; margin-bottom: 3px;">Cap Size:</label>
-                        <select class="widget-cap-select" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; background: #fff;">
-                            <option value="Small">Small - 21.5"</option>
-                            <option value="Medium">Medium - 22.5"</option>
+    <!-- Minimal operational layout link connection script to wire button components safely -->
+    <script>
+        // Simple listener logic to count active items clicked
+        let count = 0;
+        const countBadge = document.getElementById("bag-count");
+        document.querySelectorAll(".add-to-bag").forEach(button => {
+            button.addEventListener("click", () => {
+                count++;
+                if (countBadge) countBadge.textContent = count;
+            });
+        });
+    </script>
+</body>
+</html>
