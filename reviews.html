@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews | The Lace Wigs</title>
+  <style>
+    /* ==========================================================================
+       1. CORE BRAND DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      --primary: #111111;
+      --secondary: #555555;
+      --accent: #d4af37; /* Luxury Gold */
+      --light-bg: #fafafa;
+      --border: #eeeeee;
+      --white: #ffffff;
+      --success: #27ae60;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       2. STICKY HEADER NAVIGATION
+       ========================================================================== */
+    header {
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo h1 {
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--primary);
+    }
+
+    #bag-count {
+      background-color: var(--primary);
+      color: var(--white);
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+      display: inline-block;
+      vertical-align: middle;
+      font-weight: bold;
+    }
+
+    /* ==========================================================================
+       3. REVIEWS DASHBOARD MASTER GRID
+       ========================================================================= */
+    .reviews-container {
+      max-width: 1200px;
+      margin: 60px auto 100px;
+      padding: 0 20px;
+    }
+
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 30px;
+      margin-bottom: 50px;
+    }
+
+    .reviews-header h2 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .score-summary-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-align: right;
+    }
+
+    .big-score {
+      font-size: 3rem;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .summary-stars-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .stars-display {
+      color: var(--accent);
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+
+    .count-label {
+      font-size: 0.85rem;
+      color: var(--secondary);
+    }
+
+    /* Customer Media Gallery Sub-Grid */
+    .customer-gallery-section {
+      margin-bottom: 60px;
+    }
+
+    .customer-gallery-section h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .gallery-masonry-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .gallery-img-wrapper {
+      height: 220px;
+      border-radius: 4px;
+      overflow: hidden;
+      background-color: var(--light-bg);
+      border: 1px solid var(--border);
+    }
+
+    .gallery-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-img-wrapper:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Master Review Cards List Layout */
+    .reviews-feed-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .master-review-card {
+      background-color: var(--light-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr 2.5fr auto;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .reviewer-identity-box h4 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .verified-badge {
+      color: var(--success);
+      font-size: 0.75rem;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .purchased-unit-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--secondary);
+      background-color: #f0f0f0;
+      padding: 4px 10px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .review-text-column .stars-row {
+      color: var(--accent);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .review-text-column p {
+      font-size: 0.95rem;
+      color: #222222;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* Inline review thumbnail attachment layout styles */
+    .review-inline-images {
+      display: flex;
+      gap: 12px;
+    }
+
+    .review-attached-thumb {
+      width: 80px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 2px;
+      border: 1px solid var(--border);
+      background-color: var(--white);
+    }
+
+    .review-date-stamp {
+      font-size: 0.85rem;
+      color: var(--secondary);
+    }
+
+    /* ==========================================================================
+       4. FOOTER DESIGN SYSTEM
+       ========================================================================== */
+    footer {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 60px 40px;
+      margin-top: 100px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(2, 1fr);
+      gap: 50px;
+    }
+
+    .footer-brand h4 {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .footer-brand p {
+      color: #999999;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 400px;
+    }
+
+    .footer-links h5 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links ul li a {
+      color: #999999;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links ul li a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 30px;
+      border-top: 1px solid #222222;
+      text-align: center;
+      color: #666666;
+      font-size: 0.85rem;
+    }
+
+    /* Responsive Adaptation Configs */
+    @media (max-width: 900px) {
+      .master-review-card { grid-template-columns: 1fr; gap: 20px; }
+      .reviews-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+      .score-summary-block { text-align: left; }
+      .summary-stars-column { align-items: flex-start; }
+      .footer-content { grid-template-columns: 1fr; gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Nav Header Wrapper Frame -->
+  <header>
+    <div class="logo">
+      <h1 onclick="window.location.href='index.html'">The Lace Wigs</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="reviews.html" class="active">Reviews</a></li>
+        <li><a href="login.html">Track Order</a></li>
+        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="reviews-container">
+    
+    <div class="reviews-header">
+      <h2>Verified Customer Feedback</h2>
+      <div class="score-summary-block">
+        <div class="big-score">4.9</div>
+        <div class="summary-stars-column">
+          <div class="stars-display">★★★★★</div>
+          <span class="count-label" id="master-counter-string">Loading review counts...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section A: Top Customer Image Showcase Matrix -->
+    <div class="customer-gallery-section">
+      <h3>Customer Lookbook Photo Stream</h3>
+      <div class="gallery-masonry-row" id="photo-stream-target">
+        <!-- Rendered by initialization loop -->
+      </div>
+    </div>
+
+    <!-- Section B: Combined Master Reviews Card Stack Feed -->
+    <div class="reviews-feed-stack" id="master-feed-target">
+      <!-- Rendered by database loop -->
+    </div>
+
+  </main>
+
+  <!-- Footnote Footer Property Section -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>The Lace Wigs</h4>
+        <p>Providing custom, high-density HD lace frontal and closure units globally. Designed for luxury, durability, and a natural install finish.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Customer Care</h5>
+        <ul>
+          <li><a href="shop.html">Browse Catalog</a></li>
+          <li><a href="login.html">Track Order Status</a></li>
+          <li><a href="contact.html">Shipping & Returns Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Get In Touch</h5>
+        <ul>
