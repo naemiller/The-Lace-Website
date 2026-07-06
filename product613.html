@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>613 Blonde Straight 13x4 Lace Front Wig | The Lace Wigs</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #fafafa; color: #111111; }
+        
+        /* Navigation Consistency */
+        header {
+            background-color: #ffffff; border-bottom: 1px solid #eeeeee; padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo h1 { font-size: 1.5rem; letter-spacing: 1px; text-transform: uppercase; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav ul li a { text-decoration: none; color: #555555; font-size: 0.95rem; font-weight: 500; }
+        #bag-count { background-color: #000000; color: #ffffff; font-size: 0.75rem; padding: 2px 7px; border-radius: 50%; margin-left: 4px; display: inline-block; }
+
+        /* Symmetrical Product Page Grid Layout */
+        .product-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: flex; gap: 50px; }
+        
+        /* CAROUSEL PANEL SPECIFIC STYLING */
+        .gallery-panel { flex: 1.2; position: sticky; top: 100px; height: fit-content; }
+        .gallery-main { width: 100%; aspect-ratio: 1/1; background-color: #f0f0f0; border-radius: 6px; overflow: hidden; margin-bottom: 15px; border: 1px solid #eeeeee; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s ease; }
+        
+        /* Thumbnail Track Navigation Grid */
+        .carousel-thumbnails { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .thumb-box { aspect-ratio: 1/1; background-color: #f0f0f0; border-radius: 4px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: all 0.2s ease; }
+        .thumb-box img { width: 100%; height: 100%; object-fit: cover; }
+        .thumb-box:hover { opacity: 0.8; }
+        .thumb-box.active-thumb { border-color: #000000; }
+        
+        /* Right Side Buying Interface */
+        .info-panel { flex: 1; }
+        .brand-sub { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 5px; }
+        h2 { font-size: 2.2rem; font-weight: 600; line-height: 1.2; margin-bottom: 15px; }
+        .price-tag { font-size: 1.8rem; font-weight: bold; margin-bottom: 25px; color: #000; }
+        
+        /* Interactive Input Configuration Elements */
+        .selector-group { margin-bottom: 20px; }
+        .selector-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        select { width: 100%; padding: 12px; border: 1px solid #cccccc; border-radius: 4px; font-size: 1rem; background: #fff; outline: none; }
+        select:focus { border-color: #000; }
+        
+        /* Conversion Buttons and Shipping Information */
+        .add-to-cart-btn { background-color: #000000; color: #ffffff; border: none; width: 100%; padding: 16px; font-size: 1rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; margin-bottom: 15px; }
+        .add-to-cart-btn:hover { background-color: #333333; }
+        
+        .shipping-pill { background-color: #f5f5f5; padding: 12px; border-radius: 4px; font-size: 0.85rem; color: #444; line-height: 1.4; margin-bottom: 30px; border-left: 3px solid #000; }
+        
+        /* Informational Accordion Details */
+        .details-section { border-top: 1px solid #eeeeee; padding-top: 25px; margin-top: 25px; }
+        .details-section h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .details-section ul { list-style-position: inside; font-size: 0.95rem; color: #333; line-height: 1.6; }
+        .details-section ul li { margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .product-container { flex-direction: column; }
+            .gallery-panel { position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><h1>The Lace Wigs</h1></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="calculator.html">Size Guide</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-container">
+        
+        <!-- MULTIPLE IMAGE INTERACTIVE CAROUSEL TRACK -->
+        <div class="gallery-panel">
+            <div class="gallery-main">
+                <!-- Main Featured Active Image Viewport -->
+                <img id="mainImageDisplay" src="straight.jpg" alt="613 Blonde Straight Wig Main View">
+            </div>
+            
+            <!-- Thumbnail Collection Grid Tracker -->
+            <div class="carousel-thumbnails">
+                <!-- Thumbnail 1 (Main View) -->
+                <div class="thumb-box active-thumb" onclick="swapCarouselView(this, 'straight.jpg')">
+                    <img src="straight.jpg" alt="Front Profile Preview" onerror="this.src='straight.jpg'">
+                </div>
+                <!-- Thumbnail 2 (Replace '613-side.jpg' with your second Firebase or local path string) -->
+                <div class="thumb-box" onclick="swapCarouselView(this, '613-side.jpg')">
+                    <img src="613-side.jpg" alt="Side Profile Preview" onerror="this.src='straight.jpg'">
+                </div>
+                <!-- Thumbnail 3 (Replace '613-lace.jpg' with your third image target path) -->
+                <div class="thumb-box" onclick="swapCarouselView(this, '613-lace.jpg')">
+                    <img src="613-lace.jpg" alt="Lace HD Grid Close Up" onerror="this.src='straight.jpg'">
+                </div>
+                <!-- Thumbnail 4 (Replace '613-inside.jpg' with your cap interior preview asset) -->
+                <div class="thumb-box" onclick="swapCarouselView(this, '613-inside.jpg')">
+                    <img src="613-inside.jpg" alt="Cap Interior Construction View" onerror="this.src='straight.jpg'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Purchase Interaction Configuration Section -->
+        <div class="info-panel" id="productCardFrame" data-base-price="320">
+            <p class="brand-sub">Luxury Wigs Collection</p>
+            <h2>613 Blonde Straight 13x4 Lace Front 100% Human Hair Wig</h2>
+            <div class="price-tag" id="dynamicProductPrice">$320</div>
+
+            <form id="purchaseForm" onsubmit="event.preventDefault();">
+                <div class="selector-group">
+                    <label for="wigLength">Select Length</label>
+                    <select id="wigLength">
+                        <option value="14" data-addon="0">14" (Base Selection)</option>
+                        <option value="16" data-addon="20">16" (+$20)</option>
+                        <option value="18" data-addon="40">18" (+$40)</option>
+                        <option value="20" data-addon="60">20" (+$60)</option>
+                        <option value="22" data-addon="80">22" (+$80)</option>
+                        <option value="24" data-addon="100">24" (+$100)</option>
+                        <option value="26" data-addon="120">26" (+$120)</option>
+                    </select>
+                </div>
+
+                <div class="selector-group">
+                    <label for="wigDensity">Select Density</label>
+                    <select id="wigDensity">
+                        <option value="130" data-addon="0">130% Lightweight Density</option>
+                        <option value="150" data-addon="35">150% Natural Volume (+$35)</option>
+                        <option value="180" data-addon="70">180% Full Glam Volume (+$70)</option>
+                    </select>
+                </div>
+
+                <div class="selector-group">
+                    <label for="wigCap">Select Cap Size</label>
+                    <select id="wigCap">
+                        <option value="Small - 21.5">Small (21.5" Fit)</option>
+                        <option value="Medium - 22.5">Medium (22.5" Fit)</option>
+                        <option value="Large - 23.5">Large (23.5" Fit)</option>
+                    </select>
+                </div>
+
+                <button type="button" class="add-to-cart-btn" id="addToBagBtn" data-id="w5" data-name="613 Blonde Straight Wig" data-price="320">Add to Bag</button>
+            </form>
+
+            <div class="shipping-pill">
+                ✦ <strong>Made to Order</strong> — Custom processed and ships out via tracked channels straight to your address within 5–7 business days. Free standard processing applies to orders over $99!
+            </div>
+
+            <div class="details-section">
+                <h3>About This Hair Unit</h3>
+                <ul style="margin-bottom: 20px;">
+                    <li><strong>Hair Grade:</strong> 100% Remy Human Virgin Hair</li>
+                    <li><strong>Color Hue:</strong> Clean #613 Platinum Ash Blonde Tone</li>
+                    <li><strong>Lace Construction:</strong> 13x4 Undetectable Transparent Swiss Base</li>
+                    <li><strong>Styling Versatility:</strong> Heat safe, customizable free-part layout boundaries</li>
+                </ul>
+                <p style="font-size: 0.9rem; color: #555; line-height: 1.5;">
