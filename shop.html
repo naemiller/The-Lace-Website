@@ -1,129 +1,296 @@
-<!-- Load core modular scripts through secure browser channels -->
-<script type="module">
-  // 1. FIXED PATHS: Points to official, live Firebase CDN files
-  import { initializeApp } from "https://gstatic.com";
-  import { getFirestore, collection, getDocs } from "https://gstatic.com";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | The Lace Website</title>
+    <style>
+        /* Reset & Base Typography Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        body {
+            background-color: #fafafa;
+            color: #111111;
+        }
+        /* Navigation Bar Design */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eeeeee;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #555555;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: #000000;
+        }
+        #bag-count {
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 2px 7px;
+            border-radius: 50%;
+            margin-left: 4px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Layout Content Header */
+        .shop-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .shop-container h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        /* The Strict 4-Column Responsive Grid Layout */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            min-height: 300px;
+        }
+        /* Individual Product Card Box Styling */
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        }
+        .product-image-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .product-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-card h4 {
+            font-size: 0.95rem;
+            color: #222222;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        .product-card .price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+        .product-card .add-to-bag {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+        }
+        .product-card .add-to-bag:hover {
+            background-color: #333333;
+        }
+        /* Interactive Pagination Controls Element Styling */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 50px auto 20px;
+        }
+        .page-btn, .page-number {
+            background-color: #ffffff;
+            color: #000000;
+            border: 1px solid #dcdcdc;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .page-btn:disabled {
+            border-color: #e5e5e5;
+            color: #cccccc;
+            cursor: not-allowed;
+        }
+        .page-number.active {
+            background-color: #000000;
+            border-color: #000000;
+            color: #ffffff;
+        }
+        .loading-text {
+            text-align: center;
+            grid-column: span 4;
+            font-size: 1.2rem;
+            color: #666;
+            padding: 40px;
+        }
+        /* Screen Breakpoints for Responsive Mobile Execution */
+        @media (max-width: 1024px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .product-grid { grid-template-columns: repeat(1, 1fr); }
+        }
+    </style>
+</head>
+<body>
 
-  // 2. FIXED CONFIG: Formatted target authDomain and databaseURL locations
-  const firebaseConfig = {
-    apiKey: "AIzaSyCkzgI6bFXO8ukneBoImXSJyMNxRNIEhDI",
-    authDomain: "thelacewigs-f46a5.firebaseapp.com",
-    databaseURL: "https://firebaseio.com",
-    projectId: "thelacewigs-f46a5",
-    storageBucket: "thelacewigs-f46a5.firebasestorage.app",
-    messagingSenderId: "1004049108512",
-    appId: "1:1004049108512:web:4ec7cdf3e2cf683f183645"
-  };
-
-  // Instantiate client connection tokens
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const shopGrid = document.getElementById("shopGrid");
-  const loaderStateText = document.getElementById("loaderStateText");
-  const paginationBox = document.getElementById("paginationBox");
-  const pageNumbersSpan = document.getElementById("pageNumbers");
-  const prevBtn = document.getElementById("prevPage");
-  const nextBtn = document.getElementById("nextPage");
-
-  let allProducts = [];
-  let currentPage = 1;
-  const itemsPerPage = 12;
-
-  async function loadCatalog() {
-    try {
-      const querySnapshot = await getDocs(collection(db, "products"));
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        allProducts.push({
-          id: doc.id,
-          name: data.name || "Luxury Hair Unit",
-          price: data.price !== undefined ? data.price : "0", 
-          imageUrl: data.imageUrl || "straight.jpg"
-        });
-      });
-
-      if (allProducts.length === 0) {
-        shopGrid.innerHTML = '<div class="loading-text">Connected to Firebase! But your collection has no documents inside it yet.</div>';
-        return;
-      }
-
-      if (loaderStateText) loaderStateText.remove();
-      renderPaginationControls();
-      showPage(1);
-    } catch (err) {
-      console.error("DATABASE API FAILURE: ", err);
-      shopGrid.innerHTML = '<div class="loading-text" style="color:red;">Error loading items. Make sure your Firestore rules allow public reads.</div>';
-    }
-  }
-
-  function renderPaginationControls() {
-    const totalPages = Math.ceil(allProducts.length / itemsPerPage);
-    pageNumbersSpan.innerHTML = "";
-
-    if (totalPages <= 1) {
-      paginationBox.style.display = "none";
-      return;
-    }
-
-    paginationBox.style.display = "flex";
-
-    for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
-      btn.className = `page-number ${i === 1 ? 'active' : ''}`;
-      btn.textContent = i;
-      btn.setAttribute("data-target", i);
-      btn.addEventListener("click", () => showPage(i));
-      pageNumbersSpan.appendChild(btn);
-    }
-
-    prevBtn.onclick = () => {
-      if (currentPage > 1) showPage(currentPage - 1);
-    };
-    nextBtn.onclick = () => {
-      if (currentPage < totalPages) showPage(currentPage + 1);
-    };
-  }
-
-  function showPage(page) {
-    currentPage = page;
-    shopGrid.innerHTML = "";
-
-    // Highlight the active page number button
-    document.querySelectorAll('.page-number').forEach(btn => {
-      if (parseInt(btn.getAttribute('data-target')) === page) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-
-    // Control structural navigation button visibility bounds
-    const totalPages = Math.ceil(allProducts.length / itemsPerPage);
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
-
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const pageItems = allProducts.slice(startIndex, endIndex);
-
-    pageItems.forEach(product => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      card.innerHTML = `
-        <div class="product-image-wrapper">
-          <img src="${product.imageUrl}" alt="${product.name}" onerror="this.src='straight.jpg'">
+    <!-- Site Nav Header -->
+    <header>
+        <div class="logo">
+            <h1>The Lace Wigs</h1>
         </div>
-        <h4>${product.name}</h4>
-        <p class="price">$${product.price}</p>
-        <button class="add-to-bag" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Bag</button>
-      `;
-      shopGrid.appendChild(card);
-    });
-  } // FIXED SYNTAX: Properly closes the showPage function parameters
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="login.html">Account</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
 
-  // 3. FIXED TRIGGER: Explicitly run the database collection request routine
-  loadCatalog();
-</script>
-</body>
-</html>
+    <!-- Product Catalog Frame Area -->
+    <main class="shop-container">
+        <h2>Luxury Wigs Collection</h2>
+        <div id="shopGrid" class="product-grid">
+            <!-- Products get injected here automatically -->
+        </div>
+
+        <div class="pagination-container" id="paginationBox">
+            <button class="page-btn" id="prevPage" disabled>&laquo; Previous</button>
+            <span id="pageNumbers"></span>
+            <button class="page-btn" id="nextPage">Next &raquo;</button>
+        </div>
+    </main>
+
+    <!-- Standard Client Side Local Script Block -->
+    <script>
+        // ORIGINAL STATIC INVENTORY: Hardcoded product data array
+        const allProducts = [
+            { id: "w1", name: "Straight Luxury Unit", price: "250", imageUrl: "straight.jpg" },
+            { id: "w2", name: "Body Wave HD Lace Wig", price: "280", imageUrl: "straight.jpg" },
+            { id: "w3", name: "Deep Wave Lace Front", price: "295", imageUrl: "straight.jpg" },
+            { id: "w4", name: "Water Wave Transparent Wig", price: "270", imageUrl: "straight.jpg" },
+            { id: "w5", name: "613 Blonde Straight Unit", price: "320", imageUrl: "straight.jpg" },
+            { id: "w6", name: "Loose Deep Luxury Lace", price: "285", imageUrl: "straight.jpg" },
+            { id: "w7", name: "Kinky Curly Glueless Wig", price: "290", imageUrl: "straight.jpg" },
+            { id: "w8", name: "Bob Cut Closure Wig", price: "190", imageUrl: "straight.jpg" }
+        ];
+
+        const shopGrid = document.getElementById("shopGrid");
+        const paginationBox = document.getElementById("paginationBox");
+        const pageNumbersSpan = document.getElementById("pageNumbers");
+        const prevBtn = document.getElementById("prevPage");
+        const nextBtn = document.getElementById("nextPage");
+
+        let currentPage = 1;
+        const itemsPerPage = 12;
+
+        function initCatalog() {
+            renderPaginationControls();
+            showPage(1);
+        }
+
+        function renderPaginationControls() {
+            const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+            pageNumbersSpan.innerHTML = "";
+
+            if (totalPages <= 1) {
+                paginationBox.style.display = "none";
+                return;
+            }
+
+            paginationBox.style.display = "flex";
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement("button");
+                btn.className = `page-number ${i === 1 ? 'active' : ''}`;
+                btn.textContent = i;
+                btn.setAttribute("data-target", i);
+                btn.addEventListener("click", () => showPage(i));
+                pageNumbersSpan.appendChild(btn);
+            }
+
+            prevBtn.onclick = () => {
+                if (currentPage > 1) showPage(currentPage - 1);
+            };
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) showPage(currentPage + 1);
+            };
+        }
+
+        function showPage(page) {
+            currentPage = page;
+            shopGrid.innerHTML = "";
+
+            // Highlight active page number button
+            document.querySelectorAll('.page-number').forEach(btn => {
+                if (parseInt(btn.getAttribute('data-target')) === page) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageItems = allProducts.slice(startIndex, endIndex);
+
+            pageItems.forEach(product => {
