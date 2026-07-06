@@ -7,120 +7,83 @@
   
   <style>
     /* ==========================================================================
-       1. BRAND IDENTITY VARIABLES & ROOT CONFIGURATION
+       1. CORE RESET & VARIABLES
        ========================================================================== */
     :root {
-      /* Brand Color Palette */
-      --color-primary: #111111;
-      --color-secondary: #555555;
-      --color-muted: #777777;
-      --color-light-gray: #eeeeee;
-      --color-bg-light: #fcfcfc;
-      --color-bg-pure: #ffffff;
-      --color-accent-badge: #000000;
-      --color-overlay-dark: rgba(0, 0, 0, 0.45);
-      --color-overlay-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
-      
-      /* Typography System */
-      --font-primary: 'Helvetica Neue', Arial, sans-serif;
-      --tracking-wide: 3px;
-      --tracking-medium: 1.5px;
-      --tracking-tight: 0.5px;
-      
-      /* Structural Properties */
-      --header-height: 85px;
-      --max-width-container: 1280px;
-      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --border-radius-badge: 20px;
+      --primary-color: #111111;
+      --secondary-color: #555555;
+      --light-gray: #f9f9f9;
+      --border-color: #eeeeee;
+      --accent-color: #000000;
+      --white: #ffffff;
+      --font-stack: 'Helvetica Neue', Arial, sans-serif;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* ==========================================================================
-       2. GLOBAL RESET & BASE LAYOUT SYSTEM
-       ========================================================================== */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: var(--font-primary);
+      font-family: var(--font-stack);
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    html, body {
-      background-color: var(--color-bg-pure);
-      color: var(--color-primary);
-      scroll-behavior: smooth;
+    body {
+      background-color: var(--white);
+      color: var(--primary-color);
       overflow-x: hidden;
-      width: 100%;
-    }
-
-    /* Utility Layout Components */
-    .container {
-      width: 100%;
-      max-width: var(--max-width-container);
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: var(--transition-smooth);
+      line-height: 1.6;
     }
 
     /* ==========================================================================
-       3. NAVIGATION & HEADER DESIGN LAYOUT
+       2. NAVIGATION HEADER BAR
        ========================================================================== */
     header {
-      background-color: var(--color-bg-pure);
-      border-bottom: 1px solid var(--color-light-gray);
-      height: var(--header-height);
-      position: sticky;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      transition: var(--transition-smooth);
-    }
-
-    .header-wrapper {
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border-color);
+      padding: 25px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo h1 {
-      font-size: 1.45rem;
-      letter-spacing: var(--tracking-wide);
+      font-size: 1.6rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      font-weight: 700;
-      user-select: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
     }
 
     nav ul {
       display: flex;
       list-style: none;
-      gap: 32px;
+      gap: 35px;
       align-items: center;
     }
 
     nav ul li a {
-      color: var(--color-secondary);
-      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--secondary-color);
+      font-size: 0.95rem;
       font-weight: 500;
-      letter-spacing: var(--tracking-tight);
-      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
       position: relative;
-      padding: 6px 0;
+      padding: 5px 0;
+    }
+
+    nav ul li a:hover, 
+    nav ul li a.active {
+      color: var(--primary-color);
     }
 
     nav ul li a::after {
@@ -130,139 +93,117 @@
       left: 0;
       width: 0;
       height: 1px;
-      background-color: var(--color-primary);
-      transition: var(--transition-smooth);
+      background-color: var(--primary-color);
+      transition: var(--transition);
     }
 
-    nav ul li a:hover::after, 
+    nav ul li a:hover::after,
     nav ul li a.active::after {
       width: 100%;
     }
 
-    nav ul li a:hover, 
-    nav ul li a.active {
-      color: var(--color-primary);
-    }
-
-    /* Shopping Bag Total Badge Tracking Bubble */
-    .bag-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
+    /* Shopping Bag Notification Total Badge Tracking Node Bubble */
     #bag-count {
-      background-color: var(--color-accent-badge);
-      color: var(--color-bg-pure);
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: var(--border-radius-badge);
+      background-color: var(--accent-color);
+      color: var(--white);
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
       display: inline-block;
-      transition: var(--transition-smooth);
-    }
-
-    .bag-link:hover #bag-count {
-      transform: scale(1.1);
+      vertical-align: middle;
+      font-weight: bold;
     }
 
     /* ==========================================================================
-       4. HERO BANNER CONFIGURATION
+       3. HERO BANNER CONFIGURATION
        ========================================================================== */
     .hero-banner {
       width: 100%;
-      height: calc(85vh - var(--header-height));
-      min-height: 500px;
-      background: linear-gradient(var(--color-overlay-dark), var(--color-overlay-dark)), 
-                  url('hero-bg.jpg') center/cover no-repeat;
+      height: 75vh;
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('hero-bg.jpg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: var(--color-bg-pure);
+      color: var(--white);
       text-align: center;
       padding: 0 20px;
-      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      animation: fadeIn 1s ease-out;
     }
 
     .hero-banner h2 {
-      font-size: 3.2rem;
+      font-size: 3.5rem;
       font-weight: 300;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       line-height: 1.2;
-      animation: fadeInDown 1s ease;
     }
 
     .hero-banner p {
       font-size: 1.15rem;
-      letter-spacing: var(--tracking-tight);
-      margin-bottom: 36px;
-      max-width: 680px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.9);
-      animation: fadeInUp 1s ease 0.2s backwards;
+      letter-spacing: 1px;
+      margin-bottom: 35px;
+      font-weight: 300;
     }
 
     .cta-button {
-      background-color: var(--color-bg-pure);
-      color: var(--color-primary);
-      padding: 16px 44px;
-      font-size: 0.85rem;
+      display: inline-block;
+      background-color: var(--white);
+      color: var(--accent-color);
+      text-decoration: none;
+      padding: 16px 45px;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: var(--tracking-wide);
-      font-weight: 600;
-      border: 1px solid var(--color-bg-pure);
+      letter-spacing: 2px;
+      font-weight: bold;
+      transition: var(--transition);
+      border: 1px solid var(--white);
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      animation: fadeInUp 1s ease 0.4s backwards;
     }
 
     .cta-button:hover {
       background-color: transparent;
-      color: var(--color-bg-pure);
-      transform: translateY(-2px);
+      color: var(--white);
     }
 
     /* ==========================================================================
-       5. INTERACTIVE TEXTURE SHOWCASE GRID
+       4. EXPLORE BY TEXTURE GRID SHOWROOM
        ========================================================================== */
     .texture-section {
-      padding: 100px 0;
-      background-color: var(--color-bg-pure);
+      padding: 100px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    .section-header {
+    .section-title {
       text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header h3 {
       font-size: 1.8rem;
       text-transform: uppercase;
-      letter-spacing: var(--tracking-wide);
-      font-weight: 400;
+      letter-spacing: 3px;
+      margin-bottom: 60px;
+      font-weight: 600;
       position: relative;
-      display: inline-block;
-      padding-bottom: 15px;
     }
 
-    .section-header h3::after {
+    .section-title::after {
       content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
+      display: block;
+      width: 40px;
       height: 2px;
-      background-color: var(--color-primary);
+      background-color: var(--primary-color);
+      margin: 15px auto 0;
     }
 
     .texture-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 35px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
     }
 
     .texture-card {
@@ -273,112 +214,199 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 40px;
-      color: var(--color-bg-pure);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      text-decoration: none;
+      color: var(--white);
     }
 
-    .texture-card .card-bg {
+    .texture-card-bg {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       z-index: 1;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .texture-card:hover .card-bg {
+    .texture-card:hover .texture-card-bg {
       transform: scale(1.06);
     }
 
-    .texture-card .bg-overlay {
+    .texture-card::before {
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--color-overlay-gradient);
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%);
       z-index: 2;
-    }
-
-    .texture-card-content {
-      position: relative;
-      z-index: 3;
-      transform: translateY(15px);
-      transition: var(--transition-smooth);
-    }
-
-    .texture-card:hover .texture-card-content {
-      transform: translateY(0);
+      transition: opacity 0.3s ease;
     }
 
     .texture-card h4 {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
+      font-weight: 400;
       text-transform: uppercase;
-      letter-spacing: var(--tracking-medium);
+      letter-spacing: 2px;
       margin-bottom: 10px;
-      font-weight: 500;
+      position: relative;
+      z-index: 3;
     }
 
     .texture-card .view-action {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: var(--tracking-tight);
+      letter-spacing: 1px;
       display: flex;
       align-items: center;
       gap: 8px;
-      opacity: 0.8;
-      transition: var(--transition-smooth);
+      position: relative;
+      z-index: 3;
+      opacity: 0.85;
+      transition: var(--transition);
     }
 
     .texture-card:hover .view-action {
       opacity: 1;
-      gap: 14px;
+      transform: translateX(5px);
     }
 
     /* ==========================================================================
-       6. VALUE PROPOSITION PERKS BANNER
+       5. BRAND VALUE PERKS TEMPLATE BANNER
        ========================================================================== */
     .perks-section {
-      background-color: var(--color-bg-light);
-      border-top: 1px solid var(--color-light-gray);
-      border-bottom: 1px solid var(--color-light-gray);
-      padding: 70px 0;
+      background-color: var(--light-gray);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 80px 40px;
     }
 
     .perks-grid {
+      max-width: 1300px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 50px;
     }
 
     .perk-item {
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 10px;
-    }
-
-    .perk-icon-wrapper {
-      font-size: 1.8rem;
-      margin-bottom: 18px;
-      color: var(--color-primary);
+      padding: 10px;
     }
 
     .perk-item h4 {
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       text-transform: uppercase;
-      letter-spacing: var(--tracking-medium);
-      margin-bottom: 12px;
+      letter-spacing: 1.5px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       font-weight: 600;
     }
 
     .perk-item p {
-      font-size: 0.9rem;
-      color: var(--color-secondary);
-      line-height: 1.5;
+      font-size: 0.95rem;
+      color: var(--secondary-color);
+      max-width: 320px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
 
     /* ==========================================================================
-       7. ENTERPRISE FOOTER LAYOUT STRUCTURE
+       6. INTERACTIVE INTERFACE MODALS (SIZE GUIDE)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-wrapper {
+      background-color: var(--white);
+      padding: 40px;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-wrapper {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .modal-wrapper h3 {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
+    .size-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .size-table th, .size-table td {
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .size-table th {
+      background-color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ==========================================================================
+       7. COMPREHENSIVE FOOTER DESIGN SYSTEM
+       ========================================================================== */
+    footer {
+      background-color: var(--white);
+      padding: 100px 40px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(2, 1fr);
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+
+    .footer-brand h3 {
