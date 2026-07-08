@@ -7,7 +7,7 @@
 <style>
 /* ==========================================================================
    1. CORE BRAND DESIGN SYSTEM
-   ========================================================================== */
+   ========================================================================= */
 :root {
     --primary: #111111;
     --secondary: #555555;
@@ -36,7 +36,7 @@ body {
 
 /* ==========================================================================
    2. STICKY HEADER NAVIGATION
-   ========================================================================== */
+   ========================================================================= */
 header {
     background-color: var(--white);
     border-bottom: 1px solid var(--border);
@@ -91,7 +91,7 @@ nav ul li a {
 
 /* ==========================================================================
    3. PRODUCT DETAIL LAYOUT
-   ========================================================================== */
+   ========================================================================= */
 .product-container {
     max-width: 1300px;
     margin: 40px auto;
@@ -246,7 +246,7 @@ nav ul li a {
 
 /* ==========================================================================
    4. PREVIEW POPUP BAG (DRAWER)
-   ========================================================================== */
+   ========================================================================= */
 .cart-overlay {
     position: fixed;
     top: 0;
@@ -390,6 +390,22 @@ nav ul li a {
     margin-top: 10px;
 }
 
+/* ==========================================================================
+   5. BOTTOM FOOTER PAYMENT BAR
+   ========================================================================= */
+.site-footer {
+    border-top: 1px solid var(--border);
+    background-color: var(--light-bg);
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.footer-checkout-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
     .product-container {
@@ -452,12 +468,3 @@ nav ul li a {
             <span class="selector-label">Length</span>
             <div class="options-grid">
                 <button class="option-btn" onclick="selectOption(this, 'length', 0)">18"</button>
-                <button class="option-btn selected" onclick="selectOption(this, 'length', 50)">22"</button>
-                <button class="option-btn" onclick="selectOption(this, 'length', 100)">26"</button>
-            </div>
-        </div>
-        
-        <div class="selector-group">
-            <span class="selector-label">Density</span>
-            <div class="options-grid">
-                <button class="option-btn selected" onclick="selectOption(this, 'density', 0)">150%</button>
