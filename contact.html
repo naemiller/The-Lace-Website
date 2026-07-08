@@ -1,100 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | The Lace Wigs</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        <link rel="stylesheet" href="style.css">
-        .contact-container {
-            max-width: 1000px;
-            margin: 60px auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            padding: 0 20px;
-        }
-        .contact-info h2 { color: var(--gold); letter-spacing: 2px; }
-        .contact-info p { color: #888; margin-bottom: 30px; }
-        
-        /* Form Styling */
-        .contact-form { background: #0a0a0a; padding: 40px; border: 1px solid #111; }
-        .contact-form label { display: block; margin-bottom: 8px; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; }
-        textarea { 
-            width: 100%; padding: 12px; background: #111; border: 1px solid #222; 
-            color: white; margin-bottom: 20px; font-family: inherit; resize: vertical;
-        }
-        
-        @media (max-width: 768px) {
-            .contact-container { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | The Lace Wigs</title>
+<style>
+/* ==========================================================================
+   1. CORE BRAND DESIGN SYSTEM
+   ========================================================================== */
+:root {
+    --primary: #111111;
+    --secondary: #555555;
+    --accent: #d4af37;
+    --light-bg: #fafafa;
+    --border: #eeeeee;
+    --white: #ffffff;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --success: #198754;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. STICKY HEADER NAVIGATION
+   ========================================================================== */
+header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 25px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo h1 {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    align-items: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+nav ul li a.active-link {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+#bag-count {
+    background-color: var(--primary);
+    color: var(--white);
+    font-size: 0.75rem;
+    padding: 2px 7px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   3. CONTACT PAGE LAYOUT
+   ========================================================================== */
+.contact-container {
+    max-width: 1300px;
+    margin: 60px auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+}
+
+/* Contact Details Info Column */
+.contact-info h2 {
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.contact-info p {
+    color: var(--secondary);
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+.info-block {
+    margin-bottom: 30px;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--secondary);
+    margin-bottom: 5px;
+    display: block;
+    font-weight: bold;
+}
+
+.info-value {
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.info-value a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: var(--transition);
+}
+
+.info-value a:hover {
+    color: var(--secondary);
+}
+
+/* Luxury Input Form Styling */
+.contact-form {
+    background-color: var(--white);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    background: none;
+    border: 1px solid #cccccc;
+    padding: 15px;
+    font-size: 0.95rem;
+    color: var(--primary);
+    font-family: inherit;
+    transition: var(--transition);
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.contact-form select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23111111'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+/* Primary Form Action Button */
+.btn-submit {
+    width: 100%;
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--primary);
+    padding: 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-submit:hover {
+    background-color: transparent;
+    color: var(--primary);
+}
+
+/* ==========================================================================
+   4. PREVIEW POPUP BAG (DRAWER)
+   ========================================================================== */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    background-color: var(--white);
+    z-index: 1001;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+    transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-overlay.open {
+    display: block;
+    opacity: 1;
+}
+
+.cart-drawer.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-header h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+}
+
+.close-drawer {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-item-img {
+    width: 70px;
+    aspect-ratio: 4/5;
+    background-color: var(--light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: #999;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-details h4 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.cart-item-meta {
+    font-size: 0.8rem;
+    color: var(--secondary);
+    margin-bottom: 4px;
+}
+
+.cart-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.btn-checkout {
+    display: block;
+    width: 100%;
+    background-color: var(--success);
+    color: var(--white);
+    border: 1px solid var(--success);
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn-checkout:hover {
+    background-color: transparent;
+    color: var(--success);
+}
+
+.secure-notice {
+    display: block;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--secondary);
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   5. BOTTOM FOOTER BAR
+   ========================================================================== */
+.site-footer {
+    border-top: 1px solid var(--border);
+    background-color: var(--light-bg);
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.site-footer p {
+    font-size: 0.8rem;
+    color: var(--secondary);
+    letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+    header {
+        padding: 20px;
+    }
+    nav ul {
+        gap: 20px;
+    }
+}
+</style>
 </head>
 <body>
 
-    <!-- Shared Navigation -->
+<header>
+    <div class="logo">
+        <h1>The Lace Wigs</h1>
+    </div>
     <nav>
-        <div class="logo">THE LACE WIGS</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+        <ul>
             <li><a href="shop.html">Shop</a></li>
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="contact.html" style="color: var(--gold);">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active-link">Contact</a></li>
+            <li><a href="#" class="cart-link" onclick="toggleCart(true)">Bag <span id="bag-count">1</span></a></li>
         </ul>
     </nav>
+</header>
 
-    <div class="contact-container">
-        <!-- Contact Details -->
-        <div class="contact-info">
-            <h2>GET IN TOUCH</h2>
-            <p>Have a question about lace density or custom coloring? Our wig specialists are here to help you achieve the perfect install.</p>
-            
-            <div style="margin-bottom: 20px;">
-                <h4 class="gold-text" style="margin: 0; color: var(--gold);">EMAIL</h4>
-                <span>support@thelacewigs.com</span>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <h4 class="gold-text" style="margin: 0; color: var(--gold);">HOURS</h4>
-                <span>Mon - Fri: 9am - 6pm EST</span>
-            </div>
-
-            <div style="margin-top: 40px;">
-                <h4 class="gold-text" style="margin: 0; color: var(--gold);">FAQ</h4>
-                <p>Check our <a href="#" style="color: white;">Shipping & Returns</a> policy for quick answers.</p>
-            </div>
-        </div>
-
-        <!-- Contact Form -->
-        <div class="contact-form">
-            <form action="#" method="POST">
-                <label>Full Name</label>
-                <input type="text" name="name" placeholder="Enter your name" required>
-
-                <label>Email Address</label>
-                <input type="email" name="email" placeholder="Enter your email" required>
-
-                <label>Subject</label>
-                <select style="width: 100%; padding: 12px; background: #111; border: 1px solid #222; color: white; margin-bottom: 20px;">
-                    <option>Custom Wig Inquiry</option>
-                    <option>Order Status</option>
-                    <option>Wholesale/B2B</option>
-                    <option>Other</option>
-                </select>
-
-                <label>Message</label>
-                <textarea rows="5" placeholder="How can we help?"></textarea>
-
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-        </div>
-    </div>
+<main class="contact-container">
+    <!-- Contact Details -->
+    <section class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>Have a question about lace density or custom coloring? Our wig specialists are here to help you achieve the perfect install.</p>
         
-    <footer style="padding: 50px; text-align: center; border-top: 1px solid #111; color: #444;">
-        <p>&copy; 2024 THE LACE WIGS. ALL RIGHTS RESERVED.</p>
-    </footer>
-    <script src="script.js"></script>
+        <div class="info-block">
+            <span class="info-label">Email</span>
+            <span class="info-value"><a href="mailto:support@thelacewigs.com">support@thelacewigs.com</a></span>
+        </div>
+        
+        <div class="info-block">
+            <span class="info-label">Hours</span>
+            <span class="info-value">Mon - Fri: 9am - 6pm EST</span>
+        </div>
+        
+        <div class="info-block" style="margin-top: 40px;">
+            <span class="info-label">FAQ</span>
+            <span class="info-value">Check our <a href="#">Shipping & Returns</a> policy for quick answers.</span>
+        </div>
+    </section>
 
-</body>
-</html>
+    <!-- Contact Form -->
+    <section class="contact-form">
+        <form action="#" method="POST">
+            <div class="form-group">
+                <span class="form-label">Full Name</span>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+            
+            <div class="form-group">
