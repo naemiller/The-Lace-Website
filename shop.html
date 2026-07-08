@@ -3,410 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop Luxury Collection | The Lace Wigs</title>
+<title>Shop | The Lace Website</title>
 <style>
-/* ==========================================================================
-   1. CORE BRAND DESIGN SYSTEM
-   ========================================================================== */
-:root {
-    --primary: #111111;
-    --secondary: #555555;
-    --accent: #d4af37;
-    --light-bg: #fafafa;
-    --border: #eeeeee;
-    --white: #ffffff;
-    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --success: #198754;
-}
-
+/* Reset & Base Typography Styles */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
-
 body {
-    background-color: var(--white);
-    color: var(--primary);
-    line-height: 1.6;
-    overflow-x: hidden;
+  background-color: #fafafa;
+  color: #111111;
 }
-
-/* ==========================================================================
-   2. STICKY HEADER NAVIGATION
-   ========================================================================== */
+/* Navigation Bar Design */
 header {
-    background-color: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 25px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-
 .logo h1 {
-    font-size: 1.6rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
-
 nav ul {
-    display: flex;
-    list-style: none;
-    gap: 35px;
-    align-items: center;
+  display: flex;
+  list-style: none;
+  gap: 30px;
 }
-
 nav ul li a {
-    text-decoration: none;
-    color: var(--secondary);
-    font-size: 0.95rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: var(--transition);
+  text-decoration: none;
+  color: #555555;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
-
-nav ul li a.active-link, nav ul li a:hover {
-    color: var(--primary);
+nav ul li a:hover, nav ul li a.active {
+  color: #000000;
 }
-
-.cart-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-}
-
 #bag-count {
-    background-color: var(--primary);
-    color: var(--white);
-    font-size: 0.75rem;
-    padding: 2px 7px;
-    border-radius: 50%;
-    font-weight: bold;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 0.75rem;
+  padding: 2px 7px;
+  border-radius: 50%;
+  margin-left: 4px;
+  display: inline-block;
+  vertical-align: middle;
 }
-
-/* ==========================================================================
-   3. REVAMPED LAYOUT FILTERS & TABS
-   ========================================================================== */
-.shop-wrapper {
-    max-width: 1400px;
-    margin: 40px auto;
-    padding: 0 40px;
+/* Layout Content Header */
+.shop-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
-
-.shop-header {
-    text-align: center;
-    margin-bottom: 40px;
+.shop-container h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
-
-.shop-header h2 {
-    font-size: 2.4rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+/* The Strict 4-Column Responsive Grid Layout */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  min-height: 300px;
 }
-
-.shop-header p {
-    color: var(--secondary);
-    font-size: 1rem;
-}
-
-/* Hair Type Nested Navigation Tabs */
-.hair-type-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.tab-btn {
-    background-color: var(--light-bg);
-    border: 1px solid var(--border);
-    padding: 14px 28px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.tab-btn:hover {
-    border-color: var(--primary);
-}
-
-.tab-btn.active-tab {
-    background-color: var(--primary);
-    color: var(--white);
-    border-color: var(--primary);
-}
-
-/* Texture Filter Bar Layout */
-.filter-dropdown-bar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid var(--border);
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    min-width: 280px;
-}
-
-.filter-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    color: var(--secondary);
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-.filter-select {
-    width: 100%;
-    background-color: var(--white);
-    border: 1px solid #cccccc;
-    padding: 14px 40px 14px 15px;
-    font-size: 0.9rem;
-    color: var(--primary);
-    font-family: inherit;
-    border-radius: 0;
-    cursor: pointer;
-    transition: var(--transition);
-    -webkit-appearance: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23111111'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-}
-
-.filter-select:focus {
-    border-color: var(--primary);
-    outline: none;
-}
-
-/* ==========================================================================
-   4. INTERACTIVE CATALOG GRID PANELS
-   ========================================================================== */
-.grid-panel {
-    display: none; /* Controlled dynamically by JavaScript */
-}
-
-.grid-panel.active-panel {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px 30px;
-}
-
+/* Individual Product Card Box Styling */
 .product-card {
-    background-color: var(--white);
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    position: relative;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
 .product-image-wrapper {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    background-color: var(--light-bg);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    margin-bottom: 15px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--secondary);
-    font-size: 0.9rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 15px;
 }
-
-.product-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.product-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
-.product-card:hover img {
-    transform: scale(1.05);
-}
-
 .product-card h4 {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--primary);
-    margin-bottom: 6px;
-    line-height: 1.4;
-    letter-spacing: 0.2px;
+  font-size: 0.95rem;
+  color: #222222;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  font-weight: 500;
 }
-
 .product-card .price {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 15px;
 }
-
-.btn-add-bag {
-    width: 100%;
-    background-color: var(--primary);
-    color: var(--white);
-    border: 1px solid var(--primary);
-    padding: 14px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: var(--transition);
-    margin-top: auto;
+.product-card .add-to-bag {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
 }
-
-.btn-add-bag:hover {
-    background-color: transparent;
-    color: var(--primary);
+.product-card .add-to-bag:hover {
+  background-color: #333333;
 }
-
-/* Empty Catalog Notice */
-.no-products-notice {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--secondary);
-    font-size: 1rem;
-    display: none;
+/* Screen Breakpoints for Responsive Mobile Execution */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-
-/* ==========================================================================
-   5. SHOPPING CART DRAWER & FOOTER SYSTEM
-   ========================================================================== */
-.cart-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.4);
-    z-index: 1000;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.cart-drawer {
-    position: fixed;
-    top: 0;
-    right: -450px;
-    width: 100%;
-    max-width: 450px;
-    height: 100%;
-    background-color: var(--white);
-    z-index: 1001;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
-    transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    padding: 30px;
-    display: flex;
+@media (max-width: 768px) {
+  header {
     flex-direction: column;
-}
-
-.cart-overlay.open { display: block; opacity: 1; }
-.cart-drawer.open { right: 0; }
-
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-.cart-header h3 { text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem; }
-.close-drawer { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
-.cart-items { flex: 1; overflow-y: auto; }
-
-.cart-item {
-    display: flex;
     gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--border);
+    padding: 15px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-
-.cart-item-img {
-    width: 70px;
-    aspect-ratio: 4/5;
-    background-color: var(--light-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    color: #999;
-}
-
-.cart-item-details { flex: 1; }
-.cart-item-details h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 4px; }
-.cart-item-meta { font-size: 0.8rem; color: var(--secondary); margin-bottom: 4px; }
-.cart-footer { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 20px; }
-.subtotal-row { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px; }
-
-.btn-checkout {
-    display: block;
-    width: 100%;
-    background-color: var(--success);
-    color: var(--white);
-    border: 1px solid var(--success);
-    padding: 16px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-align: center;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.btn-checkout:hover { background-color: transparent; color: var(--success); }
-.secure-notice { display: block; text-align: center; font-size: 0.75rem; color: var(--secondary); margin-top: 10px; }
-
-.site-footer {
-    border-top: 1px solid var(--border);
-    background-color: var(--light-bg);
-    padding: 40px 20px;
-    text-align: center;
-    margin-top: 80px;
-}
-
-.footer-checkout-container { max-width: 400px; margin: 0 auto 20px auto; }
-.site-footer p { font-size: 0.8rem; color: var(--secondary); letter-spacing: 1px; }
-
-/* ==========================================================================
-   6. RESPONSIVE BREAKPOINTS
-   ========================================================================== */
-@media (max-width: 1200px) {
-    .grid-panel.active-panel { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 900px) {
-    .shop-wrapper { padding: 0 20px; }
-    .hair-type-tabs { flex-direction: column; gap: 10px; }
-    .tab-btn { width: 100%; text-align: center; }
-    .grid-panel.active-panel { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
-    header { padding: 20px; }
-}
-
 @media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Site Nav Header -->
+<header>
+  <div class="logo">
+    <h1>The Lace Wigs</h1>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="login.html">Account</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Product Catalog Frame Area -->
+<main class="shop-container">
+  <h2>Luxury Wigs Collection</h2>
+  <div id="shopGrid" class="product-grid">
+    
+    <!-- Product 1 -->
+    <div class="product-card">
+      <a href="Straight-luxury-unit.html" style="text-decoration: none; display: block;">
+        <div class="product-image-wrapper">
+          <img src="blkstraight.jpg" alt="Straight Luxury Unit" onerror="this.src='straight.jpg'">
+        </div>
+        <h4>Straight Luxury Unit</h4>
+        <p class="price">$254.99</p>
+      </a>
+      <button class="add-to-bag" data-id="w1" data-name="Straight Luxury Unit" data-price="250">Add to Bag</button>
+      <a href="Straight-luxury-unit.html" style="margin-top: 10px; font-size: 0.85rem; color: #555;">View Units &rarr;</a>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-image-wrapper">
+        <img src="bodywave.jpg" alt="Body Wave HD Lace Wig" onerror="this.src='straight.jpg'">
+      </div>
+      <h4>Body Wave HD Lace Wig</h4>
+      <p class="price">$289.99</p>
+      <button class="add-to-bag" data-id="w2" data-name="Body Wave HD Lace Wig" data-price="280">Add to Bag</button>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-image-wrapper">
+        <img src="deepwave.jpg" alt="Deep Wave Lace Front" onerror="this.src='straight.jpg'">
+      </div>
+      <h4>Deep Wave Lace Front</h4>
+      <p class="price">$265.99</p>
+      <button class="add-to-bag" data-id="w3" data-name="Deep Wave Lace Front" data-price="295">Add to Bag</button>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card">
+      <div class="product-image-wrapper">
+        <img src="straight.jpg" alt="Water Wave Transparent Wig" onerror="this.src='straight.jpg'">
+      </div>
+      <h4>Water Wave Transparent Wig</h4>
+      <p class="price">$274.99</p>
+      <button class="add-to-bag" data-id="w4" data-name="Water Wave Transparent Wig" data-price="270">Add to Bag</button>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card">
+      <a href="product-613.html" style="text-decoration: none; display: block;">
+        <div class="product-image-wrapper">
+          <img src="613-side.jpg" alt="613 Blonde Straight 13x4 Lace Front Wig" onerror="this.src='613-side.jpg'">
+        </div>
+      </a>
+      <h4>613 Blonde Straight 13x4 Lace Front 100% Human Hair Wig</h4>
+      <p class="price">$279.89</p>
+      <button class="add-to-bag" data-id="w5" data-name="613 HD Lace Straight Unit" data-price="340">Add to Bag</button>
+    </div>
+
+  </div>
+</main>
+
+<script>
+// Simple listener logic to count active items clicked
+let count = 0;
+const countBadge = document.getElementById("bag-count");
+document.querySelectorAll(".add-to-bag").forEach(button => {
+  button.addEventListener("click", () => {
+    count++;
+    if (countBadge) countBadge.textContent = count;
+  });
+});
+</script>
+
+</body>
+</html>
