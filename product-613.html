@@ -11,7 +11,7 @@
     :root {
       --primary: #111111;
       --secondary: #555555;
-      --accent: #d4af37; /* Luxury Gold */
+      --accent: #d4af37;
       --light-bg: #fafafa;
       --border: #eeeeee;
       --white: #ffffff;
@@ -30,6 +30,7 @@
       background-color: var(--white);
       color: var(--primary);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* ==========================================================================
@@ -44,7 +45,7 @@
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 999;
     }
 
     .logo h1 {
@@ -71,8 +72,11 @@
       transition: var(--transition);
     }
 
-    nav ul li a:hover, nav ul li a.active {
-      color: var(--primary);
+    .cart-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
     }
 
     #bag-count {
@@ -81,345 +85,340 @@
       font-size: 0.75rem;
       padding: 2px 7px;
       border-radius: 50%;
-      margin-left: 4px;
-      display: inline-block;
-      vertical-align: middle;
       font-weight: bold;
     }
 
     /* ==========================================================================
-       3. PRODUCT CONTAINER WORKSPACE
+       3. PRODUCT DETAIL LAYOUT
        ========================================================================== */
-    .product-main-container {
-      max-width: 1200px;
-      margin: 40px auto 100px;
-      padding: 0 20px;
+    .product-container {
+      max-width: 1300px;
+      margin: 40px auto;
+      padding: 0 40px;
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 50px;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
     }
 
-    /* Image Gallery Components */
-    .gallery-stack {
+    /* Multi-Image Gallery */
+    .product-gallery {
+      display: flex;
+      gap: 20px;
+    }
+
+    .thumbnail-column {
       display: flex;
       flex-direction: column;
       gap: 15px;
+      width: 80px;
     }
 
-    .main-canvas {
+    .thumb {
       width: 100%;
-      height: 550px;
+      aspect-ratio: 4 / 5;
       background-color: var(--light-bg);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .main-canvas img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-
-    .thumb-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-    }
-
-    .thumb-node {
-      height: 90px;
-      background-color: var(--light-bg);
-      border: 1px solid transparent;
-      border-radius: 2px;
-      overflow: hidden;
+      border: 1px solid var(--border);
       cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .thumb-node.active, .thumb-node:hover {
-      border-color: var(--primary);
-      opacity: 0.8;
-    }
-
-    .thumb-node img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Configuration Panel (Right Side) */
-    .config-panel {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .breadcrumb {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--secondary);
-      margin-bottom: 10px;
-    }
-
-    .config-panel h2 {
-      font-size: 1.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      line-height: 1.3;
-      margin-bottom: 12px;
-    }
-
-    .rating-row {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .stars {
-      color: var(--accent);
-      font-size: 0.95rem;
-      letter-spacing: 1px;
-    }
-
-    .metrics-text {
-      font-size: 0.85rem;
-      color: var(--secondary);
-      font-weight: 500;
-    }
-
-    .master-price {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--primary);
-      margin-bottom: 25px;
-    }
-
-    /* Selection Label Controls */
-    .selector-block {
-      margin-bottom: 24px;
-    }
-
-    .selector-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      color: var(--primary);
-    }
-
-    .options-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .option-label {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .option-label input {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .option-box {
-      border: 1px solid #dddddd;
-      padding: 10px 18px;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      background-color: var(--white);
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #999;
       transition: var(--transition);
-      border-radius: 2px;
     }
 
-    .option-label input:checked + .option-box {
-      border-color: var(--primary);
-      background-color: var(--primary);
-      color: var(--white);
-    }
-
-    .option-label:hover .option-box {
+    .thumb.active, .thumb:hover {
       border-color: var(--primary);
     }
 
-    /* Add To Bag System Elements */
-    .purchase-row {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 15px;
-      margin-top: 30px;
-      margin-bottom: 35px;
-    }
-
-    .qty-box {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #dddddd;
-      font-size: 1rem;
-      text-align: center;
-      font-weight: bold;
-      outline: none;
-    }
-
-    .add-to-bag-btn {
-      background-color: var(--primary);
-      color: var(--white);
-      border: none;
-      padding: 16px;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: var(--transition);
-      border-radius: 2px;
-    }
-
-    .add-to-bag-btn:hover {
-      background-color: var(--accent);
-    }
-
-    /* Informational Notes Layout */
-    .production-note {
-      font-size: 0.85rem;
-      color: var(--secondary);
+    .main-image {
+      flex: 1;
       background-color: var(--light-bg);
-      padding: 15px;
-      border-left: 2px solid var(--accent);
-      margin-bottom: 35px;
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      font-size: 1.2rem;
+      color: #666;
     }
 
-    .description-details {
-      border-top: 1px solid var(--border);
-      padding-top: 25px;
+    /* Product Info Column */
+    .product-info h2 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .price-container {
       margin-bottom: 30px;
     }
 
-    .description-details h3 {
+    .price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Interactive Options */
+    .selector-group {
+      margin-bottom: 25px;
+    }
+
+    .selector-label {
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 15px;
-    }
-
-    .bullet-spec-list {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .bullet-spec-list li {
-      font-size: 0.9srem;
       color: var(--secondary);
-      margin-bottom: 8px;
-      position: relative;
-      padding-left: 20px;
+      margin-bottom: 10px;
+      display: block;
     }
 
-    .bullet-spec-list li::before {
-      content: '✦';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-
-    .description-details p {
-      font-size: 0.9rem;
-      color: var(--secondary);
-      line-height: 1.6;
-    }
-
-    /* ==========================================================================
-       4. TRUST PROTCOLS BADGES PANEL
-       ========================================================================== */
-    .secure-trust-panel {
-      border-top: 1px solid var(--border);
-      padding-top: 30px;
-      text-align: center;
-    }
-
-    .secure-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 1px;
-      color: var(--secondary);
-      margin-bottom: 15px;
-    }
-
-    .trust-badges-grid {
+    .options-grid {
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      align-items: center;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
-    .badge-node {
+    .option-btn {
+      background: none;
+      border: 1px solid #cccccc;
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .option-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .option-btn.selected {
+      background-color: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    /* Purchase Buttons */
+    .purchase-actions {
+      margin-top: 40px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background-color: var(--primary);
+      color: var(--white);
+      border: 1px solid var(--primary);
+      padding: 18px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary:hover {
+      background-color: transparent;
+      color: var(--primary);
+    }
+
+    /* ==========================================================================
+       4. PREVIEW POPUP BAG (DRAWER)
+       ========================================================================== */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      z-index: 1000;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: 100%;
+      max-width: 450px;
+      height: 100%;
+      background-color: var(--white);
+      z-index: 1001;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+      transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      padding: 30px;
       display: flex;
       flex-direction: column;
+    }
+
+    .cart-overlay.open {
+      display: block;
+      opacity: 1;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 4px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 20px;
     }
 
-    .badge-icon-symbol {
-      font-size: 1.4rem;
-    }
-
-    .badge-label-string {
-      font-size: 0.65rem;
+    .cart-header h3 {
       text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      color: var(--secondary);
+      letter-spacing: 1px;
+      font-size: 1.1rem;
     }
 
-    /* Responsive Logic */
-    @media (max-width: 900px) {
-      .product-main-container { grid-template-columns: 1fr; gap: 40px; margin: 20px auto; }
-      .main-canvas { height: 450px; }
+    .close-drawer {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
-    @media (max-width: 768px) {
-      header { flex-direction: column; gap: 15px; padding: 15px; }
-      .product-main-container { padding: 0 15px; }
-      .thumb-node { height: 70px; }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item-img {
+      width: 70px;
+      aspect-ratio: 4/5;
+      background-color: var(--light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: #999;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-details h4 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .cart-item-meta {
+      font-size: 0.8rem;
+      color: var(--secondary);
+      margin-bottom: 4px;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+
+    .subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+      }
+      .product-gallery {
+        flex-direction: column-reverse;
+      }
+      .thumbnail-column {
+        flex-direction: row;
+        width: 100%;
+      }
+      .thumb {
+        width: 70px;
+      }
+      header {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header Section Frame -->
   <header>
     <div class="logo">
-      <h1 onclick="window.location.href='index.html'">The Lace Wigs</h1>
+      <h1>The Lace Wigs</h1>
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html" class="active">Shop</a></li>
-        <li><a href="calculator.html">Size Guide</a></li>
-        <li><a href="login.html">Account</a></li>
-        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#" class="cart-link" onclick="toggleCart(true)">Bag <span id="bag-count">0</span></a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Main Showcase Dashboard Grid -->
-  <main class="product-main-container">
-    
-    <!-- Left Hand: Interactive Multi-Image Canvas Stack -->
-    <div class="gallery-stack">
-      <div class="main-canvas">
-        <img src="613-main.jpg" alt="613 Blonde Straight Wig Main View" id="master-view-node">
+  <main class="product-container">
+    <!-- Media Visuals -->
+    <section class="product-gallery">
+      <div class="thumbnail-column">
+        <div class="thumb active" onclick="changeImage('Front View', this)">Angle 1</div>
+        <div class="thumb" onclick="changeImage('Side View', this)">Angle 2</div>
+        <div class="thumb" onclick="changeImage('Lace Detail', this)">Angle 3</div>
       </div>
-      <div class="thumb-grid">
-        <div class="thumb-node active" onclick="swapMasterDisplay('613-main.jpg', this)">
-          <img src="613-main.jpg" alt="Front Profile Preview">
+      <div class="main-image" id="main-product-display">
+        Front View
+      </div>
+    </section>
+
+    <!-- Product Details & Actions -->
+    <section class="product-info">
+      <h2>613 Blonde Straight 13x4 Lace Front Wig</h2>
+      
+      <div class="price-container">
+        <span class="price" id="product-price">$299.00</span>
+      </div>
+
+      <div class="selector-group">
+        <span class="selector-label">Length</span>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(this, 'length', 0)">18"</button>
+          <button class="option-btn selected" onclick="selectOption(this, 'length', 50)">22"</button>
+          <button class="option-btn" onclick="selectOption(this, 'length', 100)">26"</button>
         </div>
-        <div class="thumb-node" onclick="swapMasterDisplay('613-alt1.jpg', this)">
+      </div>
+
+      <div class="selector-group">
+        <span class="selector-label">Density</span>
+        <div class="options-grid">
+          <button class="option-btn selected" onclick="selectOption(this, 'density', 0)">150%</button>
+          <button class="option-btn" onclick="selectOption(this, 'density', 40)">180%</button>
+        </div>
+      </div>
+
+      <div class="purchase-actions">
+        <button class="btn-primary" onclick="addToBag()">Add to Bag</button>
+      </div>
+    </section>
+  </main>
+
