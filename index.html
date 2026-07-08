@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Lace Wigs | Premium Luxury Hair Units</title>
+
+<!-- SEO METADATA CRITICAL FOR ORGANIC TRAFFIC -->
+<title>The Lace Wigs | Luxury HD Lace Wigs & Premium Virgin Hair Bundles</title>
+<meta name="description" content="Shop 100% premium virgin human hair wigs. Discover undetectable pre-plucked HD lace frontals, glueless U-part wigs, and raw hair bundles. Fast 3-5 day shipping.">
+<meta name="keywords" content="HD lace wigs, glueless u-part wig, 13x4 lace front frontal, virgin human hair bundles, pre-plucked wig hairlines, luxury lace wigs">
+<link rel="canonical" href="https://thelacewigs.com">
+
 <style>
 /* ==========================================================================
    1. CORE BRAND DESIGN SYSTEM & DESIGN TOKENS
@@ -32,6 +38,18 @@ body {
     color: var(--primary);
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+/* SEO Optimization: Text-based utility announcement banner */
+.promo-banner {
+    background-color: #f0ebe1;
+    color: var(--primary);
+    text-align: center;
+    padding: 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* ==========================================================================
@@ -100,11 +118,10 @@ nav ul li a.active, nav ul li a:hover {
 /* ==========================================================================
    3. HIGH-CONVERSION CONVERSION BLOCKS (HERO & TRUST VALUE)
    ========================================================================== */
-/* Split Optimization Hero Frame Layout */
 .hero-section {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
-    min-height: calc(85vh - 84px);
+    min-height: calc(80vh - 110px);
     background-color: var(--light-bg);
 }
 
@@ -125,8 +142,9 @@ nav ul li a.active, nav ul li a:hover {
     margin-bottom: 15px;
 }
 
-.hero-section h2 {
-    font-size: 3.8rem;
+/* SEO Rule: Exactly one H1 per page for core target search keywords */
+.hero-section h1 {
+    font-size: 3.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 20px;
@@ -162,7 +180,7 @@ nav ul li a.active, nav ul li a:hover {
 
 .hero-image-side {
     background: url('hero-bg.jpg') center/cover no-repeat;
-    background-color: #e5e5e5; /* Base fallback */
+    background-color: #e5e5e5; 
 }
 
 /* Trust Conversion Strip */
@@ -200,7 +218,7 @@ nav ul li a.active, nav ul li a:hover {
     margin-bottom: 50px;
 }
 
-.section-intro h3 {
+.section-intro h2 {
     font-size: 2.2rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -248,7 +266,7 @@ nav ul li a.active, nav ul li a:hover {
     color: var(--white);
 }
 
-.category-label-overlay h4 {
+.category-label-overlay h3 {
     font-size: 1.4rem;
     text-transform: uppercase;
     margin-bottom: 5px;
@@ -280,9 +298,9 @@ nav ul li a.active, nav ul li a:hover {
     font-weight: bold;
     text-decoration: none;
     border-bottom: 2px solid var(--white);
-    padding-bottom: 20px;
     padding-bottom: 4px;
     transition: var(--transition);
+    display: inline-block;
 }
 
 .category-label-overlay a:hover {
@@ -377,8 +395,35 @@ nav ul li a.active, nav ul li a:hover {
     color: var(--primary);
 }
 
+/* SEO Keyword Optimization Bottom Text Block Section */
+.seo-content-block {
+    background-color: var(--light-bg);
+    padding: 60px 40px;
+    border-top: 1px solid var(--border);
+}
+
+.seo-content-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.seo-content-inner h3 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.seo-content-inner p {
+    font-size: 0.95rem;
+    color: var(--secondary);
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
 /* ==========================================================================
-   5. PREVIEW POPUP BAG (DRAWER) & FOOTER
+   5. PREVIEW POPUP BAG (DRAWER) & FOOTER SYSTEM
    ========================================================================== */
 .cart-overlay {
     position: fixed;
@@ -402,48 +447,3 @@ nav ul li a.active, nav ul li a:hover {
     height: 100%;
     background-color: var(--white);
     z-index: 1001;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
-    transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-}
-
-.cart-overlay.open { display: block; opacity: 1; }
-.cart-drawer.open { right: 0; }
-
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-.cart-header h3 { text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem; }
-.close-drawer { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
-.cart-items { flex: 1; overflow-y: auto; }
-
-.cart-item {
-    display: flex;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--border);
-}
-
-.cart-item-img {
-    width: 70px;
-    aspect-ratio: 4/5;
-    background-color: var(--light-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    color: #999;
-}
-
-.cart-item-details { flex: 1; }
-.cart-item-details h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 4px; }
-.cart-item-meta { font-size: 0.8rem; color: var(--secondary); margin-bottom: 4px; }
-.cart-footer { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 20px; }
