@@ -1,16 +1,16 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO METADATA CRITICAL FOR ORGANIC TRAFFIC --> 
-    <title>The Lace Wigs | Luxury HD Lace Wigs & Premium Virgin Hair Bundles</title> 
-    <meta name="description" content="Shop 100% premium virgin human hair wigs. Discover undetectable pre-plucked HD lace frontals, glueless U-part wigs, and raw hair bundles. Fast 3-5 day shipping."> 
-    <meta name="keywords" content="HD lace wigs, glueless u-part wig, 13x4 lace front frontal, virgin human hair bundles, pre-plucked wig hairlines, luxury lace wigs"> 
-    <link rel="canonical" href="https://thelacewigs.com"> 
+    <!-- SEO METADATA CRITICAL FOR ORGANIC TRAFFIC -->
+    <title>The Lace Wigs | Luxury HD Lace Wigs & Premium Virgin Hair Bundles</title>
+    <meta name="description" content="Shop 100% premium virgin human hair wigs. Discover undetectable pre-plucked HD lace frontals, glueless U-part wigs, and raw hair bundles. Fast 3-5 day shipping.">
+    <meta name="keywords" content="HD lace wigs, glueless u-part wig, 13x4 lace front frontal, virgin human hair bundles, pre-plucked wig hairlines, luxury lace wigs">
+    <link rel="canonical" href="https://thelacewigs.com">
 
-    <!-- STRUCTURED DATA: Pulls rich snippet stars and prices directly onto organic Google Search results -->
+    <!-- STRUCTURED DATA: Forces Google to display star ratings and pricing profiles inside organic search hits -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,266 +26,274 @@
     }
     </script>
 
-    <style> 
-        /* ========================================================================== 
-        1. CORE BRAND DESIGN SYSTEM & DESIGN TOKENS 
-        ========================================================================== */ 
-        :root { 
-            --primary: #111111; 
-            --secondary: #555555; 
-            --accent: #d4af37; 
-            --light-bg: #fafafa; 
-            --border: #eeeeee; 
-            --white: #ffffff; 
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-            --success: #198754; 
-        } 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Helvetica Neue', Arial, sans-serif; 
-            -webkit-font-smoothing: antialiased; 
-        } 
-        body { 
-            background-color: var(--white); 
-            color: var(--primary); 
-            line-height: 1.6; 
-            overflow-x: hidden; 
-        } 
-        /* SEO Optimization: Text-based utility announcement banner */ 
-        .promo-banner { 
-            background-color: #f0ebe1; 
-            color: var(--primary); 
-            text-align: center; 
-            padding: 8px; 
-            font-size: 0.75rem; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        } 
-        /* ========================================================================== 
-        2. STICKY HEADER NAVIGATION 
-        ========================================================================== */ 
-        header { 
-            background-color: var(--white); 
-            border-bottom: 1px solid var(--border); 
-            padding: 25px 40px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 999; 
-        } 
-        .logo h1 { 
-            font-size: 1.6rem; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            font-weight: bold; 
-            cursor: pointer; 
-        } 
+    <style>
+        /* ==========================================================================
+        1. CORE BRAND DESIGN SYSTEM & DESIGN TOKENS
+        ========================================================================== */
+        :root {
+            --primary: #111111;
+            --secondary: #555555;
+            --accent: #d4af37;
+            --light-bg: #fafafa;
+            --border: #eeeeee;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --success: #198754;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        body {
+            background-color: var(--white);
+            color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* SEO Optimization: Text-based utility announcement banner */
+        .promo-banner {
+            background-color: #f0ebe1;
+            color: var(--primary);
+            text-align: center;
+            padding: 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* ==========================================================================
+        2. STICKY HEADER NAVIGATION
+        ========================================================================== */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .logo h1 {
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+        }
         .logo a {
             text-decoration: none;
             color: inherit;
         }
-        nav ul { 
-            display: flex; 
-            list-style: none; 
-            gap: 35px; 
-            align-items: center; 
-        } 
-        nav ul li a { 
-            text-decoration: none; 
-            color: var(--secondary); 
-            font-size: 0.95rem; 
-            font-weight: 500; 
-            letter-spacing: 0.5px; 
-            transition: var(--transition); 
-        } 
-        nav ul li a.active, nav ul li a:hover { 
-            color: var(--primary); 
-        } 
-        .cart-link { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            cursor: pointer; 
-            text-decoration: none; 
-            color: var(--secondary); 
-            font-size: 0.95rem; 
-            font-weight: 500; 
-        } 
-        #bag-count { 
-            background-color: var(--primary); 
-            color: var(--white); 
-            font-size: 0.75rem; 
-            padding: 2px 7px; 
-            border-radius: 50%; 
-            font-weight: bold; 
-        } 
-        /* ========================================================================== 
-        3. HIGH-CONVERSION CONVERSION BLOCKS (HERO & TRUST VALUE) 
-        ========================================================================== */ 
-        .hero-section { 
-            display: grid; 
-            grid-template-columns: 1.1fr 0.9fr; 
-            min-height: calc(80vh - 110px); 
-            background-color: var(--light-bg); 
-        } 
-        .hero-text-side { 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            padding: 60px 80px; 
-            max-width: 700px; 
-        } 
-        .hero-badge { 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            color: var(--accent); 
-            font-weight: bold; 
-            margin-bottom: 15px; 
-        } 
-        /* SEO Rule: Exactly one H1 per page for core target search keywords */ 
-        .hero-section h1 { 
-            font-size: 3.5rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin-bottom: 20px; 
-            font-weight: bold; 
-            line-height: 1.1; 
-        } 
-        .hero-section p { 
-            font-size: 1.15rem; 
-            margin-bottom: 40px; 
-            color: var(--secondary); 
-            line-height: 1.6; 
-        } 
-        .btn-hero-shop { 
-            align-self: start; 
-            background-color: var(--primary); 
-            color: var(--white); 
-            text-decoration: none; 
-            padding: 18px 45px; 
-            font-size: 0.95rem; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 1.5px; 
-            transition: var(--transition); 
-            border: 1px solid var(--primary); 
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+        nav ul li a.active, nav ul li a:hover {
+            color: var(--primary);
+        }
+        .cart-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        #bag-count {
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.75rem;
+            padding: 2px 7px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        /* ==========================================================================
+        3. HIGH-CONVERSION CONVERSION BLOCKS (HERO & TRUST VALUE)
+        ========================================================================== */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            min-height: calc(80vh - 110px);
+            background-color: var(--light-bg);
+        }
+        .hero-text-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            max-width: 700px;
+        }
+        .hero-badge {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        /* SEO Rule: Exactly one H1 per page for core target search keywords */
+        .hero-section h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+        .hero-section p {
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+        .btn-hero-shop {
+            align-self: start;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            padding: 18px 45px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            border: 1px solid var(--primary);
             text-align: center;
-        } 
-        .btn-hero-shop:hover { 
-            background-color: transparent; 
-            color: var(--primary); 
-        } 
-        .hero-image-side { 
-            background: url('hero-bg.jpg') center/cover no-repeat; 
-            background-color: #e5e5e5; 
-        } 
-        /* Trust Conversion Strip */ 
-        .trust-banner { 
-            background-color: var(--primary); 
-            color: var(--white); 
-            padding: 20px 40px; 
-            display: flex; 
-            justify-content: space-around; 
-            align-items: center; 
-            flex-wrap: wrap; 
-            gap: 20px; 
-        } 
-        .trust-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        } 
-        /* ========================================================================== 
-        4. E-COMMERCE GRID SECTIONS (CATEGORIES & FEATURED PRODUCTS) 
-        ========================================================================== */ 
-        .section-wrapper { 
-            max-width: 1400px; 
-            margin: 100px auto; 
-            padding: 0 40px; 
-        } 
-        .section-intro { 
-            text-align: center; 
-            margin-bottom: 50px; 
-        } 
-        .section-intro h2 { 
-            font-size: 2.2rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin-bottom: 10px; 
-        } 
-        .section-intro p { 
-            color: var(--secondary); 
-            font-size: 1rem; 
-        } 
-        /* Category Grid Architecture */ 
-        .categories-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
-        } 
-        .category-card { 
-            position: relative; 
-            aspect-ratio: 4 / 5; 
-            overflow: hidden; 
-            background-color: var(--light-bg); 
-            border: 1px solid var(--border); 
-        } 
-        .category-card img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-        } 
-        .category-card:hover img { 
-            transform: scale(1.04); 
-        } 
-        .category-label-overlay { 
-            position: absolute; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            background: linear-gradient(transparent, rgba(0,0,0,0.85)); 
-            padding: 35px 25px; 
-            color: var(--white); 
-        } 
-        .category-label-overlay h3 { 
-            font-size: 1.4rem; 
-            text-transform: uppercase; 
-            margin-bottom: 5px; 
-            letter-spacing: 0.5px; 
-        } 
-        .review-container { 
-            margin-bottom: 15px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-        } 
-        .star-rating { 
-            color: var(--accent); 
-            font-size: 0.9rem; 
-        } 
-        .review-metrics { 
-            color: #cccccc; 
-            font-size: 0.8rem; 
-        } 
-        .category-label-overlay a { 
-            color: var(--white); 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            font-weight: bold; 
-            text-decoration: none; 
-            border-bottom: 2px solid var(--white); 
-            padding-bottom: 4px; 
-            transition: var(--transition); 
-            display: inline-block; 
-        } 
+        }
+        .btn-hero-shop:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        .hero-image-side {
+            background: url('hero-bg.jpg') center/cover no-repeat;
+            background-color: #e5e5e5;
+        }
+        /* Trust Conversion Strip */
+        .trust-banner {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* ==========================================================================
+        4. E-COMMERCE GRID SECTIONS (CATEGORIES & FEATURED PRODUCTS)
+        ========================================================================== */
+        .section-wrapper {
+            max-width: 1400px;
+            margin: 100px auto;
+            padding: 0 40px;
+        }
+        .section-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-intro h2 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .section-intro p {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+        /* Category Grid Architecture */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .category-card {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background-color: var(--light-bg);
+            border: 1px solid var(--border);
+        }
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .category-card:hover img {
+            transform: scale(1.04);
+        }
+        .category-label-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 35px 25px;
+            color: var(--white);
+        }
+        .category-label-overlay h3 {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        .review-container {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .star-rating {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        .review-metrics {
+            color: #cccccc;
+            font-size: 0.8rem;
+        }
+        .category-label-overlay a {
+            color: var(--white);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px solid var(--white);
+            padding-bottom: 4px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        .category-label-overlay a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        /* Featured Products Custom Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
