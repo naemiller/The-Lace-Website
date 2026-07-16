@@ -1,334 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO METADATA CRITICAL FOR ORGANIC TRAFFIC -->
-    <title>The Lace Wigs | Luxury HD Lace Wigs & Premium Virgin Hair Bundles</title>
-    <meta name="description" content="Shop 100% premium virgin human hair wigs. Discover undetectable pre-plucked HD lace frontals, glueless U-part wigs, and raw hair bundles. Fast 3-5 day shipping.">
-    <meta name="keywords" content="HD lace wigs, glueless u-part wig, 13x4 lace front frontal, virgin human hair bundles, pre-plucked wig hairlines, luxury lace wigs">
-    <link rel="canonical" href="https://thelacewigs.com">
-
-    <!-- STRUCTURED DATA: Pulls rich snippet stars and prices directly onto organic Google Search hits -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Store",
-        "name": "The Lace Wigs",
-        "image": "https://thelacewigs.com",
-        "description": "Premium 100% human virgin hair wigs and HD lace frontal units.",
-        "priceRange": "$$$",
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "US"
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lace Wigs | Premium Luxury Hair Units</title>
+  <style>
+    /* Reset & Base Brand Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
     }
-    </script>
 
-    <style>
-        /* ==========================================================================
-           1. CORE BRAND DESIGN SYSTEM & DESIGN TOKENS
-           ========================================================================== */
-        :root {
-            --primary: #111111;
-            --secondary: #555555;
-            --accent: #d4af37;
-            --light-bg: #fafafa;
-            --border: #eeeeee;
-            --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --success: #198754;
-        }
+    body {
+      background-color: #ffffff;
+      color: #111111;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
+    /* Navigation Bar Elements Design Layout Grid */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        body {
-            background-color: var(--white);
-            color: var(--primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    .logo h1 {
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
 
-        /* ==========================================================================
-           2. UTILITY CLASSES & LAYOUT
-           ========================================================================== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--primary);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            border: 1px solid var(--primary);
-            transition: var(--transition);
-            cursor: pointer;
-            text-align: center;
-        }
+    nav ul li a {
+      text-decoration: none;
+      color: #555555;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s ease;
+    }
 
-        .btn:hover {
-            background-color: transparent;
-            color: var(--primary);
-        }
+    nav ul li a:hover, nav ul li a.active {
+      color: #000000;
+    }
 
-        .btn-accent {
-            background-color: var(--accent);
-            border-color: var(--accent);
-        }
+    /* Shopping Bag Notification Total Badge Tracking Node Bubble */
+    #bag-count {
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50%;
+      margin-left: 4px;
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-        .btn-accent:hover {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            color: var(--white);
-        }
+    /* Hero Banner Configuration */
+    .hero-banner {
+      width: 100%;
+      height: 70vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('hero-bg.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      text-align: center;
+      padding: 0 20px;
+    }
 
-        /* ==========================================================================
-           3. NAVIGATION & BANNER
-           ========================================================================== */
-        .announcement-bar {
-            background-color: var(--primary);
-            color: var(--white);
-            text-align: center;
-            padding: 8px 10px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+    .hero-banner h2 {
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            background-color: var(--white);
-            z-index: 100;
-        }
+    .hero-banner p {
+      font-size: 1.25rem;
+      margin-bottom: 35px;
+      max-width: 650px;
+      line-height: 1.6;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: var(--primary);
-        }
+    .shop-now-btn {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      padding: 16px 45px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 2px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+    .shop-now-btn:hover {
+      background-color: #000000;
+      color: #ffffff;
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
+    /* Highlighted Categories Image Grid Block Sections Layout Array */
+    .categories-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
 
-        .nav-links a:hover {
-            color: var(--accent);
-        }
+    .categories-section h3 {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
 
-        /* ==========================================================================
-           4. HERO SECTION
-           ========================================================================== */
-        .hero {
-            padding: 100px 0;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://unsplash.com') no-repeat center center/cover;
-            min-height: 550px;
-            display: flex;
-            align-items: center;
-        }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
 
-        .hero-content {
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.98);
-            padding: 45px;
-            border-radius: 4px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
+    .category-card {
+      position: relative;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 4px;
+      background-color: #f5f5f5;
+    }
 
-        .hero h1 {
-            font-size: 2.3rem;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            color: var(--primary);
-        }
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
 
-        .hero p {
-            color: var(--secondary);
-            margin-bottom: 25px;
-            font-size: 1rem;
-        }
+    .category-card:hover img {
+      transform: scale(1.05);
+    }
 
-        /* ==========================================================================
-           5. PRODUCT GRID & CARD STYLING
-           ========================================================================== */
-        .section-title {
-            text-align: center;
-            margin: 60px 0 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 1.8rem;
-            position: relative;
-        }
+    .category-label-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      padding: 30px 20px;
+      color: #ffffff;
+    }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent);
-            margin: 10px auto 0;
-        }
+    .category-label-overlay h4 {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
+    /* Review Layer Styles */
+    .review-container {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .product-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
+    .star-rating {
+      color: #ffcc00;
+      font-size: 0.95rem;
+    }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
+    .review-metrics {
+      color: #dddddd;
+      font-size: 0.85rem;
+    }
 
-        .product-img-wrapper {
-            position: relative;
-            padding-bottom: 125px; /* 4:5 Aspect Ratio */
-            background-color: var(--light-bg);
-            overflow: hidden;
-        }
+    .category-label-overlay a {
+      color: #ffffff;
+      font-size: 0.9rem;
+      text-decoration: underline;
+      font-weight: 500;
+    }
 
-        .product-card img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
+    /* Core Footnote Text Base Information Blocks Row Frame Container */
+    footer {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 60px 40px;
+      margin-top: 100px;
+    }
 
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(2, 1fr);
+      gap: 50px;
+    }
 
-        .product-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    .footer-brand h4 {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
 
-        .product-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            text-decoration: none;
-            color: var(--primary);
-            line-height: 1.4;
-        }
+    .footer-brand p {
+      color: #999999;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 400px;
+    }
 
-        .product-price-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
+    .footer-links h5 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
 
-        .price {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        .compare-price {
-            color: var(--secondary);
-            text-decoration: line-through;
-            font-size: 0.9rem;
-        }
+    .footer-links ul li a {
+      color: #999999;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
 
-        .product-card .btn {
-            width: 100%;
-        }
+    .footer-links ul li a:hover {
+      color: #ffffff;
+    }
 
-        /* ==========================================================================
-           6. FOOTER
-           ========================================================================== */
-        footer {
-            background-color: var(--light-bg);
-            border-top: 1px solid var(--border);
-            padding: 60px 0 30px;
-            margin-top: 80px;
-            font-size: 0.9rem;
-            color: var(--secondary);
-        }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 30px;
+      border-top: 1px solid #222222;
+      text-align: center;
+      color: #666666;
+      font-size: 0.85rem;
+    }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
+    /* Responsive Mobile Screen Configurations */
+    @media (max-width: 900px) {
+      .categories-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .hero-banner h2 {
+        font-size: 2.3rem;
+      }
+    }
 
-        .footer-col h4 {
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-        }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-        .footer-col ul {
-            list-style: none;
-        }
+  <!-- Site Nav Header Wrapper Frame -->
+  <header>
+    <div class="logo">
+      <h1>The Lace Wigs</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="login.html">Track</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="calculator.html">Size Guide</a></li>
+        <li><a href="bag.html">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
 
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
+  <main>
+    <!-- Hero Welcome Visual Area Cover -->
+    <section class="hero-banner">
+      <h2>Luxury Melted Hairlines</h2>
+      <p>Discover our signature collection of 100% premium virgin lace frontal units, carefully curated to provide an undetectable, pre-plucked finish.</p>
+      <a href="shop.html" class="shop-now-btn">Shop The Collection</a>
+    </section>
 
-        .footer-col ul li a {
-            color: var(--secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
+    <!-- Visual Categories Image Blocks Section Row Layout Grid -->
+    <section class="categories-section">
+      <h3>Explore By Texture</h3>
+      <div class="categories-grid">
+        
+        <!-- Category 1: Straight -->
+        <div class="category-card">
+          <img src="straight.jpg" alt="Silky Straight Collection">
+          <div class="category-label-overlay">
+            <h4>Silky Straight</h4>
+            <div class="review-container">
+              <div class="star-rating">★★★★★</div>
+              <span class="review-metrics">5.0 / 5.0 (42 reviews)</span>
+            </div>
+            <a href="shop.html">View Units &rarr;</a>
+          </div>
+        </div>
 
-        .footer-col ul li a:hover {
-            color: var(--accent);
-        }
+        <!-- Category 2: Body Wave -->
+        <div class="category-card">
+          <img src="bodywave.jpg" alt="Body Wave Collection">
+          <div class="category-label-overlay">
+            <h4>Body Wave</h4>
+            <div class="review-container">
+              <div class="star-rating">★★★★★</div>
+              <span class="review-metrics">4.7 / 5.0 (242 reviews)</span>
+            </div>
+            <a href="shop.html">View Units &rarr;</a>
+          </div>
+        </div>
 
-        .footer-bottom {
+        <!-- Category 3: Deep Wave -->
+        <div class="category-card">
+          <img src="deepwave.jpg" alt="Deep Curly Collection">
+          <div class="category-label-overlay">
+            <h4>Deep Curly</h4>
+            <div class="review-container">
+              <div class="star-rating">★★★★★</div>
+              <span class="review-metrics">4.9 / 5.0 (142 reviews)</span>
+            </div>
+            <a href="shop.html">View Units &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footnote Footer Property Section -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>The Lace Wigs</h4>
+        <p>Providing custom, high-density HD lace frontal and closure units globally. Designed for luxury, durability, and a natural install finish.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Customer Care</h5>
+        <ul>
+          <li><a href="shop.html">Browse Catalog</a></li>
+          <li><a href="login.html">Track Order Status</a></li>
+          <li><a href="contact.html">Shipping & Returns Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Get In Touch</h5>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="mailto:info@thelacewigs.com">info@thelacewigs.com</a></li>
+          <li><a href="about.html">Our Story</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 THE LACE WIGS. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
