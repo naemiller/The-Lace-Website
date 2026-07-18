@@ -1,438 +1,313 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DB5KS31CSH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        <li><a href="#shop" class="nav-link">Shop</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#care" class="nav-link">Wig Care</a></li>
+      </ul>
+    </nav>
+    <div class="header-icons">
+      <span class="cart-icon">🛒 <span class="cart-badge" id="cart-badge">0</span></span>
+    </div>
+  </header>
 
-  gtag('config', 'G-DB5KS31CSH');
-</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Silky Straight 13x4 HD Lace Frontal Wig | The Lace Wigs</title>
-  
-  <!-- STRIPE FRONTEND CHECKOUT SDK MODULE HELPER LAYER -->
-  <script src="https://stripe.com"></script>
+  <!-- ==========================================================================
+       3. PRODUCT HERO SECTION
+       ========================================================================== -->
+  <main class="product-container">
+    <!-- Left: Product Media Gallery -->
+    <div class="product-gallery">
+      <div class="main-image-container">
+        <div class="placeholder-image">
+          <span>Silky Straight 13x4 HD Lace Frontal Wig</span>
+        </div>
+      </div>
+    </div>
 
+    <!-- Right: Product Purchase Controls -->
+    <div class="product-details">
+      <span class="category-tag">Premium Virgin Human Hair</span>
+      <h2 class="product-title">Silky Straight 13x4 HD Lace Frontal Wig</h2>
+      
+      <div class="product-price">
+        <span id="display-price">$150.00</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Product Meta Description -->
+      <div class="product-description">
+        <p>Experience undetectable perfection with our ultra-thin HD Swiss Lace. Melts seamlessly into all skin tones. Features 100% cuticle-aligned virgin hair with a pre-plucked natural hairline and deep 13x4 parting space.</p>
+        <ul>
+          <li><strong>Lace Type:</strong> HD Invisible Swiss Lace</li>
+          <li><strong>Cap Size:</strong> Average (Adjustable straps & clips)</li>
+          <li><strong>Density:</strong> 180% High Density</li>
+          <li><strong>Texture:</strong> Silky Straight, can be dyed & flat ironed</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Length Selector Form -->
+      <form id="purchase-form">
+        <div class="selector-group">
+          <label for="length-select" class="selector-label">Select Length:</label>
+          <select id="length-select" name="length">
+            <option value="16" data-addon="0">16 Inches (Base) — $150.00</option>
+            <option value="18" data-addon="20">18 Inches — $170.00</option>
+            <option value="20" data-addon="40">20 Inches — $190.00</option>
+            <option value="22" data-addon="60">22 Inches — $210.00</option>
+            <option value="24" data-addon="80">24 Inches — $230.00</option>
+            <option value="26" data-addon="100">26 Inches — $250.00</option>
+            <option value="28" data-addon="120">28 Inches — $270.00</option>
+            <option value="30" data-addon="140">30 Inches — $290.00</option>
+          </select>
+        </div>
+
+        <button type="submit" id="checkout-button" class="btn-primary">Buy Now</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       4. EXTENDED DESIGN SYSTEM & INTERACTIVE ARCHITECTURE
+       ========================================================================== -->
   <style>
-    /* ==========================================================================
-       1. CORE BRAND DESIGN SYSTEM
-       ========================================================================== */
-    :root {
-      --primary: #111111;
-      --secondary: #555555;
-      --accent: #d4af37; /* Luxury Gold */
-      --light-bg: #fdfdfd;
-      --border: #eeeeee;
-      --white: #ffffff;
-      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      background-color: var(--white);
-      color: var(--primary);
-      line-height: 1.6;
-    }
-
-    /* ==========================================================================
-       2. STICKY HEADER NAVIGATION
-       ========================================================================== */
-    header {
-      background-color: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 25px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo h1 {
-      font-size: 1.6rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
+    /* Styling extension from your system */
     nav ul {
       display: flex;
       list-style: none;
-      gap: 35px;
-      align-items: center;
+      gap: 30px;
     }
 
-    nav ul li a {
+    .nav-link {
       text-decoration: none;
       color: var(--secondary);
-      font-size: 0.95rem;
       font-weight: 500;
-      letter-spacing: 0.5px;
+      font-size: 0.95rem;
       transition: var(--transition);
     }
 
-    nav ul li a:hover, nav ul li a.active {
+    .nav-link:hover {
       color: var(--primary);
     }
 
-    #bag-count {
-      background-color: var(--primary);
-      color: var(--white);
-      font-size: 0.75rem;
-      padding: 2px 7px;
-      border-radius: 50%;
-      margin-left: 4px;
-      display: inline-block;
-      vertical-align: middle;
-      font-weight: bold;
+    .header-icons {
+      font-size: 1.2rem;
+      cursor: pointer;
+      position: relative;
     }
 
-    /* ==========================================================================
-       3. PRODUCT SHOWCASE DETAIL GRID
-       ========================================================================== */
+    .cart-badge {
+      background-color: var(--accent);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+    }
+
+    /* Layout Matrix */
     .product-container {
-      max-width: 1300px;
-      margin: 50px auto 40px;
+      max-width: 1200px;
+      margin: 60px auto;
       padding: 0 40px;
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 60px;
     }
 
-    /* Media Gallery System */
-    .gallery-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    /* Media Mock */
+    .product-gallery {
+      width: 100%;
     }
 
-    .main-display {
+    .main-image-container {
       width: 100%;
-      height: 600px;
+      aspect-ratio: 4/5;
       background-color: #f7f7f7;
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .main-display img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-
-    .thumbnail-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .thumb-card {
-      height: 120px;
-      background-color: #f7f7f7;
-      border-radius: 2px;
-      overflow: hidden;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: var(--transition);
-    }
-
-    .thumb-card.active, .thumb-card:hover {
-      border-color: var(--primary);
-      opacity: 0.8;
-    }
-
-    .thumb-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Configuration Panel (Right Side) */
-    .details-panel {
+      border: 1px solid var(--border);
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .product-tag {
-      font-size: 0.8rem;
+    .placeholder-image {
+      text-align: center;
+      color: var(--secondary);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 20px;
+    }
+
+    /* Detail Blocks */
+    .category-tag {
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 2px;
       color: var(--secondary);
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .details-panel h2 {
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      line-height: 1.2;
+      font-weight: 600;
+      display: block;
       margin-bottom: 10px;
     }
 
-    /* Luxury Rating Block */
-    .review-line {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
+    .product-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 15px;
+      letter-spacing: -0.5px;
     }
 
-    .star-rating {
-      color: var(--accent);
-      font-size: 1rem;
-      letter-spacing: 1px;
-    }
-
-    .review-metrics {
-      font-size: 0.85rem;
-      color: var(--secondary);
-      font-weight: 500;
-    }
-
-    .price-tag {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 30px;
+    .product-price {
+      font-size: 1.6rem;
+      font-weight: 600;
       color: var(--primary);
     }
 
-    /* Selection Fields Configuration */
-    .option-group {
+    .divider {
+      height: 1px;
+      background-color: var(--border);
+      margin: 25px 0;
+    }
+
+    .product-description p {
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+
+    .product-description ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .product-description li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: #333333;
+    }
+
+    /* Interface Elements */
+    .selector-group {
       margin-bottom: 25px;
     }
 
-    .option-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-
-    .option-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
     .selector-label {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .selector-label input {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .selector-box {
-      border: 1px solid var(--border);
-      padding: 12px 24px;
-      font-size: 0.9rem;
+      display: block;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      background-color: var(--white);
-      transition: var(--transition);
-      border-radius: 2px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
-    .selector-label input:checked + .selector-box {
-      border-color: var(--primary);
-      background-color: var(--primary);
-      color: var(--white);
-    }
-
-    .selector-label:hover .selector-box {
-      border-color: var(--primary);
-    }
-
-    /* Add To Cart Button System */
-    .qty-and-action {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 15px;
-      margin-top: 35px;
-      margin-bottom: 40px;
-    }
-
-    .qty-input {
+    #length-select {
       width: 100%;
       padding: 15px;
-      border: 1px solid var(--border);
+      border: 1px solid #cccccc;
+      background-color: var(--white);
       font-size: 1rem;
-      text-align: center;
-      font-weight: bold;
-      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23555555'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      cursor: pointer;
+      transition: var(--transition);
     }
 
-    .bag-action-btn {
+    #length-select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .btn-primary {
+      width: 100%;
       background-color: var(--primary);
       color: var(--white);
       border: none;
       padding: 18px;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      font-weight: 600;
       text-transform: uppercase;
-      font-weight: bold;
       letter-spacing: 2px;
       cursor: pointer;
       transition: var(--transition);
-      border-radius: 2px;
     }
 
-    .bag-action-btn:hover {
-      background-color: var(--accent);
+    .btn-primary:hover {
+      background-color: #333333;
     }
 
-    /* Description Blocks */
-    .description-block {
-      border-top: 1px solid var(--border);
-      padding-top: 30px;
-      margin-bottom: 30px;
-    }
-
-    .description-block p {
-      font-size: 0.95rem;
-      color: var(--secondary);
-      margin-bottom: 20px;
-      line-height: 1.7;
-    }
-
-    .spec-list {
-      list-style: none;
-    }
-
-    .spec-list li {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .spec-list li strong {
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 0.5px;
-      width: 120px;
-      color: var(--primary);
-    }
-
-    /* Secure Checkout Trust Badges */
-    .trust-badge-panel {
-      background-color: #fafafa;
-      border: 1px solid var(--border);
-      padding: 25px;
-      border-radius: 4px;
-      text-align: center;
-    }
-
-    .trust-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 15px;
-      color: var(--secondary);
-    }
-
-    .badge-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    .badge-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: var(--primary);
-    }
-
-    .badge-icon {
-      font-size: 1.5rem;
-    }
-
-    .badge-text {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      color: var(--secondary);
-    }
-
-    /* Responsive Mobile Overrides */
-    @media (max-width: 900px) {
+    /* Responsiveness */
+    @media (max-width: 768px) {
       .product-container {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
         padding: 0 20px;
-        margin-top: 20px;
       }
       header {
         padding: 20px;
-        flex-direction: column;
-        gap: 15px;
-      }
-      .main-display {
-        height: 400px;
       }
     }
   </style>
-</head>
-<body>
 
-  <header>
-    <div class="logo">
-      <h1>The Lace Wigs</h1>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#" class="active">Shop</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Bag <span id="bag-count">0</span></a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- ==========================================================================
+       5. CLIENT LOGIC ARCHITECTURE
+       ========================================================================== -->
+  <script>
+    // Configuration Variables
+    const BASE_PRICE = 150.00;
+    
+    // UI Elements
+    const lengthSelect = document.getElementById('length-select');
+    const displayPrice = document.getElementById('display-price');
+    const purchaseForm = document.getElementById('purchase-form');
+    const cartBadge = document.getElementById('cart-badge');
 
-  <main class="product-container">
-    <!-- Gallery Area -->
-    <section class="gallery-wrapper">
-      <div class="main-display">
-        <img id="viewfinder" src="blkstraight.jpg" alt="Silky Straight Wig">
-      </div>
-      <div class="thumbnail-row">
-        <div class="thumb-card active" onclick="changeImage(this, 'https://unsplash.com')">
-          <img src="straight-13x4-farside.jpg" alt="View 1">
-        </div>
-        <div class="thumb-card" onclick="changeImage(this, 'https://unsplash.com')">
-          <img src="straight-13x4-side.jpg" alt="View 2">
-        </div>
-        <div class="thumb-card" onclick="changeImage(this, 'https://unsplash.com')">
-          <img src="straight-13x4-cap.jpg" alt="View 3">
-        </div>
-         <div class="thumb-card" onclick="changeImage(this, 'https://unsplash.com')">
-          <img src="straight-13x4-cap2.jpg" alt="View 4">
-        </div>
+    // Live Price Update Function
+    function updatePrice() {
+      const selectedOption = lengthSelect.options[lengthSelect.selectedIndex];
+      const addOn = parseFloat(selectedOption.getAttribute('data-addon'));
+      const totalPrice = BASE_PRICE + addOn;
+      
+      // Update DOM
+      displayPrice.textContent = `$${totalPrice.toFixed(2)}`;
+    }
 
+    // Event Registration
+    lengthSelect.addEventListener('change', updatePrice);
+
+    // Initial Payment Integration Placeholder logic
+    purchaseForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const selectedLength = lengthSelect.value;
+      const finalPrice = BASE_PRICE + parseFloat(lengthSelect.options[lengthSelect.selectedIndex].getAttribute('data-addon'));
+
+      // Google Analytics Event Data Layer Push
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'begin_checkout',
+        'ecommerce': {
+          'value': finalPrice,
+          'currency': 'USD',
+          'items': [{
+            'item_id': 'wig_silky_straight_13x4',
+            'item_name': 'Silky Straight 13x4 HD Lace Frontal Wig',
+            'item_variant': `${selectedLength} inches`,
+            'price': finalPrice,
+            'quantity': 1
+          }]
+        }
+      });
+
+      // Quick visual validation for user feedback
+      cartBadge.textContent = "1";
+      alert(`Proceeding to Stripe checkout for ${selectedLength}" Wig at $${finalPrice.toFixed(2)}`);
+      
+      // Developer Note: Initialize Stripe Checkout Session request downstream here
+    });
+  </script>
+</body>
+</html>
