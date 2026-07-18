@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Straight Hair Collection | lacewigs.com</title>
+    <style>
+        :root {
+            --primary-color: #0b0b0b;
+            --accent-color: #d4af37; /* Premium gold accent for lacewigs.com */
+            --text-color: #222222;
+            --bg-color: #ffffff;
+            --gray-light: #f9f9f9;
+            --gray-border: #e8e8e8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            border-bottom: 1px solid var(--gray-border);
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-transform: lowercase; /* Matches lacewigs.com branding style */
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        /* Collection Header */
+        .collection-header {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: var(--gray-light);
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .collection-header h1 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .collection-header p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Toolbar (Filters/Sort) */
+        .collection-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--gray-border);
+            background-color: #fff;
+        }
+
+        .product-count {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #777;
+        }
+
+        .sort-select {
+            padding: 10px 15px;
+            border: 1px solid var(--gray-border);
+            background: #fff;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            padding: 50px 5%;
+        }
+
+        .product-card {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-image-container {
+            position: relative;
+            background-color: var(--gray-light);
+            aspect-ratio: 3 / 4; /* Standard e-commerce fashion ratio */
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.04);
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .badge.sale {
+            background-color: #a91b1b;
+        }
+
+        .product-info {
+            text-align: left; /* Premium luxury alignment preference */
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-vendor {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 6px;
+            letter-spacing: 1.5px;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+
+        .product-title:hover {
+            color: var(--accent-color);
+        }
+
+        .product-price {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .compare-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+            font-size: 0.95rem;
+        }
+
+        .btn-view {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 70px 5% 30px;
+            margin-top: 80px;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b5b5b5;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222;
+            padding-top: 25px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px 5%;
+            }
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .collection-header h1 {
+                font-size: 2.2rem;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        Complimentary Shipping Worldwide On All Premium Lace Wigs
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#" class="logo">lacewigs<span>.com</span></a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#" class="active">Straight Collection</a></li>
+            <li><a href="#">Wavy & Curly</a></li>
+            <li><a href="#">HD Lace Wigs</a></li>
+            <li><a href="#">Custom Orders</a></li>
+        </ul>
+    </nav>
+
+    <!-- Collection Header -->
+    <header class="collection-header">
+        <h1>The Straight Collection</h1>
+        <p>Explore elite, ultra-premium 100% virgin human hair straight wigs. Impeccably sourced, pre-plucked, and crafted with invisible HD lace for a flawless meltdown.</p>
+    </header>
+
+    <!-- Filter & Sort Toolbar -->
+    <div class="collection-toolbar">
+        <div class="product-count">Showing 4 exclusive styles</div>
+        <div>
+            <select class="sort-select">
+                <option value="featured">Featured</option>
+                <option value="best-selling">Best Selling</option>
+                <option value="price-low">Price: Low to High</option>
