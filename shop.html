@@ -140,12 +140,12 @@
                 <button class="add-to-bag" data-id="w1" data-name="Straight Luxury Unit" data-price="254.99">Add to Bag</button>
             </div>
 
-            <!-- Product 2 -->
+                        <!-- Product 2 -->
             <div class="product-card">
                 <span class="badge hd">HD Lace</span>
-                <a href="body-wave-hd.html" class="product-link">
+                <a href="body-wave-hd-wig.html" class="product-link">
                     <div class="product-image-wrapper">
-                        <img src="bodywave.jpg" alt="Body Wave HD Lace Front Human Hair Wig" loading="lazy" onerror="this.src='straight.jpg'">
+                        <img src="bodywave.jpg" alt="Body Wave HD Lace Wig 100% Human Hair" loading="lazy" onerror="this.src='wave.jpg'">
                     </div>
                     <h4>Body Wave HD Lace Wig</h4>
                     <div class="stars">⭐⭐⭐⭐⭐<span>(32)</span></div>
@@ -156,33 +156,51 @@
 
             <!-- Product 3 -->
             <div class="product-card">
-                <a href="deep-wave-front.html" class="product-link">
+                <span class="badge">Sale</span>
+                <a href="deep-wave-frontal-wig.html" class="product-link">
                     <div class="product-image-wrapper">
-                        <img src="deepwave.jpg" alt="Deep Wave Lace Front Human Hair Wig" loading="lazy" onerror="this.src='straight.jpg'">
+                        <img src="deepwave.jpg" alt="Deep Wave Frontal Wig" loading="lazy">
                     </div>
-                    <h4>Deep Wave Lace Front</h4>
-                    <div class="stars">⭐⭐⭐⭐☆<span>(19)</span></div>
-                    <p class="price">$265.99</p>
+                    <h4>Deep Wave Frontal Wig</h4>
+                    <div class="stars">⭐⭐⭐⭐★<span>(19)</span></div>
+                    <p class="price">$239.99</p>
                 </a>
-                <button class="add-to-bag" data-id="w3" data-name="Deep Wave Lace Front" data-price="265.99">Add to Bag</button>
+                <button class="add-to-bag" data-id="w3" data-name="Deep Wave Frontal Wig" data-price="239.99">Add to Bag</button>
             </div>
 
             <!-- Product 4 -->
             <div class="product-card">
-                <span class="badge">Clearance</span>
-                <a href="water-wave-transparent.html" class="product-link">
+                <span class="badge hd">HD Lace</span>
+                <a href="blonde-613-straight.html" class="product-link">
                     <div class="product-image-wrapper">
-                        <img src="straight.jpg" alt="Water Wave Transparent Lace Closure Wig" loading="lazy" onerror="this.src='straight.jpg'">
-
-                         <!-- Product 5 -->
-            <div class="product-card">
-                <a href="515.html" class="product-link">
-                    <div class="product-image-wrapper">
-                        <img src="515-catelog.jpg" alt="Deep Wave Lace Front Human Hair Wig" loading="lazy" onerror="this.src='straight.jpg'">
+                        <img src="blonde613.jpg" alt="613 Blonde Straight Luxury Wig" loading="lazy">
                     </div>
-                    <h4>5X5 HD Closure Lace Wig</h4>
-                    <div class="stars">⭐⭐⭐⭐☆<span>(11)</span></div>
-                    <p class="price">$489.99</p>
+                    <h4>613 Blonde Straight Unit</h4>
+                    <div class="stars">⭐⭐⭐⭐⭐<span>(25)</span></div>
+                    <p class="price">$315.00</p>
                 </a>
-                <button class="add-to-bag" data-id="w3" data-name="5x5 HD Lace Wig" data-price="489.99">Add to Bag</button>
+                <button class="add-to-bag" data-id="w4" data-name="613 Blonde Straight Unit" data-price="315.00">Add to Bag</button>
             </div>
+
+        </div>
+    </main>
+
+    <!-- Simple Footer for Structural Closure -->
+    <footer style="background: #111; color: #fff; text-align: center; padding: 30px; margin-top: 60px; font-size: 0.85rem;">
+        <p>&copy; 2026 The Lace Wigs. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Shopping Bag Logic Setup -->
+    <script>
+        document.querySelectorAll('.add-to-bag').forEach(button => {
+            button.addEventListener('click', () => {
+                const badge = document.getElementById('bag-count');
+                let count = parseInt(badge.textContent);
+                badge.textContent = count + 1;
+                alert(`${button.getAttribute('data-name')} added to your bag!`);
+            });
+        });
+    </script>
+
+</body>
+</html>
