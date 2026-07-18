@@ -309,20 +309,30 @@
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
-                gap: 20px;
-                padding: 20px 5%;
+                gap: 15px;
+                padding: 15px 5%;
             }
             .nav-links {
-                gap: 20px;
+                gap: 15px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
+            .collection-header {
+                padding: 40px 20px;
+            }
             .collection-header h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+            }
+            .collection-toolbar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+                text-align: center;
             }
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-                gap: 25px;
+                gap: 20px;
+                padding: 35px 5%;
             }
         }
     </style>
@@ -331,32 +341,28 @@
 
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        Complimentary Shipping Worldwide On All Premium Lace Wigs
+        Free Worldwide Shipping On Orders Over $150
     </div>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class="navbar">
         <a href="#" class="logo">lacewigs<span>.com</span></a>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#" class="active">Straight Collection</a></li>
-            <li><a href="#">Wavy & Curly</a></li>
-            <li><a href="#">HD Lace Wigs</a></li>
-            <li><a href="#">Custom Orders</a></li>
+            <li><a href="#" class="active">Straight</a></li>
+            <li><a href="#">Wavy</a></li>
+            <li><a href="#">Curly</a></li>
+            <li><a href="#">About</a></li>
         </ul>
     </nav>
 
     <!-- Collection Header -->
     <header class="collection-header">
-        <h1>The Straight Collection</h1>
-        <p>Explore elite, ultra-premium 100% virgin human hair straight wigs. Impeccably sourced, pre-plucked, and crafted with invisible HD lace for a flawless meltdown.</p>
+        <h1>Straight Hair Collection</h1>
+        <p>Discover ultra-smooth, premium grade lace wigs engineered for perfect flow, high shine, and effortless daily manageability.</p>
     </header>
 
-    <!-- Filter & Sort Toolbar -->
+    <!-- Toolbar -->
     <div class="collection-toolbar">
-        <div class="product-count">Showing 4 exclusive styles</div>
-        <div>
-            <select class="sort-select">
-                <option value="featured">Featured</option>
-                <option value="best-selling">Best Selling</option>
-                <option value="price-low">Price: Low to High</option>
+        <div class="product-count">4 Products Available</div>
+        <select class="sort-select">
+            <option>Featured</option>
