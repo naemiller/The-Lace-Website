@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DB5KS31CSH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DB5KS31CSH');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DB5KS31CSH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DB5KS31CSH');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Bag | The Lace Wigs</title>
@@ -127,11 +126,33 @@
     }
 
     .empty-cart-msg {
-      padding: 40px;
+      padding: 60px 40px;
       text-align: center;
       background-color: var(--light-bg);
-      border: 1px dashed var(--border);
+      border: 1px dashed #cccccc;
       color: var(--secondary);
+    }
+
+    .empty-cart-msg p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .shop-btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 12px 30px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+
+    .shop-btn:hover {
+      background-color: var(--accent);
     }
 
     .cart-item {
@@ -164,6 +185,35 @@
       margin-bottom: 4px;
     }
 
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .qty-btn {
+      background: none;
+      border: 1px solid var(--border);
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .qty-val {
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
     .item-remove-btn {
       background: none;
       border: none;
@@ -173,7 +223,7 @@
       letter-spacing: 0.5px;
       cursor: pointer;
       text-decoration: underline;
-      margin-top: 8px;
+      margin-left: 15px;
     }
 
     .item-price-block {
@@ -331,58 +381,27 @@
     <!-- Left Side: Interactive Item Output Stream -->
     <div class="cart-items-panel" id="cart-items-target">
       <!-- Injected dynamically via client JavaScript -->
-      <div class="empty-cart-msg">Your shopping bag is currently empty.</div>
     </div>
 
-    <!-- Right Side: Guest Information Inputs & Subtotals -->
+    <!-- Right Side: Order Calculation & Checkout Framework -->
     <div class="checkout-summary-panel">
-      
-      <!-- Box 1: Real-time Order Summary calculations -->
       <div class="summary-box">
         <h3>Order Summary</h3>
         <div class="summary-row">
           <span>Subtotal</span>
-          <span id="subtotal-val">$0.00</span>
+          <span id="summary-subtotal">$0.00</span>
         </div>
         <div class="summary-row">
-          <span>Estimated Shipping</span>
-          <span style="color: var(--accent); font-weight: bold;">FREE</span>
+          <span>Shipping</span>
+          <span id="summary-shipping">Calculated at next step</span>
         </div>
         <div class="summary-row total">
-          <span>Total (USD)</span>
-          <span id="total-val">$0.00</span>
+          <span>Estimated Total</span>
+          <span id="summary-total">$0.00</span>
         </div>
       </div>
 
-      <!-- Box 2: Mandatory Guest Email Input Field Matrix (Replaces login requirements) -->
-      <form class="guest-checkout-box" id="payment-gate-form">
-        <h3>Guest Checkout</h3>
-        
-        <div class="form-group">
-          <label for="checkout-email">Email Address (For Order Tracking)</label>
-          <input type="email" id="checkout-email" required placeholder="alex@domain.com">
-        </div>
-
-        <div class="form-group">
-          <label for="shipping-name">Full Name</label>
-          <input type="text" id="shipping-name" required placeholder="Alex Morgan">
-        </div>
-
-        <div class="form-group">
-          <label for="shipping-street">Shipping Street Address</label>
-          <input type="text" id="shipping-street" required placeholder="123 Luxury Lane">
-        </div>
-
-        <div class="form-group">
-          <label for="shipping-city">City & State</label>
-          <input type="text" id="shipping-city" required placeholder="Beverly Hills, CA">
-        </div>
-
-        <div class="form-group">
-          <label for="shipping-zip">Zip / Postal Code</label>
-          <input type="text" id="shipping-zip" required placeholder="90210">
-        </div>
-
-        <button type="submit" class="place-order-btn">Proceed to Secure Payment</button>
-        
-        <div class="trust-badges-row">
+      <!-- Guest Contact & Billing Trigger Matrix -->
+      <div class="guest-checkout-box">
+        <h3>Shipping Information</h3>
+        <form id="checkout-form">
