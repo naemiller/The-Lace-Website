@@ -156,8 +156,15 @@ nav ul li a.active-link {
     background-color: var(--white);
 }
 
+/* New responsive row structure for fields */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
 .form-group {
     margin-bottom: 25px;
+    flex: 1;
 }
 
 .form-label {
@@ -171,6 +178,7 @@ nav ul li a.active-link {
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
+.contact-form input[type="tel"],
 .contact-form select,
 .contact-form textarea {
     width: 100%;
@@ -396,7 +404,11 @@ nav ul li a.active-link {
         padding: 20px;
     }
     nav ul {
-        gap: 20px;
+        display: none; /* simple fallback for missing mobile nav loop */
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
     }
 }
 </style>
@@ -409,42 +421,38 @@ nav ul li a.active-link {
     </div>
     <nav>
         <ul>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html" class="active-link">Contact</a></li>
-            <li><a href="#" class="cart-link" onclick="toggleCart(true)">Bag <span id="bag-count">1</span></a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#" class="active-link">Contact</a></li>
         </ul>
     </nav>
+    <div class="cart-link">
+        <span>Bag</span>
+        <span id="bag-count">0</span>
+    </div>
 </header>
 
 <main class="contact-container">
-    <!-- Contact Details -->
+    <!-- Contact Details Info Column -->
     <section class="contact-info">
-        <h2>Get in Touch</h2>
-        <p>Have a question about lace density or custom coloring? Our wig specialists are here to help you achieve the perfect install.</p>
+        <h2>Get In Touch</h2>
+        <p>Have questions about custom sizing, textures, or an existing order? Our team is here to guide you toward your perfect luxury unit.</p>
         
         <div class="info-block">
-            <span class="info-label">Email</span>
+            <span class="info-label">Email Support</span>
             <span class="info-value"><a href="mailto:support@thelacewigs.com">support@thelacewigs.com</a></span>
         </div>
-        
+
         <div class="info-block">
-            <span class="info-label">Hours</span>
-            <span class="info-value">Mon - Fri: 9am - 6pm EST</span>
-        </div>
-        
-        <div class="info-block" style="margin-top: 40px;">
-            <span class="info-label">FAQ</span>
-            <span class="info-value">Check our <a href="#">Shipping & Returns</a> policy for quick answers.</span>
+            <span class="info-label">Business Hours</span>
+            <span class="info-value">Monday – Friday: 9:00 AM – 5:00 PM EST</span>
         </div>
     </section>
 
-    <!-- Contact Form -->
+    <!-- Luxury Input Form Section -->
     <section class="contact-form">
-        <form action="#" method="POST">
-            <div class="form-group">
-                <span class="form-label">Full Name</span>
-                <input type="text" name="name" placeholder="Enter your name" required>
-            </div>
+        <!-- REPLACE YOUR_FORM_ENDPOINT_ID WITH YOUR FORMSPREE KEY -->
+        <form action="https://formspree.io" method="POST">
             
-            <div class="form-group">
+            <div class="form-row">
+                <div class="form-group">
