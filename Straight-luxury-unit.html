@@ -372,82 +372,54 @@
       color: var(--secondary);
     }
 
-    /* ==========================================================================
-       4. INTEGRATED IMAGE ATTACHED REVIEWS DISPLAY STYLES
-       ========================================================================== */
-    .reviews-display-section {
-      max-width: 1200px;
-      margin: 60px auto 100px;
-      padding: 0 40px;
-      border-top: 1px solid var(--border);
-      padding-top: 60px;
+    /* Responsive Mobile Overrides */
+    @media (max-width: 900px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+        margin-top: 20px;
+      }
+      header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .main-display {
+        height: 400px;
+      }
     }
+  </style>
+</head>
+<body>
 
-    .reviews-header-block {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 45px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 25px;
-    }
+  <header>
+    <div class="logo">
+      <h1>The Lace Wigs</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Shop</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Bag <span id="bag-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
 
-    .reviews-header-block h3 {
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-
-    .master-score-badge {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-    }
-
-    .score-number {
-      font-size: 2.2rem;
-      font-weight: bold;
-      line-height: 1;
-    }
-
-    .luxury-stars {
-      color: var(--accent);
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-    }
-
-    .total-count-label {
-      font-size: 0.85rem;
-      color: var(--secondary);
-    }
-
-    .reviews-masonry-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
-    }
-
-    .review-card-node {
-      background-color: #fafafa;
-      border: 1px solid var(--border);
-      padding: 25px;
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: transform 0.3s ease;
-    }
-
-    .review-card-node:hover {
-      transform: translateY(-3px);
-    }
-
-    .card-reviewer-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .reviewer-name-string {
-      font-weight: bold;
+  <main class="product-container">
+    <!-- Gallery Area -->
+    <section class="gallery-wrapper">
+      <div class="main-display">
+        <img id="viewfinder" src="https://unsplash.com" alt="Silky Straight Wig">
+      </div>
+      <div class="thumbnail-row">
+        <div class="thumb-card active" onclick="changeImage(this, 'https://unsplash.com')">
+          <img src="https://unsplash.com" alt="View 1">
+        </div>
+        <div class="thumb-card" onclick="changeImage(this, 'https://unsplash.com')">
+          <img src="https://unsplash.com" alt="View 2">
+        </div>
+        <div class="thumb-card" onclick="changeImage(this, 'https://unsplash.com')">
+          <img src="https://unsplash.com" alt="View 3">
+        </div>
