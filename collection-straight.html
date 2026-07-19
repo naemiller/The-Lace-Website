@@ -12,6 +12,7 @@
             --bg-color: #ffffff;
             --gray-light: #f9f9f9;
             --gray-border: #e8e8e8;
+            --sidebar-width: 260px;
         }
 
         * {
@@ -25,6 +26,7 @@
             color: var(--text-color);
             background-color: var(--bg-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Announcement Bar */
@@ -55,7 +57,7 @@
         .logo {
             font-size: 1.6rem;
             font-weight: 700;
-            text-transform: lowercase; /* Matches lacewigs.com branding style */
+            text-transform: lowercase;
             letter-spacing: 1px;
             text-decoration: none;
             color: var(--primary-color);
@@ -73,297 +75,302 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--primary-color);
             font-weight: 500;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover {
             color: var(--accent-color);
         }
 
-        /* Collection Header */
-        .collection-header {
-            text-align: center;
-            padding: 80px 20px;
-            background-color: var(--gray-light);
-            border-bottom: 1px solid var(--gray-border);
+        .nav-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
 
-        .collection-header h1 {
-            font-size: 2.8rem;
+        .nav-actions a, .menu-toggle {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+        }
+
+        /* Mobile Drawer Menu */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background: #ffffff;
+            z-index: 2000;
+            padding: 40px 30px;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            transition: left 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+        }
+
+        .mobile-drawer.open {
+            left: 0;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .drawer-links {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .drawer-links li {
+            margin-bottom: 25px;
+        }
+
+        .drawer-links a {
+            text-decoration: none;
+            color: var(--primary-color);
             text-transform: uppercase;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            font-weight: 400;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
-        .collection-header p {
-            max-width: 650px;
-            margin: 0 auto;
-            color: #666;
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.4);
+            z-index: 1500;
+            display: none;
+        }
+
+        .drawer-overlay.active {
+            display: block;
+        }
+
+        /* Image Carousel Hero Banner */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            background-color: var(--gray-light);
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 300%; /* Total slides multiplied by 100% */
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .carousel-slide {
+            width: 33.333%;
+            height: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Placeholders - Replace URLs with your actual photoshoot banner images */
+        .slide-1 { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://unsplash.com'); }
+        .slide-2 { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://unsplash.com'); }
+        .slide-3 { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://unsplash.com'); }
+
+        .carousel-caption {
+            text-align: center;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        .carousel-caption h1 {
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .carousel-caption p {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover { background: #ffffff; }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+
+        .dot.active { background: #ffffff; }
+
+        /* Main E-commerce Shop Layout */
+        .shop-container {
+            display: flex;
+            padding: 60px 5%;
+            gap: 40px;
+        }
+
+        /* Left Filter Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            flex-shrink: 0;
+        }
+
+        .filter-group {
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--gray-border);
+            padding-bottom: 25px;
+        }
+
+        .filter-title {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .filter-list {
+            list-style: none;
+        }
+
+        .filter-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 0.95rem;
         }
 
-        /* Toolbar (Filters/Sort) */
-        .collection-toolbar {
+        .filter-list input[type="checkbox"] {
+            accent-color: var(--primary-color);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* Right Content Block */
+        .main-content {
+            flex-grow: 1;
+        }
+
+        .shop-toolbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
             border-bottom: 1px solid var(--gray-border);
-            background-color: #fff;
         }
 
-        .product-count {
+        .mobile-filter-trigger {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #777;
-        }
-
-        .sort-select {
-            padding: 10px 15px;
-            border: 1px solid var(--gray-border);
-            background: #fff;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            outline: none;
             cursor: pointer;
         }
 
         /* Product Grid */
-        .product-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-            padding: 50px 5%;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
         }
 
         .product-card {
+            border: 1px solid var(--gray-border);
             background: #ffffff;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .product-image-container {
-            position: relative;
-            background-color: var(--gray-light);
-            aspect-ratio: 3 / 4; /* Standard e-commerce fashion ratio */
-            overflow: hidden;
-            margin-bottom: 15px;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .product-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 360px;
+            background-color: #e9e9e9;
+            background-size: cover;
+            background-position: center;
         }
 
-        .product-card:hover .product-image {
-            transform: scale(1.04);
-        }
-
-        .badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 5px 12px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-            z-index: 10;
-        }
-
-        .badge.sale {
-            background-color: #a91b1b;
-        }
-
-        .product-info {
-            text-align: left; /* Premium luxury alignment preference */
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-vendor {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 6px;
-            letter-spacing: 1.5px;
+        .product-details {
+            padding: 20px;
+            text-align: center;
         }
 
         .product-title {
             font-size: 1rem;
             font-weight: 500;
             margin-bottom: 8px;
-            color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            line-height: 1.4;
-        }
-
-        .product-title:hover {
-            color: var(--accent-color);
+            min-height: 48px;
         }
 
         .product-price {
-            font-size: 1.05rem;
-            font-weight: 400;
-            color: var(--text-color);
-            margin-bottom: 15px;
-        }
-
-        .compare-price {
-            text-decoration: line-through;
-            color: #999;
-            margin-right: 10px;
-            font-size: 0.95rem;
-        }
-
-        .btn-view {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background-color: transparent;
+            font-size: 1.1rem;
             color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-            text-align: center;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            font-weight: 600;
-            margin-top: auto;
-            transition: all 0.3s ease;
-        }
-
-        .btn-view:hover {
-            background-color: var(--primary-color);
-            color: #ffffff;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            padding: 70px 5% 30px;
-            margin-top: 80px;
-            border-top: 4px solid var(--accent-color);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-col h3 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            margin-bottom: 25px;
-            letter-spacing: 2px;
-            color: var(--accent-color);
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col ul li a {
-            color: #b5b5b5;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.3s;
-        }
-
-        .footer-col ul li a:hover {
-            color: #ffffff;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #222;
-            padding-top: 25px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #777;
-            letter-spacing: 1px;
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 5%;
-            }
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .collection-header {
-                padding: 40px 20px;
-            }
-            .collection-header h1 {
-                font-size: 2rem;
-            }
-            .collection-toolbar {
-                flex-direction: column;
-                gap: 15px;
-                align-items: stretch;
-                text-align: center;
-            }
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-                gap: 20px;
-                padding: 35px 5%;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Announcement Bar -->
-    <div class="announcement-bar">
-        Free Worldwide Shipping On Orders Over $150
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <a href="#" class="logo">The Lace Wigs<span>.com</span></a>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Straight</a></li>
-            <li><a href="#">Wavy</a></li>
-            <li><a href="#">Curly</a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Collection Header -->
-    <header class="collection-header">
-        <h1>Straight Hair Collection</h1>
-        <p>Discover ultra-smooth, premium grade lace wigs engineered for perfect flow, high shine, and effortless daily manageability.</p>
-    </header>
-
-    <!-- Toolbar -->
-    <div class="collection-toolbar">
-        <div class="product-count">4 Products Available</div>
-        <select class="sort-select">
-            <option>Featured</option>
+            margin-bottom: 15px;
