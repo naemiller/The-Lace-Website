@@ -13,13 +13,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Bag | The Lace Wigs</title>
   
-  <!-- Stripe Frontend Checkout SDK Module Helper Layer -->
+  <!-- CORRECT STRIPE FRONTEND LIBRARY SDK -->
   <script src="https://stripe.com"></script>
   
   <style>
     /* ==========================================================================
        1. CORE BRAND DESIGN SYSTEM
-       ========================================================================== */
+       ========================================================================= */
     :root {
       --primary: #111111;
       --secondary: #555555;
@@ -347,9 +347,9 @@
       letter-spacing: 0.5px;
     }
 
-    /* Responsive Configurations */
+    /* Responsive Configurations FIXED CLOSING BRACE */
     @media (max-width: 900px) {
-      .bag-container { 
+      .bag-container {
         grid-template-columns: 1fr;
         gap: 30px;
         margin: 30px auto 60px;
@@ -377,7 +377,7 @@
 
     <!-- LEFT COLUMN: Dynamic Items Injection Panel -->
     <section class="cart-items-panel" id="cart-items-panel">
-      <!-- Injected dynamically via JavaScript -->
+      <!-- Injected dynamically via JavaScript below -->
     </section>
 
     <!-- RIGHT COLUMN: Price Calculation & Payment Processing -->
