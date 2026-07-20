@@ -349,28 +349,25 @@
 
     /* Responsive Configurations */
     @media (max-width: 900px) {
-      .bag-container { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
-    }
-    @media (max-width: 768px) {
-      header { flex-direction: column; gap: 15px; padding: 15px; }
-      .cart-item { grid-template-columns: 80px 1fr; }
-      .item-price-block { grid-column: span 2; text-align: left; margin-top: 5px; }
+      .bag-container { 
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 30px auto 60px;
+        padding: 0 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Site Nav Header Wrapper Frame -->
   <header>
     <div class="logo">
       <h1 onclick="window.location.href='index.html'">The Lace Wigs</h1>
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="login.html">Track Order</a></li>
-        <li><a href="bag.html" class="active">Bag <span id="bag-count">0</span></a></li>
+        <li><a href="index.html">Shop All</a></li>
+        <li><a href="bag.html" class="active">Bag (<span id="bag-count">0</span>)</a></li>
       </ul>
     </nav>
   </header>
@@ -378,13 +375,13 @@
   <main class="bag-container">
     <h2>Your Shopping Bag</h2>
 
-    <!-- Left Side: Interactive Item Output Stream -->
-    <div class="cart-items-panel" id="cart-items-target">
-      <!-- Injected dynamically via client JavaScript -->
-    </div>
+    <!-- LEFT COLUMN: Dynamic Items Injection Panel -->
+    <section class="cart-items-panel" id="cart-items-panel">
+      <!-- Injected dynamically via JavaScript -->
+    </section>
 
-    <!-- Right Side: Order Calculation & Checkout Framework -->
-    <div class="checkout-summary-panel">
+    <!-- RIGHT COLUMN: Price Calculation & Payment Processing -->
+    <section class="checkout-summary-panel" id="checkout-summary-panel">
       <div class="summary-box">
         <h3>Order Summary</h3>
         <div class="summary-row">
@@ -393,15 +390,18 @@
         </div>
         <div class="summary-row">
           <span>Shipping</span>
-          <span id="summary-shipping">Calculated at next step</span>
+          <span style="color: var(--accent); font-weight: bold;">Calculated at checkout</span>
         </div>
         <div class="summary-row total">
-          <span>Estimated Total</span>
+          <span>Total Est.</span>
           <span id="summary-total">$0.00</span>
         </div>
       </div>
 
-      <!-- Guest Contact & Billing Trigger Matrix -->
       <div class="guest-checkout-box">
-        <h3>Shipping Information</h3>
+        <h3>Customer Contact</h3>
         <form id="checkout-form">
+          <div class="form-group">
+            <label for="guest-email">Email Address</label>
+            <input type="email" id="guest-email" placeholder="name@domain.com" required>
+          </div>
