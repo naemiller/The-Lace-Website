@@ -221,7 +221,8 @@
       letter-spacing: 2px;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s transform 0.1s;
+      /* FIXED: Added missing comma between transitions */
+      transition: background-color 0.3s, transform 0.1s;
     }
 
     .add-to-cart-btn:hover {
@@ -247,7 +248,7 @@
       }
 
       .nav-links {
-        display: none; /* Can be integrated into a mobile drawer later */
+        display: none; 
       }
 
       .product-title {
@@ -311,41 +312,52 @@
       <!-- Interactive Length Selector Form Block -->
       <form id="purchase-form">
         <div class="selector-group">
+          <!-- FIXED: Closed the label tag correctly -->
           <label for="length-select" class="selector-label">Select Length:</label>
-          <select id="length-select" name="length" required>
-            <option value="16" data-price="150.00">16 inches - $150.00</option>
-            <option value="20" data-price="180.00">180.00</option>
-            <option value="24" data-price="210.00">24 inches - $210.00</option>
-            <option value="28" data-price="240.00">28 inches - $240.00</option>
+          <select id="length-select">
+            <option value="150.00">16 inches</option>
+            <option value="180.00">20 inches</option>
+            <option value="210.00">24 inches</option>
           </select>
         </div>
 
         <div class="selector-group">
-          <label for="quantity-select" class="selector-label">Quantity:</label>
-          <input type="number" id="quantity-select" name="quantity" min="1" max="10" value="1" required>
+          <label for="quantity-input" class="selector-label">Quantity:</label>
+          <input type="number" id="quantity-input" value="1" min="1">
         </div>
 
-        <button type="submit" class="add-to-cart-btn" id="add-to-cart-btn">
-          Add to Cart
-        </button>
+        <button type="submit" class="add-to-cart-btn">Add To Cart</button>
       </form>
     </div>
   </main>
 
-  <!-- ==========================================================================
-       6. DYNAMIC JAVASCRIPT LOGIC ENGINE
-       ========================================================================== */ -->
+  <!-- Dynamic Frontend Interactions -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const lengthSelect = document.getElementById('length-select');
-      const displayPrice = document.getElementById('display-price');
-      const purchaseForm = document.getElementById('purchase-form');
-      const cartBadge = document.getElementById('cart-badge');
-      const quantitySelect = document.getElementById('quantity-select');
+    const lengthSelect = document.getElementById('length-select');
+    const displayPrice = document.getElementById('display-price');
+    const quantityInput = document.getElementById('quantity-input');
+    const purchaseForm = document.getElementById('purchase-form');
+    const cartBadge = document.getElementById('cart-badge');
 
-      let currentCartCount = 0;
+    let currentCartCount = 0;
 
-      // Real-time Pricing Updates Based on Selection Change
-      lengthSelect.addEventListener('change', (e) => {
-        const selectedOption = e.target.options[e.target.selectedIndex];
-        const newPrice = selectedOption.getAttribute('data-price');
+    // Updates price dynamically based on selection and quantity
+    function updatePrice() {
+      const basePrice = parseFloat(lengthSelect.value);
+      const quantity = parseInt(quantityInput.value) || 1;
+      const totalPrice = basePrice * quantity;
+      displayPrice.textContent = `$${totalPrice.toFixed(2)}`;
+    }
+
+    lengthSelect.addEventListener('change', updatePrice);
+    quantityInput.addEventListener('input', updatePrice);
+
+    // Handles cart additions smoothly without refreshing page
+    purchaseForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const quantity = parseInt(quantityInput.value) || 1;
+      currentCartCount += quantity;
+      cartBadge.textContent = currentCartCount;
+    });
+  </script>
+
