@@ -1,3 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silky Straight 13x4 HD Lace Frontal Wig | The Lace Wigs</title>
+  <style>
+    /* ==========================================================================
+       1. GLOBAL STYLES & LUXURY VARIABLES
+       ========================================================================== */
+    :root {
+      --primary-color: #1a1a1a;    /* Rich Luxury Dark Accent */
+      --accent-color: #d4af37;     /* Premium Gold tint */
+      --text-color: #333333;       /* Soft body text */
+      --light-bg: #fdfbf7;         /* Clean background canvas */
+      --border-color: #e5e5e5;     /* Delicate dividers */
+      --font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       2. HEADER & NAVIGATION STYLES
+       ========================================================================== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-color);
+    }
+
+    .header-icons {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cart-icon {
+      font-size: 22px;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: var(--accent-color);
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+
+    /* ==========================================================================
+       3. PRODUCT LAYOUT ARCHITECTURE
+       ========================================================================== */
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Left Side: Media Gallery */
+    .product-gallery {
+      width: 100%;
+    }
+
+    .main-image-container {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f4f4f4;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .placeholder-image {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* Right Side: Product Panel Information */
+    .product-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent-color);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-size: 32px;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-weight: 400;
+    }
+
+    .product-price {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      height: 1px;
+      background-color: var(--border-color);
+      margin: 20px 0;
+    }
+
+    .product-description p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .product-description ul {
+      list-style-position: inside;
+      list-style-type: square;
+      color: #555;
+    }
+
+    .product-description li {
+      margin-bottom: 8px;
+    }
+
+    /* ==========================================================================
+       4. INTERACTIVE FORM ELEMENT STYLES
+       ========================================================================== */
+    .selector-group {
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .selector-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    select, input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      font-size: 15px;
+      color: var(--primary-color);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    select:focus, input[type="number"]:focus {
+      border-color: var(--accent-color);
+    }
+
+    input[type="number"] {
+      max-width: 100px;
+      text-align: center;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      border: none;
+      padding: 18px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s transform 0.1s;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #333333;
+    }
+
+    .add-to-cart-btn:active {
+      transform: scale(0.99);
+    }
+
+    /* ==========================================================================
+       5. RESPONSIVE DESIGN MEDIA QUERIES
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 20px auto;
+      }
+      
+      header {
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        display: none; /* Can be integrated into a mobile drawer later */
+      }
+
+      .product-title {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <ul class="nav-links">
         <li><a href="#shop" class="nav-link">Shop</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#care" class="nav-link">Wig Care</a></li>
@@ -8,11 +272,10 @@
     </div>
   </header>
 
-  <!-- ==========================================================================
-       3. PRODUCT HERO SECTION
-       ========================================================================== -->
+  <!-- Main Product Detail Layout -->
   <main class="product-container">
-    <!-- Left: Product Media Gallery -->
+    
+    <!-- Left: Product Media Gallery Layout -->
     <div class="product-gallery">
       <div class="main-image-container">
         <div class="placeholder-image">
@@ -21,7 +284,7 @@
       </div>
     </div>
 
-    <!-- Right: Product Purchase Controls -->
+    <!-- Right: Product Purchase Structural Controls -->
     <div class="product-details">
       <span class="category-tag">Premium Virgin Human Hair</span>
       <h2 class="product-title">Silky Straight 13x4 HD Lace Frontal Wig</h2>
@@ -45,269 +308,44 @@
 
       <div class="divider"></div>
 
-      <!-- Length Selector Form -->
+      <!-- Interactive Length Selector Form Block -->
       <form id="purchase-form">
         <div class="selector-group">
           <label for="length-select" class="selector-label">Select Length:</label>
-          <select id="length-select" name="length">
-            <option value="16" data-addon="0">16 Inches (Base) — $150.00</option>
-            <option value="18" data-addon="20">18 Inches — $170.00</option>
-            <option value="20" data-addon="40">20 Inches — $190.00</option>
-            <option value="22" data-addon="60">22 Inches — $210.00</option>
-            <option value="24" data-addon="80">24 Inches — $230.00</option>
-            <option value="26" data-addon="100">26 Inches — $250.00</option>
-            <option value="28" data-addon="120">28 Inches — $270.00</option>
-            <option value="30" data-addon="140">30 Inches — $290.00</option>
+          <select id="length-select" name="length" required>
+            <option value="16" data-price="150.00">16 inches - $150.00</option>
+            <option value="20" data-price="180.00">180.00</option>
+            <option value="24" data-price="210.00">24 inches - $210.00</option>
+            <option value="28" data-price="240.00">28 inches - $240.00</option>
           </select>
         </div>
 
-        <button type="submit" id="checkout-button" class="btn-primary">Buy Now</button>
+        <div class="selector-group">
+          <label for="quantity-select" class="selector-label">Quantity:</label>
+          <input type="number" id="quantity-select" name="quantity" min="1" max="10" value="1" required>
+        </div>
+
+        <button type="submit" class="add-to-cart-btn" id="add-to-cart-btn">
+          Add to Cart
+        </button>
       </form>
     </div>
   </main>
 
   <!-- ==========================================================================
-       4. EXTENDED DESIGN SYSTEM & INTERACTIVE ARCHITECTURE
-       ========================================================================== -->
-  <style>
-    /* Styling extension from your system */
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 30px;
-    }
-
-    .nav-link {
-      text-decoration: none;
-      color: var(--secondary);
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: var(--transition);
-    }
-
-    .nav-link:hover {
-      color: var(--primary);
-    }
-
-    .header-icons {
-      font-size: 1.2rem;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .cart-badge {
-      background-color: var(--accent);
-      color: var(--primary);
-      font-size: 0.75rem;
-      font-weight: bold;
-      padding: 2px 6px;
-      border-radius: 50%;
-      position: absolute;
-      top: -10px;
-      right: -10px;
-    }
-
-    /* Layout Matrix */
-    .product-container {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 40px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-    }
-
-    /* Media Mock */
-    .product-gallery {
-      width: 100%;
-    }
-
-    .main-image-container {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background-color: #f7f7f7;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .placeholder-image {
-      text-align: center;
-      color: var(--secondary);
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 20px;
-    }
-
-    /* Detail Blocks */
-    .category-tag {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--secondary);
-      font-weight: 600;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .product-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 15px;
-      letter-spacing: -0.5px;
-    }
-
-    .product-price {
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .divider {
-      height: 1px;
-      background-color: var(--border);
-      margin: 25px 0;
-    }
-
-    .product-description p {
-      color: var(--secondary);
-      margin-bottom: 15px;
-    }
-
-    .product-description ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .product-description li {
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-      color: #333333;
-    }
-
-    /* Interface Elements */
-    .selector-group {
-      margin-bottom: 25px;
-    }
-
-    .selector-label {
-      display: block;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    #length-select {
-      width: 100%;
-      padding: 15px;
-      border: 1px solid #cccccc;
-      background-color: var(--white);
-      font-size: 1rem;
-      appearance: none;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23555555'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 15px center;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    #length-select:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .btn-primary {
-      width: 100%;
-      background-color: var(--primary);
-      color: var(--white);
-      border: none;
-      padding: 18px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .btn-primary:hover {
-      background-color: #333333;
-    }
-
-    /* Responsiveness */
-    @media (max-width: 768px) {
-      .product-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 0 20px;
-      }
-      header {
-        padding: 20px;
-      }
-    }
-  </style>
-
-  <!-- ==========================================================================
-       5. CLIENT LOGIC ARCHITECTURE
-       ========================================================================== -->
+       6. DYNAMIC JAVASCRIPT LOGIC ENGINE
+       ========================================================================== */ -->
   <script>
-    // Configuration Variables
-    const BASE_PRICE = 150.00;
-    
-    // UI Elements
-    const lengthSelect = document.getElementById('length-select');
-    const displayPrice = document.getElementById('display-price');
-    const purchaseForm = document.getElementById('purchase-form');
-    const cartBadge = document.getElementById('cart-badge');
+    document.addEventListener('DOMContentLoaded', () => {
+      const lengthSelect = document.getElementById('length-select');
+      const displayPrice = document.getElementById('display-price');
+      const purchaseForm = document.getElementById('purchase-form');
+      const cartBadge = document.getElementById('cart-badge');
+      const quantitySelect = document.getElementById('quantity-select');
 
-    // Live Price Update Function
-    function updatePrice() {
-      const selectedOption = lengthSelect.options[lengthSelect.selectedIndex];
-      const addOn = parseFloat(selectedOption.getAttribute('data-addon'));
-      const totalPrice = BASE_PRICE + addOn;
-      
-      // Update DOM
-      displayPrice.textContent = `$${totalPrice.toFixed(2)}`;
-    }
+      let currentCartCount = 0;
 
-    // Event Registration
-    lengthSelect.addEventListener('change', updatePrice);
-
-    // Initial Payment Integration Placeholder logic
-    purchaseForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const selectedLength = lengthSelect.value;
-      const finalPrice = BASE_PRICE + parseFloat(lengthSelect.options[lengthSelect.selectedIndex].getAttribute('data-addon'));
-
-      // Google Analytics Event Data Layer Push
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event': 'begin_checkout',
-        'ecommerce': {
-          'value': finalPrice,
-          'currency': 'USD',
-          'items': [{
-            'item_id': 'wig_silky_straight_13x4',
-            'item_name': 'Silky Straight 13x4 HD Lace Frontal Wig',
-            'item_variant': `${selectedLength} inches`,
-            'price': finalPrice,
-            'quantity': 1
-          }]
-        }
-      });
-
-      // Quick visual validation for user feedback
-      cartBadge.textContent = "1";
-      alert(`Proceeding to Stripe checkout for ${selectedLength}" Wig at $${finalPrice.toFixed(2)}`);
-      
-      // Developer Note: Initialize Stripe Checkout Session request downstream here
-    });
-  </script>
-</body>
-</html>
+      // Real-time Pricing Updates Based on Selection Change
+      lengthSelect.addEventListener('change', (e) => {
+        const selectedOption = e.target.options[e.target.selectedIndex];
+        const newPrice = selectedOption.getAttribute('data-price');
