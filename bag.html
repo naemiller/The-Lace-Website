@@ -347,13 +347,12 @@
       letter-spacing: 0.5px;
     }
 
-    /* Responsive Configurations FIXED CLOSING BRACE */
+    /* Responsive Configurations */
     @media (max-width: 900px) {
       .bag-container {
         grid-template-columns: 1fr;
-        gap: 30px;
-        margin: 30px auto 60px;
         padding: 0 20px;
+        margin: 30px auto;
       }
     }
   </style>
@@ -366,8 +365,9 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">Shop All</a></li>
-        <li><a href="bag.html" class="active">Bag (<span id="bag-count">0</span>)</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop All</a></li>
+        <li><a href="bag.html" class="active">Bag<span id="bag-count">0</span></a></li>
       </ul>
     </nav>
   </header>
@@ -375,13 +375,13 @@
   <main class="bag-container">
     <h2>Your Shopping Bag</h2>
 
-    <!-- LEFT COLUMN: Dynamic Items Injection Panel -->
-    <section class="cart-items-panel" id="cart-items-panel">
-      <!-- Injected dynamically via JavaScript below -->
-    </section>
+    <!-- Dynamic Cart Content Target Area -->
+    <div class="cart-items-panel" id="cart-items-panel">
+      <!-- Injected dynamically by JavaScript -->
+    </div>
 
-    <!-- RIGHT COLUMN: Price Calculation & Payment Processing -->
-    <section class="checkout-summary-panel" id="checkout-summary-panel">
+    <!-- Processing Dashboard Context Form Wrapper -->
+    <div class="checkout-summary-panel">
       <div class="summary-box">
         <h3>Order Summary</h3>
         <div class="summary-row">
@@ -389,19 +389,25 @@
           <span id="summary-subtotal">$0.00</span>
         </div>
         <div class="summary-row">
-          <span>Shipping</span>
-          <span style="color: var(--accent); font-weight: bold;">Calculated at checkout</span>
+          <span>Estimated Shipping</span>
+          <span>Complimentary</span>
         </div>
         <div class="summary-row total">
-          <span>Total Est.</span>
+          <span>Total</span>
           <span id="summary-total">$0.00</span>
         </div>
       </div>
 
-      <div class="guest-checkout-box">
-        <h3>Customer Contact</h3>
-        <form id="checkout-form">
-          <div class="form-group">
-            <label for="guest-email">Email Address</label>
-            <input type="email" id="guest-email" placeholder="name@domain.com" required>
-          </div>
+      <form id="checkout-form" class="guest-checkout-box">
+        <h3>Contact & Delivery</h3>
+        <div class="form-group">
+          <label for="guest-email">Email Address</label>
+          <input type="email" id="guest-email" required placeholder="name@domain.com">
+        </div>
+        <div class="form-group">
+          <label for="coupon-code">Promo Code / Coupon</label>
+          <input type="text" id="coupon-code" placeholder="Optional code">
+        </div>
+
+        <button type="submit" class="place-order-btn">Place Order</button>
+
