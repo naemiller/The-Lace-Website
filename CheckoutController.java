@@ -1,5 +1,6 @@
-package com.example.demo.controller; // Update this to match your actual project package
+package com.example.demo.controller; // Matches your local folder structure
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,21 +19,23 @@ public class CheckoutController {
         Stripe.apiKey = "sk_test_51P...YourActualSecretKeyHere"; 
     }
 
+    // ADD CROSSORIGIN: Allows your GitHub Pages website to talk to your Java Server
+    @CrossOrigin(origins = "*") 
     @GetMapping("/checkout")
     public RedirectView checkout(
             @RequestParam String products,
             @RequestParam(required = false) String coupon) {
         
         try {
-            // 2. SET UP LOCALHOST OR YOUR DOMAIN FOR REDIRECTS
-            // Use http://localhost:8080 during testing, or change to your live website URL
-            String domainUrl = "http://localhost:8080"; 
+            // 2. DOMAIN HANDOFFS
+            // Changed from localhost to your actual live customer website link
+            String frontendUrl = "https://thelacewigs.com"; 
 
             // Start building the Stripe Session
             SessionCreateParams.Builder sessionBuilder = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(domainUrl + "/success.html") // Where to go after paying
-                .setCancelUrl(domainUrl + "/bag.html");     // Where to go if they click back
+                .setSuccessUrl(frontendUrl + "/success.html") // Redirects to your website after payment success
+                .setCancelUrl(frontendUrl + "/bag.html");     // Redirects back to your website if they cancel
 
             // 3. PARSE PRODUCTS SENT FROM BAG.HTML
             if (products != null && !products.trim().isEmpty()) {
@@ -76,8 +79,8 @@ public class CheckoutController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            // If something goes wrong, send them back to the bag with an error
-            return new RedirectView("/bag.html?error=stripe_failed");
+            // If something goes wrong, send them back to the bag on your live site
+            return new RedirectView("https://thelacewigs.com");
         }
     }
 
