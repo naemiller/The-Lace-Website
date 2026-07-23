@@ -1,0 +1,5 @@
+<dependency>
+    <groupId>com.stripe</groupId>
+    <artifactId>stripe-java</artifactId>
+    <version>33.1.0</version> <!-- Or latest stable release -->
+</dependency>
