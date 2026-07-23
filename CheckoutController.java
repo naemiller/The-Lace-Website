@@ -16,7 +16,7 @@ public class CheckoutController {
     // 1. SET UP YOUR STRIPE KEY
     static {
         // Replace this with your actual Stripe Secret Key from your Stripe Dashboard
-        Stripe.apiKey = "sk_test_51P...YourActualSecretKeyHere"; 
+        Stripe.apiKey = "pk_live_51Tq4M31113VRneMecrPRwO6IYcxe8qf44x6S0izG15ZV7UPOJz9aXW3pNuJ6hpdKcV3Uk6LELVFBT6IQqNv65I7n00MnfCjSK7"; 
     }
 
     // ADD CROSSORIGIN: Allows your GitHub Pages website to talk to your Java Server
