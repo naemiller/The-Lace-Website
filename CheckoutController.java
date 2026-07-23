@@ -1,110 +1,123 @@
-package com.example.demo.controller;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
+package com.yourdomain.controller;
 
 import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import jakarta.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "*") // Adjust this in production to match your domain settings
+@RequestMapping("/api")
 public class CheckoutController {
 
-    @Value("${stripe.api.key}")
-    private String stripeApiKey;
+    // Ideally, load this configuration from application.properties using @Value("${stripe.api.key}")
+    private final String stripeSecretKey = "sk_test_your_actual_private_key_here";
 
-    @PostConstruct
-    public void init() {
-        Stripe.apiKey = stripeApiKey;
+    public CheckoutController() {
+        // Initialize the Stripe SDK with your secret API key
+        Stripe.apiKey = this.stripeSecretKey;
     }
 
-    @CrossOrigin(origins = "https://thelacewigs.com") 
-    @GetMapping("/checkout")
-    public RedirectView checkout(
-            @RequestParam String products,
-            @RequestParam(required = false) String coupon) {
+    @PostMapping("/create-checkout-session")
+    public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody CheckoutRequest request) {
+        Map<String, String> responseData = new HashMap<>();
         
-        String frontendUrl = "https://thelacewigs.com";
-
         try {
-            SessionCreateParams.Builder sessionBuilder = SessionCreateParams.builder()
-                    .setMode(SessionCreateParams.Mode.PAYMENT)
-                    .setSuccessUrl(frontendUrl + "/success.html")
-                    .setCancelUrl(frontendUrl + "/bag.html");
+            List<SessionCreateParams.LineItem> lineItems = new ArrayList<>();
 
-            // Option A: If passing an explicit internal Coupon ID
-            if (coupon != null && !coupon.trim().isEmpty()) {
-                sessionBuilder.addDiscount(
-                    SessionCreateParams.Discount.builder()
-                        .setCoupon(coupon.trim()) 
-                        .build()
-                );
-            }
-            
-            // Option B (RECOMMENDED): Let Stripe handle user-facing Promo Codes natively:
-            // sessionBuilder.setAllowPromotionCodes(true);
+            // Loop through each item sent from the bag.html frontend layout
+            for (CartItem item : request.getItems()) {
+                
+                // Stripe processes money amounts strictly in cents (e.g., $350.00 = 35000 cents)
+                long unitAmountInCents = Math.round(item.getPrice() * 100);
 
-            if (products != null && !products.trim().isEmpty()) {
-                for (String productEntry : products.split(",")) {
-                    String[] parts = productEntry.split(":");
-                    if (parts.length == 2) {
-                        // FIX: Added explicit array indices [0] and [1]
-                        String productId = parts[0].trim();
-                        long quantity = Long.parseLong(parts[1].trim());
+                // Build line item product data inline using the latest Builder patterns
+                SessionCreateParams.LineItem.PriceData.ProductData productData = 
+                    SessionCreateParams.LineItem.PriceData.ProductData.builder()
+                        .setName(item.getName())
+                        .addImage(item.getImg()) // Array list structure for product images
+                        .build();
 
-                        long priceInCents = getProductPriceInCents(productId);
-                        String productName = getProductName(productId);
+                SessionCreateParams.LineItem.PriceData priceData = 
+                    SessionCreateParams.LineItem.PriceData.builder()
+                        .setCurrency("usd")
+                        .setUnitAmount(unitAmountInCents)
+                        .setProductData(productData)
+                        .build();
 
-                        sessionBuilder.addLineItem(
-                            SessionCreateParams.LineItem.builder()
-                                .setQuantity(quantity)
-                                .setPriceData(
-                                    SessionCreateParams.LineItem.PriceData.builder()
-                                        .setCurrency("usd")
-                                        .setUnitAmount(priceInCents)
-                                        .setProductData(
-                                            SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                                .setName(productName)
-                                                .build()
-                                        )
-                                        .build()
-                                )
-                                .build()
-                        );
-                    }
-                }
+                SessionCreateParams.LineItem lineItem = 
+                    SessionCreateParams.LineItem.builder()
+                        .setQuantity((long) item.getQty())
+                        .setPriceData(priceData)
+                        .build();
+
+                lineItems.add(lineItem);
             }
 
-            Session session = Session.create(sessionBuilder.build());
-            return new RedirectView(session.getUrl());
+            // Define session options adhering to the modern Stripe Session creation structures
+            SessionCreateParams params = SessionCreateParams.builder()
+                .setCustomerEmail(request.getCustomerEmail())
+                .setMode(SessionCreateParams.Mode.PAYMENT) // One-time payment mode selection
+                .setSuccessUrl("http://localhost:8080/success.html?session_id={CHECKOUT_SESSION_ID}")
+                .setCancelUrl("http://localhost:8080/bag.html")
+                .addAllLineItem(lineItems)
+                .setAllowPromotionCodes(true) // Matches your optional coupon text field input
+                .build();
 
-        } catch (Exception e) {
-            e.printStackTrace(); 
-            return new RedirectView(frontendUrl + "/bag.html?error=checkout_failed");
+            // Programmatically request the session string token from Stripe
+            Session session = Session.create(params);
+
+            // Pass back the secure checkout url endpoint to trigger client navigation
+            responseData.put("url", session.getUrl());
+            return ResponseEntity.ok(responseData);
+
+        } catch (StripeException e) {
+            responseData.put("error", e.getMessage());
+            return ResponseEntity.status(500).body(responseData);
         }
     }
 
-    private long getProductPriceInCents(String id) {
-        return switch (id) {
-            case "wig_01" -> 45000;  // $450.00
-            case "wig_02" -> 65000;  // $650.00
-            case "wig_03" -> 35000;  // $350.00
-            default -> 20000;        // Fallback $200.00
-        };
+    // ==========================================================================
+    // INNER REQUEST DATA TRANSFER OBJECTS (DTOs)
+    // ==========================================================================
+    public static class CheckoutRequest {
+        private List<CartItem> items;
+        private String customerEmail;
+        private String promoCode;
+
+        // Getters and Setters
+        public List<CartItem> getItems() { return items; }
+        public void setItems(List<CartItem> items) { this.items = items; }
+        public String getCustomerEmail() { return customerEmail; }
+        public void setCustomerEmail(String customerEmail) { this.customerEmail = customerEmail; }
+        public String getPromoCode() { return promoCode; }
+        public void setPromoCode(String promoCode) { this.promoCode = promoCode; }
     }
 
-    private String getProductName(String id) {
-        return switch (id) {
-            case "wig_01" -> "Signature HD Lace Wig";
-            case "wig_02" -> "Luxury Full Lace Body Wave";
-            case "wig_03" -> "Glueless Bob Custom Unit";
-            default -> "Custom Lace Wig Unit";
-        };
+    public static class CartItem {
+        private String id;
+        private String name;
+        private double price;
+        private int qty;
+        private String img;
+
+        // Getters and Setters
+        public String getId() { return id; }
+        public void setId(String id) { this.id = id; }
+        public String getName() { return name; }
+        public void setName(String name) { this.name = name; }
+        public double getPrice() { return price; }
+        public void setPrice(double price) { this.price = price; }
+        public int getQty() { return qty; }
+        public void setQty(int qty) { this.qty = qty; }
+        public String getImg() { return img; }
+        public void setImg(String img) { this.img = img; }
     }
 }
