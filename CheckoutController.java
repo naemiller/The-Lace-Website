@@ -1,63 +1,75 @@
-package com.example.demo.controller; // Matches your local folder structure
+package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
+
 import com.stripe.Stripe;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
+
+import jakarta.annotation.PostConstruct;
 import java.util.*;
 
 @RestController
 public class CheckoutController {
 
-    // 1. SET UP YOUR STRIPE KEY
-    static {
-        // Replace this with your actual Stripe Secret Key from your Stripe Dashboard
-        Stripe.apiKey = "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"; 
+    // Inject your key securely from application.properties or system environment variables
+    @Value("${stripe.api.key}")
+    private String stripeApiKey;
+
+    @PostConstruct
+    public void init() {
+        // Initializes the Stripe SDK with your key once the bean is created
+        Stripe.apiKey = stripeApiKey;
     }
 
-    // ADD CROSSORIGIN: Allows your GitHub Pages website to talk to your Java Server
-    @CrossOrigin(origins = "*") 
+    // Restrict origins in production instead of using "*" for better security
+    @CrossOrigin(origins = "https://thelacewigs.com") 
     @GetMapping("/checkout")
     public RedirectView checkout(
             @RequestParam String products,
             @RequestParam(required = false) String coupon) {
         
+        String frontendUrl = "https://thelacewigs.com";
+
         try {
-            // 2. DOMAIN HANDOFFS
-            // Changed from localhost to your actual live customer website link
-            String frontendUrl = "https://thelacewigs.com"; 
-
-            // Start building the Stripe Session
+            // 1. Initialize Session Builder
             SessionCreateParams.Builder sessionBuilder = SessionCreateParams.builder()
-                .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(frontendUrl + "/success.html") // Redirects to your website after payment success
-                .setCancelUrl(frontendUrl + "/bag.html");     // Redirects back to your website if they cancel
+                    .setMode(SessionCreateParams.Mode.PAYMENT)
+                    .setSuccessUrl(frontendUrl + "/success.html")
+                    .setCancelUrl(frontendUrl + "/bag.html");
 
-            // 3. PARSE PRODUCTS SENT FROM BAG.HTML
+            // 2. Handle Coupons / Discounts
+            if (coupon != null && !coupon.trim().isEmpty()) {
+                sessionBuilder.addDiscount(
+                    SessionCreateParams.Discount.builder()
+                        .setCoupon(coupon.trim()) // Dynamic coupon ID matching your Stripe Dashboard
+                        .build()
+                );
+            }
+
+            // 3. Parse and Add Products
             if (products != null && !products.trim().isEmpty()) {
                 for (String productEntry : products.split(",")) {
                     String[] parts = productEntry.split(":");
-                    
                     if (parts.length == 2) {
                         String productId = parts[0].trim();
                         long quantity = Long.parseLong(parts[1].trim());
 
-                        // Map the Product ID to the correct Name and Price
-                        long priceInCents = getProductPriceInCents(productId); 
+                        long priceInCents = getProductPriceInCents(productId);
                         String productName = getProductName(productId);
 
-                        // Add the item to the Stripe checkout page line items
                         sessionBuilder.addLineItem(
                             SessionCreateParams.LineItem.builder()
                                 .setQuantity(quantity)
                                 .setPriceData(
                                     SessionCreateParams.LineItem.PriceData.builder()
                                         .setCurrency("usd")
-                                        .setUnitAmount(priceInCents) // Stripe uses cents ($450.00 = 45000)
+                                        .setUnitAmount(priceInCents)
                                         .setProductData(
                                             SessionCreateParams.LineItem.PriceData.ProductData.builder()
                                                 .setName(productName)
@@ -71,31 +83,33 @@ public class CheckoutController {
                 }
             }
 
-            // 4. GENERATE THE SECURE STRIPE PAGE
+            // 4. Create and Redirect
             Session session = Session.create(sessionBuilder.build());
-
-            // 5. REDIRECT THE BUYER TO STRIPE
             return new RedirectView(session.getUrl());
 
         } catch (Exception e) {
-            e.printStackTrace();
-            // If something goes wrong, send them back to the bag on your live site
-            return new RedirectView("https://thelacewigs.com");
+            // Consider using a logger framework (like SLF4J) instead of printStackTrace
+            e.printStackTrace(); 
+            return new RedirectView(frontendUrl + "/bag.html?error=checkout_failed");
         }
     }
 
-    // HELPER MAPPING: Matches the catalog ids used inside your bag.html
+    // Helper mappings
     private long getProductPriceInCents(String id) {
-        if (id.equals("wig_01")) return 45000;  // $450.00
-        if (id.equals("wig_02")) return 65000;  // $650.00
-        if (id.equals("wig_03")) return 35000;  // $350.00
-        return 20000; // Default fallback $200.00
+        return switch (id) {
+            case "wig_01" -> 45000;  // $450.00
+            case "wig_02" -> 65000;  // $650.00
+            case "wig_03" -> 35000;  // $350.00
+            default -> 20000;        // Fallback $200.00
+        };
     }
 
     private String getProductName(String id) {
-        if (id.equals("wig_01")) return "Signature HD Lace Wig";
-        if (id.equals("wig_02")) return "Luxury Full Lace Body Wave";
-        if (id.equals("wig_03")) return "Glueless Bob Custom Unit";
-        return "Custom Lace Wig Unit";
+        return switch (id) {
+            case "wig_01" -> "Signature HD Lace Wig";
+            case "wig_02" -> "Luxury Full Lace Body Wave";
+            case "wig_03" -> "Glueless Bob Custom Unit";
+            default -> "Custom Lace Wig Unit";
+        };
     }
 }
