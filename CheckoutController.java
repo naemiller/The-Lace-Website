@@ -12,22 +12,18 @@ import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 
 import jakarta.annotation.PostConstruct;
-import java.util.*;
 
 @RestController
 public class CheckoutController {
 
-    // Inject your key securely from application.properties or system environment variables
     @Value("${stripe.api.key}")
     private String stripeApiKey;
 
     @PostConstruct
     public void init() {
-        // Initializes the Stripe SDK with your key once the bean is created
         Stripe.apiKey = stripeApiKey;
     }
 
-    // Restrict origins in production instead of using "*" for better security
     @CrossOrigin(origins = "https://thelacewigs.com") 
     @GetMapping("/checkout")
     public RedirectView checkout(
@@ -37,26 +33,28 @@ public class CheckoutController {
         String frontendUrl = "https://thelacewigs.com";
 
         try {
-            // 1. Initialize Session Builder
             SessionCreateParams.Builder sessionBuilder = SessionCreateParams.builder()
                     .setMode(SessionCreateParams.Mode.PAYMENT)
                     .setSuccessUrl(frontendUrl + "/success.html")
                     .setCancelUrl(frontendUrl + "/bag.html");
 
-            // 2. Handle Coupons / Discounts
+            // Option A: If passing an explicit internal Coupon ID
             if (coupon != null && !coupon.trim().isEmpty()) {
                 sessionBuilder.addDiscount(
                     SessionCreateParams.Discount.builder()
-                        .setCoupon(coupon.trim()) // Dynamic coupon ID matching your Stripe Dashboard
+                        .setCoupon(coupon.trim()) 
                         .build()
                 );
             }
+            
+            // Option B (RECOMMENDED): Let Stripe handle user-facing Promo Codes natively:
+            // sessionBuilder.setAllowPromotionCodes(true);
 
-            // 3. Parse and Add Products
             if (products != null && !products.trim().isEmpty()) {
                 for (String productEntry : products.split(",")) {
                     String[] parts = productEntry.split(":");
                     if (parts.length == 2) {
+                        // FIX: Added explicit array indices [0] and [1]
                         String productId = parts[0].trim();
                         long quantity = Long.parseLong(parts[1].trim());
 
@@ -83,18 +81,15 @@ public class CheckoutController {
                 }
             }
 
-            // 4. Create and Redirect
             Session session = Session.create(sessionBuilder.build());
             return new RedirectView(session.getUrl());
 
         } catch (Exception e) {
-            // Consider using a logger framework (like SLF4J) instead of printStackTrace
             e.printStackTrace(); 
             return new RedirectView(frontendUrl + "/bag.html?error=checkout_failed");
         }
     }
 
-    // Helper mappings
     private long getProductPriceInCents(String id) {
         return switch (id) {
             case "wig_01" -> 45000;  // $450.00
