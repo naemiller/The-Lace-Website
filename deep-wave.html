@@ -1,3 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Wave 13x4 HD Lace Frontal Wig | The Lace Wigs</title>
+  <style>
+    /* ==========================================================================
+       1. GLOBAL STYLES & LUXURY VARIABLES
+       ========================================================================== */
+    :root {
+      --primary-color: #1a1a1a;    /* Rich Luxury Dark Accent */
+      --accent-color: #d4af37;     /* Premium Gold tint */
+      --text-color: #333333;       /* Soft body text */
+      --light-bg: #fdfbf7;         /* Clean background canvas */
+      --border-color: #e5e5e5;     /* Delicate dividers */
+      --font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    body {
+      font-family: var(--font-family);
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
+    /* ==========================================================================
+       2. HEADER & NAVIGATION STYLES
+       ========================================================================== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-color);
+    }
+
+    .header-icons {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cart-icon {
+      font-size: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: var(--accent-color);
+      color: #fff;
+      font-size: 11px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+    }
+
+    /* ==========================================================================
+       3. PRODUCT PAGE LAYOUT
+       ========================================================================== */
+    .product-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    /* Image Gallery */
+    .product-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .main-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background-color: #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      color: #666;
+      border: 1px solid var(--border-color);
+    }
+
+    .thumbnail-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .thumbnail {
+      flex: 1;
+      aspect-ratio: 1/1;
+      background-color: #eaeaea;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #888;
+    }
+
+    .thumbnail.active {
+      border-color: var(--accent-color);
+    }
+
+    /* Product Info & Form */
+    .product-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .product-title {
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--primary-color);
+      letter-spacing: 1px;
+    }
+
+    .product-price {
+      font-size: 24px;
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+
+    .product-description {
+      font-size: 15px;
+      color: #555;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 20px;
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .selector-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .selector-btn {
+      padding: 10px 20px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      cursor: pointer;
+      font-family: var(--font-family);
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .selector-btn.selected {
+      border-color: var(--primary-color);
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    .add-to-cart-btn {
+      margin-top: 10px;
+      padding: 18px;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--accent-color);
+    }
+
+    /* ==========================================================================
+       4. SLIDEOUT CART SIDEBAR
+       ========================================================================== */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+      z-index: 1000;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (max-width: 480px) {
+      .cart-sidebar {
+        width: 100%;
+        right: -100%;
+      }
+    }
+
+    .cart-sidebar.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    .empty-message {
+      color: #888;
+      font-style: italic;
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">The Lace Wigs</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link">Shop All</a></li>
+        <li><a href="#" class="nav-link">HD Lace Frontals</a></li>
+        <li><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-icons">
+      <button class="cart-icon" id="cartToggle">
+        👜 <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- PRODUCT CONTAINER -->
+  <main class="product-container">
+    <!-- Left: Gallery -->
+    <section class="product-gallery">
+      <div class="main-image">
+        [ Deep Wave Main Image Preview ]
+      </div>
+      <div class="thumbnail-row">
+        <div class="thumbnail active">Thumb 1</div>
+        <div class="thumbnail">Thumb 2</div>
+        <div class="thumbnail">Thumb 3</div>
+      </div>
+    </section>
+
+    <!-- Right: Product Info -->
+    <section class="product-details">
+      <h1 class="product-title">Deep Wave 13x4 HD Lace Frontal Wig</h1>
+      <div class="product-price">$340.00</div>
+      
+      <p class="product-description">
+        Experience premium, high-definition luxury. Our Deep Wave 13x4 Lace Frontal Wig features natural, bouncy, and protective wet-and-wavy patterns with transparent HD lace that melts seamlessly into all skin tones.
+      </p>
+
+      <!-- Length Option -->
+      <div class="option-group">
+        <span class="option-label">Length</span>
+        <div class="selector-grid">
+          <button class="selector-btn">20"</button>
+          <button class="selector-btn selected">24"</button>
+          <button class="selector-btn">28"</button>
+        </div>
+      </div>
+
+      <!-- Density Option -->
+      <div class="option-group">
+        <span class="option-label">Density</span>
+        <div class="selector-grid">
+          <button class="selector-btn selected">180%</button>
+          <button class="selector-btn">220%</button>
+        </div>
+      </div>
+
+      <!-- Add to Cart -->
+      <button class="add-to-cart-btn" id="addToCart">Add to Bag</button>
+    </section>
+  </main>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2>Your Bag</h2>
+      <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    <div class="cart-items">
+      <p class="empty-message">Your shopping bag is currently empty.</p>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE FUNCTIONALITY -->
+  <script>
+    const cartToggle = document.getElementById('cartToggle');
+    const closeCart = document.getElementById('closeCart');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const addToCartBtn = document.getElementById('addToCart');
+    const cartCount = document.getElementById('cartCount');
+
+    // Toggle Sidebar
+    cartToggle.addEventListener('click', () => cartSidebar.classList.add('open'));
+    closeCart.addEventListener('click', () => cartSidebar.classList.remove('open'));
+
+    // Quick Option Selector Highlight Logic
