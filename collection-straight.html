@@ -1,4 +1,232 @@
-        display: flex;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Straight Units | lacewigs.com</title>
+    <style>
+        /* ==========================================================================
+           1. GLOBAL STYLES & LUXURY VARIABLES
+           ========================================================================== */
+        :root {
+            --primary-color: #1a1a1a;    /* Rich Luxury Dark Accent */
+            --accent-color: #d4af37;     /* Premium Gold tint */
+            --text-color: #333333;       /* Soft body text */
+            --light-bg: #fdfbf7;         /* Clean background canvas */
+            --gray-light: #f4f4f4;       /* Base layout light gray */
+            --gray-border: #e5e5e5;      /* Delicate dividers */
+            --font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVIGATION STYLES
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: #ffffff;
+            border-bottom: 1px solid var(--gray-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-actions a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Mobile Drawer */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            display: none;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background: #fff;
+            z-index: 201;
+            padding: 40px 20px;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .mobile-drawer.active {
+            left: 0;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .drawer-links {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .drawer-links li {
+            margin-bottom: 25px;
+        }
+
+        .drawer-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           3. HERO CAROUSEL BANNER
+           ========================================================================== */
+        .carousel-container {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 300%; /* Spanning 3 slides */
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-caption {
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        .carousel-caption h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .carousel-caption p {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        /* ==========================================================================
+           4. MAIN COLLECTION CONTROLS & RESPONSE GRID
+           ========================================================================== */
+        .collection-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .collection-header {
+            display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
@@ -123,205 +351,10 @@
             font-size: 0.85rem;
         }
 
-        /* Newsletter Block */
+        /* ==========================================================================
+           5. MARKETING NEWSLETTER BLOCK
+           ========================================================================== */
         .newsletter {
             background: var(--gray-light);
             padding: 80px 5%;
             text-align: center;
-            border-top: 1px solid var(--gray-border);
-        }
-
-        .newsletter h2 {
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .newsletter p {
-            color: #666;
-            margin-bottom: 30px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .newsletter-form input {
-            flex-grow: 1;
-            padding: 12px;
-            border: none;
-            background: transparent;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .newsletter-form button {
-            background: transparent;
-            border: none;
-            padding: 0 20px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        /* Footer Layout */
-        .footer {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 70px 5% 30px 5%;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-col h3 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #fff;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #222;
-            padding-top: 30px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 1100px) {
-            .product-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .menu-toggle { display: block; }
-            .sidebar { display: none; } /* Hide filtering on mobile for design clarity */
-            .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-            .carousel-container { height: 350px; }
-            .carousel-caption h1 { font-size: 2.2rem; }
-        }
-
-        @media (max-width: 480px) {
-            .product-grid { grid-template-columns: repeat(1, 1fr); }
-            .footer-grid { grid-template-columns: repeat(1, 1fr); }
-            .carousel-container { height: 280px; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Announcement Bar -->
-    <div class="announcement-bar">
-        Free Shipping On Orders Over $250
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <button class="menu-toggle" id="menuOpen">☰</button>
-        <a href="#" class="logo">lacewigs<span>.com</span></a>
-        <ul class="nav-links">
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Straight</a></li>
-            <li><a href="#">Wavy & Curly</a></li>
-            <li><a href="#">Full Lace</a></li>
-            <li><a href="#">Clearance</a></li>
-        </ul>
-        <div class="nav-actions">
-            <a href="#">🔍</a>
-            <a href="login.html">👤</a>
-            <a href="bag.html">🛒 (0)</a>
-        </div>
-    </nav>
-
-    <!-- Mobile Drawer Menu -->
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-    <div class="mobile-drawer" id="mobileDrawer">
-        <button class="drawer-close" id="menuClose">×</button>
-        <ul class="drawer-links">
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Straight</a></li>
-            <li><a href="#">Wavy & Curly</a></li>
-            <li><a href="#">Full Lace</a></li>
-            <li><a href="#">Clearance</a></li>
-        </ul>
-    </div>
-
-    <!-- Image Carousel Hero Banner -->
-    <div class="carousel-container">
-        <div class="carousel-track" id="carouselTrack">
-            <!-- Slide 1 -->
-            <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('straight-13x4-farside.jpg');">
-                <div class="carousel-caption">
-                    <h1>The Premium Straight Collection</h1>
-                    <p>Sleek, virgin human hair. </p>
-                </div>
-            </div>
-            <!-- Slide 2 -->
-            <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('straight-13x4-side.jpg');">
-                <div class="carousel-caption">
-                    <h1>HD Lace Innovations</h1>
-                    <p>Undetectable melts designed for seamless blending.</p>
-                </div>
-            </div>
-            <!-- Slide 3 -->
-            <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('straight-13x4-back.jpg');">
-                <div class="carousel-caption">
-                    <h1>Uncompromising Quality</h1>
-                    <p>100% Remy hair variants built to customize.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-btn prev-btn" id="prevBtn">‹</button>
-        <button class="carousel-btn next-btn" id="nextBtn">›</button>
-        <div class="carousel-dots" id="carouselDots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-    </div>
-
-    <!-- Main E-commerce Shop Layout -->
-    <div class="shop-container">
-        <!-- Left Filter Sidebar -->
-        <aside class="sidebar">
-            <div class="filter-group">
-                <h4 class="filter-title">Lace Type</h4>
-                <ul class="filter-list">
