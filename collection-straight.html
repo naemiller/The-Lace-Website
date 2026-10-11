@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Straight Units | lacewigs.com</title>
+    
+    <!-- Premium Fonts Import (Fixes the messy typography layout) -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         /* ==========================================================================
            1. GLOBAL STYLES & LUXURY VARIABLES
            ========================================================================== */
         :root {
-            --primary-color: #1a1a1a;    /* Rich Luxury Dark Accent */
-            --accent-color: #d4af37;     /* Premium Gold tint */
-            --text-color: #333333;       /* Soft body text */
-            --light-bg: #fdfbf7;         /* Clean background canvas */
-            --gray-light: #f4f4f4;       /* Base layout light gray */
-            --gray-border: #e5e5e5;      /* Delicate dividers */
-            --font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+            --primary-color: #1a1a1a;    
+            --accent-color: #d4af37;     
+            --text-color: #333333;       
+            --light-bg: #fdfbf7;         
+            --gray-light: #f4f4f4;       
+            --gray-border: #e5e5e5;      
+            --font-luxury: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
         }
 
         * {
@@ -25,19 +32,19 @@
         }
 
         body {
-            font-family: var(--font-family);
+            font-family: var(--font-sans);
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Announcement Bar */
         .announcement-bar {
             background-color: var(--primary-color);
             color: #fff;
             text-align: center;
-            padding: 8px;
-            font-size: 0.8rem;
+            padding: 10px;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 500;
@@ -59,7 +66,8 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-family: var(--font-luxury);
+            font-size: 1.6rem;
             text-decoration: none;
             color: var(--primary-color);
             text-transform: uppercase;
@@ -84,7 +92,7 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 14px;
+            font-size: 13px;
             transition: color 0.3s ease;
         }
 
@@ -111,7 +119,7 @@
             cursor: pointer;
         }
 
-        /* Mobile Drawer */
+        /* Mobile Drawer UI */
         .drawer-overlay {
             position: fixed;
             top: 0;
@@ -172,21 +180,21 @@
            ========================================================================== */
         .carousel-container {
             width: 100%;
-            height: 450px;
+            height: 480px;
             position: relative;
             overflow: hidden;
-            background: #000;
+            background: #222;
         }
 
         .carousel-track {
             display: flex;
-            width: 300%; /* Spanning 3 slides */
+            width: 300%; 
             height: 100%;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .carousel-slide {
-            width: 100%;
+            width: 33.333%;
             height: 100%;
             background-size: cover;
             background-position: center;
@@ -202,7 +210,8 @@
         }
 
         .carousel-caption h1 {
-            font-size: 3rem;
+            font-family: var(--font-luxury);
+            font-size: 3.5rem;
             text-transform: uppercase;
             letter-spacing: 4px;
             margin-bottom: 15px;
@@ -217,11 +226,11 @@
         }
 
         /* ==========================================================================
-           4. MAIN COLLECTION CONTROLS & RESPONSE GRID
+           4. MAIN COLLECTION GRID & MARGIN CONTROLS
            ========================================================================== */
         .collection-wrapper {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 60px auto;
             padding: 0 20px;
         }
 
@@ -229,7 +238,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             padding-bottom: 15px;
             border-bottom: 1px solid var(--gray-border);
         }
@@ -237,37 +246,39 @@
         .product-count {
             font-size: 0.9rem;
             color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .sort-select {
-            padding: 8px 12px;
+            padding: 10px 16px;
             border: 1px solid var(--gray-border);
             background: #fff;
             font-size: 0.9rem;
+            font-family: var(--font-sans);
             outline: none;
             cursor: pointer;
         }
 
-        /* Responsive Product Grid */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px 20px;
+            gap: 40px 20px;
         }
 
         .product-card {
             position: relative;
-            background: #fff;
-            transition: transform 0.3s ease;
+            background: transparent;
         }
 
         .product-image-container {
             position: relative;
             width: 100%;
-            padding-top: 125%; /* 4:5 Aspect Ratio for fashion layouts */
+            padding-top: 125%; /* 4:5 Portrait Grid Aspect Ratio */
             background-color: var(--gray-light);
             overflow: hidden;
             margin-bottom: 15px;
+            border: 1px solid var(--gray-border);
         }
 
         .product-image-container img {
@@ -277,11 +288,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
         .product-card:hover .product-image-container img {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         .badge {
@@ -289,10 +300,10 @@
             top: 15px;
             left: 15px;
             background: var(--accent-color);
-            color: #000;
-            font-size: 0.75rem;
+            color: #fff;
+            font-size: 0.7rem;
             font-weight: 600;
-            padding: 4px 10px;
+            padding: 5px 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
             z-index: 2;
@@ -303,18 +314,18 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(11, 11, 11, 0.9);
+            background: rgba(26, 26, 26, 0.95);
             color: #fff;
             text-align: center;
-            padding: 12px;
-            font-size: 0.85rem;
+            padding: 14px;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 500;
+            font-weight: 600;
             border: none;
             cursor: pointer;
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .product-card:hover .quick-add-btn {
@@ -323,12 +334,14 @@
 
         .product-info {
             text-align: left;
+            padding: 5px 0;
         }
 
         .product-title {
-            font-size: 0.95rem;
+            font-family: var(--font-luxury);
+            font-size: 1.05rem;
             font-weight: 500;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             color: var(--primary-color);
             text-decoration: none;
             display: block;
@@ -341,20 +354,6 @@
         .product-price {
             font-size: 0.95rem;
             font-weight: 600;
+            color: var(--primary-color);
         }
 
-        .price-compare {
-            text-decoration: line-through;
-            color: #999;
-            font-weight: 400;
-            margin-left: 8px;
-            font-size: 0.85rem;
-        }
-
-        /* ==========================================================================
-           5. MARKETING NEWSLETTER BLOCK
-           ========================================================================== */
-        .newsletter {
-            background: var(--gray-light);
-            padding: 80px 5%;
-            text-align: center;
