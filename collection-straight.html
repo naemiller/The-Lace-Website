@@ -4,23 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silky Straight Collection | THE LACE WIGS</title>
-    
     <!-- Luxury Typography Engine Integration -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
     <style>
         /* ==========================================================================
            1. CORE LUXURY BRAND VARIABLES (THELACEWIGS.COM THEME)
            ========================================================================== */
         :root {
-            --primary-color: #1a1a1a;    
-            --accent-color: #d4af37;     
-            --text-color: #333333;       
-            --light-bg: #fdfbf7;         
-            --gray-light: #f4f4f4;       
-            --gray-border: #e5e5e5;      
+            --primary-color: #1a1a1a;
+            --accent-color: #d4af37;
+            --text-color: #333333;
+            --light-bg: #fdfbf7;
+            --gray-light: #f4f4f4;
+            --gray-border: #e5e5e5;
             --font-luxury: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
@@ -121,90 +119,19 @@
             font-weight: 600;
         }
 
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Mobile Layout Drawer Architecture */
-        .drawer-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 200;
-            display: none;
-        }
-
-        .mobile-drawer {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100%;
-            background: #fff;
-            z-index: 201;
-            padding: 40px 20px;
-            transition: left 0.3s ease;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        }
-
-        .mobile-drawer.active {
-            left: 0;
-        }
-
-        .drawer-close {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            cursor: pointer;
-        }
-
-        .drawer-links {
-            list-style: none;
-            margin-top: 40px;
-        }
-
-        .drawer-links li {
-            margin-bottom: 25px;
-        }
-
-        .drawer-links a {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         /* ==========================================================================
            3. BANNER SLIDER HERO LAYOUT
            ========================================================================== */
         .carousel-container {
             width: 100%;
-            height: 480px;
+            height: 380px;
             position: relative;
             overflow: hidden;
-            background: #222;
-        }
-
-        .carousel-track {
-            display: flex;
-            width: 300%; 
-            height: 100%;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: #111;
         }
 
         .carousel-slide {
-            width: 33.333%;
+            width: 100%;
             height: 100%;
             background-size: cover;
             background-position: center;
@@ -260,20 +187,19 @@
             letter-spacing: 1px;
         }
 
-        .sort-select {
-            padding: 10px 16px;
-            border: 1px solid var(--gray-border);
-            background: #fff;
-            font-size: 0.9rem;
-            font-family: var(--font-sans);
-            outline: none;
-            cursor: pointer;
-        }
-
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px 20px;
+            gap: 50px 20px;
+        }
+
+        /* Responsive rows adjust automatically */
+        @media (max-width: 1024px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .carousel-caption h1 { font-size: 2.5rem; }
         }
 
         .product-card {
@@ -284,7 +210,7 @@
         .product-image-container {
             position: relative;
             width: 100%;
-            padding-top: 125%; 
+            padding-top: 125%; /* 4:5 Aspect Ratio for Portrait Hair Shots */
             background-color: var(--gray-light);
             overflow: hidden;
             margin-bottom: 15px;
@@ -319,6 +245,10 @@
             z-index: 2;
         }
 
+        .badge.hd {
+            background: var(--primary-color);
+        }
+
         .quick-add-btn {
             position: absolute;
             bottom: 0;
@@ -351,6 +281,61 @@
             font-family: var(--font-luxury);
             font-size: 1.1rem;
             font-weight: 500;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             color: var(--primary-color);
             text-decoration: none;
+            display: block;
+        }
+
+        .product-subtitle {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-price {
+            font-weight: 500;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        Free Global Shipping on All Premium Luxury Hair Units
+    </div>
+
+    <nav class="navbar">
+        <a href="#" class="logo">THE LACE WIGS<span>™</span></a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Track</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#">Bag (<span class="bag-count">0</span>)</a>
+        </div>
+    </nav>
+
+    <header class="carousel-container">
+        <div class="carousel-slide">
+            <div class="carousel-caption">
+                <h1>Silky Straight</h1>
+                <p>Signature 100% Premium Virgin Lace Units</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="collection-wrapper">
+        <div class="collection-header">
+            <span class="product-count">8 Premium Units Available</span>
+            <span class="product-count">★★★★★ (42 reviews)</span>
+        </div>
+
+        <section class="product-grid">
+            
+            <!-- Unit 1 -->
