@@ -1,20 +1,55 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Luxury Body Wave 13x4 HD Lace Frontal Wig | The Lace Wigs</title>
+  <meta name="description" content="Shop the Luxury Body Wave 13x4 HD Lace Frontal Wig at The Lace Wigs. Choose 16 to 24 inches of glamorous body wave hair, starting at $179.99.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#fdfbf7">
+
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="Luxury Body Wave 13x4 HD Lace Frontal Wig | The Lace Wigs">
+  <meta property="og:description" content="Shop your luxury Body Wave HD Lace Frontal Wig. Available in lengths from 16 to 24 inches, starting at $179.99.">
+  <meta property="og:image" content="bodywave.jpg">
+
+  <!-- Add your permanent product URL to a canonical link after publishing. -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Luxury Body Wave 13x4 HD Lace Frontal Wig",
+    "description": "Luxury body wave wig featuring a 13x4 HD Swiss lace frontal and glamorous waves. Available in lengths from 16 to 24 inches.",
+    "image": [
+      "bodywave.jpg",
+      "bodywave2.jpg",
+      "bodywave3.jpg"
+    ],
+    "brand": {
+      "@type": "Brand",
+      "name": "The Lace Wigs"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": "179.99",
+      "highPrice": "239.99",
+      "offerCount": "5"
+    }
+  }
+  </script>
+
   <style>
-    /* ==========================================================================
-       1. GLOBAL STYLES & LUXURY VARIABLES
-       ========================================================================== */
     :root {
-      --primary-color: #1a1a1a;    /* Rich Luxury Dark Accent */
-      --accent-color: #d4af37;     /* Premium Gold tint */
-      --text-color: #333333;       /* Soft body text */
-      --light-bg: #fdfbf7;         /* Clean background canvas */
-      --border-color: #e5e5e5;     /* Delicate dividers */
-      --font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+      --primary-color: #1a1a1a;
+      --accent-color: #d4af37;
+      --text-color: #333333;
+      --light-bg: #fdfbf7;
+      --border-color: #e5e5e5;
+      --font-family: "Helvetica Neue", Arial, sans-serif;
     }
 
     * {
@@ -30,19 +65,26 @@
       line-height: 1.6;
     }
 
-    /* ==========================================================================
-       2. HEADER & NAVIGATION STYLES
-       ========================================================================== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
       padding: 20px 5%;
-      background: #ffffff;
+      background: #fff;
       border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
+    }
+
+    .brand {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      font-weight: bold;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -67,7 +109,7 @@
 
     .header-icons {
       position: relative;
-      cursor: pointer;
+      white-space: nowrap;
     }
 
     .cart-icon {
@@ -75,32 +117,31 @@
     }
 
     .cart-badge {
-      position: absolute;
-      top: -8px;
-      right: -10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 2px 6px;
+      border-radius: 50%;
       background: var(--accent-color);
       color: #fff;
       font-size: 11px;
       font-weight: bold;
-      padding: 2px 6px;
-      border-radius: 50%;
     }
 
-    /* ==========================================================================
-       3. PRODUCT LAYOUT ARCHITECTURE
-       ========================================================================== */
     .product-container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 50px;
       max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
     }
 
-    /* Left Side: Media Gallery & Carousel */
     .product-gallery {
       width: 100%;
+      min-width: 0;
     }
 
     .main-image-container {
@@ -126,15 +167,14 @@
       display: block;
     }
 
-    /* Carousel Nav Arrows */
     .carousel-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      width: 40px;
-      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ddd;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       font-size: 18px;
       cursor: pointer;
@@ -150,10 +190,14 @@
       color: #fff;
     }
 
-    .arrow-left { left: 15px; }
-    .arrow-right { right: 15px; }
+    .arrow-left {
+      left: 15px;
+    }
 
-    /* Thumbnail Strip */
+    .arrow-right {
+      right: 15px;
+    }
+
     .thumbnail-container {
       display: flex;
       gap: 10px;
@@ -166,42 +210,50 @@
       object-fit: cover;
       border: 1px solid var(--border-color);
       cursor: pointer;
-      opacity: 0.6;
+      opacity: 0.65;
       transition: opacity 0.3s, border-color 0.3s;
     }
 
-    .thumbnail:hover, .thumbnail.active {
+    .thumbnail:hover,
+    .thumbnail.active {
       opacity: 1;
       border-color: var(--accent-color);
     }
 
-    /* Right Side: Product Panel Information */
     .product-details {
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }
 
     .category-tag {
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--accent-color);
+      color: #98751b;
       font-weight: bold;
       margin-bottom: 10px;
     }
 
     .product-title {
+      font-family: Georgia, "Times New Roman", serif;
       font-size: 32px;
       color: var(--primary-color);
       margin-bottom: 15px;
       font-weight: 400;
+      line-height: 1.25;
     }
 
     .product-price {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 600;
       color: var(--primary-color);
-      margin-bottom: 20px;
+    }
+
+    .price-note {
+      color: #666;
+      font-size: 13px;
+      margin-top: 2px;
     }
 
     .divider {
@@ -225,11 +277,8 @@
       margin-bottom: 8px;
     }
 
-    /* ==========================================================================
-       4. INTERACTIVE FORM ELEMENT STYLES
-       ========================================================================== */
     .selector-group {
-      margin-bottom: 25px;
+      margin-bottom: 22px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -243,30 +292,34 @@
       color: var(--primary-color);
     }
 
-    select, input[type="number"] {
+    select,
+    input[type="number"] {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       border: 1px solid #ccc;
       background-color: #fff;
       font-size: 15px;
       color: var(--primary-color);
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    select:focus, input[type="number"]:focus {
-      border-color: var(--accent-color);
+      border-radius: 0;
     }
 
     input[type="number"] {
-      max-width: 100px;
+      max-width: 120px;
       text-align: center;
+    }
+
+    select:focus-visible,
+    input:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--accent-color);
+      outline-offset: 2px;
     }
 
     .add-to-cart-btn {
       width: 100%;
       background-color: var(--primary-color);
-      color: #ffffff;
+      color: #fff;
       border: none;
       padding: 18px;
       font-size: 14px;
@@ -278,96 +331,357 @@
     }
 
     .add-to-cart-btn:hover {
-      background-color: #333333;
+      background-color: #333;
     }
 
     .add-to-cart-btn:active {
       transform: scale(0.99);
     }
 
-    /* ==========================================================================
-       5. RESPONSIVE DESIGN MEDIA QUERIES
-       ========================================================================== */
+    .cart-message {
+      min-height: 25px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .info-section {
+      max-width: 1160px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+    }
+
+    .info-section h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 400;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    footer {
+      padding: 25px 20px;
+      background: #fff;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 13px;
+    }
+
     @media (max-width: 768px) {
       .product-container {
         grid-template-columns: 1fr;
         gap: 30px;
         margin: 20px auto;
       }
-      
+
       header {
         padding: 15px 20px;
       }
 
       .nav-links {
-        display: none; 
+        gap: 14px;
+      }
+
+      .nav-link {
+        font-size: 11px;
+        letter-spacing: 0.3px;
       }
 
       .product-title {
-        font-size: 26px;
+        font-size: 27px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .nav-link {
+        font-size: 10px;
       }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Header Section -->
   <header>
-    <nav>
+    <a href="index.html" class="brand">The Lace Wigs</a>
+
+    <nav aria-label="Main navigation">
       <ul class="nav-links">
         <li><a href="shop.html" class="nav-link">Shop</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="index.html" class="nav-link">Home</a></li>
       </ul>
     </nav>
-    <div class="header-icons">
-      <span class="cart-icon">🛒 <span class="cart-badge" id="cart-badge">0</span></span>
+
+    <div class="header-icons" aria-label="Demo cart item count">
+      <span class="cart-icon">🛒</span>
+      <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
     </div>
   </header>
 
-  <!-- Main Product Detail Layout -->
   <main class="product-container">
-    
-    <!-- Left: Product Media Gallery Layout with Carousel -->
-    <div class="product-gallery">
-      <div class="main-image-container">
-        <button class="carousel-arrow arrow-left" onclick="changeSlide(-1)" type="button">&#10094;</button>
-        
-        <!-- Replace src paths with your true image file names/URLs for Body Wave -->
-        <img src="bodywave.jpg" alt="Luxury Body Wave Front View" class="carousel-img active">
-        <img src="bodywave2.jpg" alt="Luxury Body Wave Side View" class="carousel-img">
-        <img src="bodywave3.jpg" alt="Luxury Body Wave Texture Detail" class="carousel-img">
-        
-        <button class="carousel-arrow arrow-right" onclick="changeSlide(1)" type="button">&#10095;</button>
-      </div>
-      
-      <!-- Interactive Thumbnails -->
-      <div class="thumbnail-container">
-        <img src="bodywave.jpg" alt="Thumb 1" class="thumbnail active" onclick="setSlide(0)">
-        <img src="bodywave2.jpg" alt="Thumb 2" class="thumbnail" onclick="setSlide(1)">
-        <img src="bodywave3.jpg" alt="Thumb 3" class="thumbnail" onclick="setSlide(2)">
-      </div>
-    </div>
 
-    <!-- Right: Product Purchase Structural Controls -->
-    <div class="product-details">
+    <section class="product-gallery" aria-label="Body Wave product images">
+      <div class="main-image-container">
+        <button
+          class="carousel-arrow arrow-left"
+          onclick="changeSlide(-1)"
+          type="button"
+          aria-label="Previous product image">&#10094;</button>
+
+        <img
+          src="bodywave.jpg"
+          alt="Luxury Body Wave 13x4 HD Lace Frontal Wig front view"
+          class="carousel-img active"
+          fetchpriority="high">
+
+        <img
+          src="bodywave2.jpg"
+          alt="Luxury Body Wave HD lace frontal wig side view"
+          class="carousel-img"
+          loading="lazy">
+
+        <img
+          src="bodywave3.jpg"
+          alt="Close-up texture detail of the Luxury Body Wave wig"
+          class="carousel-img"
+          loading="lazy">
+
+        <button
+          class="carousel-arrow arrow-right"
+          onclick="changeSlide(1)"
+          type="button"
+          aria-label="Next product image">&#10095;</button>
+      </div>
+
+      <div class="thumbnail-container" aria-label="Choose product image">
+        <img
+          src="bodywave.jpg"
+          alt="Body Wave wig front view thumbnail"
+          class="thumbnail active"
+          role="button"
+          tabindex="0"
+          aria-pressed="true"
+          onclick="setSlide(0)"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setSlide(0)}">
+
+        <img
+          src="bodywave2.jpg"
+          alt="Body Wave wig side view thumbnail"
+          class="thumbnail"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+          loading="lazy"
+          onclick="setSlide(1)"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setSlide(1)}">
+
+        <img
+          src="bodywave3.jpg"
+          alt="Body Wave wig texture thumbnail"
+          class="thumbnail"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+          loading="lazy"
+          onclick="setSlide(2)"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setSlide(2)}">
+      </div>
+    </section>
+
+    <section class="product-details" aria-labelledby="product-title">
       <span class="category-tag">Premium Virgin Human Hair</span>
-      <h2 class="product-title">Luxury Body Wave 13x4 HD Lace Frontal Wig</h2>
-      
-      <div class="product-price">
-        <span id="display-price">$289.00</span>
+
+      <h1 class="product-title" id="product-title">
+        Luxury Body Wave 13x4 HD Lace Frontal Wig
+      </h1>
+
+      <div class="product-price" aria-live="polite">
+        <span id="display-price">$179.99</span>
+      </div>
+
+      <p class="price-note">
+        Select your preferred length to see the price.
+      </p>
+
+      <div class="divider"></div>
+
+      <div class="product-description">
+        <p>
+          Experience undetectable perfection with our ultra-thin HD Swiss
+          Lace. Designed for a seamless-looking finish, this luxurious unit
+          features 100% cuticle-aligned virgin hair with stunning, bouncy
+          volume, a pre-plucked natural hairline, and deep 13x4 parting space.
+        </p>
+
+        <ul>
+          <li><strong>Lace Type:</strong> HD Invisible Swiss Lace</li>
+          <li><strong>Cap Size:</strong> Average, with adjustable straps and clips</li>
+          <li><strong>Density:</strong> 180% High Density</li>
+          <li><strong>Texture:</strong> Glamorous Body Wave</li>
+          <li><strong>Styling:</strong> Can be curled or flat ironed with appropriate heat care</li>
+          <li><strong>Lengths:</strong> 16, 18, 20, 22, and 24 inches</li>
+        </ul>
       </div>
 
       <div class="divider"></div>
 
-      <!-- Product Meta Description -->
-      <div class="product-description">
-        <p>Experience undetectable perfection with our ultra-thin HD Swiss Lace. Melts seamlessly into all skin tones. Features 100% cuticle-aligned virgin hair with stunning, bouncy volume, a pre-plucked natural hairline, and deep 13x4 parting space.</p>
-        <ul>
-          <li><strong>Lace Type:</strong> HD Invisible Swiss Lace</li>
-          <li><strong>Cap Size:</strong> Average (Adjustable straps & clips)</li>
-          <li><strong>Density:</strong> 180% High Density</li>
-          <li><strong>Texture:</strong> Glamorous Body Wave, holds curls beautifully & can be flat ironed</li>
-        </ul>
-      </div>
+      <form id="product-form">
+        <div class="selector-group">
+          <label for="wig-length" class="selector-label">
+            Select Wig Length
+          </label>
 
+          <select id="wig-length" name="length" required>
+            <option value="16">16 Inches — $179.99</option>
+            <option value="18">18 Inches — $194.99</option>
+            <option value="20">20 Inches — $209.99</option>
+            <option value="22">22 Inches — $224.99</option>
+            <option value="24">24 Inches — $239.99</option>
+          </select>
+        </div>
+
+        <div class="selector-group">
+          <label for="quantity" class="selector-label">Quantity</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value="1"
+            min="1"
+            max="99"
+            step="1"
+            required>
+        </div>
+
+        <button type="submit" class="add-to-cart-btn">
+          Add to Cart — <span id="button-price">$179.99</span>
+        </button>
+
+        <p id="cart-message" class="cart-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <section class="info-section" id="about">
+    <h2>About The Lace Wigs</h2>
+    <p>
+      The Lace Wigs brings you luxurious wig styles designed to help you
+      express your personal style. Explore your preferred length and enjoy
+      the glamorous, flowing look of the Body Wave HD Lace Frontal Wig.
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="current-year"></span> The Lace Wigs. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Prices in cents avoid floating-point currency rounding issues.
+    const lengthPrices = {
+      "16": 17999,
+      "18": 19499,
+      "20": 20999,
+      "22": 22499,
+      "24": 23999
+    };
+
+    const lengthSelect = document.getElementById("wig-length");
+    const displayPrice = document.getElementById("display-price");
+    const buttonPrice = document.getElementById("button-price");
+    const quantityInput = document.getElementById("quantity");
+    const cartBadge = document.getElementById("cart-badge");
+    const cartMessage = document.getElementById("cart-message");
+
+    let cartCount = 0;
+    let currentSlide = 0;
+
+    function formatPrice(cents) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      }).format(cents / 100);
+    }
+
+    function updatePrice() {
+      const price = lengthPrices[lengthSelect.value];
+
+      if (price === undefined) return;
+
+      displayPrice.textContent = formatPrice(price);
+      buttonPrice.textContent = formatPrice(price);
+    }
+
+    lengthSelect.addEventListener("change", updatePrice);
+
+    document.getElementById("product-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const length = lengthSelect.value;
+      const quantity = Number(quantityInput.value);
+      const unitPrice = lengthPrices[length];
+
+      if (
+        unitPrice === undefined ||
+        !Number.isInteger(quantity) ||
+        quantity < 1 ||
+        quantity > 99
+      ) {
+        cartMessage.textContent =
+          "Please select a valid length and a quantity between 1 and 99.";
+        return;
+      }
+
+      cartCount += quantity;
+      cartBadge.textContent = String(cartCount);
+
+      const subtotal = unitPrice * quantity;
+
+      cartMessage.textContent =
+        quantity + " × " + length + '-inch Body Wave wig added to the demo cart. ' +
+        "Subtotal: " + formatPrice(subtotal) + ".";
+    });
+
+    function changeSlide(direction) {
+      const images = document.querySelectorAll(".carousel-img");
+      const nextIndex = (currentSlide + direction + images.length) % images.length;
+      setSlide(nextIndex);
+    }
+
+    function setSlide(index) {
+      const images = document.querySelectorAll(".carousel-img");
+      const thumbnails = document.querySelectorAll(".thumbnail");
+
+      if (index < 0 || index >= images.length) return;
+
+      currentSlide = index;
+
+      images.forEach(function(image, i) {
+        image.classList.toggle("active", i === index);
+      });
+
+      thumbnails.forEach(function(thumbnail, i) {
+        thumbnail.classList.toggle("active", i === index);
+        thumbnail.setAttribute("aria-pressed", i === index ? "true" : "false");
+      });
+    }
+
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+
+    updatePrice();
+  </script>
+</body>
+</html>
