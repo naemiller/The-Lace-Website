@@ -1,20 +1,53 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Silky Straight 13x4 HD Lace Frontal Wig | The Lace Wigs</title>
+  <meta name="description" content="Shop the Silky Straight 13x4 HD lace frontal wig from The Lace Wigs. Choose 16–24 inches of silky straight virgin human hair, with prices starting at $150.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#fdfbf7">
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="Silky Straight 13x4 HD Lace Frontal Wig | The Lace Wigs">
+  <meta property="og:description" content="Choose your wig length from 16 to 24 inches. Prices start at $150.">
+  <meta property="og:image" content="blkstraight.jpg">
+
+  <!-- Add your permanent product URL as a canonical URL after publishing. -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Silky Straight 13x4 HD Lace Frontal Wig",
+    "description": "Silky straight virgin human hair wig with a 13x4 HD lace frontal, pre-plucked hairline, and 180% density. Available in lengths from 16 to 24 inches.",
+    "image": [
+      "blkstraight.jpg",
+      "blkstraight2.jpg",
+      "blkstraight3.jpg"
+    ],
+    "brand": {
+      "@type": "Brand",
+      "name": "The Lace Wigs"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": "150.00",
+      "highPrice": "210.00",
+      "offerCount": "5"
+    }
+  }
+  </script>
+
   <style>
-    /* ==========================================================================
-       1. GLOBAL STYLES & LUXURY VARIABLES
-       ========================================================================== */
     :root {
-      --primary-color: #1a1a1a;    /* Rich Luxury Dark Accent */
-      --accent-color: #d4af37;     /* Premium Gold tint */
-      --text-color: #333333;       /* Soft body text */
-      --light-bg: #fdfbf7;         /* Clean background canvas */
-      --border-color: #e5e5e5;     /* Delicate dividers */
-      --font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+      --black: #1a1a1a;
+      --gold: #b8942e;
+      --text: #333;
+      --background: #fdfbf7;
+      --border: #e5e5e5;
     }
 
     * {
@@ -24,90 +57,93 @@
     }
 
     body {
-      font-family: var(--font-family);
-      background-color: var(--light-bg);
-      color: var(--text-color);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    /* ==========================================================================
-       2. HEADER & NAVIGATION STYLES
-       ========================================================================== */
+    a {
+      color: inherit;
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 18px;
       padding: 20px 5%;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border-color);
+      background: #fff;
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 30px;
+      gap: 25px;
     }
 
     .nav-link {
       text-decoration: none;
-      color: var(--primary-color);
-      font-weight: 500;
+      color: var(--black);
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 14px;
-      transition: color 0.3s ease;
+      letter-spacing: .7px;
+      font-size: 13px;
     }
 
     .nav-link:hover {
-      color: var(--accent-color);
+      color: var(--gold);
     }
 
-    .header-icons {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .cart-icon {
+    .cart {
       font-size: 22px;
+      white-space: nowrap;
     }
 
     .cart-badge {
-      position: absolute;
-      top: -8px;
-      right: -10px;
-      background: var(--accent-color);
-      color: #fff;
-      font-size: 11px;
-      font-weight: bold;
-      padding: 2px 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
       border-radius: 50%;
+      background: var(--gold);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
     }
 
-    /* ==========================================================================
-       3. PRODUCT LAYOUT ARCHITECTURE
-       ========================================================================== */
     .product-container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 50px;
       max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
     }
 
-    /* Left Side: Media Gallery & Carousel */
-    .product-gallery {
-      width: 100%;
+    .product-gallery,
+    .product-details {
+      min-width: 0;
     }
 
     .main-image-container {
       width: 100%;
       aspect-ratio: 1 / 1;
       background: #f4f4f4;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -126,34 +162,29 @@
       display: block;
     }
 
-    /* Carousel Nav Arrows */
     .carousel-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      width: 40px;
-      height: 40px;
+      background: rgba(255, 255, 255, .92);
+      color: #111;
+      border: 1px solid #ddd;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       font-size: 18px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s, color 0.3s;
       z-index: 10;
     }
 
     .carousel-arrow:hover {
-      background: var(--primary-color);
+      background: var(--black);
       color: #fff;
     }
 
-    .arrow-left { left: 15px; }
-    .arrow-right { right: 15px; }
+    .arrow-left { left: 12px; }
+    .arrow-right { right: 12px; }
 
-    /* Thumbnail Strip */
     .thumbnail-container {
       display: flex;
       gap: 10px;
@@ -164,49 +195,50 @@
       width: 70px;
       height: 70px;
       object-fit: cover;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border);
       cursor: pointer;
-      opacity: 0.6;
-      transition: opacity 0.3s, border-color 0.3s;
+      opacity: .7;
     }
 
-    .thumbnail:hover, .thumbnail.active {
+    .thumbnail:hover,
+    .thumbnail.active {
       opacity: 1;
-      border-color: var(--accent-color);
-    }
-
-    /* Right Side: Product Panel Information */
-    .product-details {
-      display: flex;
-      flex-direction: column;
+      border-color: var(--gold);
     }
 
     .category-tag {
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--accent-color);
-      font-weight: bold;
+      color: #80620d;
+      font-weight: 700;
       margin-bottom: 10px;
     }
 
     .product-title {
-      font-size: 32px;
-      color: var(--primary-color);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(27px, 3vw, 36px);
+      line-height: 1.2;
+      color: var(--black);
       margin-bottom: 15px;
       font-weight: 400;
     }
 
     .product-price {
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--primary-color);
-      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .price-note {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 14px;
     }
 
     .divider {
       height: 1px;
-      background-color: var(--border-color);
+      background: var(--border);
       margin: 20px 0;
     }
 
@@ -225,11 +257,8 @@
       margin-bottom: 8px;
     }
 
-    /* ==========================================================================
-       4. INTERACTIVE FORM ELEMENT STYLES
-       ========================================================================== */
     .selector-group {
-      margin-bottom: 25px;
+      margin-bottom: 22px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -239,137 +268,379 @@
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-weight: 600;
-      color: var(--primary-color);
+      font-weight: 700;
+      color: var(--black);
     }
 
-    select, input[type="number"] {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      font-size: 15px;
-      color: var(--primary-color);
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    select:focus, input[type="number"]:focus {
-      border-color: var(--accent-color);
-    }
-
+    select,
     input[type="number"] {
-      max-width: 100px;
-      text-align: center;
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+      background: #fff;
+      font-size: 16px;
+      color: var(--black);
+    }
+
+    select:focus-visible,
+    input:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
     }
 
     .add-to-cart-btn {
       width: 100%;
-      background-color: var(--primary-color);
-      color: #ffffff;
+      background: var(--black);
+      color: #fff;
       border: none;
-      padding: 18px;
+      padding: 17px;
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.1s;
     }
 
     .add-to-cart-btn:hover {
-      background-color: #333333;
+      background: #333;
     }
 
-    .add-to-cart-btn:active {
-      transform: scale(0.99);
+    .cart-message {
+      min-height: 24px;
+      margin-top: 12px;
+      font-size: 14px;
     }
 
-    /* ==========================================================================
-       5. RESPONSIVE DESIGN MEDIA QUERIES
-       ========================================================================== */
+    .info-section {
+      max-width: 1160px;
+      margin: 0 auto 45px;
+      padding: 0 20px;
+    }
+
+    .info-section h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      color: var(--black);
+    }
+
+    footer {
+      padding: 25px 20px;
+      text-align: center;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+    }
+
     @media (max-width: 768px) {
-      .product-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        margin: 20px auto;
-      }
-      
       header {
         padding: 15px 20px;
       }
 
       .nav-links {
-        display: none; 
+        gap: 12px;
+      }
+
+      .nav-link {
+        font-size: 11px;
+        letter-spacing: .2px;
+      }
+
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 22px auto;
       }
 
       .product-title {
-        font-size: 26px;
+        font-size: 29px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        gap: 9px;
+      }
+
+      .nav-link {
+        font-size: 10px;
       }
     }
   </style>
 </head>
-<body>
 
-  <!-- Header Section -->
+<body>
   <header>
-    <nav>
+    <a class="brand" href="#product" aria-label="The Lace Wigs home">
+      The Lace Wigs
+    </a>
+
+    <nav aria-label="Main navigation">
       <ul class="nav-links">
-        <li><a href="#shop" class="nav-link">Shop</a></li>
+        <li><a href="#product" class="nav-link">Shop</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#care" class="nav-link">Wig Care</a></li>
       </ul>
     </nav>
-    <div class="header-icons">
-      <span class="cart-icon">🛒 <span class="cart-badge" id="cart-badge">0</span></span>
+
+    <div class="cart" aria-label="Demo cart item count">
+      🛒 <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
     </div>
   </header>
 
-  <!-- Main Product Detail Layout -->
-  <main class="product-container">
-    
-    <!-- Left: Product Media Gallery Layout with Carousel -->
-    <div class="product-gallery">
+  <main id="product" class="product-container">
+    <section class="product-gallery" aria-label="Product images">
       <div class="main-image-container">
-        <button class="carousel-arrow arrow-left" onclick="changeSlide(-1)" type="button">&#10094;</button>
-        
-        <!-- Replace src paths with your true image file names/URLs -->
-        <img src="blkstraight.jpg" alt="Silky Straight Front View" class="carousel-img active">
-        <img src="blkstraight2.jpg" alt="Silky Straight Inside Cap" class="carousel-img">
-        <img src="blkstraight3.jpg" alt="Silky Straight Texture Detail" class="carousel-img">
-        
-        <button class="carousel-arrow arrow-right" onclick="changeSlide(1)" type="button">&#10095;</button>
-      </div>
-      
-      <!-- Interactive Thumbnails -->
-      <div class="thumbnail-container">
-        <img src="blkstraight.jpg" alt="Thumb 1" class="thumbnail active" onclick="setSlide(0)">
-        <img src="blkstraight2.jpg" alt="Thumb 2" class="thumbnail" onclick="setSlide(1)">
-        <img src="blkstraight3.jpg" alt="Thumb 3" class="thumbnail" onclick="setSlide(2)">
-      </div>
-    </div>
+        <button class="carousel-arrow arrow-left"
+          type="button"
+          onclick="changeSlide(-1)"
+          aria-label="Previous product image">&#10094;</button>
 
-    <!-- Right: Product Purchase Structural Controls -->
-    <div class="product-details">
+        <img src="blkstraight.jpg"
+          alt="Silky straight 13x4 HD lace frontal wig front view"
+          class="carousel-img active"
+          fetchpriority="high">
+
+        <img src="blkstraight2.jpg"
+          alt="Inside cap of the silky straight HD lace frontal wig"
+          class="carousel-img"
+          loading="lazy">
+
+        <img src="blkstraight3.jpg"
+          alt="Close-up texture of the silky straight human hair wig"
+          class="carousel-img"
+          loading="lazy">
+
+        <button class="carousel-arrow arrow-right"
+          type="button"
+          onclick="changeSlide(1)"
+          aria-label="Next product image">&#10095;</button>
+      </div>
+
+      <div class="thumbnail-container" aria-label="Choose product image">
+        <img src="blkstraight.jpg"
+          alt="Front view thumbnail"
+          class="thumbnail active"
+          role="button"
+          tabindex="0"
+          onclick="setSlide(0)"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setSlide(0)}">
+
+        <img src="blkstraight2.jpg"
+          alt="Inside cap thumbnail"
+          class="thumbnail"
+          role="button"
+          tabindex="0"
+          onclick="setSlide(1)"
+          loading="lazy"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setSlide(1)}">
+
+        <img src="blkstraight3.jpg"
+          alt="Hair texture thumbnail"
+          class="thumbnail"
+          role="button"
+          tabindex="0"
+          onclick="setSlide(2)"
+          loading="lazy"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setSlide(2)}">
+      </div>
+    </section>
+
+    <section class="product-details" aria-labelledby="product-title">
       <span class="category-tag">Premium Virgin Human Hair</span>
-      <h2 class="product-title">Silky Straight 13x4 HD Lace Frontal Wig</h2>
-      
-      <div class="product-price">
+
+      <h1 class="product-title" id="product-title">
+        Silky Straight 13x4 HD Lace Frontal Wig
+      </h1>
+
+      <div class="product-price" aria-live="polite">
         <span id="display-price">$150.00</span>
       </div>
 
+      <p class="price-note">
+        Choose a length below to see your price.
+      </p>
+
       <div class="divider"></div>
 
-      <!-- Product Meta Description -->
       <div class="product-description">
-        <p>Experience undetectable perfection with our ultra-thin HD Swiss Lace. Melts seamlessly into all skin tones. Features 100% cuticle-aligned virgin hair with a pre-plucked natural hairline and deep 13x4 parting space.</p>
+        <p>
+          Enjoy a sleek, silky-straight look with this 13x4 HD lace frontal wig.
+          Designed with HD Swiss lace, a pre-plucked natural-looking hairline,
+          and deep parting space for versatile styling.
+        </p>
+
         <ul>
-          <li><strong>Lace Type:</strong> HD Invisible Swiss Lace</li>
-          <li><strong>Cap Size:</strong> Average (Adjustable straps & clips)</li>
-          <li><strong>Density:</strong> 180% High Density</li>
-          <li><strong>Texture:</strong> Silky Straight, can be dyed & flat ironed</li>
+          <li><strong>Lace type:</strong> HD Swiss lace frontal</li>
+          <li><strong>Cap size:</strong> Average, with adjustable straps and clips</li>
+          <li><strong>Density:</strong> 180% density</li>
+          <li><strong>Texture:</strong> Silky straight</li>
+          <li><strong>Hair:</strong> 100% cuticle-aligned virgin human hair</li>
         </ul>
       </div>
 
       <div class="divider"></div>
 
+      <form id="product-form">
+        <div class="selector-group">
+          <label class="selector-label" for="wig-length">
+            Choose Hair Length
+          </label>
+
+          <select id="wig-length" name="length" required>
+            <option value="16">16 inches — $150.00</option>
+            <option value="18">18 inches — $165.00</option>
+            <option value="20">20 inches — $180.00</option>
+            <option value="22">22 inches — $195.00</option>
+            <option value="24">24 inches — $210.00</option>
+          </select>
+        </div>
+
+        <div class="selector-group">
+          <label class="selector-label" for="quantity">Quantity</label>
+          <input id="quantity"
+            name="quantity"
+            type="number"
+            min="1"
+            max="99"
+            value="1"
+            required>
+        </div>
+
+        <button class="add-to-cart-btn" type="submit">
+          Add to Cart — <span id="button-price">$150.00</span>
+        </button>
+
+        <p class="cart-message" id="cart-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <section class="info-section" id="about">
+    <h2>About This Silky Straight HD Lace Wig</h2>
+    <p>
+      This silky straight 13x4 HD lace frontal wig is offered in five length
+      options, from 16 inches to 24 inches. Select your preferred length to
+      see its price before adding it to the demo cart.
+    </p>
+  </section>
+
+  <section class="info-section" id="care">
+    <h2>Wig Care</h2>
+    <p>
+      Use gentle hair products, detangle carefully from the ends upward,
+      and follow the care guidance supplied with your wig. Avoid excessive
+      heat and use heat protection when heat styling.
+    </p>
+  </section>
+
+  <footer>
+    <p>
+      &copy; <span id="current-year"></span> The Lace Wigs. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    // Display prices for each wig length.
+    const lengthPrices = {
+      "16": 150,
+      "18": 165,
+      "20": 180,
+      "22": 195,
+      "24": 210
+    };
+
+    const lengthSelect = document.getElementById("wig-length");
+    const displayPrice = document.getElementById("display-price");
+    const buttonPrice = document.getElementById("button-price");
+    const quantityInput = document.getElementById("quantity");
+    const cartBadge = document.getElementById("cart-badge");
+    const cartMessage = document.getElementById("cart-message");
+
+    let cartCount = 0;
+    let currentSlide = 0;
+
+    function money(amount) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      }).format(amount);
+    }
+
+    function updatePrice() {
+      const price = lengthPrices[lengthSelect.value];
+
+      displayPrice.textContent = money(price);
+      buttonPrice.textContent = money(price);
+    }
+
+    lengthSelect.addEventListener("change", updatePrice);
+
+    document.getElementById("product-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const length = lengthSelect.value;
+      const quantity = Number.parseInt(quantityInput.value, 10);
+
+      if (
+        !Object.prototype.hasOwnProperty.call(lengthPrices, length) ||
+        !Number.isInteger(quantity) ||
+        quantity < 1 ||
+        quantity > 99
+      ) {
+        cartMessage.textContent = "Please select a valid length and quantity between 1 and 99.";
+        return;
+      }
+
+      cartCount += quantity;
+      cartBadge.textContent = String(cartCount);
+
+      const total = lengthPrices[length] * quantity;
+
+      cartMessage.textContent =
+        `${quantity} × ${length}-inch wig added to this page's demo cart. Subtotal: ${money(total)}.`;
+    });
+
+    function changeSlide(direction) {
+      const images = document.querySelectorAll(".carousel-img");
+      currentSlide = (currentSlide + direction + images.length) % images.length;
+      setSlide(currentSlide);
+    }
+
+    function setSlide(index) {
+      const images = document.querySelectorAll(".carousel-img");
+      const thumbnails = document.querySelectorAll(".thumbnail");
+
+      if (index < 0 || index >= images.length) return;
+
+      currentSlide = index;
+
+      images.forEach((image, i) => {
+        image.classList.toggle("active", i === index);
+      });
+
+      thumbnails.forEach((thumbnail, i) => {
+        thumbnail.classList.toggle("active", i === index);
+        thumbnail.setAttribute("aria-pressed", i === index ? "true" : "false");
+      });
+    }
+
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+
+    updatePrice();
+  </script>
+</body>
+</html>
